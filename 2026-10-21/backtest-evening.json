@@ -1,6 +1,6 @@
 {
   "schema_version": "backtest-baseline-v1",
-  "created_at_taipei": "2026-10-21T17:15:35.879288+08:00",
+  "created_at_taipei": "2026-10-21T17:19:16.152350+08:00",
   "library": "backtesting.py",
   "strategy": "SMA20_60_LONG_ONLY",
   "execution": "signals on close, market order next bar open; no lookahead",
@@ -18,6 +18,7 @@
       "bars": 171,
       "train_end": "2026-08-05",
       "holdout_start": "2026-08-06",
+      "holdout_end": "2026-10-21",
       "in_sample": {
         "return_pct": 0.0,
         "buy_hold_return_pct": -16.154,
@@ -27,19 +28,20 @@
       },
       "holdout": {
         "return_pct": 4.531,
-        "buy_hold_return_pct": -7.5,
+        "buy_hold_return_pct": 9.07,
+        "excess_return_pct_points": -4.539,
         "max_drawdown_pct": -13.679,
         "trades": 1,
         "win_rate_pct": 100.0
       },
-      "holdout_buy_hold_return_pct": 9.07,
-      "caution": "Holdout signal trading starts strictly on/after holdout_start; indicators warm up on preceding bars. Holdout stats use full-period equity with idle capital before start; compare returns with the separately computed holdout buy-hold benchmark."
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
     },
     "2330": {
       "status": "EXPLORATORY_ONLY",
       "bars": 171,
       "train_end": "2026-08-05",
       "holdout_start": "2026-08-06",
+      "holdout_end": "2026-10-21",
       "in_sample": {
         "return_pct": 0.0,
         "buy_hold_return_pct": 6.652,
@@ -49,19 +51,20 @@
       },
       "holdout": {
         "return_pct": -1.009,
-        "buy_hold_return_pct": 7.317,
+        "buy_hold_return_pct": 2.326,
+        "excess_return_pct_points": -3.335,
         "max_drawdown_pct": -6.95,
         "trades": 1,
         "win_rate_pct": 0.0
       },
-      "holdout_buy_hold_return_pct": 2.326,
-      "caution": "Holdout signal trading starts strictly on/after holdout_start; indicators warm up on preceding bars. Holdout stats use full-period equity with idle capital before start; compare returns with the separately computed holdout buy-hold benchmark."
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
     },
     "0050": {
       "status": "EXPLORATORY_ONLY",
       "bars": 171,
       "train_end": "2026-08-05",
       "holdout_start": "2026-08-06",
+      "holdout_end": "2026-10-21",
       "in_sample": {
         "return_pct": 0.0,
         "buy_hold_return_pct": 7.176,
@@ -71,19 +74,20 @@
       },
       "holdout": {
         "return_pct": 2.619,
-        "buy_hold_return_pct": 11.668,
+        "buy_hold_return_pct": 4.695,
+        "excess_return_pct_points": -2.076,
         "max_drawdown_pct": -7.94,
         "trades": 1,
         "win_rate_pct": 100.0
       },
-      "holdout_buy_hold_return_pct": 4.695,
-      "caution": "Holdout signal trading starts strictly on/after holdout_start; indicators warm up on preceding bars. Holdout stats use full-period equity with idle capital before start; compare returns with the separately computed holdout buy-hold benchmark."
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
     },
     "5483": {
       "status": "EXPLORATORY_ONLY",
       "bars": 171,
       "train_end": "2026-08-05",
       "holdout_start": "2026-08-06",
+      "holdout_end": "2026-10-21",
       "in_sample": {
         "return_pct": 0.0,
         "buy_hold_return_pct": 14.839,
@@ -93,19 +97,20 @@
       },
       "holdout": {
         "return_pct": -11.439,
-        "buy_hold_return_pct": 28.387,
+        "buy_hold_return_pct": 12.113,
+        "excess_return_pct_points": -23.552,
         "max_drawdown_pct": -13.563,
         "trades": 1,
         "win_rate_pct": 0.0
       },
-      "holdout_buy_hold_return_pct": 12.113,
-      "caution": "Holdout signal trading starts strictly on/after holdout_start; indicators warm up on preceding bars. Holdout stats use full-period equity with idle capital before start; compare returns with the separately computed holdout buy-hold benchmark."
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
     },
     "3707": {
       "status": "EXPLORATORY_ONLY",
       "bars": 171,
       "train_end": "2026-08-05",
       "holdout_start": "2026-08-06",
+      "holdout_end": "2026-10-21",
       "in_sample": {
         "return_pct": 0.0,
         "buy_hold_return_pct": -19.171,
@@ -115,19 +120,20 @@
       },
       "holdout": {
         "return_pct": -14.352,
-        "buy_hold_return_pct": -3.756,
+        "buy_hold_return_pct": 19.646,
+        "excess_return_pct_points": -33.998,
         "max_drawdown_pct": -18.91,
         "trades": 1,
         "win_rate_pct": 0.0
       },
-      "holdout_buy_hold_return_pct": 19.646,
-      "caution": "Holdout signal trading starts strictly on/after holdout_start; indicators warm up on preceding bars. Holdout stats use full-period equity with idle capital before start; compare returns with the separately computed holdout buy-hold benchmark."
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
     },
     "2367": {
       "status": "EXPLORATORY_ONLY",
       "bars": 171,
       "train_end": "2026-08-05",
       "holdout_start": "2026-08-06",
+      "holdout_end": "2026-10-21",
       "in_sample": {
         "return_pct": 0.0,
         "buy_hold_return_pct": -35.802,
@@ -137,19 +143,20 @@
       },
       "holdout": {
         "return_pct": 5.195,
-        "buy_hold_return_pct": -28.627,
+        "buy_hold_return_pct": 9.08,
+        "excess_return_pct_points": -3.885,
         "max_drawdown_pct": -6.0,
         "trades": 1,
         "win_rate_pct": 100.0
       },
-      "holdout_buy_hold_return_pct": 9.08,
-      "caution": "Holdout signal trading starts strictly on/after holdout_start; indicators warm up on preceding bars. Holdout stats use full-period equity with idle capital before start; compare returns with the separately computed holdout buy-hold benchmark."
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
     },
     "3491": {
       "status": "EXPLORATORY_ONLY",
       "bars": 170,
       "train_end": "2026-08-05",
       "holdout_start": "2026-08-06",
+      "holdout_end": "2026-10-21",
       "in_sample": {
         "return_pct": 0.0,
         "buy_hold_return_pct": -27.195,
@@ -159,13 +166,13 @@
       },
       "holdout": {
         "return_pct": -1.777,
-        "buy_hold_return_pct": -18.98,
+        "buy_hold_return_pct": 5.926,
+        "excess_return_pct_points": -7.703,
         "max_drawdown_pct": -22.732,
         "trades": 1,
         "win_rate_pct": 0.0
       },
-      "holdout_buy_hold_return_pct": 5.926,
-      "caution": "Holdout signal trading starts strictly on/after holdout_start; indicators warm up on preceding bars. Holdout stats use full-period equity with idle capital before start; compare returns with the separately computed holdout buy-hold benchmark."
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
     }
   },
   "warnings": [
