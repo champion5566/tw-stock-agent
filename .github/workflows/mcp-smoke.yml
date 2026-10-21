@@ -1,0 +1,63 @@
+name: TWSE MCP Smoke Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/mcp-data-smoke-20261021
+    paths:
+      - '.github/workflows/mcp-smoke.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  mcp-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Test public TWSE MCP without credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, urllib.request, urllib.error, datetime, sys
+          endpoint = "https://twse-mcp.taux.io/mcp"
+          headers = {
+              "Content-Type": "application/json",
+              "Accept": "application/json, text/event-stream",
+              "MCP-Protocol-Version": "2025-06-18",
+          }
+          def call(payload, session=None):
+              h = dict(headers)
+              if session: h["Mcp-Session-Id"] = session
+              req = urllib.request.Request(endpoint, data=json.dumps(payload).encode(), headers=h, method="POST")
+              with urllib.request.urlopen(req, timeout=25) as resp:
+                  raw = resp.read().decode()
+                  session_id = resp.headers.get("Mcp-Session-Id") or session
+                  if "text/event-stream" in resp.headers.get("Content-Type", ""):
+                      messages = [json.loads(line[6:]) for line in raw.splitlines() if line.startswith("data: ") and line[6:].strip() != "[DONE]"]
+                      return messages[-1] if messages else {}, session_id
+                  return json.loads(raw), session_id
+          def emit(name, value):
+              print(name, json.dumps(value, ensure_ascii=False)[:10000])
+          try:
+              initialized, session = call({"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"tw-stock-agent-smoke","version":"0.1"}}})
+              emit("INITIALIZE",initialized)
+              if "error" in initialized: raise RuntimeError("initialize returned error")
+              tools, session = call({"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}},session)
+              names=[t.get("name") for t in tools.get("result",{}).get("tools",[])]
+              emit("AVAILABLE_TOOLS",names)
+              if "quote.realtime" not in names or "snapshot.stock" not in names:
+                  raise RuntimeError("Expected quote.realtime and snapshot.stock missing")
+              quote,session=call({"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"quote.realtime","arguments":{"codes":["2313"],"market":"tse"}}},session)
+              emit("HUA_TONG_QUOTE",quote)
+              if quote.get("error") or quote.get("result",{}).get("isError"): raise RuntimeError("quote call failed")
+              snap,session=call({"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"snapshot.stock","arguments":{"code":"2313","include_margin":True}}},session)
+              emit("HUA_TONG_SNAPSHOT",snap)
+              if snap.get("error") or snap.get("result",{}).get("isError"): raise RuntimeError("snapshot call failed")
+              print("MCP_CONNECTIVITY_PASS: tool calls completed; inspect dates and fields above before trusting data.")
+          except Exception as e:
+              print("MCP_CONNECTIVITY_FAIL",type(e).__name__,str(e))
+              sys.exit(1)
+          PY
