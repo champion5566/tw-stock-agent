@@ -21,6 +21,7 @@ on:
     paths:
       - collect_cross_market.py
       - .github/workflows/cross-market.yml
+      - collect_shioaji_night.py
 
 permissions:
   contents: write
@@ -39,7 +40,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install maintained quote client
-        run: python -m pip install 'yfinance>=0.2.60,<2'
+        run: python -m pip install 'yfinance>=0.2.60,<2' 'shioaji>=1.2,<2'
       - name: Resolve report slot
         shell: bash
         env:
@@ -57,7 +58,7 @@ jobs:
           fi
       - name: Test USA Japan Korea and futures
         run: python collect_cross_market.py
-      - name: Save auditable test results
+      - name: Capture read-only TX night quote with timestamp\n        if: env.REPORT_SLOT == 'evening'\n        env:\n          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}\n          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}\n        run: python collect_shioaji_night.py\n      - name: Save auditable test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
