@@ -98,10 +98,10 @@ def main():
     if slot not in ("morning", "evening"):
         raise ValueError("REPORT_SLOT must be morning/evening")
     asof = now.date()
-    start = (asof - timedelta(days=12)).isoformat()
+    start = (asof - timedelta(days=45)).isoformat()
     end = asof.isoformat()
     result = {
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "fetched_at_taipei": now.isoformat(),
         "trade_date_requested": end,
         "slot": slot,
@@ -143,7 +143,11 @@ def main():
             rows = attempt(lambda d=dataset, c=code: finmind(d, c, start, end))
             if rows["status"] == "PASS":
                 last = latest(rows["data"])
-                rows["row_count"] = len(rows["data"])
+                history = sorted(rows["data"], key=lambda r: str(r.get("date", "")))
+                rows["row_count"] = len(history)
+                rows["history"] = history
+                rows["history_start"] = history[0].get("date") if history else None
+                rows["history_end"] = history[-1].get("date") if history else None
                 rows["data"] = last
                 rows["source_date"] = last.get("date") if last else None
                 rows["dataset"] = dataset
