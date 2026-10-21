@@ -11,8 +11,8 @@ on:
           - evening
         default: evening
   schedule:
-    - cron: '25 0 * * 1-5'   # 08:25 Taipei
-    - cron: '40 12 * * 1-5'  # 20:40 Taipei
+    - cron: '25 0 * * *'   # 08:25 Taipei
+    - cron: '40 12 * * *'  # 20:40 Taipei
   push:
     branches:
       - main
@@ -42,7 +42,7 @@ jobs:
         run: |
           if [ -n "$DISPATCH_SLOT" ]; then
             echo "REPORT_SLOT=$DISPATCH_SLOT" >> "$GITHUB_ENV"
-          elif [ "$SCHEDULE" = '25 0 * * 1-5' ]; then
+          elif [ "$SCHEDULE" = '25 0 * * *' ]; then
             echo 'REPORT_SLOT=morning' >> "$GITHUB_ENV"
           else
             echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
