@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "fetched_at_taipei": "2026-10-21T15:53:57.827516+08:00",
+  "fetched_at_taipei": "2026-10-21T15:56:27.912126+08:00",
   "date_taipei": "2026-10-21",
   "slot": "evening",
   "assets": {
@@ -20,7 +20,7 @@
         "latest_bar_utc": "2026-10-20T20:45:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 669.0
+        "age_minutes": 671.5
       },
       "NASDAQ": {
         "status": "HISTORICAL_BAR",
@@ -37,7 +37,7 @@
         "latest_bar_utc": "2026-10-20T21:15:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 639.0
+        "age_minutes": 641.5
       },
       "SOX": {
         "status": "HISTORICAL_BAR",
@@ -54,7 +54,7 @@
         "latest_bar_utc": "2026-10-20T21:15:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 639.0
+        "age_minutes": 641.5
       },
       "VIX": {
         "status": "PASS",
@@ -63,15 +63,15 @@
         "price": 17.170000076293945,
         "open": 17.170000076293945,
         "high": 17.170000076293945,
-        "low": 17.15999984741211,
+        "low": 17.170000076293945,
         "volume_bar": 0.0,
         "interval": "5m",
-        "latest_bar_at_exchange": "2026-10-21T02:35:00-05:00",
-        "latest_bar_at_taipei": "2026-10-21T15:35:00+08:00",
-        "latest_bar_utc": "2026-10-21T07:35:00+00:00",
+        "latest_bar_at_exchange": "2026-10-21T02:40:00-05:00",
+        "latest_bar_at_taipei": "2026-10-21T15:40:00+08:00",
+        "latest_bar_utc": "2026-10-21T07:40:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 19.0
+        "age_minutes": 16.5
       },
       "NVDA": {
         "status": "HISTORICAL_BAR",
@@ -88,7 +88,7 @@
         "latest_bar_utc": "2026-10-20T23:55:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 479.0
+        "age_minutes": 481.5
       },
       "AMD": {
         "status": "HISTORICAL_BAR",
@@ -105,7 +105,7 @@
         "latest_bar_utc": "2026-10-20T23:55:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 479.0
+        "age_minutes": 481.5
       },
       "AVGO": {
         "status": "HISTORICAL_BAR",
@@ -122,7 +122,7 @@
         "latest_bar_utc": "2026-10-20T23:55:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 479.0
+        "age_minutes": 481.5
       },
       "MU": {
         "status": "HISTORICAL_BAR",
@@ -139,7 +139,7 @@
         "latest_bar_utc": "2026-10-20T23:55:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 479.0
+        "age_minutes": 481.5
       },
       "TSM_ADR": {
         "status": "HISTORICAL_BAR",
@@ -156,12 +156,12 @@
         "latest_bar_utc": "2026-10-20T23:55:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 479.0
+        "age_minutes": 481.5
       }
     },
     "jp": {
       "NIKKEI225": {
-        "status": "PASS",
+        "status": "HISTORICAL_BAR",
         "ticker": "^N225",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
         "price": 64676.9296875,
@@ -175,7 +175,7 @@
         "latest_bar_utc": "2026-10-21T06:25:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 89.0
+        "age_minutes": 91.5
       },
       "TOPIX": {
         "status": "FAIL",
@@ -197,7 +197,7 @@
         "latest_bar_utc": "2026-10-21T06:20:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 94.0
+        "age_minutes": 96.5
       },
       "TOKYO_ELECTRON": {
         "status": "HISTORICAL_BAR",
@@ -214,7 +214,7 @@
         "latest_bar_utc": "2026-10-21T06:20:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 94.0
+        "age_minutes": 96.5
       }
     },
     "kr": {
@@ -233,7 +233,7 @@
         "latest_bar_utc": "2026-10-21T06:30:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 84.0
+        "age_minutes": 86.5
       },
       "KOSDAQ": {
         "status": "PASS",
@@ -250,24 +250,24 @@
         "latest_bar_utc": "2026-10-21T06:30:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 84.0
+        "age_minutes": 86.5
       },
       "SAMSUNG": {
-        "status": "PASS",
+        "status": "HISTORICAL_BAR",
         "ticker": "005930.KS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 223500.0,
-        "open": 223500.0,
-        "high": 223500.0,
-        "low": 223500.0,
-        "volume_bar": 3390969.0,
+        "price": 222500.0,
+        "open": 222500.0,
+        "high": 222500.0,
+        "low": 222000.0,
+        "volume_bar": 144320.0,
         "interval": "5m",
-        "latest_bar_at_exchange": "2026-10-21T15:30:00+09:00",
-        "latest_bar_at_taipei": "2026-10-21T14:30:00+08:00",
-        "latest_bar_utc": "2026-10-21T06:30:00+00:00",
+        "latest_bar_at_exchange": "2026-10-21T15:15:00+09:00",
+        "latest_bar_at_taipei": "2026-10-21T14:15:00+08:00",
+        "latest_bar_utc": "2026-10-21T06:15:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 84.0
+        "age_minutes": 101.5
       },
       "SK_HYNIX": {
         "status": "HISTORICAL_BAR",
@@ -284,7 +284,7 @@
         "latest_bar_utc": "2026-10-21T06:15:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 99.0
+        "age_minutes": 101.5
       }
     },
     "futures_proxy": {
