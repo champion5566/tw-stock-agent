@@ -1,0 +1,80 @@
+name: TWSE MCP Smoke Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/mcp-data-smoke-20261021
+    paths:
+      - '.github/workflows/mcp-smoke.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  mcp-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Compare Python default UA, browser UA, and curl
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, urllib.request, urllib.error, sys
+          url = "https://twse-mcp.taux.io/mcp"
+          payload = {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"tw-stock-agent-smoke","version":"0.2"}}}
+          base = {"Content-Type":"application/json","Accept":"application/json, text/event-stream","MCP-Protocol-Version":"2025-06-18"}
+          variants = [
+              ("python-default",{}),
+              ("explicit-client",{"User-Agent":"tw-stock-agent-smoke/0.2"}),
+              ("browser",{"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36"}),
+          ]
+          def post(p, h):
+              req=urllib.request.Request(url,data=json.dumps(p).encode(),headers={**base,**h},method="POST")
+              try:
+                  with urllib.request.urlopen(req,timeout=30) as r:
+                      return r.status,dict(r.headers),r.read().decode(errors="replace")
+              except urllib.error.HTTPError as e:
+                  return e.code,dict(e.headers),e.read(1500).decode(errors="replace")
+          winner=None
+          for label,h in variants:
+              try:
+                  status,headers,body=post(payload,h)
+                  print("DIAGNOSTIC",label,"status",status,"server",headers.get("server"),"cf-ray",headers.get("cf-ray"),"content-type",headers.get("content-type"),"body",body[:400],flush=True)
+                  if status==200 and winner is None: winner=(label,h)
+              except Exception as e:
+                  print("DIAGNOSTIC",label,"exception",repr(e),flush=True)
+          if not winner:
+              print("NO_WORKING_PYTHON_VARIANT",flush=True)
+              sys.exit(1)
+          label,h=winner
+          status,headers,body=post({"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}},h)
+          print("TOOLS_LIST",label,status,body[:3500],flush=True)
+          if status!=200 or "quote.realtime" not in body or "snapshot.stock" not in body:
+              sys.exit("TOOLS_LIST_FAILED")
+          for tool,args in [("quote.realtime",{"codes":["2313"],"market":"tse"}),("snapshot.stock",{"code":"2313","include_margin":True})]:
+              status,headers,body=post({"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":tool,"arguments":args}},h)
+              print("TOOL_CALL",tool,status,body[:7000],flush=True)
+              if status!=200 or '"isError":true' in body or '"error":' in body[:200]:
+                  sys.exit("TOOL_CALL_FAILED "+tool)
+          print("MCP_SMOKE_PASS: inspect quote dates and caveats",flush=True)
+          PY
+      - name: Independent curl response check
+        if: always()
+        shell: bash
+        run: |
+          curl -sS -i --max-time 15 -X POST 'https://twse-mcp.taux.io/mcp' \
+            -H 'Content-Type: application/json' \
+            -H 'Accept: application/json, text/event-stream' \
+            -H 'MCP-Protocol-Version: 2025-06-18' \
+            -H 'User-Agent: tw-stock-agent-curl/0.2' \
+            --data '{"jsonrpc":"2.0","id":8,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"tw-stock-agent-curl","version":"0.2"}}}' | head -c 2000 || true
+
+      - name: Checkout test branch
+        uses: actions/checkout@v4
+      - name: Probe FinMind and institutional dataset catalog
+        if: always()
+        shell: bash
+        run: |
+          python3 probe_sources.py
