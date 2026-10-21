@@ -5,14 +5,15 @@ reconstructing missing futures ticks from prior settlement values.
 """
 import json
 import os
-from datetime import datetime, timezone
+import time
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import yfinance as yf
 from alpaca_quotes import fetch_iex_snapshots
 
-from collect_market import mcp, attempt, http_json
+from collect_market import mcp, attempt, http_json, finmind
 
 TW = ZoneInfo("Asia/Taipei")
 ASSETS = {
@@ -112,6 +113,57 @@ def main():
                 out["assets"][area][name] = obs
                 print("QUOTE", area, name, ticker, obs["status"],
                       obs.get("latest_bar_at_taipei"), flush=True)
+
+    # US daily OHLCV: FinMind first, Yahoo daily history as fallback.
+    # Keep each provider and its source date separate from intraday IEX trades.
+    out["us_daily"] = {}
+    symbols = sorted(set(t for group in ASSETS["us"].values()
+                         for t in group.values() if not t.startswith("^")))
+    start = (now.date() - timedelta(days=365)).isoformat()
+    end = now.date().isoformat()
+    for symbol in symbols:
+        primary = attempt(lambda s=symbol: finmind("USStockPrice", s, start, end))
+        rows = primary.get("data") if primary["status"] == "PASS" else None
+        if isinstance(rows, list) and rows:
+            rows.sort(key=lambda r: str(r.get("date", "")))
+            out["us_daily"][symbol] = {
+                "status": "PASS", "source": "FinMind USStockPrice",
+                "source_date": rows[-1].get("date"), "row_count": len(rows),
+                "history": rows, "latest": rows[-1],
+                "note": "Daily OHLCV, not live; compare trade dates and adjustments."
+            }
+        else:
+            # A provider error or missing ticker must not be represented as zero price.
+            fallback = attempt(lambda s=symbol: yf.Ticker(s).history(
+                period="1y", interval="1d", auto_adjust=False,
+                raise_errors=True))
+            if fallback["status"] == "PASS" and not fallback["data"].empty:
+                df = fallback["data"]
+                hist = [
+                    {"date": idx.date().isoformat(),
+                     "Open": float(row["Open"]), "High": float(row["High"]),
+                     "Low": float(row["Low"]), "Close": float(row["Close"]),
+                     "Volume": int(row["Volume"])}
+                    for idx, row in df.iterrows()
+                ]
+                out["us_daily"][symbol] = {
+                    "status": "FALLBACK", "source": "Yahoo/yfinance 1d",
+                    "source_date": hist[-1]["date"], "row_count": len(hist),
+                    "history": hist, "latest": hist[-1],
+                    "finmind_status": primary["status"],
+                    "finmind_error": primary.get("error"),
+                    "note": "Yahoo fallback; verify splits and dividends before backtests."
+                }
+            else:
+                out["us_daily"][symbol] = {
+                    "status": "MISSING", "source": None,
+                    "finmind_status": primary["status"],
+                    "finmind_error": primary.get("error"),
+                    "yahoo_error": fallback.get("error")
+                }
+        print("US_DAILY", symbol, out["us_daily"][symbol]["status"],
+              out["us_daily"][symbol].get("source_date"), flush=True)
+        time.sleep(0.15)
 
     official = attempt(lambda: http_json("https://openapi.taifex.com.tw/v1/DailyMarketReportFut"))
     if official["status"] == "PASS":
