@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "fetched_at_taipei": "2026-10-21T22:06:26.949419+08:00",
+  "fetched_at_taipei": "2026-10-21T22:07:56.926417+08:00",
   "date_taipei": "2026-10-21",
   "slot": "evening",
   "assets": {
@@ -9,44 +9,44 @@
         "status": "PASS",
         "ticker": "^GSPC",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 7717.35986328125,
+        "price": 7718.18994140625,
         "open": 7724.39013671875,
         "high": 7724.64990234375,
-        "low": 7716.2900390625,
-        "volume_bar": 8542805.0,
+        "low": 7715.02978515625,
+        "volume_bar": 15318440.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "NASDAQ": {
         "status": "PASS",
         "ticker": "^IXIC",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 26570.205078125,
+        "price": 26570.5078125,
         "open": 26599.595703125,
         "high": 26600.513671875,
-        "low": 26566.40625,
-        "volume_bar": 18506000.0,
+        "low": 26561.021484375,
+        "volume_bar": 40003000.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "SOX": {
         "status": "PASS",
         "ticker": "^SOX",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 11418.6884765625,
+        "price": 11412.599609375,
         "open": 11440.19921875,
         "high": 11440.19921875,
-        "low": 11413.017578125,
+        "low": 11410.5908203125,
         "volume_bar": 0.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
@@ -54,15 +54,15 @@
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "VIX": {
         "status": "PASS",
         "ticker": "^VIX",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 16.90999984741211,
+        "price": 16.969999313354492,
         "open": 16.899999618530273,
-        "high": 16.920000076293945,
+        "high": 16.989999771118164,
         "low": 16.899999618530273,
         "volume_bar": 0.0,
         "interval": "5m",
@@ -71,245 +71,245 @@
         "latest_bar_utc": "2026-10-21T13:50:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 16.4
+        "age_minutes": 17.9
       },
       "NVDA": {
         "status": "PASS",
         "ticker": "NVDA",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 219.50990295410156,
+        "price": 219.55499267578125,
         "open": 220.0,
         "high": 220.22000122070312,
-        "low": 219.35000610351562,
-        "volume_bar": 514041.0,
+        "low": 219.33799743652344,
+        "volume_bar": 832983.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "AMD": {
         "status": "PASS",
         "ticker": "AMD",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 543.4401245117188,
+        "price": 542.75,
         "open": 543.0900268554688,
-        "high": 543.7349853515625,
+        "high": 543.89990234375,
         "low": 541.7200927734375,
-        "volume_bar": 47175.0,
+        "volume_bar": 90129.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "AVGO": {
         "status": "PASS",
         "ticker": "AVGO",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 334.94000244140625,
+        "price": 334.8800048828125,
         "open": 335.62811279296875,
         "high": 335.6449890136719,
-        "low": 334.9100036621094,
-        "volume_bar": 53211.0,
+        "low": 334.80999755859375,
+        "volume_bar": 93462.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "MU": {
         "status": "PASS",
         "ticker": "MU",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 904.780029296875,
+        "price": 905.0906982421875,
         "open": 906.489990234375,
         "high": 908.1099853515625,
-        "low": 904.010009765625,
-        "volume_bar": 90641.0,
+        "low": 903.5,
+        "volume_bar": 162567.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "TSM_ADR": {
         "status": "PASS",
         "ticker": "TSM",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 426.2200012207031,
+        "price": 426.4999084472656,
         "open": 427.2200012207031,
         "high": 427.2200012207031,
-        "low": 425.9010009765625,
-        "volume_bar": 31399.0,
+        "low": 425.79998779296875,
+        "volume_bar": 57494.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "AMZN": {
         "status": "PASS",
         "ticker": "AMZN",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 259.92999267578125,
+        "price": 259.8399963378906,
         "open": 259.8599853515625,
-        "high": 259.93499755859375,
+        "high": 260.1000061035156,
         "low": 259.75,
-        "volume_bar": 78159.0,
+        "volume_bar": 164033.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "BRK.B": {
         "status": "PASS",
         "ticker": "BRK-B",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 540.905029296875,
+        "price": 541.02001953125,
         "open": 541.1901245117188,
         "high": 541.1901245117188,
-        "low": 540.8350219726562,
-        "volume_bar": 11168.0,
+        "low": 540.8200073242188,
+        "volume_bar": 15526.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "GOOG": {
         "status": "PASS",
         "ticker": "GOOG",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 328.32000732421875,
+        "price": 328.2749938964844,
         "open": 329.07000732421875,
         "high": 329.0899963378906,
-        "low": 328.32000732421875,
-        "volume_bar": 102300.0,
+        "low": 328.260009765625,
+        "volume_bar": 209740.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "META": {
         "status": "PASS",
         "ticker": "META",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 707.260009765625,
+        "price": 706.7899780273438,
         "open": 709.9400024414062,
         "high": 709.9754028320312,
-        "low": 707.260009765625,
-        "volume_bar": 53341.0,
+        "low": 706.7899780273438,
+        "volume_bar": 126639.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "QCOM": {
         "status": "PASS",
         "ticker": "QCOM",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 176.52000427246094,
+        "price": 176.72000122070312,
         "open": 176.7855987548828,
         "high": 176.92999267578125,
-        "low": 176.36000061035156,
-        "volume_bar": 21045.0,
+        "low": 176.3300018310547,
+        "volume_bar": 38721.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "SPCX": {
         "status": "PASS",
         "ticker": "SPCX",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 165.04859924316406,
+        "price": 165.2899932861328,
         "open": 165.3000030517578,
-        "high": 165.92999267578125,
-        "low": 165.04859924316406,
-        "volume_bar": 1094507.0,
+        "high": 166.0,
+        "low": 164.9499969482422,
+        "volume_bar": 2077857.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "TLT": {
         "status": "PASS",
         "ticker": "TLT",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 80.2699966430664,
+        "price": 80.25,
         "open": 80.33000183105469,
         "high": 80.33000183105469,
-        "low": 80.2699966430664,
-        "volume_bar": 44892.0,
+        "low": 80.2300033569336,
+        "volume_bar": 73913.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "TSLA": {
         "status": "PASS",
         "ticker": "TSLA",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 384.7300109863281,
+        "price": 385.8450012207031,
         "open": 385.3800048828125,
         "high": 386.6300048828125,
-        "low": 384.3999938964844,
-        "volume_bar": 291689.0,
+        "low": 384.2799987792969,
+        "volume_bar": 537494.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       },
       "QQQ": {
         "status": "PASS",
         "ticker": "QQQ",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "price": 721.52001953125,
+        "price": 721.739990234375,
         "open": 722.2999877929688,
         "high": 722.4600219726562,
-        "low": 721.4099731445312,
-        "volume_bar": 135578.0,
+        "low": 721.219970703125,
+        "volume_bar": 238885.0,
         "interval": "5m",
         "latest_bar_at_exchange": "2026-10-21T10:05:00-04:00",
         "latest_bar_at_taipei": "2026-10-21T22:05:00+08:00",
         "latest_bar_utc": "2026-10-21T14:05:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 1.4
+        "age_minutes": 2.9
       }
     },
     "jp": {
@@ -328,7 +328,7 @@
         "latest_bar_utc": "2026-10-21T06:25:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 461.4
+        "age_minutes": 462.9
       },
       "TOPIX_ETF_PROXY": {
         "status": "HISTORICAL_BAR",
@@ -345,7 +345,7 @@
         "latest_bar_utc": "2026-10-21T06:20:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 466.4
+        "age_minutes": 467.9
       },
       "ADVANTEST": {
         "status": "HISTORICAL_BAR",
@@ -362,7 +362,7 @@
         "latest_bar_utc": "2026-10-21T06:20:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 466.4
+        "age_minutes": 467.9
       },
       "TOKYO_ELECTRON": {
         "status": "HISTORICAL_BAR",
@@ -379,7 +379,7 @@
         "latest_bar_utc": "2026-10-21T06:20:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 466.4
+        "age_minutes": 467.9
       }
     },
     "kr": {
@@ -398,7 +398,7 @@
         "latest_bar_utc": "2026-10-21T06:30:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 456.4
+        "age_minutes": 457.9
       },
       "KOSDAQ": {
         "status": "HISTORICAL_BAR",
@@ -415,7 +415,7 @@
         "latest_bar_utc": "2026-10-21T06:30:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 456.4
+        "age_minutes": 457.9
       },
       "SAMSUNG": {
         "status": "HISTORICAL_BAR",
@@ -432,7 +432,7 @@
         "latest_bar_utc": "2026-10-21T06:15:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 471.4
+        "age_minutes": 472.9
       },
       "SK_HYNIX": {
         "status": "HISTORICAL_BAR",
@@ -449,7 +449,7 @@
         "latest_bar_utc": "2026-10-21T06:15:00+00:00",
         "is_formal_close": false,
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 471.4
+        "age_minutes": 472.9
       }
     }
   },
@@ -1104,14 +1104,14 @@
     "shioaji_live_tx": {
       "provider": "Shioaji",
       "instrument": "TXFR1",
-      "checked_at_taipei": "2026-10-21T22:06:51.720076+08:00",
+      "checked_at_taipei": "2026-10-21T22:08:17.050438+08:00",
       "status": "PASS",
       "is_live": true,
       "contract_code": "TXFR1",
-      "price": 47238.0,
-      "trade_time": "2026-10-21 22:07:25.371000",
+      "price": 47251.0,
+      "trade_time": "2026-10-21 22:08:50.398000",
       "volume": "1",
-      "ticks_observed": 23,
+      "ticks_observed": 19,
       "age_minutes": 0.07
     }
   },
