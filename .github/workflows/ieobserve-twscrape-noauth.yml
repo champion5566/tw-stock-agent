@@ -1,0 +1,30 @@
+name: IEObserve twscrape No Auth Probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - probe_ieobserve_twscrape_noauth.py
+      - .github/workflows/ieobserve-twscrape-noauth.yml
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install maintained open source twscrape
+        run: python -m pip install 'twscrape==0.20.1'
+      - name: Try public user and search discovery without X credentials
+        run: python probe_ieobserve_twscrape_noauth.py
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ieobserve-twscrape-noauth
+          path: out/kol/ieobserve-twscrape-noauth.json
+          retention-days: 7
