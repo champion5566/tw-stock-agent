@@ -98,7 +98,7 @@ def main():
     if slot not in ("morning", "evening"):
         raise ValueError("REPORT_SLOT must be morning/evening")
     asof = now.date()
-    start = (asof - timedelta(days=45)).isoformat()
+    start = (asof - timedelta(days=260)).isoformat()
     end = asof.isoformat()
     result = {
         "schema_version": "1.1",
