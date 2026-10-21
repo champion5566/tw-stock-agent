@@ -132,7 +132,7 @@ def main():
             equity = stats["_equity_curve"]["Equity"]
             # No orders before holdout; cash remains unchanged until first
             # eligible next-bar fill. Holdout end/start equity is comparable.
-            start_equity = float(equity.loc[frame.index[cut]])
+            start_equity = 1_000_000.0
             end_equity = float(equity.iloc[-1])
             strategy_return = (end_equity / start_equity - 1) * 100
             bh_return = (float(holdout["Close"].iloc[-1]) /
