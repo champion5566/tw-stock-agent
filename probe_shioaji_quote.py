@@ -15,7 +15,7 @@ else:
         result["stage"] = "create_client"
         api = sj.Shioaji(simulation=False)
         result["stage"] = "login"
-        api.login(api_key=key, secret_key=secret, contracts_timeout=15000)
+        api.login(api_key=key, secret_key=secret)
         result["status"] = "LOGGED_IN"
         result["stage"] = "resolve_contract"
         contract = api.Contracts.Futures.TXF.TXFR1
