@@ -1,0 +1,29 @@
+name: IEObserve Free X Public Audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - audit_ieobserve_free_x.py
+      - .github/workflows/ieobserve-free-x-audit.yml
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'requests>=2.31,<3' 'beautifulsoup4>=4.12,<5'
+      - name: Audit public syndication and embedded posts without API keys
+        run: python audit_ieobserve_free_x.py
+      - name: Save evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ieobserve-free-x-audit
+          path: out/kol/ieobserve-free-x-audit.json
+          retention-days: 7
