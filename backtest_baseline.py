@@ -24,11 +24,15 @@ def sma(arr, n):
 
 
 class SMA2060(Strategy):
+    start_date = None
+
     def init(self):
         self.fast = self.I(sma, self.data.Close, 20)
         self.slow = self.I(sma, self.data.Close, 60)
 
     def next(self):
+        if self.start_date is not None and self.data.index[-1] < self.start_date:
+            return
         if np.isnan(self.fast[-1]) or np.isnan(self.slow[-1]):
             return
         if self.fast[-2] <= self.slow[-2] and self.fast[-1] > self.slow[-1]:
@@ -59,8 +63,11 @@ def prepare(rows):
     return frame
 
 
-def score(frame):
-    bt = Backtest(frame, SMA2060, cash=1_000_000,
+def score(frame, start_date=None):
+    class DatedStrategy(SMA2060):
+        pass
+    DatedStrategy.start_date = start_date
+    bt = Backtest(frame, DatedStrategy, cash=1_000_000,
                   commission=COMMISSION_PER_SIDE, spread=SPREAD,
                   trade_on_close=False, exclusive_orders=True, finalize_trades=True)
     s = bt.run()
@@ -104,15 +111,16 @@ def main():
         cut = int(n * 0.70)
         # Holdout receives prior 60 bars as warmup; trades before cutoff are not evaluated.
         train = frame.iloc[:cut]
-        test = frame.iloc[max(0, cut - 60):]
+        holdout_start = frame.index[cut]
         try:
             output["stocks"][code] = {
                 "status": "EXPLORATORY_ONLY", "bars": n,
                 "train_end": str(train.index[-1].date()),
                 "holdout_start": str(frame.index[cut].date()),
                 "in_sample": score(train),
-                "holdout_with_warmup": score(test),
-                "caution": "Holdout includes 60-bar indicator warmup; performance may include warmup trades. Not a clean out-of-sample PnL.",
+                "holdout": score(frame, start_date=holdout_start),
+                "holdout_buy_hold_return_pct": round((float(frame["Close"].iloc[-1]) / float(frame["Close"].iloc[cut]) - 1) * 100, 3),
+                "caution": "Holdout signal trading starts strictly on/after holdout_start; indicators warm up on preceding bars. Holdout stats use full-period equity with idle capital before start; compare returns with the separately computed holdout buy-hold benchmark.",
             }
         except Exception as exc:
             output["stocks"][code] = {"status": "ERROR", "bars": n, "error_type": type(exc).__name__}
