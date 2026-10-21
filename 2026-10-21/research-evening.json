@@ -1,14 +1,14 @@
 {
   "schema_version": "research-v1",
-  "created_at_taipei": "2026-10-21T17:19:15.095635+08:00",
+  "created_at_taipei": "2026-10-21T21:20:18.788222+08:00",
   "slot": "evening",
   "source_snapshot": "2026-10-21/evening.json",
   "trade_date": "2026-10-21",
   "coverage": {
     "stocks_total": 7,
     "daily_ohlcv_available": 7,
-    "institutional_current_day": 0,
-    "margin_current_day": 0
+    "institutional_current_day": 7,
+    "margin_current_day": 4
   },
   "features": {
     "2330": {
@@ -18,15 +18,15 @@
       "daily_source_date": "2026-10-21",
       "bars_available": 171,
       "latest_close": 2420.0,
-      "latest_volume_shares": 24033005.0,
+      "latest_volume_shares": 27095005.0,
       "previous_close": 2405.0,
       "one_day_return_pct": 0.624,
-      "volume_ratio_20d": 0.881,
+      "volume_ratio_20d": 0.993,
       "close_vs_sma20_pct": -2.811,
-      "institutional_status": "PRIOR_SESSION",
-      "institutional_source_date": "2026-10-20",
-      "margin_status": "PRIOR_SESSION",
-      "margin_source_date": "2026-10-20"
+      "institutional_status": "PASS",
+      "institutional_source_date": "2026-10-21",
+      "margin_status": "PASS",
+      "margin_source_date": "2026-10-21"
     },
     "0050": {
       "quote_status": "PASS",
@@ -35,15 +35,15 @@
       "daily_source_date": "2026-10-21",
       "bars_available": 171,
       "latest_close": 108.15,
-      "latest_volume_shares": 81801839.0,
+      "latest_volume_shares": 83301839.0,
       "previous_close": 107.25,
       "one_day_return_pct": 0.839,
-      "volume_ratio_20d": 0.703,
+      "volume_ratio_20d": 0.716,
       "close_vs_sma20_pct": -3.532,
-      "institutional_status": "PRIOR_SESSION",
-      "institutional_source_date": "2026-10-20",
-      "margin_status": "PRIOR_SESSION",
-      "margin_source_date": "2026-10-20"
+      "institutional_status": "PASS",
+      "institutional_source_date": "2026-10-21",
+      "margin_status": "PASS",
+      "margin_source_date": "2026-10-21"
     },
     "5483": {
       "quote_status": "PASS",
@@ -52,13 +52,13 @@
       "daily_source_date": "2026-10-21",
       "bars_available": 171,
       "latest_close": 199.0,
-      "latest_volume_shares": 9257328.0,
+      "latest_volume_shares": 9429328.0,
       "previous_close": 191.5,
       "one_day_return_pct": 3.916,
-      "volume_ratio_20d": 0.409,
+      "volume_ratio_20d": 0.416,
       "close_vs_sma20_pct": -2.031,
-      "institutional_status": "PRIOR_SESSION",
-      "institutional_source_date": "2026-10-20",
+      "institutional_status": "PASS",
+      "institutional_source_date": "2026-10-21",
       "margin_status": "PRIOR_SESSION",
       "margin_source_date": "2026-10-20"
     },
@@ -74,8 +74,8 @@
       "one_day_return_pct": 1.92,
       "volume_ratio_20d": 0.211,
       "close_vs_sma20_pct": -4.185,
-      "institutional_status": "PRIOR_SESSION",
-      "institutional_source_date": "2026-10-20",
+      "institutional_status": "PASS",
+      "institutional_source_date": "2026-10-21",
       "margin_status": "PRIOR_SESSION",
       "margin_source_date": "2026-10-20"
     },
@@ -91,10 +91,10 @@
       "one_day_return_pct": -1.232,
       "volume_ratio_20d": 2.101,
       "close_vs_sma20_pct": 1.434,
-      "institutional_status": "PRIOR_SESSION",
-      "institutional_source_date": "2026-10-20",
-      "margin_status": "PRIOR_SESSION",
-      "margin_source_date": "2026-10-20"
+      "institutional_status": "PASS",
+      "institutional_source_date": "2026-10-21",
+      "margin_status": "PASS",
+      "margin_source_date": "2026-10-21"
     },
     "2367": {
       "quote_status": "PASS",
@@ -108,10 +108,10 @@
       "one_day_return_pct": 1.425,
       "volume_ratio_20d": 1.233,
       "close_vs_sma20_pct": 2.601,
-      "institutional_status": "PRIOR_SESSION",
-      "institutional_source_date": "2026-10-20",
-      "margin_status": "PRIOR_SESSION",
-      "margin_source_date": "2026-10-20"
+      "institutional_status": "PASS",
+      "institutional_source_date": "2026-10-21",
+      "margin_status": "PASS",
+      "margin_source_date": "2026-10-21"
     },
     "3491": {
       "quote_status": "PASS",
@@ -125,8 +125,8 @@
       "one_day_return_pct": 7.519,
       "volume_ratio_20d": 0.91,
       "close_vs_sma20_pct": -5.141,
-      "institutional_status": "PRIOR_SESSION",
-      "institutional_source_date": "2026-10-20",
+      "institutional_status": "PASS",
+      "institutional_source_date": "2026-10-21",
       "margin_status": "PRIOR_SESSION",
       "margin_source_date": "2026-10-20"
     }
