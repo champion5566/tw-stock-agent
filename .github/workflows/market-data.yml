@@ -11,12 +11,12 @@ on:
           - evening
         default: evening
   schedule:
-    - cron: '25 0 * * *'   # 08:25 Taipei
-    - cron: '40 12 * * *'  # 20:40 Taipei
+    - cron: '25 0 * * 1-5'   # 08:25 Taipei
+    - cron: '40 12 * * 1-5'  # 20:40 Taipei
   push:
     branches:
       - main
-      - agent/mcp-data-smoke-20261021
+      - agent/finmind-history-20261021
     paths:
       - collect_market.py
       - .github/workflows/market-data.yml
