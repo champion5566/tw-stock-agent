@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 
 import yfinance as yf
 
-from collect_market import mcp, attempt
+from collect_market import mcp, attempt, http_json
 
 TW = ZoneInfo("Asia/Taipei")
 ASSETS = {
@@ -81,10 +81,25 @@ def main():
                                - datetime.fromisoformat(obs["latest_bar_utc"])).total_seconds()/60
                     obs["age_minutes"] = round(age_min, 1)
                     if age_min < -10 or age_min > 90:
-                        obs["status"] = "STALE"
+                        obs["status"] = "HISTORICAL_BAR"
                 out["assets"][area][name] = obs
                 print("QUOTE", area, name, ticker, obs["status"],
                       obs.get("latest_bar_at_taipei"), flush=True)
+
+    official = attempt(lambda: http_json("https://openapi.taifex.com.tw/v1/DailyMarketReportFut"))
+    if official["status"] == "PASS":
+        rows = official["data"]
+        if not isinstance(rows, list):
+            official = {"status":"FAIL", "error":"TAIFEX daily report response is not a list"}
+        else:
+            tx = [x for x in rows if str(x.get("Contract","")).strip() == "TX"]
+            official["data"] = tx
+            official["total_api_rows"] = len(rows)
+            official["tx_rows"] = len(tx)
+            official["sessions"] = sorted(set(str(x.get("TradingSession")) for x in tx))
+            if not tx: official["status"] = "EMPTY"
+    out["taifex"]["official_daily_market_futures"] = official
+    print("TAIFEX official_daily_market_futures", official["status"], official.get("sessions"), official.get("tx_rows"), flush=True)
 
     init = attempt(lambda: mcp("initialize", {"protocolVersion":"2025-06-18",
                     "capabilities":{}, "clientInfo":{"name":"tw-stock-agent-cross-market",
