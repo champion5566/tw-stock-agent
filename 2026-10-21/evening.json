@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "fetched_at_taipei": "2026-10-21T15:24:38.101836+08:00",
+  "fetched_at_taipei": "2026-10-21T15:25:42.339307+08:00",
   "trade_date_requested": "2026-10-21",
   "slot": "evening",
   "sources": {
@@ -55,7 +55,7 @@
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "2313",
@@ -78,7 +78,7 @@
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "2313",
@@ -149,7 +149,7 @@
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "2330",
@@ -172,7 +172,7 @@
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "2330",
@@ -243,7 +243,7 @@
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "0050",
@@ -266,7 +266,7 @@
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "0050",
@@ -337,7 +337,7 @@
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "5483",
@@ -360,7 +360,7 @@
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "5483",
@@ -431,7 +431,7 @@
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "3707",
@@ -454,7 +454,7 @@
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "3707",
@@ -525,7 +525,7 @@
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "2367",
@@ -548,7 +548,7 @@
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "2367",
@@ -619,7 +619,7 @@
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "3491",
@@ -642,7 +642,7 @@
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PASS",
+        "status": "PRIOR_SESSION",
         "data": {
           "date": "2026-10-20",
           "stock_id": "3491",
