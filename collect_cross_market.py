@@ -110,6 +110,18 @@ def main():
                         obs["latest_bar_utc"] = iex_quote["trade_time_utc"]
                         obs["age_minutes"] = round(iex_quote["age_seconds"] / 60, 2)
                         obs["market_coverage"] = "IEX_ONLY"
+                if area == "us" and not ticker.startswith("^"):
+                    # Auditable selection: missing IEX credentials or stale IEX
+                    # leaves the Yahoo intraday bar in place.
+                    obs["quote_selection"] = {
+                        "selected_source": obs.get("source"),
+                        "selected_status": obs.get("status"),
+                        "iex_status": (iex_quotes.get(ticker) or {}).get(
+                            "status", out["us_iex_status"]["status"]),
+                        "fallback_to_yahoo": obs.get("source", "").startswith(
+                            "yfinance/"),
+                        "note": "Yahoo 5m bar is not an exchange-certified realtime trade."
+                    }
                 out["assets"][area][name] = obs
                 print("QUOTE", area, name, ticker, obs["status"],
                       obs.get("latest_bar_at_taipei"), flush=True)
