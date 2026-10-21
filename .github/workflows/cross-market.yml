@@ -20,6 +20,7 @@ on:
       - main
     paths:
       - collect_cross_market.py
+      - alpaca_quotes.py
       - .github/workflows/cross-market.yml
       - collect_shioaji_night.py
 
@@ -57,6 +58,9 @@ jobs:
             echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
           fi
       - name: Test USA Japan Korea and futures
+        env:
+          ALPACA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY_ID }}
+          ALPACA_API_SECRET_KEY: ${{ secrets.ALPACA_API_SECRET_KEY }}
         run: python collect_cross_market.py
       - name: Capture read-only TX night quote with timestamp
         if: env.REPORT_SLOT == 'evening'

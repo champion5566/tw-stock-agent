@@ -10,6 +10,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import yfinance as yf
+from alpaca_quotes import fetch_iex_snapshots
 
 from collect_market import mcp, attempt, http_json
 
@@ -20,7 +21,7 @@ ASSETS = {
         "semiconductors": {"NVDA":"NVDA", "AMD":"AMD", "AVGO":"AVGO",
                             "MU":"MU", "TSM_ADR":"TSM"},
         # Holdings explicitly supplied by the user in two brokerage screenshots.
-        # Do not confuse SPCX (a traded ticker) with private SpaceX shares.
+        # SPCX ticker identity must be verified against the current security master.
         "user_holdings": {
             "AMZN": "AMZN", "BRK.B": "BRK-B", "GOOG": "GOOG",
             "META": "META", "MU": "MU", "QCOM": "QCOM",
@@ -75,6 +76,15 @@ def main():
            "limitations":["Yahoo is not an official realtime provider",
                           "Futures daily settlement is not a live night-session quote",
                           "Bar time is not necessarily official session close"]}
+    # Free IEX quote overlay; retain Yahoo observation as historical/fallback.
+    us_symbols = [ticker for group in ASSETS["us"].values()
+                  for ticker in group.values() if not ticker.startswith("^")]
+    iex = attempt(lambda: fetch_iex_snapshots(us_symbols))
+    iex_payload = iex.get("data", {}) if iex.get("status") == "PASS" else {}
+    iex_quotes = iex_payload.get("quotes", {}) if iex_payload.get("status") == "PASS" else {}
+    out["us_iex_status"] = {"status": iex_payload.get("status", iex.get("status")),
+                             "reason": iex_payload.get("reason", iex.get("error")),
+                             "feed": "IEX_ONLY"}
     for area, sectors in ASSETS.items():
         out["assets"][area] = {}
         for sector, tickers in sectors.items():
@@ -87,6 +97,18 @@ def main():
                     obs["age_minutes"] = round(age_min, 1)
                     if age_min < -10 or age_min > 90:
                         obs["status"] = "HISTORICAL_BAR"
+                if area == "us" and ticker in iex_quotes:
+                    iex_quote = iex_quotes[ticker]
+                    obs["alpaca_iex"] = iex_quote
+                    if iex_quote["status"] == "PASS":
+                        # Do not mix IEX daily bar OHLCV with Yahoo consolidated bars.
+                        obs["fallback_yahoo"] = dict(obs)
+                        obs["price"] = iex_quote["price"]
+                        obs["status"] = "PASS"
+                        obs["source"] = iex_quote["source"]
+                        obs["latest_bar_utc"] = iex_quote["trade_time_utc"]
+                        obs["age_minutes"] = round(iex_quote["age_seconds"] / 60, 2)
+                        obs["market_coverage"] = "IEX_ONLY"
                 out["assets"][area][name] = obs
                 print("QUOTE", area, name, ticker, obs["status"],
                       obs.get("latest_bar_at_taipei"), flush=True)
