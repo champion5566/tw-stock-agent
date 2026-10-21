@@ -116,6 +116,11 @@ def main():
                     obs["quote_selection"] = {
                         "selected_source": obs.get("source"),
                         "selected_status": obs.get("status"),
+                        "bar_at_taipei": obs.get("latest_bar_at_taipei"),
+                        "age_minutes": obs.get("age_minutes"),
+                        "freshness": ("UNKNOWN" if obs.get("age_minutes") is None else
+                                      "STALE" if obs["age_minutes"] > 30 else
+                                      "DELAYED" if obs["age_minutes"] > 15 else "RECENT"),
                         "iex_status": (iex_quotes.get(ticker) or {}).get(
                             "status", out["us_iex_status"]["status"]),
                         "fallback_to_yahoo": obs.get("source", "").startswith(
