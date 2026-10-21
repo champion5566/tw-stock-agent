@@ -21,15 +21,12 @@ ASSETS = {
                             "MU":"MU", "TSM_ADR":"TSM"},
     },
     "jp": {
-        "indices": {"NIKKEI225":"^N225", "TOPIX":"998405.T"},
+        "indices": {"NIKKEI225":"^N225", "TOPIX_ETF_PROXY":"1306.T"},
         "semiconductors": {"ADVANTEST":"6857.T", "TOKYO_ELECTRON":"8035.T"},
     },
     "kr": {
         "indices": {"KOSPI":"^KS11", "KOSDAQ":"^KQ11"},
         "semiconductors": {"SAMSUNG":"005930.KS", "SK_HYNIX":"000660.KS"},
-    },
-    "futures_proxy": {
-        "indices": {"TAIEX_FUTURES_YAHOO_PROXY":"TX=F"},
     },
 }
 
