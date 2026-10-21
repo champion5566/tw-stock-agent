@@ -1,0 +1,37 @@
+name: IEObserve Telegram Public Feed Probe
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - probe_ieobserve_telegram.py
+      - tests/test_ieobserve_telegram.py
+      - .github/workflows/ieobserve-telegram-probe.yml
+
+permissions:
+  contents: read
+
+jobs:
+  telegram-public-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install public-page parser
+        run: python -m pip install 'requests>=2.31,<3' 'beautifulsoup4>=4.12,<5'
+      - name: Test Telegram message parsing
+        run: python -m unittest discover -s tests -p 'test_ieobserve_telegram.py' -v
+      - name: Probe live IEObserve latest 48h
+        run: python probe_ieobserve_telegram.py --hours 48 --max-pages 15
+      - name: Upload probe evidence even if stale or failed
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ieobserve-telegram-probe
+          path: out/kol/ieobserve-telegram-probe.json
+          retention-days: 7
+          if-no-files-found: warn
