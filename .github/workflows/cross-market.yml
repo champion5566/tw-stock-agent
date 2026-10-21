@@ -1,0 +1,84 @@
+name: Cross Market Source Verification
+
+on:
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: 'morning, evening, or nightclose'
+        type: choice
+        options:
+          - morning
+          - evening
+          - nightclose
+        default: evening
+  schedule:
+    - cron: '35 21 * * 0-4'  # 05:35 Taipei Mon-Fri: finished night session
+    - cron: '30 0 * * 1-5'   # 08:30 Taipei: Asia open + US formal close
+    - cron: '45 14 * * 1-5'  # 22:45 Taipei: US open / TX night
+  push:
+    branches:
+      - agent/cross-market-data-20261021
+    paths:
+      - collect_cross_market.py
+      - .github/workflows/cross-market.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cross-market-writer
+  cancel-in-progress: false
+
+jobs:
+  quote-verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install maintained quote client
+        run: python -m pip install 'yfinance>=0.2.60,<2'
+      - name: Resolve report slot
+        shell: bash
+        env:
+          DISPATCH_SLOT: ${{ github.event.inputs.slot }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          if [ -n "$DISPATCH_SLOT" ]; then
+            echo "REPORT_SLOT=$DISPATCH_SLOT" >> "$GITHUB_ENV"
+          elif [ "$SCHEDULE" = '35 21 * * 0-4' ]; then
+            echo 'REPORT_SLOT=nightclose' >> "$GITHUB_ENV"
+          elif [ "$SCHEDULE" = '30 0 * * 1-5' ]; then
+            echo 'REPORT_SLOT=morning' >> "$GITHUB_ENV"
+          else
+            echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
+          fi
+      - name: Test USA Japan Korea and futures
+        run: python collect_cross_market.py
+      - name: Save auditable test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cross-market-probe
+          path: out/
+          retention-days: 7
+          if-no-files-found: warn
+      - name: Publish versioned data snapshot
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin data/snapshots
+          git worktree add --detach /tmp/cross-snapshots origin/data/snapshots
+          cd /tmp/cross-snapshots
+          git checkout -B data/snapshots origin/data/snapshots
+          cp -R "$GITHUB_WORKSPACE/out/." .
+          git add -- '*.json'
+          if git diff --cached --quiet; then
+            echo 'No changes'; exit 0
+          fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m "Cross market ${REPORT_SLOT} $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push origin HEAD:data/snapshots
