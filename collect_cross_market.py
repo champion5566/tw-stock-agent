@@ -1,4 +1,4 @@
-"""Cross-market *observations*; exchange session and source timestamps mandatory.
+"""Cross-market *observations*; exchange session and source timestamps mandatory.\n\nProvider fallback smoke test: FinMind daily -> Yahoo daily; Alpaca IEX -> Yahoo intraday.
 
 Reuse yfinance and the established TWSE/TAIFEX MCP. No scraping or
 reconstructing missing futures ticks from prior settlement values.
