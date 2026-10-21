@@ -1,0 +1,31 @@
+name: Shioaji Read-only Night Quote Probe
+on:
+  push:
+    branches:
+      - agent/shioaji-quote-probe-20261021
+    paths:
+      - probe_shioaji_quote.py
+      - .github/workflows/shioaji-quote-probe.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'shioaji>=1.2,<2'
+      - name: Read-only futures quote subscription
+        env:
+          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
+          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
+        run: python probe_shioaji_quote.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shioaji-quote-probe
+          path: out/
+          retention-days: 3
