@@ -59,6 +59,7 @@ jobs:
           fi
       - name: Test USA Japan Korea and futures
         env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
           ALPACA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY_ID }}
           ALPACA_API_SECRET_KEY: ${{ secrets.ALPACA_API_SECRET_KEY }}
         run: python collect_cross_market.py
