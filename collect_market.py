@@ -84,7 +84,8 @@ def quality(item, asof, max_age_days):
         return item
     try:
         age = (asof - datetime.strptime(date, "%Y-%m-%d").date()).days
-        item["status"] = "PASS" if 0 <= age <= max_age_days else "STALE"
+        item["status"] = ("PASS" if age == 0 else
+                          "PRIOR_SESSION" if 0 < age <= max_age_days else "STALE")
     except ValueError:
         item["status"] = "FAIL"
         item["error"] = "Invalid source date"
