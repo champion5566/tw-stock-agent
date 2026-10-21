@@ -19,6 +19,7 @@ on:
       - agent/finmind-history-20261021
     paths:
       - collect_market.py
+      - research_ledger.py
       - .github/workflows/market-data.yml
 
 permissions:
@@ -42,7 +43,7 @@ jobs:
         run: |
           if [ -n "$DISPATCH_SLOT" ]; then
             echo "REPORT_SLOT=$DISPATCH_SLOT" >> "$GITHUB_ENV"
-          elif [ "$SCHEDULE" = '25 0 * * *' ]; then
+          elif [ "$SCHEDULE" = '25 0 * * 1-5' ]; then
             echo 'REPORT_SLOT=morning' >> "$GITHUB_ENV"
           else
             echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
@@ -51,7 +52,7 @@ jobs:
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
         run: python3 collect_market.py
-      - name: Upload snapshot for verification
+      - name: Build auditable research features and hypotheses\n        run: python3 research_ledger.py\n      - name: Upload snapshot for verification
         if: always()
         uses: actions/upload-artifact@v4
         with:
