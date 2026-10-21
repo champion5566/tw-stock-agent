@@ -1,0 +1,29 @@
+name: IEObserve Free oEmbed Verification
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - verify_ieobserve_oembed.py
+      - .github/workflows/ieobserve-oembed-verification.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'requests>=2.31,<3' 'beautifulsoup4>=4.12,<5'
+      - name: Verify six public X posts
+        run: python verify_ieobserve_oembed.py
+      - name: Preserve evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ieobserve-oembed-verification
+          path: out/kol/ieobserve-oembed-verification.json
+          retention-days: 7
