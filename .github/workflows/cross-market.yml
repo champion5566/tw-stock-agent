@@ -18,6 +18,7 @@ on:
   push:
     branches:
       - main
+      - agent/fugle-official-sdk-20261021
     paths:
       - collect_cross_market.py
       - .github/workflows/cross-market.yml
