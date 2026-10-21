@@ -168,6 +168,8 @@ def main():
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("OUTPUT_PATH", out, "BYTES", out.stat().st_size)
     print("FETCH_COMPLETED_WITH_PARTIAL_FAILURES_POSSIBLE")
+    if "All market quote sources failed" in result["warnings"]:
+        raise SystemExit("No valid quote source: refusing to publish")
 
 
 if __name__ == "__main__":
