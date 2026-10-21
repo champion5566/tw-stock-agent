@@ -1,0 +1,78 @@
+name: Market Data Snapshots
+
+on:
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: 'morning or evening'
+        type: choice
+        options:
+          - morning
+          - evening
+        default: evening
+  schedule:
+    - cron: '25 0 * * 1-5'   # 08:25 Taipei
+    - cron: '40 12 * * 1-5'  # 20:40 Taipei
+  push:
+    branches:
+      - agent/mcp-data-smoke-20261021
+    paths:
+      - collect_market.py
+      - .github/workflows/market-data.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-data-writer
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve slot
+        shell: bash
+        env:
+          DISPATCH_SLOT: ${{ github.event.inputs.slot }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          if [ -n "$DISPATCH_SLOT" ]; then
+            echo "REPORT_SLOT=$DISPATCH_SLOT" >> "$GITHUB_ENV"
+          elif [ "$SCHEDULE" = '25 0 * * 1-5' ]; then
+            echo 'REPORT_SLOT=morning' >> "$GITHUB_ENV"
+          else
+            echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
+          fi
+      - name: Fetch dated public market data
+        env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+        run: python3 collect_market.py
+      - name: Upload snapshot for verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: market-snapshot-${{ github.run_id }}
+          path: out/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Publish immutable dated snapshot on data branch
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin data/snapshots
+          git worktree add --detach /tmp/market-snapshots origin/data/snapshots
+          cd /tmp/market-snapshots
+          git checkout -B data/snapshots origin/data/snapshots
+          cp -R "$GITHUB_WORKSPACE/out/." .
+          git add -- '*.json'
+          if git diff --cached --quiet; then
+            echo 'No snapshot changes'
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m "Market snapshot ${REPORT_SLOT} $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push origin HEAD:data/snapshots
