@@ -71,6 +71,8 @@ jobs:
             -H 'User-Agent: tw-stock-agent-curl/0.2' \
             --data '{"jsonrpc":"2.0","id":8,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"tw-stock-agent-curl","version":"0.2"}}}' | head -c 2000 || true
 
+      - name: Checkout test branch
+        uses: actions/checkout@v4
       - name: Probe FinMind and institutional dataset catalog
         if: always()
         shell: bash
