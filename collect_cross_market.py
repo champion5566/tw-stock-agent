@@ -21,7 +21,7 @@ ASSETS = {
                             "MU":"MU", "TSM_ADR":"TSM"},
     },
     "jp": {
-        "indices": {"NIKKEI225":"^N225", "TOPIX":"^TOPX"},
+        "indices": {"NIKKEI225":"^N225", "TOPIX":"998405.T"},
         "semiconductors": {"ADVANTEST":"6857.T", "TOKYO_ELECTRON":"8035.T"},
     },
     "kr": {
