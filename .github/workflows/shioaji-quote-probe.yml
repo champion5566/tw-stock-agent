@@ -29,3 +29,5 @@ jobs:
           name: shioaji-quote-probe
           path: out/
           retention-days: 3
+
+# Rerun after user configured repository secrets.
