@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - agent/fugle-official-sdk-20261021
+      - agent/live-night-probe-20261021
     paths:
       - probe_fugle_tx.py
       - .github/workflows/fugle-tx-probe.yml
