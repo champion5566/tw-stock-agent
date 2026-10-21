@@ -19,6 +19,14 @@ ASSETS = {
         "indices": {"SP500":"^GSPC", "NASDAQ":"^IXIC", "SOX":"^SOX", "VIX":"^VIX"},
         "semiconductors": {"NVDA":"NVDA", "AMD":"AMD", "AVGO":"AVGO",
                             "MU":"MU", "TSM_ADR":"TSM"},
+        # Holdings explicitly supplied by the user in two brokerage screenshots.
+        # Do not confuse SPCX (a traded ticker) with private SpaceX shares.
+        "user_holdings": {
+            "AMZN": "AMZN", "BRK.B": "BRK-B", "GOOG": "GOOG",
+            "META": "META", "MU": "MU", "QCOM": "QCOM",
+            "SPCX": "SPCX", "TLT": "TLT", "TSLA": "TSLA",
+            "AVGO": "AVGO", "QQQ": "QQQ",
+        },
     },
     "jp": {
         "indices": {"NIKKEI225":"^N225", "TOPIX_ETF_PROXY":"1306.T"},
