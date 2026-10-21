@@ -33,13 +33,25 @@ def fetch_quotes():
     results = []
 
     for stock in data.get("msgArray", []):
+        # MIS 原始價格欄位
+        price_fields = {
+            "z": stock.get("z"),  # 最近成交價
+            "pz": stock.get("pz"), # 前一筆成交價（如有）
+            "y": stock.get("y"),  # 昨收價
+            "o": stock.get("o"),  # 開盤價
+            "h": stock.get("h"),  # 最高價
+            "l": stock.get("l"),  # 最低價
+            "a": stock.get("a"),  # 賣方五檔報價
+            "b": stock.get("b"),  # 買方五檔報價
+        }
+
         results.append({
             "symbol": stock.get("c"),
             "name": stock.get("n"),
-            "price": stock.get("z"),
             "date": stock.get("d"),
             "time": stock.get("t"),
             "volume": stock.get("v"),
+            "price_fields": price_fields,
             "source": "TWSE MIS",
         })
 
