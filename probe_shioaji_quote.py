@@ -12,9 +12,12 @@ else:
     api = None
     try:
         import shioaji as sj
+        result["stage"] = "create_client"
         api = sj.Shioaji(simulation=False)
+        result["stage"] = "login"
         api.login(api_key=key, secret_key=secret, contracts_timeout=15000)
         result["status"] = "LOGGED_IN"
+        result["stage"] = "resolve_contract"
         contract = api.Contracts.Futures.TXF.TXFR1
         result["contract_code"] = str(contract.code)
         def on_tick(exchange, tick):
@@ -24,7 +27,9 @@ else:
                     "datetime": str(getattr(tick, "datetime", "")),
                     "volume": str(getattr(tick, "volume", "")),
                 })
+        result["stage"] = "set_callback"
         api.quote.set_on_tick_fop_v1_callback(on_tick)
+        result["stage"] = "subscribe"
         api.quote.subscribe(contract, quote_type=sj.constant.QuoteType.Tick, version=sj.constant.QuoteVersion.v1)
         result["status"] = "SUBSCRIBED_WAITING_FOR_TICKS"
         time.sleep(35)
