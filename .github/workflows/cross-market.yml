@@ -58,7 +58,13 @@ jobs:
           fi
       - name: Test USA Japan Korea and futures
         run: python collect_cross_market.py
-      - name: Capture read-only TX night quote with timestamp\n        if: env.REPORT_SLOT == 'evening'\n        env:\n          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}\n          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}\n        run: python collect_shioaji_night.py\n      - name: Save auditable test results
+      - name: Capture read-only TX night quote with timestamp
+        if: env.REPORT_SLOT == 'evening'
+        env:
+          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
+          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
+        run: python collect_shioaji_night.py
+      - name: Save auditable test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
