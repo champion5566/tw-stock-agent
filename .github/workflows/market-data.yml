@@ -16,7 +16,6 @@ on:
   push:
     branches:
       - main
-      - refactor/integrate-data-pipeline-20261022
     paths:
       - collect_market.py
       - market_sources.py

@@ -86,3 +86,18 @@ Remaining product/operational work (not claimed complete):
   entry points without adding runtime value, so they were not moved in this pass.
 - Live source market coverage and quote age must still be read from each snapshot;
   all-source unavailable snapshots remain artifacts and fail publishing as before.
+
+
+### Acceptance evidence for PR #25
+
+- Local full suite: 24 passing tests; Python compile, shell syntax and whitespace checks pass.
+- Actions Quality Gate: `39718421416` (runtime commit `0a575824`).
+- Actual Taiwan collection and isolated research: `39718275207`; all seven daily
+  datasets retained as PRIOR_SESSION and all seven backtests execute as EXPLORATORY_ONLY.
+- Actual read-only intraday SDK/MIS: `39718416834`; 2330/0050 snapshot clocks and TX tick
+  freshness pass, missing MIS last trades remain diagnostics rather than live prices.
+- Cross-market live collection: `39718416779`; inspect source-specific coverage/age.
+- These provider checks ran around 11:42–11:45 Taipei, not during the futures night
+  session. Night-session availability is not newly certified by this daytime run.
+- Temporary branch-only smoke triggers removed after execution; intraday returns
+  to manual-only. The final docs/trigger cleanup does not change runtime code.

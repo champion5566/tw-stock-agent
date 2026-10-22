@@ -1,9 +1,6 @@
 name: Intraday Read-only Quote On Demand
 on:
   workflow_dispatch:
-  push:
-    branches: [refactor/integrate-data-pipeline-20261022]
-    paths: [collect_intraday.py, shioaji_quotes.py, quote_quality.py, snapshot_io.py]
 permissions:
   contents: write
 concurrency:
