@@ -4,25 +4,18 @@ import os
 import time
 import urllib.parse
 import urllib.request
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
-TW = ZoneInfo("Asia/Taipei")
+from quote_quality import TW, positive_price, quote_status, shioaji_snapshot_time
 SYMBOLS = {"tse_t00.tw": "TAIEX", "tse_2330.tw": "2330", "tse_0050.tw": "0050",
            "otc_o00.tw": "TPEX"}
 def now(): return datetime.now(TW)
 def number(v):
-    try:
-        x = float(v)
-        return x if x > 0 else None
-    except (ValueError, TypeError): return None
+    return positive_price(v)
 
 def fresh(ts):
-    if not ts: return False
-    if ts.tzinfo is None: ts = ts.replace(tzinfo=TW)
-    age = (now() - ts.astimezone(TW)).total_seconds() / 60
-    return ts.astimezone(TW).date() == now().date() and -2 <= age <= 10
+    return quote_status(1, ts, now()) == "PASS"
 
 def mis():
     params = urllib.parse.urlencode({"ex_ch": "|".join(SYMBOLS), "json": "1", "delay": "0",
@@ -43,7 +36,7 @@ def mis():
               "open":number(row.get("o")),"high":number(row.get("h")),"low":number(row.get("l")),
               "previous_close":number(row.get("y")),"volume_raw":row.get("v"),
               "trade_time":stamp.isoformat() if stamp else None,
-              "status":"PASS" if number(row.get("z")) and fresh(stamp) else "STALE_OR_NO_TRADE"}
+              "status":quote_status(row.get("z"), stamp, now())}
     return output
 
 def shioaji():
@@ -61,13 +54,9 @@ def shioaji():
             for snap in api.snapshots(contracts):
                 code = str(getattr(snap, "code", ""))
                 stamp = getattr(snap, "ts", None)
-                # Shioaji market-data ts encodes Taiwan wall-clock as a UTC-like epoch.
-                # Decode wall-clock in UTC, then ATTACH Asia/Taipei; do not shift +8h.
-                dt = (datetime.fromtimestamp(stamp / 1e9 if stamp > 1e12 else stamp, timezone.utc).replace(tzinfo=TW)
-                      if isinstance(stamp, (int, float)) and stamp > 0 else
-                      (stamp.replace(tzinfo=TW) if isinstance(stamp, datetime) and stamp.tzinfo is None else stamp if isinstance(stamp, datetime) else None))
+                dt = shioaji_snapshot_time(stamp)
                 price = number(getattr(snap, "close", None))
-                stock_results[code] = {"source":"Shioaji_snapshot","price":price,"trade_time":dt.isoformat() if dt else None,"status":"PASS" if price and fresh(dt) else "STALE_OR_NO_TRADE"}
+                stock_results[code] = {"source":"Shioaji_snapshot","price":price,"trade_time":dt.isoformat() if dt else None,"status":quote_status(price, dt, now())}
         except Exception as e:
             stock_results["error_type"] = type(e).__name__
         output["stock_snapshots"] = stock_results
@@ -84,8 +73,8 @@ def shioaji():
         if ticks:
             price,ts,volume=ticks[-1]
             output.update({"price":price,"trade_time":ts.isoformat(),"volume":volume,
-                           "ticks_observed":len(ticks),"status":"PASS" if fresh(ts) else "STALE",
-                           "is_live":fresh(ts),"contract_code":str(contract.code)})
+                           "ticks_observed":len(ticks),"status":quote_status(price, ts, now()),
+                           "is_live":quote_status(price, ts, now()) == "PASS","contract_code":str(contract.code)})
         else: output["status"]="NO_TICKS_IN_WINDOW"
         try: api.quote.unsubscribe(contract,quote_type=sj.constant.QuoteType.Tick,version=sj.constant.QuoteVersion.v1)
         except Exception: pass
