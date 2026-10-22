@@ -1,0 +1,63 @@
+{
+  "checked_at_taipei": "2026-10-22T10:42:18.269828+08:00",
+  "mode": "read_only_one_shot",
+  "quotes": {
+    "TAIEX": {
+      "source": "TWSE_MIS",
+      "price": 46767.03,
+      "open": 46942.75,
+      "high": 47332.18,
+      "low": 46705.72,
+      "previous_close": 46887.77,
+      "volume_raw": null,
+      "trade_time": "2026-10-22T10:42:05+08:00",
+      "status": "PASS"
+    },
+    "2330": {
+      "source": "TWSE_MIS",
+      "price": null,
+      "open": 2435.0,
+      "high": 2435.0,
+      "low": 2400.0,
+      "previous_close": 2420.0,
+      "volume_raw": "7685",
+      "trade_time": "2026-10-22T10:42:03+08:00",
+      "status": "STALE_OR_NO_TRADE"
+    },
+    "0050": {
+      "source": "TWSE_MIS",
+      "price": null,
+      "open": 108.95,
+      "high": 109.15,
+      "low": 108.05,
+      "previous_close": 108.15,
+      "volume_raw": "30974",
+      "trade_time": "2026-10-22T10:42:04+08:00",
+      "status": "STALE_OR_NO_TRADE"
+    },
+    "TPEX": {
+      "source": "TWSE_MIS",
+      "price": 392.79,
+      "open": 396.32,
+      "high": 400.3,
+      "low": 391.59,
+      "previous_close": 395.42,
+      "volume_raw": null,
+      "trade_time": "2026-10-22T10:42:05+08:00",
+      "status": "PASS"
+    }
+  },
+  "futures": {
+    "TXFR1": {
+      "status": "PASS",
+      "source": "Shioaji",
+      "is_live": true,
+      "price": 46862.0,
+      "trade_time": "2026-10-22T10:42:47.501000",
+      "volume": "1",
+      "ticks_observed": 38,
+      "contract_code": "TXFR1"
+    }
+  },
+  "completed_at_taipei": "2026-10-22T10:42:48.375559+08:00"
+}
