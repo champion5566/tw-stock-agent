@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "fetched_at_taipei": "2026-10-22T12:37:11.588740+08:00",
+  "fetched_at_taipei": "2026-10-22T22:48:12.247957+08:00",
   "trade_date_requested": "2026-10-22",
   "slot": "evening",
   "sources": {
@@ -12,22 +12,22 @@
     "2313": {
       "market": "tse",
       "mcp_quote": {
-        "status": "NO_LAST_TRADE",
+        "status": "STALE",
         "data": {
           "code": "2313",
           "name": "華通",
-          "last": "-",
+          "last": "224.5000",
           "open": "242.5000",
           "high": "248.5000",
-          "low": "227.0000",
+          "low": "224.0000",
           "prev_close": "240.5000",
-          "volume": "32080",
-          "bid": "228.0000",
-          "ask": "228.5000",
+          "volume": "39713",
+          "bid": "224.5000",
+          "ask": "225.0000",
           "limit_up": "264.5000",
           "limit_down": "216.5000",
           "date": "2026-10-22",
-          "time": "12:36:00"
+          "time": "13:30:00"
         },
         "source_date": "2026-10-22",
         "units": {
@@ -36,23 +36,23 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-10-22T12:36:00+08:00"
+        "trade_time": "2026-10-22T13:30:00+08:00"
       },
       "daily_ohlcv": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "2313",
-          "Trading_Volume": 62594503,
-          "Trading_money": 15558846926,
-          "open": 265.0,
-          "max": 266.0,
-          "min": 238.5,
-          "close": 240.5,
-          "spread": -3.0,
-          "Trading_turnover": 59573
+          "Trading_Volume": 40886341,
+          "Trading_money": 9632207157,
+          "open": 242.5,
+          "max": 248.5,
+          "min": 224.0,
+          "close": 224.5,
+          "spread": -16.0,
+          "Trading_turnover": 54764
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -2093,35 +2093,47 @@
             "close": 240.5,
             "spread": -3.0,
             "Trading_turnover": 59573
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "2313",
+            "Trading_Volume": 40886341,
+            "Trading_money": 9632207157,
+            "open": 242.5,
+            "max": 248.5,
+            "min": 224.0,
+            "close": 224.5,
+            "spread": -16.0,
+            "Trading_turnover": 54764
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockPrice",
         "data_kind": "daily",
         "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "2313",
-          "Foreign_Investor_buy": 10593065,
-          "Foreign_Investor_sell": 26038492,
+          "Foreign_Investor_buy": 8943975,
+          "Foreign_Investor_sell": 13950936,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 181036,
-          "Investment_Trust_sell": 58000,
+          "Investment_Trust_buy": 142000,
+          "Investment_Trust_sell": 1000,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 389311,
-          "Dealer_self_sell": 499189,
-          "Dealer_Hedging_buy": 613564,
-          "Dealer_Hedging_sell": 909140
+          "Dealer_self_buy": 85000,
+          "Dealer_self_sell": 449996,
+          "Dealer_Hedging_buy": 564735,
+          "Dealer_Hedging_sell": 908778
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -4842,37 +4854,53 @@
             "Dealer_self_sell": 499189,
             "Dealer_Hedging_buy": 613564,
             "Dealer_Hedging_sell": 909140
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "2313",
+            "Foreign_Investor_buy": 8943975,
+            "Foreign_Investor_sell": 13950936,
+            "Foreign_Dealer_Self_buy": 0,
+            "Foreign_Dealer_Self_sell": 0,
+            "Investment_Trust_buy": 142000,
+            "Investment_Trust_sell": 1000,
+            "Dealer_buy": 0,
+            "Dealer_sell": 0,
+            "Dealer_self_buy": 85000,
+            "Dealer_self_sell": 449996,
+            "Dealer_Hedging_buy": 564735,
+            "Dealer_Hedging_sell": 908778
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
         "data_kind": "daily",
         "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "2313",
-          "MarginPurchaseBuy": 5725,
-          "MarginPurchaseCashRepayment": 6,
+          "MarginPurchaseBuy": 2397,
+          "MarginPurchaseCashRepayment": 8,
           "MarginPurchaseLimit": 308455,
-          "MarginPurchaseSell": 2140,
-          "MarginPurchaseTodayBalance": 38838,
-          "MarginPurchaseYesterdayBalance": 35259,
+          "MarginPurchaseSell": 4071,
+          "MarginPurchaseTodayBalance": 37156,
+          "MarginPurchaseYesterdayBalance": 38838,
           "Note": " ",
-          "OffsetLoanAndShort": 48,
-          "ShortSaleBuy": 107,
+          "OffsetLoanAndShort": 47,
+          "ShortSaleBuy": 104,
           "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 308455,
-          "ShortSaleSell": 24,
-          "ShortSaleTodayBalance": 475,
-          "ShortSaleYesterdayBalance": 558
+          "ShortSaleSell": 55,
+          "ShortSaleTodayBalance": 426,
+          "ShortSaleYesterdayBalance": 475
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -7933,11 +7961,29 @@
             "ShortSaleSell": 24,
             "ShortSaleTodayBalance": 475,
             "ShortSaleYesterdayBalance": 558
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "2313",
+            "MarginPurchaseBuy": 2397,
+            "MarginPurchaseCashRepayment": 8,
+            "MarginPurchaseLimit": 308455,
+            "MarginPurchaseSell": 4071,
+            "MarginPurchaseTodayBalance": 37156,
+            "MarginPurchaseYesterdayBalance": 38838,
+            "Note": " ",
+            "OffsetLoanAndShort": 47,
+            "ShortSaleBuy": 104,
+            "ShortSaleCashRepayment": 0,
+            "ShortSaleLimit": 308455,
+            "ShortSaleSell": 55,
+            "ShortSaleTodayBalance": 426,
+            "ShortSaleYesterdayBalance": 475
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
         "data_kind": "daily",
         "is_live": false,
@@ -7947,22 +7993,22 @@
     "2330": {
       "market": "tse",
       "mcp_quote": {
-        "status": "NO_LAST_TRADE",
+        "status": "STALE",
         "data": {
           "code": "2330",
           "name": "台積電",
-          "last": "-",
+          "last": "2385.0000",
           "open": "2435.0000",
           "high": "2435.0000",
-          "low": "2390.0000",
+          "low": "2385.0000",
           "prev_close": "2420.0000",
-          "volume": "12372",
-          "bid": "2390.0000",
-          "ask": "2395.0000",
+          "volume": "22651",
+          "bid": "2385.0000",
+          "ask": "2390.0000",
           "limit_up": "2660.0000",
           "limit_down": "2180.0000",
           "date": "2026-10-22",
-          "time": "12:36:00"
+          "time": "13:30:00"
         },
         "source_date": "2026-10-22",
         "units": {
@@ -7971,23 +8017,23 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-10-22T12:36:00+08:00"
+        "trade_time": "2026-10-22T13:30:00+08:00"
       },
       "daily_ohlcv": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "2330",
-          "Trading_Volume": 27095005,
-          "Trading_money": 65515856247,
-          "open": 2425.0,
+          "Trading_Volume": 29796590,
+          "Trading_money": 71536783195,
+          "open": 2435.0,
           "max": 2435.0,
-          "min": 2400.0,
-          "close": 2420.0,
-          "spread": 15.0,
-          "Trading_turnover": 101401
+          "min": 2385.0,
+          "close": 2385.0,
+          "spread": -35.0,
+          "Trading_turnover": 291228
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -10028,35 +10074,47 @@
             "close": 2420.0,
             "spread": 15.0,
             "Trading_turnover": 101401
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "2330",
+            "Trading_Volume": 29796590,
+            "Trading_money": 71536783195,
+            "open": 2435.0,
+            "max": 2435.0,
+            "min": 2385.0,
+            "close": 2385.0,
+            "spread": -35.0,
+            "Trading_turnover": 291228
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockPrice",
         "data_kind": "daily",
         "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "2330",
-          "Foreign_Investor_buy": 15102335,
-          "Foreign_Investor_sell": 21256233,
+          "Foreign_Investor_buy": 12403967,
+          "Foreign_Investor_sell": 25098593,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 1446512,
-          "Investment_Trust_sell": 49000,
+          "Investment_Trust_buy": 1370000,
+          "Investment_Trust_sell": 20049,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 85237,
-          "Dealer_self_sell": 872060,
-          "Dealer_Hedging_buy": 732102,
-          "Dealer_Hedging_sell": 992912
+          "Dealer_self_buy": 190854,
+          "Dealer_self_sell": 479840,
+          "Dealer_Hedging_buy": 1592141,
+          "Dealer_Hedging_sell": 107655
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -12777,37 +12835,53 @@
             "Dealer_self_sell": 872060,
             "Dealer_Hedging_buy": 732102,
             "Dealer_Hedging_sell": 992912
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "2330",
+            "Foreign_Investor_buy": 12403967,
+            "Foreign_Investor_sell": 25098593,
+            "Foreign_Dealer_Self_buy": 0,
+            "Foreign_Dealer_Self_sell": 0,
+            "Investment_Trust_buy": 1370000,
+            "Investment_Trust_sell": 20049,
+            "Dealer_buy": 0,
+            "Dealer_sell": 0,
+            "Dealer_self_buy": 190854,
+            "Dealer_self_sell": 479840,
+            "Dealer_Hedging_buy": 1592141,
+            "Dealer_Hedging_sell": 107655
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
         "data_kind": "daily",
         "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "2330",
-          "MarginPurchaseBuy": 1236,
-          "MarginPurchaseCashRepayment": 46,
+          "MarginPurchaseBuy": 597,
+          "MarginPurchaseCashRepayment": 21,
           "MarginPurchaseLimit": 6483092,
-          "MarginPurchaseSell": 261,
-          "MarginPurchaseTodayBalance": 35330,
-          "MarginPurchaseYesterdayBalance": 34401,
+          "MarginPurchaseSell": 434,
+          "MarginPurchaseTodayBalance": 35472,
+          "MarginPurchaseYesterdayBalance": 35330,
           "Note": " ",
           "OffsetLoanAndShort": 0,
-          "ShortSaleBuy": 8,
+          "ShortSaleBuy": 1,
           "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 6483092,
-          "ShortSaleSell": 0,
-          "ShortSaleTodayBalance": 6,
-          "ShortSaleYesterdayBalance": 14
+          "ShortSaleSell": 10,
+          "ShortSaleTodayBalance": 15,
+          "ShortSaleYesterdayBalance": 6
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -15868,11 +15942,29 @@
             "ShortSaleSell": 0,
             "ShortSaleTodayBalance": 6,
             "ShortSaleYesterdayBalance": 14
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "2330",
+            "MarginPurchaseBuy": 597,
+            "MarginPurchaseCashRepayment": 21,
+            "MarginPurchaseLimit": 6483092,
+            "MarginPurchaseSell": 434,
+            "MarginPurchaseTodayBalance": 35472,
+            "MarginPurchaseYesterdayBalance": 35330,
+            "Note": " ",
+            "OffsetLoanAndShort": 0,
+            "ShortSaleBuy": 1,
+            "ShortSaleCashRepayment": 0,
+            "ShortSaleLimit": 6483092,
+            "ShortSaleSell": 10,
+            "ShortSaleTodayBalance": 15,
+            "ShortSaleYesterdayBalance": 6
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
         "data_kind": "daily",
         "is_live": false,
@@ -15882,22 +15974,22 @@
     "0050": {
       "market": "tse",
       "mcp_quote": {
-        "status": "NO_LAST_TRADE",
+        "status": "STALE",
         "data": {
           "code": "0050",
           "name": "元大台灣50",
-          "last": "-",
+          "last": "106.9000",
           "open": "108.9500",
           "high": "109.1500",
-          "low": "107.0500",
+          "low": "106.7500",
           "prev_close": "108.1500",
-          "volume": "70104",
-          "bid": "107.0500",
-          "ask": "107.1000",
+          "volume": "116014",
+          "bid": "106.9000",
+          "ask": "106.9500",
           "limit_up": "118.9500",
           "limit_down": "97.3500",
           "date": "2026-10-22",
-          "time": "12:35:59"
+          "time": "13:30:00"
         },
         "source_date": "2026-10-22",
         "units": {
@@ -15906,23 +15998,23 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-10-22T12:35:59+08:00"
+        "trade_time": "2026-10-22T13:30:00+08:00"
       },
       "daily_ohlcv": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "0050",
-          "Trading_Volume": 83301839,
-          "Trading_money": 9028161400,
-          "open": 108.8,
-          "max": 109.2,
-          "min": 107.6,
-          "close": 108.15,
-          "spread": 0.9,
-          "Trading_turnover": 97821
+          "Trading_Volume": 132441805,
+          "Trading_money": 14246779496,
+          "open": 108.95,
+          "max": 109.15,
+          "min": 106.75,
+          "close": 106.9,
+          "spread": -1.25,
+          "Trading_turnover": 251808
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -17963,35 +18055,47 @@
             "close": 108.15,
             "spread": 0.9,
             "Trading_turnover": 97821
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "0050",
+            "Trading_Volume": 132441805,
+            "Trading_money": 14246779496,
+            "open": 108.95,
+            "max": 109.15,
+            "min": 106.75,
+            "close": 106.9,
+            "spread": -1.25,
+            "Trading_turnover": 251808
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockPrice",
         "data_kind": "daily",
         "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "0050",
-          "Foreign_Investor_buy": 12468867,
-          "Foreign_Investor_sell": 28688983,
+          "Foreign_Investor_buy": 13423348,
+          "Foreign_Investor_sell": 59413031,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 2350000,
+          "Investment_Trust_buy": 2106000,
           "Investment_Trust_sell": 0,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 3685000,
-          "Dealer_self_sell": 2738656,
-          "Dealer_Hedging_buy": 14605300,
-          "Dealer_Hedging_sell": 28156193
+          "Dealer_self_buy": 3023000,
+          "Dealer_self_sell": 1483000,
+          "Dealer_Hedging_buy": 9189027,
+          "Dealer_Hedging_sell": 49508716
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -20712,37 +20816,53 @@
             "Dealer_self_sell": 2738656,
             "Dealer_Hedging_buy": 14605300,
             "Dealer_Hedging_sell": 28156193
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "0050",
+            "Foreign_Investor_buy": 13423348,
+            "Foreign_Investor_sell": 59413031,
+            "Foreign_Dealer_Self_buy": 0,
+            "Foreign_Dealer_Self_sell": 0,
+            "Investment_Trust_buy": 2106000,
+            "Investment_Trust_sell": 0,
+            "Dealer_buy": 0,
+            "Dealer_sell": 0,
+            "Dealer_self_buy": 3023000,
+            "Dealer_self_sell": 1483000,
+            "Dealer_Hedging_buy": 9189027,
+            "Dealer_Hedging_sell": 49508716
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
         "data_kind": "daily",
         "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "0050",
-          "MarginPurchaseBuy": 1546,
-          "MarginPurchaseCashRepayment": 3,
-          "MarginPurchaseLimit": 5777000,
-          "MarginPurchaseSell": 554,
-          "MarginPurchaseTodayBalance": 25176,
-          "MarginPurchaseYesterdayBalance": 24187,
+          "MarginPurchaseBuy": 1009,
+          "MarginPurchaseCashRepayment": 12,
+          "MarginPurchaseLimit": 5789500,
+          "MarginPurchaseSell": 1381,
+          "MarginPurchaseTodayBalance": 24793,
+          "MarginPurchaseYesterdayBalance": 25177,
           "Note": " ",
-          "OffsetLoanAndShort": 86,
-          "ShortSaleBuy": 2724,
+          "OffsetLoanAndShort": 2,
+          "ShortSaleBuy": 34,
           "ShortSaleCashRepayment": 0,
-          "ShortSaleLimit": 5777000,
-          "ShortSaleSell": 7,
-          "ShortSaleTodayBalance": 692,
-          "ShortSaleYesterdayBalance": 3409
+          "ShortSaleLimit": 5789500,
+          "ShortSaleSell": 66,
+          "ShortSaleTodayBalance": 724,
+          "ShortSaleYesterdayBalance": 692
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -23803,11 +23923,29 @@
             "ShortSaleSell": 7,
             "ShortSaleTodayBalance": 692,
             "ShortSaleYesterdayBalance": 3409
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "0050",
+            "MarginPurchaseBuy": 1009,
+            "MarginPurchaseCashRepayment": 12,
+            "MarginPurchaseLimit": 5789500,
+            "MarginPurchaseSell": 1381,
+            "MarginPurchaseTodayBalance": 24793,
+            "MarginPurchaseYesterdayBalance": 25177,
+            "Note": " ",
+            "OffsetLoanAndShort": 2,
+            "ShortSaleBuy": 34,
+            "ShortSaleCashRepayment": 0,
+            "ShortSaleLimit": 5789500,
+            "ShortSaleSell": 66,
+            "ShortSaleTodayBalance": 724,
+            "ShortSaleYesterdayBalance": 692
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
         "data_kind": "daily",
         "is_live": false,
@@ -23817,22 +23955,22 @@
     "5483": {
       "market": "otc",
       "mcp_quote": {
-        "status": "NO_LAST_TRADE",
+        "status": "STALE",
         "data": {
           "code": "5483",
           "name": "中美晶",
-          "last": "-",
+          "last": "186.0000",
           "open": "201.0000",
           "high": "201.0000",
-          "low": "188.5000",
+          "low": "185.5000",
           "prev_close": "199.0000",
-          "volume": "9786",
-          "bid": "188.5000",
-          "ask": "189.0000",
+          "volume": "12990",
+          "bid": "186.0000",
+          "ask": "186.5000",
           "limit_up": "218.5000",
           "limit_down": "179.5000",
           "date": "2026-10-22",
-          "time": "12:36:01"
+          "time": "13:30:00"
         },
         "source_date": "2026-10-22",
         "units": {
@@ -23841,23 +23979,23 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-10-22T12:36:01+08:00"
+        "trade_time": "2026-10-22T13:30:00+08:00"
       },
       "daily_ohlcv": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "5483",
-          "Trading_Volume": 9429328,
-          "Trading_money": 1862606773,
-          "open": 196.5,
-          "max": 200.0,
-          "min": 194.5,
-          "close": 199.0,
-          "spread": 7.5,
-          "Trading_turnover": 9430
+          "Trading_Volume": 13411738,
+          "Trading_money": 2564715373,
+          "open": 201.0,
+          "max": 201.0,
+          "min": 185.5,
+          "close": 186.0,
+          "spread": -13.0,
+          "Trading_turnover": 16755
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -25898,35 +26036,47 @@
             "close": 199.0,
             "spread": 7.5,
             "Trading_turnover": 9430
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "5483",
+            "Trading_Volume": 13411738,
+            "Trading_money": 2564715373,
+            "open": 201.0,
+            "max": 201.0,
+            "min": 185.5,
+            "close": 186.0,
+            "spread": -13.0,
+            "Trading_turnover": 16755
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockPrice",
         "data_kind": "daily",
         "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "5483",
-          "Foreign_Investor_buy": 4044175,
-          "Foreign_Investor_sell": 2640000,
+          "Foreign_Investor_buy": 1407095,
+          "Foreign_Investor_sell": 6680561,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 19000,
-          "Investment_Trust_sell": 2000,
+          "Investment_Trust_buy": 1026000,
+          "Investment_Trust_sell": 115000,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 1190848,
-          "Dealer_self_sell": 3000,
-          "Dealer_Hedging_buy": 350046,
-          "Dealer_Hedging_sell": 93471
+          "Dealer_self_buy": 15000,
+          "Dealer_self_sell": 158996,
+          "Dealer_Hedging_buy": 169193,
+          "Dealer_Hedging_sell": 355455
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -28647,37 +28797,53 @@
             "Dealer_self_sell": 3000,
             "Dealer_Hedging_buy": 350046,
             "Dealer_Hedging_sell": 93471
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "5483",
+            "Foreign_Investor_buy": 1407095,
+            "Foreign_Investor_sell": 6680561,
+            "Foreign_Dealer_Self_buy": 0,
+            "Foreign_Dealer_Self_sell": 0,
+            "Investment_Trust_buy": 1026000,
+            "Investment_Trust_sell": 115000,
+            "Dealer_buy": 0,
+            "Dealer_sell": 0,
+            "Dealer_self_buy": 15000,
+            "Dealer_self_sell": 158996,
+            "Dealer_Hedging_buy": 169193,
+            "Dealer_Hedging_sell": 355455
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
         "data_kind": "daily",
         "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "5483",
-          "MarginPurchaseBuy": 259,
+          "MarginPurchaseBuy": 771,
           "MarginPurchaseCashRepayment": 0,
           "MarginPurchaseLimit": 160305,
-          "MarginPurchaseSell": 390,
-          "MarginPurchaseTodayBalance": 15380,
-          "MarginPurchaseYesterdayBalance": 15511,
+          "MarginPurchaseSell": 467,
+          "MarginPurchaseTodayBalance": 15684,
+          "MarginPurchaseYesterdayBalance": 15380,
           "Note": "",
-          "OffsetLoanAndShort": 0,
-          "ShortSaleBuy": 36,
-          "ShortSaleCashRepayment": 0,
+          "OffsetLoanAndShort": 8,
+          "ShortSaleBuy": 71,
+          "ShortSaleCashRepayment": 1,
           "ShortSaleLimit": 160305,
-          "ShortSaleSell": 43,
-          "ShortSaleTodayBalance": 411,
-          "ShortSaleYesterdayBalance": 404
+          "ShortSaleSell": 10,
+          "ShortSaleTodayBalance": 349,
+          "ShortSaleYesterdayBalance": 411
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -31738,11 +31904,29 @@
             "ShortSaleSell": 43,
             "ShortSaleTodayBalance": 411,
             "ShortSaleYesterdayBalance": 404
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "5483",
+            "MarginPurchaseBuy": 771,
+            "MarginPurchaseCashRepayment": 0,
+            "MarginPurchaseLimit": 160305,
+            "MarginPurchaseSell": 467,
+            "MarginPurchaseTodayBalance": 15684,
+            "MarginPurchaseYesterdayBalance": 15380,
+            "Note": "",
+            "OffsetLoanAndShort": 8,
+            "ShortSaleBuy": 71,
+            "ShortSaleCashRepayment": 1,
+            "ShortSaleLimit": 160305,
+            "ShortSaleSell": 10,
+            "ShortSaleTodayBalance": 349,
+            "ShortSaleYesterdayBalance": 411
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
         "data_kind": "daily",
         "is_live": false,
@@ -31752,22 +31936,22 @@
     "3707": {
       "market": "otc",
       "mcp_quote": {
-        "status": "NO_LAST_TRADE",
+        "status": "STALE",
         "data": {
           "code": "3707",
           "name": "漢磊",
-          "last": "-",
+          "last": "70.4000",
           "open": "75.2000",
           "high": "75.2000",
-          "low": "71.3000",
+          "low": "70.3000",
           "prev_close": "74.3000",
-          "volume": "3714",
-          "bid": "71.3000",
-          "ask": "71.4000",
+          "volume": "5124",
+          "bid": "70.4000",
+          "ask": "70.5000",
           "limit_up": "81.7000",
           "limit_down": "66.9000",
           "date": "2026-10-22",
-          "time": "12:36:20"
+          "time": "13:30:00"
         },
         "source_date": "2026-10-22",
         "units": {
@@ -31776,23 +31960,23 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-10-22T12:36:20+08:00"
+        "trade_time": "2026-10-22T13:30:00+08:00"
       },
       "daily_ohlcv": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "3707",
-          "Trading_Volume": 4569078,
-          "Trading_money": 339635529,
-          "open": 75.5,
-          "max": 75.7,
-          "min": 73.6,
-          "close": 74.3,
-          "spread": 1.4,
-          "Trading_turnover": 3577
+          "Trading_Volume": 5200937,
+          "Trading_money": 376445279,
+          "open": 75.2,
+          "max": 75.2,
+          "min": 70.3,
+          "close": 70.4,
+          "spread": -3.9,
+          "Trading_turnover": 4153
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -33833,23 +34017,35 @@
             "close": 74.3,
             "spread": 1.4,
             "Trading_turnover": 3577
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "3707",
+            "Trading_Volume": 5200937,
+            "Trading_money": 376445279,
+            "open": 75.2,
+            "max": 75.2,
+            "min": 70.3,
+            "close": 70.4,
+            "spread": -3.9,
+            "Trading_turnover": 4153
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockPrice",
         "data_kind": "daily",
         "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "3707",
-          "Foreign_Investor_buy": 1536940,
-          "Foreign_Investor_sell": 1756000,
+          "Foreign_Investor_buy": 1747324,
+          "Foreign_Investor_sell": 1280000,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
           "Investment_Trust_buy": 0,
@@ -33857,11 +34053,11 @@
           "Dealer_buy": 0,
           "Dealer_sell": 0,
           "Dealer_self_buy": 0,
-          "Dealer_self_sell": 0,
-          "Dealer_Hedging_buy": 13000,
-          "Dealer_Hedging_sell": 4514
+          "Dealer_self_sell": 600000,
+          "Dealer_Hedging_buy": 4000,
+          "Dealer_Hedging_sell": 31969
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -36582,37 +36778,53 @@
             "Dealer_self_sell": 0,
             "Dealer_Hedging_buy": 13000,
             "Dealer_Hedging_sell": 4514
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "3707",
+            "Foreign_Investor_buy": 1747324,
+            "Foreign_Investor_sell": 1280000,
+            "Foreign_Dealer_Self_buy": 0,
+            "Foreign_Dealer_Self_sell": 0,
+            "Investment_Trust_buy": 0,
+            "Investment_Trust_sell": 0,
+            "Dealer_buy": 0,
+            "Dealer_sell": 0,
+            "Dealer_self_buy": 0,
+            "Dealer_self_sell": 600000,
+            "Dealer_Hedging_buy": 4000,
+            "Dealer_Hedging_sell": 31969
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
         "data_kind": "daily",
         "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "3707",
-          "MarginPurchaseBuy": 182,
-          "MarginPurchaseCashRepayment": 13,
+          "MarginPurchaseBuy": 241,
+          "MarginPurchaseCashRepayment": 0,
           "MarginPurchaseLimit": 87781,
-          "MarginPurchaseSell": 126,
-          "MarginPurchaseTodayBalance": 13474,
-          "MarginPurchaseYesterdayBalance": 13431,
+          "MarginPurchaseSell": 654,
+          "MarginPurchaseTodayBalance": 13061,
+          "MarginPurchaseYesterdayBalance": 13474,
           "Note": "",
           "OffsetLoanAndShort": 8,
-          "ShortSaleBuy": 6,
-          "ShortSaleCashRepayment": 10,
+          "ShortSaleBuy": 17,
+          "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 87781,
-          "ShortSaleSell": 7,
-          "ShortSaleTodayBalance": 198,
-          "ShortSaleYesterdayBalance": 207
+          "ShortSaleSell": 13,
+          "ShortSaleTodayBalance": 194,
+          "ShortSaleYesterdayBalance": 198
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -39673,11 +39885,29 @@
             "ShortSaleSell": 7,
             "ShortSaleTodayBalance": 198,
             "ShortSaleYesterdayBalance": 207
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "3707",
+            "MarginPurchaseBuy": 241,
+            "MarginPurchaseCashRepayment": 0,
+            "MarginPurchaseLimit": 87781,
+            "MarginPurchaseSell": 654,
+            "MarginPurchaseTodayBalance": 13061,
+            "MarginPurchaseYesterdayBalance": 13474,
+            "Note": "",
+            "OffsetLoanAndShort": 8,
+            "ShortSaleBuy": 17,
+            "ShortSaleCashRepayment": 0,
+            "ShortSaleLimit": 87781,
+            "ShortSaleSell": 13,
+            "ShortSaleTodayBalance": 194,
+            "ShortSaleYesterdayBalance": 198
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
         "data_kind": "daily",
         "is_live": false,
@@ -39687,22 +39917,22 @@
     "2367": {
       "market": "tse",
       "mcp_quote": {
-        "status": "PASS",
+        "status": "STALE",
         "data": {
           "code": "2367",
           "name": "燿華",
-          "last": "45.4000",
+          "last": "44.9500",
           "open": "46.7000",
           "high": "47.9000",
-          "low": "45.3000",
+          "low": "44.8000",
           "prev_close": "46.2500",
-          "volume": "6835",
-          "bid": "45.3500",
-          "ask": "45.4000",
+          "volume": "8704",
+          "bid": "44.9500",
+          "ask": "45.0000",
           "limit_up": "50.8000",
           "limit_down": "41.6500",
           "date": "2026-10-22",
-          "time": "12:36:30"
+          "time": "13:30:00"
         },
         "source_date": "2026-10-22",
         "units": {
@@ -39710,24 +39940,24 @@
           "volume": "lots"
         },
         "data_kind": "quote_observation",
-        "is_live": true,
-        "trade_time": "2026-10-22T12:36:30+08:00"
+        "is_live": false,
+        "trade_time": "2026-10-22T13:30:00+08:00"
       },
       "daily_ohlcv": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "2367",
-          "Trading_Volume": 11096078,
-          "Trading_money": 521163067,
-          "open": 47.95,
-          "max": 48.25,
-          "min": 46.1,
-          "close": 46.25,
-          "spread": 0.65,
-          "Trading_turnover": 7134
+          "Trading_Volume": 8779969,
+          "Trading_money": 407455452,
+          "open": 46.7,
+          "max": 47.9,
+          "min": 44.8,
+          "close": 44.95,
+          "spread": -1.3,
+          "Trading_turnover": 6190
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -41768,35 +41998,47 @@
             "close": 46.25,
             "spread": 0.65,
             "Trading_turnover": 7134
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "2367",
+            "Trading_Volume": 8779969,
+            "Trading_money": 407455452,
+            "open": 46.7,
+            "max": 47.9,
+            "min": 44.8,
+            "close": 44.95,
+            "spread": -1.3,
+            "Trading_turnover": 6190
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockPrice",
         "data_kind": "daily",
         "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "2367",
-          "Foreign_Investor_buy": 3113934,
-          "Foreign_Investor_sell": 4634000,
+          "Foreign_Investor_buy": 3231943,
+          "Foreign_Investor_sell": 2809000,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
           "Investment_Trust_buy": 0,
           "Investment_Trust_sell": 0,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 132629,
-          "Dealer_self_sell": 163000,
-          "Dealer_Hedging_buy": 18740,
-          "Dealer_Hedging_sell": 37473
+          "Dealer_self_buy": 55000,
+          "Dealer_self_sell": 69000,
+          "Dealer_Hedging_buy": 28510,
+          "Dealer_Hedging_sell": 43554
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -44517,37 +44759,53 @@
             "Dealer_self_sell": 163000,
             "Dealer_Hedging_buy": 18740,
             "Dealer_Hedging_sell": 37473
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "2367",
+            "Foreign_Investor_buy": 3231943,
+            "Foreign_Investor_sell": 2809000,
+            "Foreign_Dealer_Self_buy": 0,
+            "Foreign_Dealer_Self_sell": 0,
+            "Investment_Trust_buy": 0,
+            "Investment_Trust_sell": 0,
+            "Dealer_buy": 0,
+            "Dealer_sell": 0,
+            "Dealer_self_buy": 55000,
+            "Dealer_self_sell": 69000,
+            "Dealer_Hedging_buy": 28510,
+            "Dealer_Hedging_sell": 43554
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
         "data_kind": "daily",
         "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "2367",
-          "MarginPurchaseBuy": 772,
-          "MarginPurchaseCashRepayment": 7,
+          "MarginPurchaseBuy": 489,
+          "MarginPurchaseCashRepayment": 0,
           "MarginPurchaseLimit": 176563,
-          "MarginPurchaseSell": 422,
-          "MarginPurchaseTodayBalance": 26988,
-          "MarginPurchaseYesterdayBalance": 26645,
+          "MarginPurchaseSell": 824,
+          "MarginPurchaseTodayBalance": 26653,
+          "MarginPurchaseYesterdayBalance": 26988,
           "Note": " ",
-          "OffsetLoanAndShort": 32,
-          "ShortSaleBuy": 9,
+          "OffsetLoanAndShort": 22,
+          "ShortSaleBuy": 35,
           "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 176563,
-          "ShortSaleSell": 6,
-          "ShortSaleTodayBalance": 464,
-          "ShortSaleYesterdayBalance": 467
+          "ShortSaleSell": 28,
+          "ShortSaleTodayBalance": 457,
+          "ShortSaleYesterdayBalance": 464
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -47608,11 +47866,29 @@
             "ShortSaleSell": 6,
             "ShortSaleTodayBalance": 464,
             "ShortSaleYesterdayBalance": 467
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "2367",
+            "MarginPurchaseBuy": 489,
+            "MarginPurchaseCashRepayment": 0,
+            "MarginPurchaseLimit": 176563,
+            "MarginPurchaseSell": 824,
+            "MarginPurchaseTodayBalance": 26653,
+            "MarginPurchaseYesterdayBalance": 26988,
+            "Note": " ",
+            "OffsetLoanAndShort": 22,
+            "ShortSaleBuy": 35,
+            "ShortSaleCashRepayment": 0,
+            "ShortSaleLimit": 176563,
+            "ShortSaleSell": 28,
+            "ShortSaleTodayBalance": 457,
+            "ShortSaleYesterdayBalance": 464
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
         "data_kind": "daily",
         "is_live": false,
@@ -47622,22 +47898,22 @@
     "3491": {
       "market": "otc",
       "mcp_quote": {
-        "status": "NO_LAST_TRADE",
+        "status": "STALE",
         "data": {
           "code": "3491",
           "name": "昇達科",
-          "last": "-",
+          "last": "1320.0000",
           "open": "1460.0000",
           "high": "1470.0000",
-          "low": "1350.0000",
+          "low": "1320.0000",
           "prev_close": "1430.0000",
-          "volume": "734",
-          "bid": "1350.0000",
-          "ask": "1355.0000",
+          "volume": "1090",
+          "bid": "1320.0000",
+          "ask": "1335.0000",
           "limit_up": "1570.0000",
           "limit_down": "1290.0000",
           "date": "2026-10-22",
-          "time": "12:35:42"
+          "time": "13:30:00"
         },
         "source_date": "2026-10-22",
         "units": {
@@ -47646,23 +47922,23 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-10-22T12:35:42+08:00"
+        "trade_time": "2026-10-22T13:30:00+08:00"
       },
       "daily_ohlcv": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "3491",
-          "Trading_Volume": 1373246,
-          "Trading_money": 1978921050,
-          "open": 1425.0,
-          "max": 1460.0,
-          "min": 1400.0,
-          "close": 1430.0,
-          "spread": 100.0,
-          "Trading_turnover": 7350
+          "Trading_Volume": 1190192,
+          "Trading_money": 1649530445,
+          "open": 1460.0,
+          "max": 1470.0,
+          "min": 1320.0,
+          "close": 1320.0,
+          "spread": -110.0,
+          "Trading_turnover": 6021
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -49703,35 +49979,47 @@
             "close": 1430.0,
             "spread": 100.0,
             "Trading_turnover": 7350
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "3491",
+            "Trading_Volume": 1190192,
+            "Trading_money": 1649530445,
+            "open": 1460.0,
+            "max": 1470.0,
+            "min": 1320.0,
+            "close": 1320.0,
+            "spread": -110.0,
+            "Trading_turnover": 6021
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockPrice",
         "data_kind": "daily",
         "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "3491",
-          "Foreign_Investor_buy": 370625,
-          "Foreign_Investor_sell": 235820,
+          "Foreign_Investor_buy": 247562,
+          "Foreign_Investor_sell": 535696,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 108000,
-          "Investment_Trust_sell": 44000,
+          "Investment_Trust_buy": 0,
+          "Investment_Trust_sell": 0,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 7187,
-          "Dealer_self_sell": 43,
-          "Dealer_Hedging_buy": 10031,
-          "Dealer_Hedging_sell": 7059
+          "Dealer_self_buy": 2000,
+          "Dealer_self_sell": 17200,
+          "Dealer_Hedging_buy": 37530,
+          "Dealer_Hedging_sell": 38144
         },
-        "row_count": 169,
+        "row_count": 170,
         "history": [
           {
             "date": "2026-02-04",
@@ -52436,37 +52724,53 @@
             "Dealer_self_sell": 43,
             "Dealer_Hedging_buy": 10031,
             "Dealer_Hedging_sell": 7059
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "3491",
+            "Foreign_Investor_buy": 247562,
+            "Foreign_Investor_sell": 535696,
+            "Foreign_Dealer_Self_buy": 0,
+            "Foreign_Dealer_Self_sell": 0,
+            "Investment_Trust_buy": 0,
+            "Investment_Trust_sell": 0,
+            "Dealer_buy": 0,
+            "Dealer_sell": 0,
+            "Dealer_self_buy": 2000,
+            "Dealer_self_sell": 17200,
+            "Dealer_Hedging_buy": 37530,
+            "Dealer_Hedging_sell": 38144
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
         "data_kind": "daily",
         "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "3491",
-          "MarginPurchaseBuy": 101,
+          "MarginPurchaseBuy": 123,
           "MarginPurchaseCashRepayment": 0,
           "MarginPurchaseLimit": 17201,
-          "MarginPurchaseSell": 120,
-          "MarginPurchaseTodayBalance": 2797,
-          "MarginPurchaseYesterdayBalance": 2816,
+          "MarginPurchaseSell": 102,
+          "MarginPurchaseTodayBalance": 2818,
+          "MarginPurchaseYesterdayBalance": 2797,
           "Note": "",
-          "OffsetLoanAndShort": 4,
-          "ShortSaleBuy": 1,
+          "OffsetLoanAndShort": 1,
+          "ShortSaleBuy": 12,
           "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 17201,
-          "ShortSaleSell": 9,
-          "ShortSaleTodayBalance": 22,
-          "ShortSaleYesterdayBalance": 14
+          "ShortSaleSell": 0,
+          "ShortSaleTodayBalance": 10,
+          "ShortSaleYesterdayBalance": 22
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -55527,11 +55831,29 @@
             "ShortSaleSell": 9,
             "ShortSaleTodayBalance": 22,
             "ShortSaleYesterdayBalance": 14
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "3491",
+            "MarginPurchaseBuy": 123,
+            "MarginPurchaseCashRepayment": 0,
+            "MarginPurchaseLimit": 17201,
+            "MarginPurchaseSell": 102,
+            "MarginPurchaseTodayBalance": 2818,
+            "MarginPurchaseYesterdayBalance": 2797,
+            "Note": "",
+            "OffsetLoanAndShort": 1,
+            "ShortSaleBuy": 12,
+            "ShortSaleCashRepayment": 0,
+            "ShortSaleLimit": 17201,
+            "ShortSaleSell": 0,
+            "ShortSaleTodayBalance": 10,
+            "ShortSaleYesterdayBalance": 22
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
         "data_kind": "daily",
         "is_live": false,
@@ -55541,22 +55863,22 @@
     "006208": {
       "market": "tse",
       "mcp_quote": {
-        "status": "NO_LAST_TRADE",
+        "status": "STALE",
         "data": {
           "code": "006208",
           "name": "富邦台50",
-          "last": "-",
+          "last": "244.8500",
           "open": "248.9500",
           "high": "249.9000",
-          "low": "245.3000",
+          "low": "244.7000",
           "prev_close": "247.6000",
-          "volume": "1354",
-          "bid": "245.4000",
-          "ask": "245.5500",
+          "volume": "1875",
+          "bid": "244.8000",
+          "ask": "244.8500",
           "limit_up": "272.3500",
           "limit_down": "222.8500",
           "date": "2026-10-22",
-          "time": "12:35:56"
+          "time": "13:30:00"
         },
         "source_date": "2026-10-22",
         "units": {
@@ -55565,23 +55887,23 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-10-22T12:35:56+08:00"
+        "trade_time": "2026-10-22T13:30:00+08:00"
       },
       "daily_ohlcv": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "006208",
-          "Trading_Volume": 1502303,
-          "Trading_money": 373276692,
-          "open": 248.85,
-          "max": 250.05,
-          "min": 246.65,
-          "close": 247.6,
-          "spread": 2.3,
-          "Trading_turnover": 7986
+          "Trading_Volume": 2513643,
+          "Trading_money": 619987621,
+          "open": 248.95,
+          "max": 249.9,
+          "min": 244.7,
+          "close": 244.85,
+          "spread": -2.75,
+          "Trading_turnover": 16305
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -57622,35 +57944,47 @@
             "close": 247.6,
             "spread": 2.3,
             "Trading_turnover": 7986
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "006208",
+            "Trading_Volume": 2513643,
+            "Trading_money": 619987621,
+            "open": 248.95,
+            "max": 249.9,
+            "min": 244.7,
+            "close": 244.85,
+            "spread": -2.75,
+            "Trading_turnover": 16305
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockPrice",
         "data_kind": "daily",
         "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "006208",
-          "Foreign_Investor_buy": 229002,
-          "Foreign_Investor_sell": 347167,
+          "Foreign_Investor_buy": 158152,
+          "Foreign_Investor_sell": 858207,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 0,
+          "Investment_Trust_buy": 14000,
           "Investment_Trust_sell": 0,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 0,
-          "Dealer_self_sell": 2000,
-          "Dealer_Hedging_buy": 434482,
-          "Dealer_Hedging_sell": 442307
+          "Dealer_self_buy": 12000,
+          "Dealer_self_sell": 228908,
+          "Dealer_Hedging_buy": 363000,
+          "Dealer_Hedging_sell": 748630
         },
-        "row_count": 169,
+        "row_count": 170,
         "history": [
           {
             "date": "2026-02-04",
@@ -60355,37 +60689,53 @@
             "Dealer_self_sell": 2000,
             "Dealer_Hedging_buy": 434482,
             "Dealer_Hedging_sell": 442307
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "006208",
+            "Foreign_Investor_buy": 158152,
+            "Foreign_Investor_sell": 858207,
+            "Foreign_Dealer_Self_buy": 0,
+            "Foreign_Dealer_Self_sell": 0,
+            "Investment_Trust_buy": 14000,
+            "Investment_Trust_sell": 0,
+            "Dealer_buy": 0,
+            "Dealer_sell": 0,
+            "Dealer_self_buy": 12000,
+            "Dealer_self_sell": 228908,
+            "Dealer_Hedging_buy": 363000,
+            "Dealer_Hedging_sell": 748630
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
         "data_kind": "daily",
         "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "006208",
-          "MarginPurchaseBuy": 6,
+          "MarginPurchaseBuy": 2,
           "MarginPurchaseCashRepayment": 0,
-          "MarginPurchaseLimit": 469385,
-          "MarginPurchaseSell": 36,
-          "MarginPurchaseTodayBalance": 262,
-          "MarginPurchaseYesterdayBalance": 292,
+          "MarginPurchaseLimit": 469510,
+          "MarginPurchaseSell": 5,
+          "MarginPurchaseTodayBalance": 259,
+          "MarginPurchaseYesterdayBalance": 262,
           "Note": " ",
           "OffsetLoanAndShort": 0,
           "ShortSaleBuy": 0,
           "ShortSaleCashRepayment": 0,
-          "ShortSaleLimit": 469385,
+          "ShortSaleLimit": 469510,
           "ShortSaleSell": 0,
           "ShortSaleTodayBalance": 1,
           "ShortSaleYesterdayBalance": 1
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -63446,11 +63796,29 @@
             "ShortSaleSell": 0,
             "ShortSaleTodayBalance": 1,
             "ShortSaleYesterdayBalance": 1
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "006208",
+            "MarginPurchaseBuy": 2,
+            "MarginPurchaseCashRepayment": 0,
+            "MarginPurchaseLimit": 469510,
+            "MarginPurchaseSell": 5,
+            "MarginPurchaseTodayBalance": 259,
+            "MarginPurchaseYesterdayBalance": 262,
+            "Note": " ",
+            "OffsetLoanAndShort": 0,
+            "ShortSaleBuy": 0,
+            "ShortSaleCashRepayment": 0,
+            "ShortSaleLimit": 469510,
+            "ShortSaleSell": 0,
+            "ShortSaleTodayBalance": 1,
+            "ShortSaleYesterdayBalance": 1
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
         "data_kind": "daily",
         "is_live": false,
@@ -63460,22 +63828,22 @@
     "00631L": {
       "market": "tse",
       "mcp_quote": {
-        "status": "NO_LAST_TRADE",
+        "status": "STALE",
         "data": {
           "code": "00631L",
           "name": "元大台灣50正2",
-          "last": "-",
+          "last": "35.6100",
           "open": "36.9800",
           "high": "37.0000",
-          "low": "35.7800",
+          "low": "35.5900",
           "prev_close": "36.6100",
-          "volume": "141399",
-          "bid": "35.7900",
-          "ask": "35.8000",
+          "volume": "213976",
+          "bid": "35.6100",
+          "ask": "35.6200",
           "limit_up": "43.9300",
           "limit_down": "29.2900",
           "date": "2026-10-22",
-          "time": "12:35:59"
+          "time": "13:30:00"
         },
         "source_date": "2026-10-22",
         "units": {
@@ -63484,23 +63852,23 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-10-22T12:35:59+08:00"
+        "trade_time": "2026-10-22T13:30:00+08:00"
       },
       "daily_ohlcv": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "00631L",
-          "Trading_Volume": 144974199,
-          "Trading_money": 5334109132,
-          "open": 36.89,
-          "max": 37.19,
-          "min": 36.36,
-          "close": 36.61,
-          "spread": 0.74,
-          "Trading_turnover": 48098
+          "Trading_Volume": 221121987,
+          "Trading_money": 7981342631,
+          "open": 36.98,
+          "max": 37.0,
+          "min": 35.59,
+          "close": 35.61,
+          "spread": -1.0,
+          "Trading_turnover": 103251
         },
-        "row_count": 166,
+        "row_count": 167,
         "history": [
           {
             "date": "2026-02-04",
@@ -65493,35 +65861,47 @@
             "close": 36.61,
             "spread": 0.74,
             "Trading_turnover": 48098
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "00631L",
+            "Trading_Volume": 221121987,
+            "Trading_money": 7981342631,
+            "open": 36.98,
+            "max": 37.0,
+            "min": 35.59,
+            "close": 35.61,
+            "spread": -1.0,
+            "Trading_turnover": 103251
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockPrice",
         "data_kind": "daily",
         "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "00631L",
-          "Foreign_Investor_buy": 10001768,
-          "Foreign_Investor_sell": 9320050,
+          "Foreign_Investor_buy": 9815606,
+          "Foreign_Investor_sell": 9905000,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
           "Investment_Trust_buy": 0,
           "Investment_Trust_sell": 0,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 80000,
-          "Dealer_self_sell": 400000,
-          "Dealer_Hedging_buy": 25275283,
-          "Dealer_Hedging_sell": 45655559
+          "Dealer_self_buy": 86000,
+          "Dealer_self_sell": 100000,
+          "Dealer_Hedging_buy": 10061868,
+          "Dealer_Hedging_sell": 112568216
         },
-        "row_count": 166,
+        "row_count": 167,
         "history": [
           {
             "date": "2026-02-04",
@@ -68178,37 +68558,53 @@
             "Dealer_self_sell": 400000,
             "Dealer_Hedging_buy": 25275283,
             "Dealer_Hedging_sell": 45655559
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "00631L",
+            "Foreign_Investor_buy": 9815606,
+            "Foreign_Investor_sell": 9905000,
+            "Foreign_Dealer_Self_buy": 0,
+            "Foreign_Dealer_Self_sell": 0,
+            "Investment_Trust_buy": 0,
+            "Investment_Trust_sell": 0,
+            "Dealer_buy": 0,
+            "Dealer_sell": 0,
+            "Dealer_self_buy": 86000,
+            "Dealer_self_sell": 100000,
+            "Dealer_Hedging_buy": 10061868,
+            "Dealer_Hedging_sell": 112568216
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
         "data_kind": "daily",
         "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
-        "status": "PRIOR_SESSION",
+        "status": "PASS",
         "data": {
-          "date": "2026-10-21",
+          "date": "2026-10-22",
           "stock_id": "00631L",
-          "MarginPurchaseBuy": 10360,
-          "MarginPurchaseCashRepayment": 196,
-          "MarginPurchaseLimit": 1953337,
-          "MarginPurchaseSell": 13137,
-          "MarginPurchaseTodayBalance": 261630,
-          "MarginPurchaseYesterdayBalance": 264603,
+          "MarginPurchaseBuy": 15939,
+          "MarginPurchaseCashRepayment": 106,
+          "MarginPurchaseLimit": 1967212,
+          "MarginPurchaseSell": 11022,
+          "MarginPurchaseTodayBalance": 266441,
+          "MarginPurchaseYesterdayBalance": 261630,
           "Note": " ",
-          "OffsetLoanAndShort": 287,
-          "ShortSaleBuy": 637,
+          "OffsetLoanAndShort": 498,
+          "ShortSaleBuy": 1008,
           "ShortSaleCashRepayment": 0,
-          "ShortSaleLimit": 1953337,
-          "ShortSaleSell": 1531,
-          "ShortSaleTodayBalance": 14798,
-          "ShortSaleYesterdayBalance": 13904
+          "ShortSaleLimit": 1967212,
+          "ShortSaleSell": 1823,
+          "ShortSaleTodayBalance": 15613,
+          "ShortSaleYesterdayBalance": 14798
         },
-        "row_count": 170,
+        "row_count": 171,
         "history": [
           {
             "date": "2026-02-04",
@@ -71269,11 +71665,29 @@
             "ShortSaleSell": 1531,
             "ShortSaleTodayBalance": 14798,
             "ShortSaleYesterdayBalance": 13904
+          },
+          {
+            "date": "2026-10-22",
+            "stock_id": "00631L",
+            "MarginPurchaseBuy": 15939,
+            "MarginPurchaseCashRepayment": 106,
+            "MarginPurchaseLimit": 1967212,
+            "MarginPurchaseSell": 11022,
+            "MarginPurchaseTodayBalance": 266441,
+            "MarginPurchaseYesterdayBalance": 261630,
+            "Note": " ",
+            "OffsetLoanAndShort": 498,
+            "ShortSaleBuy": 1008,
+            "ShortSaleCashRepayment": 0,
+            "ShortSaleLimit": 1967212,
+            "ShortSaleSell": 1823,
+            "ShortSaleTodayBalance": 15613,
+            "ShortSaleYesterdayBalance": 14798
           }
         ],
         "history_start": "2026-02-04",
-        "history_end": "2026-10-21",
-        "source_date": "2026-10-21",
+        "history_end": "2026-10-22",
+        "source_date": "2026-10-22",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
         "data_kind": "daily",
         "is_live": false,
@@ -71289,6 +71703,6 @@
   "coverage": {
     "stocks_total": 9,
     "daily_available": 9,
-    "live_quotes": 1
+    "live_quotes": 0
   }
 }
