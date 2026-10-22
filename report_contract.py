@@ -60,6 +60,14 @@ def evaluate(report, market, cross, checked, experiment):
         needed += [credit.get(k) for k in ("margin_balance", "margin_change", "margin_change_5d", "short_balance", "short_change", "short_change_5d")]
         valid = all(item.get(key, {}).get("status") == "PASS" for key in ("daily_ohlcv", "institutional", "margin"))
         valid = valid and all(number(x) is not None for x in needed) and all(positive_price(row.get(key)) is not None for key in ("open", "max", "min", "close")) and not inst.get("dealer_components_conflict", False)
+        prices = [positive_price(row.get(key)) for key in ("open", "max", "min", "close")]
+        valid = valid and None not in prices
+        if None not in prices:
+            opened, high, low, closed = prices
+            valid = valid and low <= min(opened, closed) <= max(opened, closed) <= high
+        valid = valid and number(row.get("Trading_Volume")) is not None and number(row.get("Trading_money")) is not None
+        if number(row.get("Trading_Volume")) is not None and number(row.get("Trading_money")) is not None:
+            valid = valid and number(row["Trading_Volume"]) >= 0 and number(row["Trading_money"]) >= 0
         stock_items[code] = "PASS" if valid else "MISSING_OR_INVALID_FIELDS"
     sections = {"required_stock_data":section(stock_items)}
     context = market.get("market_context", {})

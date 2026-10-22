@@ -1,9 +1,6 @@
 name: Morning Night Intraday Acceptance Experiment
 on:
   workflow_dispatch:
-  push:
-    branches: [feature/report-readiness-contract-20261022]
-    paths: [report_contract.py, report_scenarios.py, session_calendar.py, stock_metrics.py, collect_cross_market.py, instruments.py, .github/workflows/scenario-experiment.yml]
 permissions:
   contents: read
 jobs:

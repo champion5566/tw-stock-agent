@@ -157,6 +157,22 @@ class ReadinessTests(unittest.TestCase):
         report=report_scenarios.build_report('morning',market,cross=cross,checked_at=checked)
         self.assertEqual(report['readiness']['sections']['tx_completed_night']['status'],'PARTIAL')
 
+    def test_invalid_ohlc_bounds_do_not_pass_readiness(self):
+        checked,market,cross=fixture()
+        stock=copy.deepcopy(market['stocks']['2330'])
+        stock['daily_ohlcv']['history'][-1]['max']=101
+        market['stocks']['2330']=stock
+        report=report_scenarios.build_report('morning',market,cross=cross,checked_at=checked)
+        self.assertEqual(report['status'],'DATA_PARTIAL')
+
+    def test_negative_turnover_does_not_pass_readiness(self):
+        checked,market,cross=fixture()
+        stock=copy.deepcopy(market['stocks']['2330'])
+        stock['daily_ohlcv']['history'][-1]['Trading_money']=-1
+        market['stocks']['2330']=stock
+        report=report_scenarios.build_report('morning',market,cross=cross,checked_at=checked)
+        self.assertEqual(report['status'],'DATA_PARTIAL')
+
     def test_dealer_aggregate_is_not_double_counted(self):
         row={'Foreign_Investor_buy':10,'Foreign_Investor_sell':2,
              'Foreign_Dealer_Self_buy':0,'Foreign_Dealer_Self_sell':0,'Investment_Trust_buy':4,'Investment_Trust_sell':1,
