@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "fetched_at_taipei": "2026-10-22T11:23:43.877792+08:00",
+  "fetched_at_taipei": "2026-10-22T11:46:30.045996+08:00",
   "trade_date_requested": "2026-10-22",
   "slot": "evening",
   "sources": {
@@ -12,28 +12,31 @@
     "2313": {
       "market": "tse",
       "mcp_quote": {
-        "status": "PASS",
+        "status": "NO_LAST_TRADE",
         "data": {
           "code": "2313",
           "name": "華通",
           "last": "-",
           "open": "242.5000",
           "high": "248.5000",
-          "low": "231.0000",
+          "low": "228.5000",
           "prev_close": "240.5000",
-          "volume": "24581",
-          "bid": "232.0000",
-          "ask": "232.5000",
+          "volume": "28161",
+          "bid": "229.0000",
+          "ask": "229.5000",
           "limit_up": "264.5000",
           "limit_down": "216.5000",
           "date": "2026-10-22",
-          "time": "11:22:00"
+          "time": "11:46:00"
         },
         "source_date": "2026-10-22",
         "units": {
           "price": "TWD/share",
           "volume": "lots"
-        }
+        },
+        "data_kind": "quote_observation",
+        "is_live": false,
+        "trade_time": "2026-10-22T11:46:00+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -2096,6 +2099,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockPrice",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
@@ -4843,6 +4848,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
@@ -7932,34 +7939,39 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "provider-native units; inspect fields"
       }
     },
     "2330": {
       "market": "tse",
       "mcp_quote": {
-        "status": "PASS",
+        "status": "NO_LAST_TRADE",
         "data": {
           "code": "2330",
           "name": "台積電",
           "last": "-",
           "open": "2435.0000",
           "high": "2435.0000",
-          "low": "2400.0000",
+          "low": "2395.0000",
           "prev_close": "2420.0000",
-          "volume": "8429",
-          "bid": "2400.0000",
-          "ask": "2405.0000",
+          "volume": "10100",
+          "bid": "2395.0000",
+          "ask": "2400.0000",
           "limit_up": "2660.0000",
           "limit_down": "2180.0000",
           "date": "2026-10-22",
-          "time": "11:21:53"
+          "time": "11:46:00"
         },
         "source_date": "2026-10-22",
         "units": {
           "price": "TWD/share",
           "volume": "lots"
-        }
+        },
+        "data_kind": "quote_observation",
+        "is_live": false,
+        "trade_time": "2026-10-22T11:46:00+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -10022,6 +10034,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockPrice",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
@@ -12769,6 +12783,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
@@ -15858,6 +15874,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "provider-native units; inspect fields"
       }
     },
@@ -15868,24 +15886,27 @@
         "data": {
           "code": "0050",
           "name": "元大台灣50",
-          "last": "-",
+          "last": "107.5500",
           "open": "108.9500",
           "high": "109.1500",
-          "low": "107.7500",
+          "low": "107.5000",
           "prev_close": "108.1500",
-          "volume": "41700",
-          "bid": "107.8500",
-          "ask": "107.9000",
+          "volume": "47552",
+          "bid": "107.5000",
+          "ask": "107.5500",
           "limit_up": "118.9500",
           "limit_down": "97.3500",
           "date": "2026-10-22",
-          "time": "11:21:59"
+          "time": "11:45:59"
         },
         "source_date": "2026-10-22",
         "units": {
           "price": "TWD/share",
           "volume": "lots"
-        }
+        },
+        "data_kind": "quote_observation",
+        "is_live": true,
+        "trade_time": "2026-10-22T11:45:59+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -17948,6 +17969,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockPrice",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
@@ -20695,6 +20718,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
@@ -23784,34 +23809,39 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "provider-native units; inspect fields"
       }
     },
     "5483": {
       "market": "otc",
       "mcp_quote": {
-        "status": "PASS",
+        "status": "NO_LAST_TRADE",
         "data": {
           "code": "5483",
           "name": "中美晶",
           "last": "-",
           "open": "201.0000",
           "high": "201.0000",
-          "low": "189.5000",
+          "low": "188.5000",
           "prev_close": "199.0000",
-          "volume": "7779",
-          "bid": "189.5000",
-          "ask": "190.0000",
+          "volume": "8580",
+          "bid": "189.0000",
+          "ask": "189.5000",
           "limit_up": "218.5000",
           "limit_down": "179.5000",
           "date": "2026-10-22",
-          "time": "11:23:30"
+          "time": "11:46:01"
         },
         "source_date": "2026-10-22",
         "units": {
           "price": "TWD/share",
           "volume": "lots"
-        }
+        },
+        "data_kind": "quote_observation",
+        "is_live": false,
+        "trade_time": "2026-10-22T11:46:01+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -25874,6 +25904,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockPrice",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
@@ -28621,6 +28653,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
@@ -31710,34 +31744,39 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "provider-native units; inspect fields"
       }
     },
     "3707": {
       "market": "otc",
       "mcp_quote": {
-        "status": "PASS",
+        "status": "NO_LAST_TRADE",
         "data": {
           "code": "3707",
           "name": "漢磊",
           "last": "-",
           "open": "75.2000",
           "high": "75.2000",
-          "low": "72.0000",
+          "low": "71.9000",
           "prev_close": "74.3000",
-          "volume": "2879",
-          "bid": "72.4000",
-          "ask": "72.5000",
+          "volume": "3085",
+          "bid": "71.9000",
+          "ask": "72.1000",
           "limit_up": "81.7000",
           "limit_down": "66.9000",
           "date": "2026-10-22",
-          "time": "11:22:24"
+          "time": "11:46:15"
         },
         "source_date": "2026-10-22",
         "units": {
           "price": "TWD/share",
           "volume": "lots"
-        }
+        },
+        "data_kind": "quote_observation",
+        "is_live": false,
+        "trade_time": "2026-10-22T11:46:15+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -33800,6 +33839,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockPrice",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
@@ -36547,6 +36588,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
@@ -39636,34 +39679,39 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "provider-native units; inspect fields"
       }
     },
     "2367": {
       "market": "tse",
       "mcp_quote": {
-        "status": "PASS",
+        "status": "NO_LAST_TRADE",
         "data": {
           "code": "2367",
           "name": "燿華",
           "last": "-",
           "open": "46.7000",
           "high": "47.9000",
-          "low": "46.0000",
+          "low": "45.7000",
           "prev_close": "46.2500",
-          "volume": "5528",
-          "bid": "46.1000",
-          "ask": "46.1500",
+          "volume": "5988",
+          "bid": "45.7500",
+          "ask": "45.8500",
           "limit_up": "50.8000",
           "limit_down": "41.6500",
           "date": "2026-10-22",
-          "time": "11:22:38"
+          "time": "11:46:31"
         },
         "source_date": "2026-10-22",
         "units": {
           "price": "TWD/share",
           "volume": "lots"
-        }
+        },
+        "data_kind": "quote_observation",
+        "is_live": false,
+        "trade_time": "2026-10-22T11:46:31+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -41726,6 +41774,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockPrice",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
@@ -44473,6 +44523,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
@@ -47562,34 +47614,39 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "provider-native units; inspect fields"
       }
     },
     "3491": {
       "market": "otc",
       "mcp_quote": {
-        "status": "PASS",
+        "status": "NO_LAST_TRADE",
         "data": {
           "code": "3491",
           "name": "昇達科",
           "last": "-",
           "open": "1460.0000",
           "high": "1470.0000",
-          "low": "1380.0000",
+          "low": "1370.0000",
           "prev_close": "1430.0000",
-          "volume": "607",
-          "bid": "1380.0000",
-          "ask": "1385.0000",
+          "volume": "650",
+          "bid": "1365.0000",
+          "ask": "1370.0000",
           "limit_up": "1570.0000",
           "limit_down": "1290.0000",
           "date": "2026-10-22",
-          "time": "11:23:47"
+          "time": "11:45:33"
         },
         "source_date": "2026-10-22",
         "units": {
           "price": "TWD/share",
           "volume": "lots"
-        }
+        },
+        "data_kind": "quote_observation",
+        "is_live": false,
+        "trade_time": "2026-10-22T11:45:33+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -49652,6 +49709,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockPrice",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "Trading_Volume: shares"
       },
       "institutional": {
@@ -52383,6 +52442,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "buy/sell volume: shares; inspect fields"
       },
       "margin": {
@@ -55472,6 +55533,8 @@
         "history_end": "2026-10-21",
         "source_date": "2026-10-21",
         "dataset": "TaiwanStockMarginPurchaseShortSale",
+        "data_kind": "daily",
+        "is_live": false,
         "units": "provider-native units; inspect fields"
       }
     }
@@ -55480,5 +55543,10 @@
   "mcp_initialize": {
     "status": "PASS",
     "error": null
+  },
+  "coverage": {
+    "stocks_total": 7,
+    "daily_available": 7,
+    "live_quotes": 1
   }
 }
