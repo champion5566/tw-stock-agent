@@ -1,18 +1,18 @@
 {
   "schema_version": "research-v1",
-  "created_at_taipei": "2026-10-22T12:07:37.803951+08:00",
+  "created_at_taipei": "2026-10-22T12:38:01.472684+08:00",
   "slot": "evening",
   "source_snapshot": "2026-10-22/evening.json",
   "trade_date": "2026-10-22",
   "coverage": {
-    "stocks_total": 7,
-    "daily_ohlcv_available": 7,
+    "stocks_total": 9,
+    "daily_ohlcv_available": 9,
     "institutional_current_day": 0,
     "margin_current_day": 0
   },
   "features": {
     "2330": {
-      "quote_status": "PASS",
+      "quote_status": "NO_LAST_TRADE",
       "quote_source_date": "2026-10-22",
       "daily_status": "PRIOR_SESSION",
       "daily_source_date": "2026-10-21",
@@ -80,7 +80,7 @@
       "margin_source_date": "2026-10-21"
     },
     "2313": {
-      "quote_status": "PASS",
+      "quote_status": "NO_LAST_TRADE",
       "quote_source_date": "2026-10-22",
       "daily_status": "PRIOR_SESSION",
       "daily_source_date": "2026-10-21",
@@ -97,7 +97,7 @@
       "margin_source_date": "2026-10-21"
     },
     "2367": {
-      "quote_status": "NO_LAST_TRADE",
+      "quote_status": "PASS",
       "quote_source_date": "2026-10-22",
       "daily_status": "PRIOR_SESSION",
       "daily_source_date": "2026-10-21",
@@ -125,6 +125,40 @@
       "one_day_return_pct": 7.519,
       "volume_ratio_20d": 0.91,
       "close_vs_sma20_pct": -5.141,
+      "institutional_status": "PRIOR_SESSION",
+      "institutional_source_date": "2026-10-21",
+      "margin_status": "PRIOR_SESSION",
+      "margin_source_date": "2026-10-21"
+    },
+    "006208": {
+      "quote_status": "NO_LAST_TRADE",
+      "quote_source_date": "2026-10-22",
+      "daily_status": "PRIOR_SESSION",
+      "daily_source_date": "2026-10-21",
+      "bars_available": 170,
+      "latest_close": 247.6,
+      "latest_volume_shares": 1502303.0,
+      "previous_close": 245.3,
+      "one_day_return_pct": 0.938,
+      "volume_ratio_20d": 0.46,
+      "close_vs_sma20_pct": -3.536,
+      "institutional_status": "PRIOR_SESSION",
+      "institutional_source_date": "2026-10-21",
+      "margin_status": "PRIOR_SESSION",
+      "margin_source_date": "2026-10-21"
+    },
+    "00631L": {
+      "quote_status": "NO_LAST_TRADE",
+      "quote_source_date": "2026-10-22",
+      "daily_status": "PRIOR_SESSION",
+      "daily_source_date": "2026-10-21",
+      "bars_available": 166,
+      "latest_close": 36.61,
+      "latest_volume_shares": 144974199.0,
+      "previous_close": 35.87,
+      "one_day_return_pct": 2.063,
+      "volume_ratio_20d": 0.737,
+      "close_vs_sma20_pct": -6.204,
       "institutional_status": "PRIOR_SESSION",
       "institutional_source_date": "2026-10-21",
       "margin_status": "PRIOR_SESSION",
