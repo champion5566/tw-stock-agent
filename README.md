@@ -152,3 +152,16 @@ Actual three-scenario outputs from the 2026-10-22 daytime acceptance run:
 [evening preview](docs/experiments/2026-10-22-evening.md),
 [immediate query](docs/experiments/2026-10-22-intraday.md).
 The shared Taiwan watchlist lives in `instruments.py`.
+
+## Current report contract (supersedes older timing/coverage notes above)
+
+The enabled morning task is **08:50**, evening **23:00 Taipei**. Six report instruments
+are mandatory (0050/006208/00631L/2330/3707/5483); three optional observations remain.
+A stock subset being complete no longer marks a complete report. Missing market context,
+actual TOPIX, stale quotes, wrong sessions or cutoff violations remain explicit blockers.
+
+Production preparation publishes `reports/YYYY-MM-DD/{morning,evening}.json` with small,
+public-data-only facts, input SHA-256 fingerprints and section-level `DATA_READY` /
+`DATA_PARTIAL`. Ledger persistence, task execution and user delivery remain independent.
+See [report contract](docs/REPORT_CONTRACT.md) for the definitive requirements, preparation
+crons, deadlines, source semantics and validation procedure.

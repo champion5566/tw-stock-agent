@@ -18,8 +18,10 @@ def main():
     if not path.exists():
         raise SystemExit("Cross-market snapshot must exist before quote enrichment")
     snapshot = json.loads(path.read_text(encoding="utf-8"))
-    result = collect_quotes(wait_seconds=35)
-    snapshot.setdefault("taifex", {})["shioaji_live_tx"] = result
+    result = (collect_quotes(wait_seconds=35) if slot == "evening" else
+              collect_quotes(future_snapshot=True, stream=False))
+    key = "shioaji_live_tx" if slot == "evening" else "shioaji_session_tx"
+    snapshot.setdefault("taifex", {})[key] = result
     write_snapshot(snapshot, now.date().isoformat(), "cross-" + slot)
     print("SHIOAJI_TX", result["status"], result.get("price"),
           result.get("trade_time"), "age_min", result.get("age_minutes"))

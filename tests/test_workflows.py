@@ -13,9 +13,9 @@ class WorkflowContracts(unittest.TestCase):
         # PyYAML YAML 1.1 parses unquoted `on` as True.
         def triggers(name): return workflows[name].get('on',workflows[name].get(True))
         self.assertEqual([x['cron'] for x in triggers('market-data')['schedule']],
-                         ['25 0 * * 1-5','40 12 * * 1-5'])
+                         ['25 0 * * 1-5','15 14 * * 1-5'])
         self.assertEqual([x['cron'] for x in triggers('cross-market')['schedule']],
-                         ['35 21 * * 1-5','30 0 * * 1-5','45 14 * * 1-5'])
+                         ['35 21 * * 1-5','38 0 * * 1-5','52 14 * * 1-5'])
         self.assertIn('workflow_dispatch',triggers('intraday-on-demand'))
 
     def test_research_is_separate_from_published_ingestion(self):

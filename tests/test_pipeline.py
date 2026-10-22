@@ -138,7 +138,7 @@ class CollectorIntegrationTests(unittest.TestCase):
             dt.now.return_value = NOW
             collect_market.main()
             result = json.loads(Path('out/2026-10-22/evening.json').read_text())
-            self.assertEqual(result['coverage']['daily_available'], 7)
+            self.assertEqual(result['coverage']['daily_available'], len(collect_market.STOCKS))
             self.assertEqual(result['coverage']['live_quotes'], 0)
             self.assertEqual(result['stocks']['2330']['mcp_quote']['status'], 'NO_LAST_TRADE')
             self.assertEqual(result['stocks']['2330']['daily_ohlcv']['history'], rows)

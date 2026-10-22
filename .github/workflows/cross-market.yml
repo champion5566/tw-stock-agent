@@ -13,13 +13,18 @@ on:
         default: evening
   schedule:
     - cron: '35 21 * * 1-5'  # 05:35 Taipei Tue-Sat (preceding night session): finished night session
-    - cron: '30 0 * * 1-5'   # 08:30 Taipei: Asia open + US formal close
-    - cron: '45 14 * * 1-5'  # 22:45 Taipei: US open / TX night
+    - cron: '38 0 * * 1-5'   # 08:38 Taipei: source preparation before 08:45 cutoff / 08:50 report
+    - cron: '52 14 * * 1-5'  # 22:52 Taipei: fresh US/TX data before 22:58 cutoff / 23:00 report
   push:
     branches:
       - main
     paths:
       - collect_cross_market.py
+      - report_contract.py
+      - report_scenarios.py
+      - stock_metrics.py
+      - session_calendar.py
+      - instruments.py
       - alpaca_quotes.py
       - market_sources.py
       - quote_quality.py
@@ -45,7 +50,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install maintained quote client
-        run: python -m pip install 'yfinance>=0.2.60,<2' 'shioaji>=1.2,<2'
+        run: python -m pip install 'yfinance>=0.2.60,<2' 'shioaji>=1.2,<2' 'exchange_calendars>=4.5,<5'
       - name: Resolve report slot
         shell: bash
         env:
@@ -56,7 +61,7 @@ jobs:
             echo "REPORT_SLOT=$DISPATCH_SLOT" >> "$GITHUB_ENV"
           elif [ "$SCHEDULE" = '35 21 * * 1-5' ]; then
             echo 'REPORT_SLOT=nightclose' >> "$GITHUB_ENV"
-          elif [ "$SCHEDULE" = '30 0 * * 1-5' ]; then
+          elif [ "$SCHEDULE" = '38 0 * * 1-5' ]; then
             echo 'REPORT_SLOT=morning' >> "$GITHUB_ENV"
           else
             echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
@@ -68,11 +73,26 @@ jobs:
           ALPACA_API_SECRET_KEY: ${{ secrets.ALPACA_API_SECRET_KEY }}
         run: python collect_cross_market.py
       - name: Capture read-only TX night quote with timestamp
-        if: env.REPORT_SLOT == 'evening'
         env:
           SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
           SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
         run: python collect_shioaji_night.py
+      - name: Read already published Taiwan snapshot from a pinned data-branch checkout
+        if: env.REPORT_SLOT != 'nightclose'
+        uses: actions/checkout@v4
+        with:
+          ref: data/snapshots
+          path: stored-snapshots
+      - name: Build small report consumer artifact with section-level readiness
+        if: env.REPORT_SLOT != 'nightclose'
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = 'schedule' ]; then
+            python report_scenarios.py --scenario "$REPORT_SLOT" --market-root stored-snapshots
+          else
+            python report_scenarios.py --scenario "$REPORT_SLOT" --market-root stored-snapshots --experiment
+          fi
       - name: Save auditable test results
         if: always()
         uses: actions/upload-artifact@v4
