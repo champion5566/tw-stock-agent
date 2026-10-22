@@ -100,6 +100,8 @@ class SDKContractTests(unittest.TestCase):
         result = self.run_sdk()
         self.assertEqual(result['status'], 'PASS')
         self.assertEqual(result['trade_time'], NOW.isoformat())
+        self.assertEqual(result['stock_snapshots']['2330']['trade_time'], NOW.isoformat())
+        self.assertEqual(result['stock_snapshots']['2330']['status'], 'PASS')
         self.assertEqual(self.calls, ['login','subscribe','unsubscribe','logout'])
 
     def test_stock_failure_does_not_discard_futures(self):
@@ -223,3 +225,19 @@ class ResearchIntegrationTests(unittest.TestCase):
             self.assertEqual(stock['status'],'EXPLORATORY_ONLY')
             self.assertIn('excess_return_pct_points',stock['holdout'])
             self.assertGreater(stock['holdout']['trades'],0)
+
+
+class AlpacaContractTests(unittest.TestCase):
+    def test_invalid_price_cannot_be_live(self):
+        import alpaca_quotes
+        payload={'NVDA':{'latestTrade':{'t':NOW.isoformat(),'p':float('inf')}}}
+        with patch.dict(os.environ, {'ALPACA_API_KEY_ID':'test','ALPACA_API_SECRET_KEY':'test'}), \
+             patch.object(alpaca_quotes,'urlopen') as urlopen, \
+             patch.object(alpaca_quotes.json,'load',return_value=payload), \
+             patch.object(alpaca_quotes,'datetime') as clock:
+            clock.now.return_value=NOW
+            clock.fromisoformat.side_effect=datetime.fromisoformat
+            result=alpaca_quotes.fetch_iex_snapshots(['NVDA'])['quotes']['NVDA']
+            self.assertEqual(result['status'],'NO_LAST_TRADE')
+            self.assertIsNone(result['price'])
+            self.assertFalse(result['is_live'])

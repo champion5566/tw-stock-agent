@@ -36,7 +36,9 @@ def mis():
               "open":number(row.get("o")),"high":number(row.get("h")),"low":number(row.get("l")),
               "previous_close":number(row.get("y")),"volume_raw":row.get("v"),
               "trade_time":stamp.isoformat() if stamp else None,
-              "status":quote_status(row.get("z"), stamp, now())}
+              "status":quote_status(row.get("z"), stamp, now()),
+              "is_live":quote_status(row.get("z"), stamp, now()) == "PASS",
+              "data_kind":"quote_observation", "units":{"price":"TWD/share" if code not in ("t00", "o00") else "index_points"}}
     return output
 
 def shioaji():

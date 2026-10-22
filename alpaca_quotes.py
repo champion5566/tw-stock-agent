@@ -10,6 +10,8 @@ from datetime import datetime, timezone
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+from quote_quality import positive_price, quote_status
+
 ENDPOINT = "https://data.alpaca.markets/v2/stocks/snapshots"
 
 
@@ -39,18 +41,14 @@ def fetch_iex_snapshots(symbols):
         if raw_ts:
             timestamp = datetime.fromisoformat(raw_ts.replace("Z", "+00:00"))
             age_seconds = round((now - timestamp).total_seconds(), 1)
-        price = trade.get("p")
-        if price is None:
-            status = "NO_TRADE"
-        elif age_seconds is None or age_seconds < -60 or age_seconds > 1200:
-            status = "STALE"
-        else:
-            status = "PASS"
+        price = positive_price(trade.get("p"))
+        status = quote_status(price, timestamp, now, max_age_minutes=20)
         result[symbol] = {
             "status": status, "ticker": symbol, "price": price,
             "trade_time_utc": raw_ts, "age_seconds": age_seconds,
             "source": "Alpaca Basic IEX-only (not consolidated SIP)",
-            "market_coverage": "IEX_ONLY",
+            "market_coverage": "IEX_ONLY", "data_kind": "trade",
+            "is_live": status == "PASS",
             "last_trade_size": trade.get("s"),
             "minute_bar": minute,
             "daily_bar_iex": daily,

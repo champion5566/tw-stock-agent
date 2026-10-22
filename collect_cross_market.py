@@ -65,7 +65,7 @@ def observe(ticker):
         "interval": "5m", "latest_bar_at_exchange": ts.isoformat(),
         "latest_bar_at_taipei": ts.tz_convert("Asia/Taipei").isoformat(),
         "latest_bar_utc": ts.tz_convert("UTC").isoformat(),
-        "is_formal_close": False,
+        "is_formal_close": False, "is_live": False, "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
     }
 
@@ -140,6 +140,7 @@ def main():
             rows.sort(key=lambda r: str(r.get("date", "")))
             out["us_daily"][symbol] = {
                 "status": "PASS", "source": "FinMind USStockPrice",
+                "data_kind": "daily", "is_live": False,
                 "source_date": rows[-1].get("date"), "row_count": len(rows),
                 "history": rows, "latest": rows[-1],
                 "note": "Daily OHLCV, not live; compare trade dates and adjustments."
@@ -160,6 +161,7 @@ def main():
                 ]
                 out["us_daily"][symbol] = {
                     "status": "FALLBACK", "source": "Yahoo/yfinance 1d",
+                    "data_kind": "daily", "is_live": False,
                     "source_date": hist[-1]["date"], "row_count": len(hist),
                     "history": hist, "latest": hist[-1],
                     "finmind_status": primary["status"],
