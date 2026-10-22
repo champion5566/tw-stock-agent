@@ -1,6 +1,6 @@
 {
   "schema_version": "research-v1",
-  "created_at_taipei": "2026-10-22T11:24:04.810340+08:00",
+  "created_at_taipei": "2026-10-22T11:47:20.244086+08:00",
   "slot": "evening",
   "source_snapshot": "2026-10-22/evening.json",
   "trade_date": "2026-10-22",
@@ -12,7 +12,7 @@
   },
   "features": {
     "2330": {
-      "quote_status": "PASS",
+      "quote_status": "NO_LAST_TRADE",
       "quote_source_date": "2026-10-22",
       "daily_status": "PRIOR_SESSION",
       "daily_source_date": "2026-10-21",
@@ -46,7 +46,7 @@
       "margin_source_date": "2026-10-21"
     },
     "5483": {
-      "quote_status": "PASS",
+      "quote_status": "NO_LAST_TRADE",
       "quote_source_date": "2026-10-22",
       "daily_status": "PRIOR_SESSION",
       "daily_source_date": "2026-10-21",
@@ -63,7 +63,7 @@
       "margin_source_date": "2026-10-21"
     },
     "3707": {
-      "quote_status": "PASS",
+      "quote_status": "NO_LAST_TRADE",
       "quote_source_date": "2026-10-22",
       "daily_status": "PRIOR_SESSION",
       "daily_source_date": "2026-10-21",
@@ -80,7 +80,7 @@
       "margin_source_date": "2026-10-21"
     },
     "2313": {
-      "quote_status": "PASS",
+      "quote_status": "NO_LAST_TRADE",
       "quote_source_date": "2026-10-22",
       "daily_status": "PRIOR_SESSION",
       "daily_source_date": "2026-10-21",
@@ -97,7 +97,7 @@
       "margin_source_date": "2026-10-21"
     },
     "2367": {
-      "quote_status": "PASS",
+      "quote_status": "NO_LAST_TRADE",
       "quote_source_date": "2026-10-22",
       "daily_status": "PRIOR_SESSION",
       "daily_source_date": "2026-10-21",
@@ -114,7 +114,7 @@
       "margin_source_date": "2026-10-21"
     },
     "3491": {
-      "quote_status": "PASS",
+      "quote_status": "NO_LAST_TRADE",
       "quote_source_date": "2026-10-22",
       "daily_status": "PRIOR_SESSION",
       "daily_source_date": "2026-10-21",

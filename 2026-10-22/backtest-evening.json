@@ -1,6 +1,6 @@
 {
   "schema_version": "backtest-baseline-v1",
-  "created_at_taipei": "2026-10-22T11:24:05.644451+08:00",
+  "created_at_taipei": "2026-10-22T11:47:21.390402+08:00",
   "library": "backtesting.py",
   "strategy": "SMA20_60_LONG_ONLY",
   "execution": "signals on close, market order next bar open; no lookahead",
