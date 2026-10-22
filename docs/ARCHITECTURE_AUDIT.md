@@ -101,3 +101,16 @@ Remaining product/operational work (not claimed complete):
   session. Night-session availability is not newly certified by this daytime run.
 - Temporary branch-only smoke triggers removed after execution; intraday returns
   to manual-only. The final docs/trigger cleanup does not change runtime code.
+
+
+## Shioaji-first follow-up and report experiments
+
+Stock quote source order is now Shioaji Tick, single Shioaji snapshot, then MIS.
+All seven tracked stocks use one shared session; TX remains a Shioaji Tick.
+Simulated auction ticks are excluded, fresh request snapshots remain non-live,
+and source selection diagnostics are retained. Daily bars and flows stay separate.
+
+A deterministic report builder and manual three-scenario acceptance workflow produce
+morning, evening and current-quote reports with source evidence. Daytime previews
+are explicitly labeled and do not certify timed delivery. 08:20/23:00 fixture
+regressions verify date selection and withholding incomplete/current-day bars.

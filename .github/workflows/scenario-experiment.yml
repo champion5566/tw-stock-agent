@@ -1,0 +1,79 @@
+name: Morning Night Intraday Acceptance Experiment
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/shioaji-first-scenarios-20261022]
+    paths:
+      - shioaji_quotes.py
+      - collect_intraday.py
+      - report_scenarios.py
+      - .github/workflows/scenario-experiment.yml
+permissions:
+  contents: read
+jobs:
+  experiment:
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        scenario: [morning, evening, intraday]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      REPORT_SLOT: ${{ matrix.scenario }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install official quote SDK and existing cross-market client
+        run: python -m pip install 'shioaji>=1.2,<2' 'yfinance>=0.2.60,<2'
+      - name: Collect dated Taiwan daily data for report preview
+        if: matrix.scenario != 'intraday'
+        env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+        run: python collect_market.py
+      - name: Collect independent cross-market observations
+        if: matrix.scenario != 'intraday'
+        env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+          ALPACA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY_ID }}
+          ALPACA_API_SECRET_KEY: ${{ secrets.ALPACA_API_SECRET_KEY }}
+        run: python collect_cross_market.py
+      - name: Collect Shioaji-first stocks and TX ticks, with MIS fallback
+        env:
+          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
+          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
+        run: python collect_intraday.py
+      - name: Build timestamped scenario report
+        run: python report_scenarios.py --scenario "$REPORT_SLOT" --experiment
+      - name: Check report contracts without hiding partial source coverage
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          mode = os.environ['REPORT_SLOT']
+          path = next(Path('out').glob('*/report-' + mode + '.json'))
+          report = json.loads(path.read_text())
+          assert report['execution_kind'] == 'CURRENT_TIME_PREVIEW'
+          assert not report['point_in_time_verified']
+          if mode == 'intraday':
+              assert report['coverage']['fresh_stocks'] > 0, 'No fresh stock observations'
+              assert report['coverage']['shioaji_selected'] > 0, 'Shioaji not selected'
+          else:
+              assert report['stocks'], 'No report stocks'
+              for stock in report['stocks'].values():
+                  for observation in stock.values():
+                      assert not observation['is_live']
+                      if observation['data']:
+                          assert observation['source_date'] == report['target_session_date']
+          print('SCENARIO_CONTRACT_PASS', mode, report['status'], report['coverage'])
+          PY
+      - name: Save reports and all source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scenario-${{ matrix.scenario }}-${{ github.run_id }}
+          path: out/
+          retention-days: 14
+          if-no-files-found: warn
