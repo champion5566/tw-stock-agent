@@ -4,7 +4,7 @@ import os
 import time
 import urllib.parse
 import urllib.request
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -61,7 +61,11 @@ def shioaji():
             for snap in api.snapshots(contracts):
                 code = str(getattr(snap, "code", ""))
                 stamp = getattr(snap, "ts", None)
-                dt = stamp.replace(tzinfo=TW) if isinstance(stamp, datetime) and stamp.tzinfo is None else (stamp if isinstance(stamp, datetime) else (datetime.fromtimestamp(stamp / 1e9, TW) if isinstance(stamp, (int, float)) and stamp > 1e12 else (datetime.fromtimestamp(stamp, TW) if isinstance(stamp, (int, float)) and stamp > 0 else None)))
+                # Shioaji market-data ts encodes Taiwan wall-clock as a UTC-like epoch.
+                # Decode wall-clock in UTC, then ATTACH Asia/Taipei; do not shift +8h.
+                dt = (datetime.fromtimestamp(stamp / 1e9 if stamp > 1e12 else stamp, timezone.utc).replace(tzinfo=TW)
+                      if isinstance(stamp, (int, float)) and stamp > 0 else
+                      (stamp.replace(tzinfo=TW) if isinstance(stamp, datetime) and stamp.tzinfo is None else stamp if isinstance(stamp, datetime) else None))
                 price = number(getattr(snap, "close", None))
                 stock_results[code] = {"source":"Shioaji_snapshot","price":price,"trade_time":dt.isoformat() if dt else None,"status":"PASS" if price and fresh(dt) else "STALE_OR_NO_TRADE"}
         except Exception as e:
