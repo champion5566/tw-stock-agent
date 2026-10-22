@@ -1,0 +1,49 @@
+name: Intraday Read-only Quote On Demand
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - collect_intraday.py
+      - .github/workflows/intraday-on-demand.yml
+permissions:
+  contents: write
+concurrency:
+  group: intraday-snapshot-writer
+  cancel-in-progress: false
+jobs:
+  quote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install official Shioaji SDK
+        run: python -m pip install 'shioaji>=1.2,<2'
+      - name: Fetch read-only intraday quotes with timestamps
+        env:
+          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
+          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
+        run: python collect_intraday.py
+      - name: Save verification artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: intraday-quotes
+          path: out/
+          retention-days: 7
+      - name: Publish dated snapshot
+        if: github.ref == 'refs/heads/main'
+        run: |
+          set -euo pipefail
+          git fetch origin data/snapshots
+          git worktree add --detach /tmp/intraday-snapshots origin/data/snapshots
+          cd /tmp/intraday-snapshots
+          git checkout -B data/snapshots origin/data/snapshots
+          cp -R "$GITHUB_WORKSPACE/out/." .
+          git add -- '*.json'
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Intraday snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push origin HEAD:data/snapshots
