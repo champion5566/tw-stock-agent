@@ -39,7 +39,7 @@ def mis():
         stamp = None
         try: stamp = datetime.strptime(str(row["d"])+" "+str(row["t"]), "%Y%m%d %H:%M:%S").replace(tzinfo=TW)
         except (KeyError,ValueError,TypeError): pass
-        output[SYMBOLS[key]] = {"source":"TWSE_MIS","price":number(row.get("z")),
+        output[SYMBOLS[key]] = {"source":"TWSE_MIS","price":number(row.get("z")), "raw_last_trade":row.get("z"), "raw_previous_trade":row.get("pz"),
               "open":number(row.get("o")),"high":number(row.get("h")),"low":number(row.get("l")),
               "previous_close":number(row.get("y")),"volume_raw":row.get("v"),
               "trade_time":stamp.isoformat() if stamp else None,
@@ -55,6 +55,18 @@ def shioaji():
         api = sj.Shioaji(simulation=False)
         api.login(api_key=os.environ["SHIOAJI_API_KEY"],secret_key=os.environ["SHIOAJI_SECRET_KEY"])
         contract = api.Contracts.Futures.TXF.TXFR1
+        stock_results = {}
+        try:
+            contracts = [api.Contracts.Stocks["2330"], api.Contracts.Stocks["0050"]]
+            for snap in api.snapshots(contracts):
+                code = str(getattr(snap, "code", ""))
+                stamp = getattr(snap, "ts", None)
+                dt = stamp.replace(tzinfo=TW) if isinstance(stamp, datetime) and stamp.tzinfo is None else (stamp if isinstance(stamp, datetime) else (datetime.fromtimestamp(stamp / 1e9, TW) if isinstance(stamp, (int, float)) and stamp > 1e12 else (datetime.fromtimestamp(stamp, TW) if isinstance(stamp, (int, float)) and stamp > 0 else None)))
+                price = number(getattr(snap, "close", None))
+                stock_results[code] = {"source":"Shioaji_snapshot","price":price,"trade_time":dt.isoformat() if dt else None,"status":"PASS" if price and fresh(dt) else "STALE_OR_NO_TRADE"}
+        except Exception as e:
+            stock_results["error_type"] = type(e).__name__
+        output["stock_snapshots"] = stock_results
         ticks = []
         def callback(exchange,tick):
             try:
@@ -86,6 +98,11 @@ def main():
     try: result["quotes"]=mis()
     except Exception as e: result["mis_error_type"]=type(e).__name__
     result["futures"]["TXFR1"]=shioaji()
+    for code, q in result["futures"]["TXFR1"].get("stock_snapshots", {}).items():
+        if code in ("2330", "0050") and q.get("status") == "PASS":
+            current = result["quotes"].get(code)
+            if current is None or current.get("status") != "PASS":
+                result["quotes"][code] = {**(current or {}), "mis_diagnostic":current, **q}
     result["completed_at_taipei"]=now().isoformat()
     path=Path("out")/now().date().isoformat()/"intraday.json"
     path.parent.mkdir(parents=True,exist_ok=True)
