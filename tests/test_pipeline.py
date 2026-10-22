@@ -68,10 +68,12 @@ class SDKContractTests(unittest.TestCase):
     def fake_sdk(self, *, fail_wait=False, tick=True, fail_snap=False, fail_login=False):
         self.calls = []
         self.callback = None
+        self.stock_callback = None
         def login(**kw):
             self.calls.append('login')
             if fail_login: raise RuntimeError('not logged')
         def set_callback(callback): self.callback = callback
+        def set_stock_callback(callback): self.stock_callback = callback
         def snapshots(contracts):
             if fail_snap: raise ValueError('bad snapshot')
             # Epoch-like Taiwan wall clock from the observed SDK convention.
@@ -81,6 +83,7 @@ class SDKContractTests(unittest.TestCase):
                  Contracts=NS(Stocks={'2330':NS(code='2330')},
                               Futures=NS(TXF=NS(TXFR1=NS(code='TXF')))),
                  quote=NS(set_on_tick_fop_v1_callback=set_callback,
+                          set_on_tick_stk_v1_callback=set_stock_callback,
                           subscribe=lambda *a,**k:self.calls.append('subscribe'),
                           unsubscribe=lambda *a,**k:self.calls.append('unsubscribe')))
         sdk = NS(Shioaji=lambda **kw:api,
@@ -102,7 +105,7 @@ class SDKContractTests(unittest.TestCase):
         self.assertEqual(result['trade_time'], NOW.isoformat())
         self.assertEqual(result['stock_snapshots']['2330']['trade_time'], NOW.isoformat())
         self.assertEqual(result['stock_snapshots']['2330']['status'], 'PASS')
-        self.assertEqual(self.calls, ['login','subscribe','unsubscribe','logout'])
+        self.assertEqual(self.calls, ['login','subscribe','subscribe','unsubscribe','unsubscribe','logout'])
 
     def test_stock_failure_does_not_discard_futures(self):
         result = self.run_sdk(fail_snap=True)

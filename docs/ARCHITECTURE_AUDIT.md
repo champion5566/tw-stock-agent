@@ -101,3 +101,40 @@ Remaining product/operational work (not claimed complete):
   session. Night-session availability is not newly certified by this daytime run.
 - Temporary branch-only smoke triggers removed after execution; intraday returns
   to manual-only. The final docs/trigger cleanup does not change runtime code.
+
+
+## Shioaji-first follow-up and report experiments
+
+Stock quote source order is now Shioaji Tick, single Shioaji snapshot, then MIS.
+All seven tracked stocks use one shared session; TX remains a Shioaji Tick.
+Simulated auction ticks are excluded, fresh request snapshots remain non-live,
+and source selection diagnostics are retained. Daily bars and flows stay separate.
+
+A deterministic report builder and manual three-scenario acceptance workflow produce
+morning, evening and current-quote reports with source evidence. Daytime previews
+are explicitly labeled and do not certify timed delivery. 08:20/23:00 fixture
+regressions verify date selection and withholding incomplete/current-day bars.
+
+### Three-scenario real-source acceptance (PR #26)
+
+Runtime commit `961e412515f4e4634edd67cef6d075a7c384c4e1`, Actions run
+[39719869433](https://github.com/champion5566/tw-stock-agent/actions/runs/39719869433).
+All three sequential jobs completed successfully:
+
+| Scenario | Actual generation time (Taipei) | Data result |
+|---|---|---|
+| Morning preview | 2026-10-22 12:01:27 | COMPLETE: seven OHLCV, institutional and margin datasets for 2026-10-21 |
+| Evening preview | 2026-10-22 12:03:01 | PARTIAL as expected before close: current-session daily values withheld; TX fresh |
+| Immediate query | 2026-10-22 12:03:57 | Seven fresh stock observations, all Shioaji; six stock Ticks, one snapshot; TX fresh |
+
+The 08:20/23:00 policies also pass offline fixtures. These are current-time previews,
+not proof of timed execution or night-session availability. Full source JSON and
+rendered JSON/Markdown are retained in the run artifacts. Permanent rendered copies:
+- [Morning](experiments/2026-10-22-morning.md)
+- [Evening](experiments/2026-10-22-evening.md)
+- [Immediate](experiments/2026-10-22-intraday.md)
+
+Final cleanup extracts the unchanged watchlist to `instruments.py` so independent
+collectors/report rendering do not import another collector just for configuration.
+The temporary branch-push experiment trigger is removed; the reusable experiment is
+manual-only. No provider, selection or subscription behavior changes in this cleanup.

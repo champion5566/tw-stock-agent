@@ -8,8 +8,9 @@ from datetime import datetime
 from quote_quality import TW, positive_price, quote_status, select_stock_quote
 from shioaji_quotes import collect_quotes
 from snapshot_io import write_snapshot
-SYMBOLS = {"tse_t00.tw": "TAIEX", "tse_2330.tw": "2330", "tse_0050.tw": "0050",
-           "otc_o00.tw": "TPEX"}
+from instruments import STOCKS
+SYMBOLS = {"tse_t00.tw": "TAIEX", "otc_o00.tw": "TPEX",
+           **{f"{market}_{code}.tw": code for code, market in STOCKS.items()}}
 def now(): return datetime.now(TW)
 def number(v):
     return positive_price(v)
@@ -42,23 +43,28 @@ def mis():
     return output
 
 def shioaji():
-    return collect_quotes(("2330", "0050"))
+    return collect_quotes(tuple(STOCKS))
 
 
 def main():
     result={"checked_at_taipei":now().isoformat(),"mode":"read_only_one_shot","quotes":{},"futures":{}}
-    try: result["quotes"]=mis()
-    except Exception as e: result["mis_error_type"]=type(e).__name__
-    result["futures"]["TXFR1"]=shioaji()
-    for code, q in result["futures"]["TXFR1"].get("stock_snapshots", {}).items():
-        if code in ("2330", "0050") and q.get("status") == "PASS":
-            current = result["quotes"].get(code)
-            if current is None or current.get("status") != "PASS":
-                result["quotes"][code] = select_stock_quote(current, q)
+    # Broker is requested first; MIS remains an independent observation/fallback.
+    broker = shioaji()
+    result["futures"]["TXFR1"] = broker
+    try:
+        observations = mis()
+    except Exception as exc:
+        observations = {}
+        result["mis_error_type"] = type(exc).__name__
+    result["quotes"] = dict(observations)
+    broker_stocks = broker.get("stock_quotes", broker.get("stock_snapshots", {}))
+    for code in STOCKS:
+        result["quotes"][code] = select_stock_quote(broker_stocks.get(code), observations.get(code))
     for code in SYMBOLS.values():
         result["quotes"].setdefault(code, {"status": "MISSING", "price": None, "is_live": False})
     result["completed_at_taipei"]=now().isoformat()
-    result["schema_version"] = "1.1"
+    result["schema_version"] = "1.2"
+    result["source_priority"] = ["Shioaji_tick", "Shioaji_snapshot", "TWSE_MIS"]
     write_snapshot(result, result["checked_at_taipei"][:10], "intraday")
     print(json.dumps(result,ensure_ascii=False,indent=2))
 if __name__=="__main__": main()

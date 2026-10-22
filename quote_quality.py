@@ -70,12 +70,20 @@ def daily_status(source_date, asof, max_age_days=4):
 
 
 def select_stock_quote(primary, fallback):
-    """Select one complete observation; retain other fields only as diagnostics."""
-    if primary and primary.get("status") == "PASS":
-        return dict(primary)
-    if fallback.get("status") == "PASS":
-        return {**fallback, "mis_diagnostic": primary}
-    return dict(primary or fallback)
+    """Honor explicit caller priority, with source-specific diagnostics."""
+    primary = primary or {"status": "MISSING", "source": "Shioaji"}
+    fallback = fallback or {"status": "MISSING", "source": "TWSE_MIS"}
+    use_fallback = primary.get("status") != "PASS" and fallback.get("status") == "PASS"
+    selected = dict(fallback if use_fallback else primary)
+    selected["quote_selection"] = {
+        "primary_source": primary.get("source"), "primary_status": primary.get("status"),
+        "fallback_source": fallback.get("source"), "fallback_status": fallback.get("status"),
+        "selected_source": selected.get("source"), "fallback_used": use_fallback,
+    }
+    selected["source_observations"] = {"primary": dict(primary), "fallback": dict(fallback)}
+    if use_fallback and primary.get("source") == "TWSE_MIS":
+        selected["mis_diagnostic"] = dict(primary)  # legacy diagnostic path
+    return selected
 
 
 def select_observation(yahoo, iex):
