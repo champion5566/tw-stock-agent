@@ -1,15 +1,10 @@
 name: Intraday Read-only Quote On Demand
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - collect_intraday.py
-      - .github/workflows/intraday-on-demand.yml
 permissions:
   contents: write
 concurrency:
-  group: intraday-snapshot-writer
+  group: data-snapshots-writer
   cancel-in-progress: false
 jobs:
   quote:
@@ -36,14 +31,4 @@ jobs:
           retention-days: 7
       - name: Publish dated snapshot
         if: github.ref == 'refs/heads/main'
-        run: |
-          set -euo pipefail
-          git fetch origin data/snapshots
-          git worktree add --detach /tmp/intraday-snapshots origin/data/snapshots
-          cd /tmp/intraday-snapshots
-          git checkout -B data/snapshots origin/data/snapshots
-          cp -R "$GITHUB_WORKSPACE/out/." .
-          git add -- '*.json'
-          if git diff --cached --quiet; then exit 0; fi
-          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Intraday snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
-          git push origin HEAD:data/snapshots
+        run: bash scripts/publish_snapshots.sh
