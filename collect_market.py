@@ -15,8 +15,8 @@ from market_sources import MCP_URL, FINMIND_URL, mcp, finmind, attempt
 from quote_quality import daily_status, parse_source_time, quote_status
 from snapshot_io import write_snapshot
 
-STOCKS = {"2313": "tse", "2330": "tse", "0050": "tse",
-          "5483": "otc", "3707": "otc", "2367": "tse", "3491": "otc"}
+from instruments import STOCKS
+
 
 def latest(rows):
     return max(rows, key=lambda row: str(row.get("date", ""))) if rows else None

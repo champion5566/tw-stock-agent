@@ -18,6 +18,7 @@ on:
       - main
     paths:
       - collect_market.py
+      - instruments.py
       - market_sources.py
       - quote_quality.py
       - snapshot_io.py

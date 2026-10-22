@@ -7,8 +7,8 @@ import json
 from datetime import datetime, time
 from pathlib import Path
 
-from collect_market import STOCKS
-from quote_quality import TW, positive_price, quote_status
+from instruments import STOCKS
+from quote_quality import TW, quote_status
 
 
 def dated_rows(item):

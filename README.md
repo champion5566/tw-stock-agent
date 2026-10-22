@@ -146,3 +146,9 @@ Official SDK behavior references:
 - https://sinotrade.github.io/tutor/market_data/streaming/stocks/
 - https://sinotrade.github.io/tutor/market_data/snapshot/
 - https://sinotrade.github.io/tutor/limit/
+
+Actual three-scenario outputs from the 2026-10-22 daytime acceptance run:
+[morning preview](docs/experiments/2026-10-22-morning.md),
+[evening preview](docs/experiments/2026-10-22-evening.md),
+[immediate query](docs/experiments/2026-10-22-intraday.md).
+The shared Taiwan watchlist lives in `instruments.py`.

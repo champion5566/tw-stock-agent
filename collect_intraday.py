@@ -8,9 +8,8 @@ from datetime import datetime
 from quote_quality import TW, positive_price, quote_status, select_stock_quote
 from shioaji_quotes import collect_quotes
 from snapshot_io import write_snapshot
-from collect_market import STOCKS
-SYMBOLS = {"tse_t00.tw": "TAIEX", "tse_2330.tw": "2330", "tse_0050.tw": "0050",
-           "otc_o00.tw": "TPEX",
+from instruments import STOCKS
+SYMBOLS = {"tse_t00.tw": "TAIEX", "otc_o00.tw": "TPEX",
            **{f"{market}_{code}.tw": code for code, market in STOCKS.items()}}
 def now(): return datetime.now(TW)
 def number(v):

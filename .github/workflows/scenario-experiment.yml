@@ -1,13 +1,6 @@
 name: Morning Night Intraday Acceptance Experiment
 on:
   workflow_dispatch:
-  push:
-    branches: [feature/shioaji-first-scenarios-20261022]
-    paths:
-      - shioaji_quotes.py
-      - collect_intraday.py
-      - report_scenarios.py
-      - .github/workflows/scenario-experiment.yml
 permissions:
   contents: read
 jobs:
