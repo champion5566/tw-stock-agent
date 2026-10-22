@@ -56,3 +56,33 @@ Avoid speculative package proliferation now. First stabilize contracts, tests, a
 3. Split costly historical/backtest refresh from morning collection; add quota-aware caching.
 4. Make scheduled report delivery observable with acknowledgment and error notifications.
 5. Archive old probes only after usage check; avoid deleting evidence.
+
+
+## Integration update — 2026-10-22, Issue #24 continuation
+
+PR #23 was already merged before the handoff issue was filed; its branch is not an
+unmerged one-file draft. Current work builds from main `9d7fb43`.
+
+Completed integration:
+- Shared public clients extracted from the Taiwan collector; cross-market no longer
+  imports the Taiwan CLI to access transport.
+- Shared read-only Shioaji adapter and cleanup for intraday and TX enrichment.
+- One price/clock policy; future dates and fresh cross-midnight ticks are distinct.
+- MCP actual `last` and clock checked; observed same-day `last: "-"` no longer PASS.
+- Complete-source fallback; no mixed MIS/Shioaji or Yahoo/IEX top-level observations.
+- Existing latest snapshot paths retained; immutable observation records added.
+- Publisher uses fresh-head retries and isolated worktree cleanup. Replaces global
+  concurrency because GitHub concurrency permits only one pending run per group.
+- Ingestion publishes independently of research; original research outputs retained,
+  exact artifact input survives midnight, derived publishing excludes source files.
+- Full offline CI, actual community backtest engine and concurrent Git integration test.
+
+Remaining product/operational work (not claimed complete):
+- Guaranteed 08:20/23:00 user report delivery and acknowledgment are outside this
+  repository's existing implementation. No report scheduler was changed here.
+- Exchange holiday calendar / canonical futures trading-date attribution, direct
+  TOPIX index source, SPCX identity validation, daily history caching, data retention.
+- Experimental workflows remain available. File moves would break existing probe
+  entry points without adding runtime value, so they were not moved in this pass.
+- Live source market coverage and quote age must still be read from each snapshot;
+  all-source unavailable snapshots remain artifacts and fail publishing as before.

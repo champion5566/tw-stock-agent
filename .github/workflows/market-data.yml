@@ -16,26 +16,31 @@ on:
   push:
     branches:
       - main
+      - refactor/integrate-data-pipeline-20261022
     paths:
       - collect_market.py
-      - research_ledger.py
-      - backtest_baseline.py
+      - market_sources.py
+      - quote_quality.py
+      - snapshot_io.py
       - .github/workflows/market-data.yml
 
 permissions:
   contents: write
 
 concurrency:
-  group: data-snapshots-writer
+  group: market-data-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   snapshot:
+    outputs:
+      slot: ${{ steps.resolved.outputs.slot }}
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-      - name: Resolve slot
+      - id: slot
+        name: Resolve slot
         shell: bash
         env:
           DISPATCH_SLOT: ${{ github.event.inputs.slot }}
@@ -48,19 +53,16 @@ jobs:
           else
             echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
           fi
+      - name: Export slot for research
+        id: resolved
+        run: echo "slot=$REPORT_SLOT" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install established backtest library
-        run: python -m pip install 'backtesting>=0.6,<1' 'pandas>=2,<3' 'numpy>=1.26,<3'
       - name: Fetch dated public market data
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
         run: python3 collect_market.py
-      - name: Build auditable research features and hypotheses
-        run: python3 research_ledger.py
-      - name: Run established backtesting.py baseline
-        run: python3 backtest_baseline.py
       - name: Upload snapshot for verification
         if: always()
         uses: actions/upload-artifact@v4
@@ -73,3 +75,41 @@ jobs:
         if: github.ref == 'refs/heads/main'
         shell: bash
         run: bash scripts/publish_snapshots.sh
+
+  research:
+    needs: snapshot
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      REPORT_SLOT: ${{ needs.snapshot.outputs.slot }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: market-snapshot-${{ github.run_id }}
+          path: out/
+      - name: Resolve exact collected snapshot (safe across midnight)
+        run: |
+          snapshot=$(find out -maxdepth 2 -name "$REPORT_SLOT.json" -print -quit)
+          test -n "$snapshot"
+          echo "SOURCE_SNAPSHOT=$snapshot" >> "$GITHUB_ENV"
+      - name: Install established research engine
+        run: python -m pip install 'backtesting>=0.6,<1' 'pandas>=2,<3' 'numpy>=1.26,<3'
+      - name: Build auditable research features and hypotheses
+        run: python3 research_ledger.py
+      - name: Run established backtesting.py baseline
+        run: python3 backtest_baseline.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: research-${{ github.run_id }}
+          path: out/
+          retention-days: 14
+      - name: Publish research separately
+        if: github.ref == 'refs/heads/main'
+        run: |
+          find out -type f -name '*.json' ! -name 'research-*' ! -name 'backtest-*' -delete
+          bash scripts/publish_snapshots.sh

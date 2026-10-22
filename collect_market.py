@@ -5,70 +5,18 @@ units and failure status. Does not require tokens for small public requests.
 """
 import json
 import os
-import sys
 import time
-import urllib.error
-import urllib.parse
-import urllib.request
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 TZ = ZoneInfo("Asia/Taipei")
-UA = "tw-stock-agent/1.0 (GitHub Actions; market data research)"
-MCP_URL = "https://twse-mcp.taux.io/mcp"
-FINMIND_URL = "https://api.finmindtrade.com/api/v4/data"
+from market_sources import MCP_URL, FINMIND_URL, mcp, finmind, attempt
+from quote_quality import daily_status, parse_source_time, quote_status
+from snapshot_io import write_snapshot
+
 STOCKS = {"2313": "tse", "2330": "tse", "0050": "tse",
           "5483": "otc", "3707": "otc", "2367": "tse", "3491": "otc"}
-
-
-def http_json(url, payload=None):
-    headers = {"User-Agent": UA, "Accept": "application/json, text/event-stream"}
-    if payload is not None:
-        headers.update({"Content-Type": "application/json",
-                        "MCP-Protocol-Version": "2025-06-18"})
-    req = urllib.request.Request(url, headers=headers,
-                                 data=json.dumps(payload).encode() if payload else None)
-    with urllib.request.urlopen(req, timeout=35) as res:
-        raw = res.read().decode()
-        if "text/event-stream" in res.headers.get("Content-Type", ""):
-            events = [json.loads(x[6:]) for x in raw.splitlines()
-                      if x.startswith("data: ") and x[6:].strip() != "[DONE]"]
-            if not events:
-                raise ValueError("empty MCP event stream")
-            return events[-1]
-        return json.loads(raw)
-
-
-def mcp(method, params, call_id):
-    response = http_json(MCP_URL, {"jsonrpc": "2.0", "id": call_id,
-                                   "method": method, "params": params})
-    if response.get("error") or response.get("result", {}).get("isError"):
-        raise ValueError(str(response.get("error") or response["result"]))
-    return response.get("result", {}).get("structuredContent", response.get("result", {}))
-
-
-def finmind(dataset, code, start, end):
-    params = {"dataset": dataset, "data_id": code,
-              "start_date": start, "end_date": end}
-    if os.environ.get("FINMIND_TOKEN"):
-        params["token"] = os.environ["FINMIND_TOKEN"]
-    data = http_json(FINMIND_URL + "?" + urllib.parse.urlencode(params))
-    if data.get("status") != 200:
-        raise ValueError("FinMind status " + str(data.get("status")) + ": " + str(data.get("msg")))
-    rows = data.get("data") or []
-    if not isinstance(rows, list):
-        raise ValueError("FinMind data not list")
-    return rows
-
-
-def attempt(fn):
-    try:
-        return {"status": "PASS", "data": fn()}
-    except Exception as exc:
-        return {"status": "FAIL", "data": None,
-                "error": type(exc).__name__ + ": " + str(exc)[:400]}
-
 
 def latest(rows):
     return max(rows, key=lambda row: str(row.get("date", ""))) if rows else None
@@ -82,13 +30,7 @@ def quality(item, asof, max_age_days):
     if not date:
         item["status"] = "EMPTY"
         return item
-    try:
-        age = (asof - datetime.strptime(date, "%Y-%m-%d").date()).days
-        item["status"] = ("PASS" if age == 0 else
-                          "PRIOR_SESSION" if 0 < age <= max_age_days else "STALE")
-    except ValueError:
-        item["status"] = "FAIL"
-        item["error"] = "Invalid source date"
+    item["status"] = daily_status(date, asof, max_age_days)
     return item
 
 
@@ -130,10 +72,17 @@ def main():
                 item["mcp_quote"]["data"] = q
                 item["mcp_quote"]["source_date"] = q.get("date") if q else None
                 item["mcp_quote"]["units"] = {"price": "TWD/share", "volume": "lots"}
+                item["mcp_quote"]["data_kind"] = "quote_observation"
+                item["mcp_quote"]["is_live"] = False
                 if not q:
                     item["mcp_quote"]["status"] = "EMPTY"
-                elif q.get("date") != end:
-                    item["mcp_quote"]["status"] = "STALE"
+                else:
+                    stamp = parse_source_time(q.get("date"), q.get("time"))
+                    status = quote_status(q.get("last"), stamp, datetime.now(TZ))
+                    item["mcp_quote"].update({"status": status,
+                        "trade_time": stamp.isoformat() if stamp else None,
+                        "is_live": status == "PASS"})
+
         else:
             item["mcp_quote"] = {"status": "FAIL", "error": "MCP initialize failed", "data": None}
 
@@ -151,6 +100,8 @@ def main():
                 rows["data"] = last
                 rows["source_date"] = last.get("date") if last else None
                 rows["dataset"] = dataset
+                rows["data_kind"] = "daily"
+                rows["is_live"] = False
                 rows["units"] = ("Trading_Volume: shares" if key == "daily_ohlcv"
                                  else "buy/sell volume: shares; inspect fields" if key == "institutional"
                                  else "provider-native units; inspect fields")
@@ -168,9 +119,14 @@ def main():
     if all(s["daily_ohlcv"]["status"] == "FAIL" and
            s["mcp_quote"]["status"] == "FAIL" for s in result["stocks"].values()):
         result["warnings"].append("All market quote sources failed")
-    out = Path("out") / end / (slot + ".json")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    result["coverage"] = {
+        "stocks_total": len(result["stocks"]),
+        "daily_available": sum(s["daily_ohlcv"]["status"] in ("PASS", "PRIOR_SESSION")
+                               for s in result["stocks"].values()),
+        "live_quotes": sum(s["mcp_quote"].get("is_live", False)
+                           for s in result["stocks"].values()),
+    }
+    out = write_snapshot(result, end, slot)
     print("OUTPUT_PATH", out, "BYTES", out.stat().st_size)
     print("FETCH_COMPLETED_WITH_PARTIAL_FAILURES_POSSIBLE")
     if "All market quote sources failed" in result["warnings"]:

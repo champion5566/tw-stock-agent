@@ -18,9 +18,14 @@ on:
   push:
     branches:
       - main
+      - refactor/integrate-data-pipeline-20261022
     paths:
       - collect_cross_market.py
       - alpaca_quotes.py
+      - market_sources.py
+      - quote_quality.py
+      - snapshot_io.py
+      - shioaji_quotes.py
       - .github/workflows/cross-market.yml
       - collect_shioaji_night.py
 
@@ -28,7 +33,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: data-snapshots-writer
+  group: cross-market-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

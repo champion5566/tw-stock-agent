@@ -84,7 +84,8 @@ def score(frame, start_date=None):
 def main():
     now = datetime.now(TZ)
     date, slot = now.date().isoformat(), os.getenv("REPORT_SLOT", "evening")
-    src = Path("out") / date / (slot + ".json")
+    src = Path(os.getenv("SOURCE_SNAPSHOT", str(Path("out") / date / (slot + ".json"))))
+    date = src.parent.name
     if not src.exists():
         raise SystemExit("Missing dated market input")
     stocks = json.loads(src.read_text(encoding="utf-8")).get("stocks", {})

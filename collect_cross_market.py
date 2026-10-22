@@ -13,7 +13,9 @@ from zoneinfo import ZoneInfo
 import yfinance as yf
 from alpaca_quotes import fetch_iex_snapshots
 
-from collect_market import mcp, attempt, http_json, finmind
+from market_sources import mcp, attempt, http_json, finmind
+from snapshot_io import write_snapshot
+from quote_quality import select_observation
 
 TW = ZoneInfo("Asia/Taipei")
 ASSETS = {
@@ -102,14 +104,7 @@ def main():
                     iex_quote = iex_quotes[ticker]
                     obs["alpaca_iex"] = iex_quote
                     if iex_quote["status"] == "PASS":
-                        # Do not mix IEX daily bar OHLCV with Yahoo consolidated bars.
-                        obs["fallback_yahoo"] = dict(obs)
-                        obs["price"] = iex_quote["price"]
-                        obs["status"] = "PASS"
-                        obs["source"] = iex_quote["source"]
-                        obs["latest_bar_utc"] = iex_quote["trade_time_utc"]
-                        obs["age_minutes"] = round(iex_quote["age_seconds"] / 60, 2)
-                        obs["market_coverage"] = "IEX_ONLY"
+                        obs = select_observation(obs, iex_quote)
                 if area == "us" and not ticker.startswith("^"):
                     # Auditable selection: missing IEX credentials or stale IEX
                     # leaves the Yahoo intraday bar in place.
@@ -211,10 +206,7 @@ def main():
                 lambda t=tool, a=args: mcp("tools/call",
                                           {"name":t, "arguments":a}, 2))
             print("TAIFEX", tool, out["taifex"][tool]["status"], flush=True)
-    path = Path("out") / now.date().isoformat() / ("cross-" + slot + ".json")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(out, ensure_ascii=False, indent=2, default=str)+"\n",
-                    encoding="utf-8")
+    path = write_snapshot(out, now.date().isoformat(), "cross-" + slot)
     print("OUTPUT_PATH", path, "BYTES", path.stat().st_size)
 
 
