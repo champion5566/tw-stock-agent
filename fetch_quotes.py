@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-TZ = ZoneInfo("Asia/Taipei")
+from quote_quality import TW as TZ, positive_price, quote_status
 
 STOCKS = {
     "2313": "tse",
@@ -25,11 +25,7 @@ def now_tw():
 
 
 def valid_price(value):
-    try:
-        price = float(value)
-        return price if price > 0 else None
-    except (ValueError, TypeError):
-        return None
+    return positive_price(value)
 
 
 def request_json(url):
@@ -135,26 +131,7 @@ def parse_mis_time(stock):
 
 
 def is_fresh(quote_time, current):
-    if quote_time is None:
-        return False
-
-    # 只接受今天的資料
-    if quote_time.date() != current.date():
-        return False
-
-    # 不接受未來超過 2 分鐘的時間
-    if quote_time > current + timedelta(minutes=2):
-        return False
-
-    # 盤中最多允許 10 分鐘延遲
-    if current.weekday() < 5 and (
-        current.hour < 13
-        or (current.hour == 13 and current.minute <= 30)
-    ):
-        return current - quote_time <= timedelta(minutes=10)
-
-    # 收盤後允許當天的最後報價
-    return True
+    return quote_status(1, quote_time, current) == "PASS"
 
 
 def process_stock(code, market, mis_data, current):

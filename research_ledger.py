@@ -57,7 +57,8 @@ def main():
     now = datetime.now(TZ)
     date = now.date().isoformat()
     slot = os.environ.get("REPORT_SLOT", "evening")
-    path = Path("out") / date / (slot + ".json")
+    path = Path(os.getenv("SOURCE_SNAPSHOT", str(Path("out") / date / (slot + ".json"))))
+    date = path.parent.name
     if not path.exists():
         raise SystemExit("Missing input market snapshot")
     market = json.loads(path.read_text(encoding="utf-8"))

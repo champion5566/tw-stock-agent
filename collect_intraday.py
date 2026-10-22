@@ -1,13 +1,13 @@
 """One-shot, read-only intraday quote verification. Never places orders."""
 import json
-import os
 import time
 import urllib.parse
 import urllib.request
 from datetime import datetime
-from pathlib import Path
 
-from quote_quality import TW, positive_price, quote_status, shioaji_snapshot_time
+from quote_quality import TW, positive_price, quote_status, select_stock_quote
+from shioaji_quotes import collect_quotes
+from snapshot_io import write_snapshot
 SYMBOLS = {"tse_t00.tw": "TAIEX", "tse_2330.tw": "2330", "tse_0050.tw": "0050",
            "otc_o00.tw": "TPEX"}
 def now(): return datetime.now(TW)
@@ -36,55 +36,14 @@ def mis():
               "open":number(row.get("o")),"high":number(row.get("h")),"low":number(row.get("l")),
               "previous_close":number(row.get("y")),"volume_raw":row.get("v"),
               "trade_time":stamp.isoformat() if stamp else None,
-              "status":quote_status(row.get("z"), stamp, now())}
+              "status":quote_status(row.get("z"), stamp, now()),
+              "is_live":quote_status(row.get("z"), stamp, now()) == "PASS",
+              "data_kind":"quote_observation", "units":{"price":"TWD/share" if code not in ("t00", "o00") else "index_points"}}
     return output
 
 def shioaji():
-    output = {"status":"NOT_CONFIGURED","source":"Shioaji","is_live":False}
-    if not os.getenv("SHIOAJI_API_KEY") or not os.getenv("SHIOAJI_SECRET_KEY"): return output
-    api = None
-    try:
-        import shioaji as sj
-        api = sj.Shioaji(simulation=False)
-        api.login(api_key=os.environ["SHIOAJI_API_KEY"],secret_key=os.environ["SHIOAJI_SECRET_KEY"])
-        contract = api.Contracts.Futures.TXF.TXFR1
-        stock_results = {}
-        try:
-            contracts = [api.Contracts.Stocks["2330"], api.Contracts.Stocks["0050"]]
-            for snap in api.snapshots(contracts):
-                code = str(getattr(snap, "code", ""))
-                stamp = getattr(snap, "ts", None)
-                dt = shioaji_snapshot_time(stamp)
-                price = number(getattr(snap, "close", None))
-                stock_results[code] = {"source":"Shioaji_snapshot","price":price,"trade_time":dt.isoformat() if dt else None,"status":quote_status(price, dt, now())}
-        except Exception as e:
-            stock_results["error_type"] = type(e).__name__
-        output["stock_snapshots"] = stock_results
-        ticks = []
-        def callback(exchange,tick):
-            try:
-                price = number(getattr(tick,"close",None))
-                ts = datetime.fromisoformat(str(getattr(tick,"datetime","")))
-                if price: ticks.append((price,ts,str(getattr(tick,"volume",""))))
-            except (TypeError,ValueError): pass
-        api.quote.set_on_tick_fop_v1_callback(callback)
-        api.quote.subscribe(contract,quote_type=sj.constant.QuoteType.Tick,version=sj.constant.QuoteVersion.v1)
-        time.sleep(25)
-        if ticks:
-            price,ts,volume=ticks[-1]
-            output.update({"price":price,"trade_time":ts.isoformat(),"volume":volume,
-                           "ticks_observed":len(ticks),"status":quote_status(price, ts, now()),
-                           "is_live":quote_status(price, ts, now()) == "PASS","contract_code":str(contract.code)})
-        else: output["status"]="NO_TICKS_IN_WINDOW"
-        try: api.quote.unsubscribe(contract,quote_type=sj.constant.QuoteType.Tick,version=sj.constant.QuoteVersion.v1)
-        except Exception: pass
-    except Exception as e:
-        output.update({"status":"ERROR","error_type":type(e).__name__})
-    finally:
-        if api:
-            try: api.logout()
-            except Exception: pass
-    return output
+    return collect_quotes(("2330", "0050"))
+
 
 def main():
     result={"checked_at_taipei":now().isoformat(),"mode":"read_only_one_shot","quotes":{},"futures":{}}
@@ -95,10 +54,11 @@ def main():
         if code in ("2330", "0050") and q.get("status") == "PASS":
             current = result["quotes"].get(code)
             if current is None or current.get("status") != "PASS":
-                result["quotes"][code] = {**(current or {}), "mis_diagnostic":current, **q}
+                result["quotes"][code] = select_stock_quote(current, q)
+    for code in SYMBOLS.values():
+        result["quotes"].setdefault(code, {"status": "MISSING", "price": None, "is_live": False})
     result["completed_at_taipei"]=now().isoformat()
-    path=Path("out")/now().date().isoformat()/"intraday.json"
-    path.parent.mkdir(parents=True,exist_ok=True)
-    path.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    result["schema_version"] = "1.1"
+    write_snapshot(result, result["checked_at_taipei"][:10], "intraday")
     print(json.dumps(result,ensure_ascii=False,indent=2))
 if __name__=="__main__": main()
