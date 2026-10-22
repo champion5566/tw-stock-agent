@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install official quote SDK and existing cross-market client
-        run: python -m pip install 'shioaji>=1.2,<2' 'yfinance>=0.2.60,<2'
+        run: python -m pip install 'shioaji>=1.2,<2' 'yfinance>=0.2.60,<2' 'exchange_calendars>=4.5,<5'
       - name: Collect dated Taiwan daily data for report preview
         if: matrix.scenario != 'intraday'
         env:
@@ -33,6 +33,12 @@ jobs:
           ALPACA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY_ID }}
           ALPACA_API_SECRET_KEY: ${{ secrets.ALPACA_API_SECRET_KEY }}
         run: python collect_cross_market.py
+      - name: Exercise live/session quote enrichment with explicit source time
+        if: matrix.scenario != 'intraday'
+        env:
+          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
+          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
+        run: python collect_shioaji_night.py
       - name: Collect Shioaji-first stocks and TX ticks, with MIS fallback
         env:
           SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
@@ -56,7 +62,8 @@ jobs:
           else:
               assert report['stocks'], 'No report stocks'
               for stock in report['stocks'].values():
-                  for observation in stock.values():
+                  for key in ("daily_ohlcv", "institutional", "margin"):
+                      observation = stock[key]
                       assert not observation['is_live']
                       if observation['data']:
                           assert observation['source_date'] == report['target_session_date']

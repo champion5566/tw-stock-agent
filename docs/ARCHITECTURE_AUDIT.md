@@ -138,3 +138,31 @@ Final cleanup extracts the unchanged watchlist to `instruments.py` so independen
 collectors/report rendering do not import another collector just for configuration.
 The temporary branch-push experiment trigger is removed; the reusable experiment is
 manual-only. No provider, selection or subscription behavior changes in this cleanup.
+
+## Report readiness contract update (PR #27)
+
+The actual enabled morning task is 08:50, not the disabled historical 08:20 task.
+Code/documentation are now aligned with six required report instruments, including
+006208/00631L, plus three optional observations. Maintained exchange calendars, explicit
+section gates, delivery-target quote age and small fingerprinted consumer artifacts
+replace inferring completeness from whatever old stock rows happen to exist.
+
+Real-source [Actions 39722646651](https://github.com/champion5566/tw-stock-agent/actions/runs/39722646651)
+completed morning/evening/intraday preview jobs successfully. All nine Taiwan daily,
+institutional and margin datasets were retrieved; the six required field sets pass
+for the morning target 10/21. Nine completed US regular-session daily bars also pass.
+Whole morning/evening previews correctly remain DATA_PARTIAL: market context and actual
+TOPIX are missing, and current-time preview inputs do not meet earlier/future report
+cutoffs/session requirements. Intraday remains a separate actual fresh-quote check.
+These are daytime tests, not certification of future scheduled generation/delivery.
+
+Artifacts: [morning](experiments/2026-10-22-contract-morning.md),
+[evening](experiments/2026-10-22-contract-evening.md),
+[intraday](experiments/2026-10-22-contract-intraday.md).
+52 local tests pass, including two final OHLC/negative-turnover edge guards. Those final
+guards do not change provider acquisition or the verified source/session behavior.
+The temporary branch-only smoke trigger is removed after execution.
+
+The contract is definitive at [REPORT_CONTRACT.md](REPORT_CONTRACT.md). Delayed job
+execution/output, missing original prediction-ledger sections and unknown user delivery
+are independent remaining facts; none are certified by green source-collection jobs.

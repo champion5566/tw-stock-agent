@@ -94,7 +94,8 @@ class ReportScenarioTests(unittest.TestCase):
         report=build_report('morning',market_fixture(),checked_at=NOW.replace(hour=8,minute=20))
         self.assertEqual(report['target_session_date'],'2026-10-21')
         self.assertEqual(report['stocks']['2330']['daily_ohlcv']['data']['close'],105)
-        self.assertEqual(report['status'],'COMPLETE')
+        self.assertEqual(report['stock_data_status'],'COMPLETE')
+        self.assertEqual(report['status'],'DATA_PARTIAL')
 
     def test_2300_night_uses_today_but_never_old_institutional(self):
         market=market_fixture()
@@ -106,7 +107,7 @@ class ReportScenarioTests(unittest.TestCase):
         self.assertEqual(inst['status'],'MISSING_TARGET_SESSION')
         self.assertIsNone(inst['data'])
         self.assertEqual(inst['prior_reference']['date'],'2026-10-21')
-        self.assertEqual(report['status'],'PARTIAL')
+        self.assertEqual(report['status'],'DATA_PARTIAL')
 
     def test_daytime_evening_preview_does_not_call_bar_a_close(self):
         report=build_report('evening',market_fixture(),checked_at=NOW,experiment=True)

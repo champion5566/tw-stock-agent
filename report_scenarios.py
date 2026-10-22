@@ -4,11 +4,16 @@ This is a data/report acceptance experiment, not scheduled message delivery.
 """
 import argparse
 import json
+import hashlib
+import os
 from datetime import datetime, time
 from pathlib import Path
 
-from instruments import STOCKS
+from instruments import STOCKS, REPORT_STOCKS, WATCH_STOCKS
 from quote_quality import TW, quote_status
+from session_calendar import completed_session
+from stock_metrics import metrics
+from report_contract import evaluate, DELIVERY_TIMES
 
 
 def dated_rows(item):
@@ -38,7 +43,7 @@ def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=Non
     checked = checked.replace(tzinfo=TW) if checked.tzinfo is None else checked.astimezone(TW)
     market, intraday, cross = market or {}, intraday or {}, cross or {}
     today = checked.date().isoformat()
-    report = {"schema_version": "scenario-report-v1", "scenario": mode,
+    report = {"schema_version": "scenario-report-v2", "scenario": mode,
               "generated_at_taipei": checked.isoformat(),
               "execution_kind": "CURRENT_TIME_PREVIEW" if experiment else "REPORT",
               "point_in_time_verified": False,
@@ -62,22 +67,24 @@ def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=Non
                 quote["price"] = None
             report["stocks"][code] = quote
     else:
-        previous = [r["date"] for stock in market.get("stocks", {}).values()
-                    for r in dated_rows(stock.get("daily_ohlcv", {})) if r["date"] < today]
-        target = max(previous) if mode == "morning" and previous else today if mode == "evening" else None
+        session = completed_session("XTAI", datetime.combine(checked.date(), DELIVERY_TIMES[mode], TW))
+        target = session["date"]
+        report["session_calendar"] = session
         report["target_session_date"] = target
-        report["warnings"].append("晨報基準日由可取得的前一交易日資料推得；未以交易所休市日曆驗證。")
+        report["warnings"].append("交易日使用 exchange_calendars XTAI；臨時停市以來源實際狀態另行核對。")
         for code in STOCKS:
             stock = market.get("stocks", {}).get(code, {})
             report["stocks"][code] = {key: daily_selection(stock.get(key, {}), target, checked, mode)
                                       for key in ("daily_ohlcv", "institutional", "margin")}
+            report["stocks"][code]["metrics"] = metrics(stock, target)
+            report["stocks"][code]["role"] = "report_required" if code in REPORT_STOCKS else "watch_only"
         for area, assets in cross.get("assets", {}).items():
             report["cross_market"][area] = {}
             for name, observation in assets.items():
                 # Expose only source-level fields, never label a Yahoo bar as live/official close.
                 report["cross_market"][area][name] = {k: observation.get(k) for k in (
                     "price", "status", "source", "latest_bar_at_taipei", "data_kind", "is_formal_close")}
-    future = intraday.get("futures", {}).get("TXFR1") or cross.get("taifex", {}).get("shioaji_live_tx") or {}
+    future = (cross.get("taifex", {}).get("shioaji_session_tx") if mode == "morning" else None) or intraday.get("futures", {}).get("TXFR1") or cross.get("taifex", {}).get("shioaji_live_tx") or {}
     if future:
         obs = {k: future.get(k) for k in ("price", "trade_time", "source", "contract_code", "data_kind")}
         try:
@@ -101,7 +108,14 @@ def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=Non
             coverage[key + "_target_session"] = sum(s[key]["status"] == "PASS" for s in report["stocks"].values())
         complete = all(value == len(STOCKS) for value in coverage.values())
     report["coverage"] = coverage
-    report["status"] = "COMPLETE" if complete else "PARTIAL"
+    report["stock_data_status"] = "COMPLETE" if complete else "PARTIAL"
+    report["readiness"] = evaluate(report, market, cross, checked, experiment)
+    report["status"] = report["readiness"]["data_readiness"]
+    if mode == "morning" and report["readiness"]["sections"].get("tx_completed_night", {}).get("status") == "PASS":
+        report["futures"]["TXFR1"].update({"price":future.get("price"), "status":"COMPLETED_NIGHT_LAST_OBSERVATION", "is_live":False})
+    report["delivery_status"] = "NOT_ACKNOWLEDGED"
+    report["required_stocks"] = list(REPORT_STOCKS)
+    report["watch_stocks"] = list(WATCH_STOCKS)
     return report
 
 
@@ -112,21 +126,36 @@ def display(value):
 def render_markdown(report):
     names = {"morning": "晨報", "evening": "夜報", "intraday": "即時行情"}
     lines = [f"# {names[report['scenario']]}情境實驗", "",
-             f"執行時間：{report['generated_at_taipei']}｜資料完整度：{report['status']}", "",
-             *report["warnings"], ""]
+             f"執行時間：{report['generated_at_taipei']}｜資料驗收：{report['status']}｜送達：{report['delivery_status']}", "",
+             *report["warnings"], "",
+             "必備資料驗收：", "", "| 項目 | 狀態 | 缺漏／異常 |", "|---|---|---|"]
+    for name, section in report["readiness"]["sections"].items():
+        failures = ", ".join(f"{key}={value}" for key,value in section["items"].items() if value != "PASS") or "—"
+        lines.append(f"| {name} | {section['status']} | {failures} |")
+    lines += ["", "持股／觀察清單的行情資料完整，不代表跨市場、帳本或送達驗收完成。", ""]
     if report["scenario"] == "intraday":
         lines += ["| 標的 | 價格 | 來源 | 資料種類 | 來源時間 | 狀態 |", "|---|---:|---|---|---|---|"]
         for code, q in report["stocks"].items():
             lines.append(f"| {code} | {display(q.get('price'))} | {display(q.get('source'))} | {display(q.get('data_kind'))} | {display(q.get('trade_time'))} | {q['status']} |")
     else:
         lines += [f"台股基準交易日：{display(report.get('target_session_date'))}", "",
-                  "| 股票 | 日期 | 開 | 高 | 低 | 收 | 成交股數 | OHLC狀態 | 法人資料日期／狀態 | 融資券日期／狀態 |",
+                  "| 股票／角色 | 日期 | 開 | 高 | 低 | 收 | 成交股數 | OHLC狀態 | 法人資料日期／狀態 | 融資券日期／狀態 |",
                   "|---|---|---:|---:|---:|---:|---:|---|---|---|"]
         for code, item in report["stocks"].items():
             daily, inst, margin = (item[k] for k in ("daily_ohlcv", "institutional", "margin"))
             row = daily["data"] or {}
-            cells = [code, daily["source_date"], *[row.get(k) for k in ("open", "max", "min", "close", "Trading_Volume")], daily["status"],
+            cells = [code + ("（必備）" if code in REPORT_STOCKS else "（觀察）"), daily["source_date"], *[row.get(k) for k in ("open", "max", "min", "close", "Trading_Volume")], daily["status"],
                      f"{display(inst['source_date'])} / {inst['status']}", f"{display(margin['source_date'])} / {margin['status']}"]
+            lines.append("| " + " | ".join(display(v) for v in cells) + " |")
+        lines += ["", "六檔必備衍生欄位（同一 FinMind 來源；法人單位為股，融資券為來源原生張數）：", "",
+                  "| 股票 | 前收 | 成交值TWD | 振幅% | 5日量比 | 20日量比 | 外資淨買 | 投信淨買 | 自營淨買 | 法人5日合計 | 融資增減 | 融券增減 |",
+                  "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
+        for code in REPORT_STOCKS:
+            f = report["stocks"][code]["metrics"]
+            inst, credit = f["institutional"], f["credit"]
+            cells = [code, *[f.get(k) for k in ("previous_close", "turnover_twd", "amplitude_pct", "volume_ratio_5d", "volume_ratio_20d")],
+                     *[inst.get(k) for k in ("foreign_net_shares", "trust_net_shares", "dealer_net_shares", "net_5d_shares")],
+                     credit.get("margin_change"), credit.get("short_change")]
             lines.append("| " + " | ".join(display(v) for v in cells) + " |")
         lines += ["", "跨市場觀測（依來源時間；Yahoo K線不等於正式收盤）：", "",
                   "| 市場／標的 | 價格 | 來源時間 | 狀態 |", "|---|---:|---|---|"]
@@ -142,18 +171,33 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--scenario", choices=("morning", "evening", "intraday"), required=True)
     parser.add_argument("--experiment", action="store_true")
+    parser.add_argument("--market-root", default="out")
+    parser.add_argument("--output-root", default="out")
     args = parser.parse_args()
     now = datetime.now(TW)
-    directory = Path("out") / now.date().isoformat()
-    def read(name):
-        path = directory / (name + ".json")
-        return json.loads(path.read_text()) if path.exists() else {}
-    report = build_report(args.scenario, read(args.scenario), read("intraday"), read("cross-" + args.scenario),
+    directory = Path(args.output_root) / now.date().isoformat()
+    fingerprints = {}
+    def read(name, root=None):
+        path = (Path(root) / now.date().isoformat() if root else directory) / (name + ".json")
+        if not path.exists():
+            return {}
+        raw = path.read_bytes()
+        fingerprints[("market/" if root else "current/") + name] = {
+            "snapshot":str(path.relative_to(Path(root) if root else Path(args.output_root))),
+            "sha256":hashlib.sha256(raw).hexdigest()}
+        return json.loads(raw)
+    report = build_report(args.scenario, read(args.scenario, args.market_root), read("intraday"), read("cross-" + args.scenario),
                           checked_at=now, experiment=args.experiment)
+    report["input_fingerprints"] = fingerprints
+    report["data_report_id"] = "DATA-" + now.date().isoformat() + "-" + args.scenario + "-" + os.getenv("GITHUB_RUN_ID", now.strftime("%H%M%S"))
     directory.mkdir(parents=True, exist_ok=True)
     (directory / ("report-" + args.scenario + ".json")).write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     markdown = render_markdown(report)
     (directory / ("report-" + args.scenario + ".md")).write_text(markdown, encoding="utf-8")
+    # Small, public-data-only consumer artifact. No positions/account values/LLM ledger.
+    bundle = Path(args.output_root) / "reports" / now.date().isoformat()
+    bundle.mkdir(parents=True, exist_ok=True)
+    (bundle / (args.scenario + ".json")).write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print("SCENARIO_REPORT", json.dumps({k:report[k] for k in ("scenario", "generated_at_taipei", "status", "coverage")}, ensure_ascii=False))
     print(markdown)
 

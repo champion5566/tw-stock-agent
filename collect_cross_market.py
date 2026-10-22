@@ -15,7 +15,8 @@ from alpaca_quotes import fetch_iex_snapshots
 
 from market_sources import mcp, attempt, http_json, finmind
 from snapshot_io import write_snapshot
-from quote_quality import select_observation
+from quote_quality import select_observation, positive_price
+from session_calendar import completed_session
 
 TW = ZoneInfo("Asia/Taipei")
 ASSETS = {
@@ -68,6 +69,25 @@ def observe(ticker):
         "is_formal_close": False, "is_live": False, "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
     }
+
+
+def regular_close(ticker, checked_at):
+    """Completed regular-session daily bar, distinct from an extended-hours last bar."""
+    session = completed_session("XNYS", checked_at)
+    hist = yf.Ticker(ticker).history(period="1mo", interval="1d", auto_adjust=False,
+                                     prepost=False, raise_errors=True)
+    matches = [(index, row) for index, row in hist.iterrows()
+               if index.date().isoformat() == session["date"]]
+    if not matches:
+        return {"status":"MISSING", "ticker":ticker, "expected_session":session["date"]}
+    index, row = matches[-1]
+    price = positive_price(row["Close"])
+    return {"status":"PASS" if price else "NO_LAST_TRADE", "ticker":ticker,
+            "source":"Yahoo/yfinance regular-session 1d", "price":price,
+            "source_date":session["date"], "cash_session_closed_at":session["closed_at"],
+            "session_completed":True, "data_kind":"regular_session_daily_bar",
+            "is_live":False, "is_formal_close":False,
+            "note":"Completed provider daily bar; not an exchange-certified closing/settlement file."}
 
 
 def main():
@@ -178,6 +198,15 @@ def main():
         print("US_DAILY", symbol, out["us_daily"][symbol]["status"],
               out["us_daily"][symbol].get("source_date"), flush=True)
         time.sleep(0.15)
+
+    if slot in ("morning", "nightclose"):
+        out["us_regular_close"] = {}
+        for sector in ("indices", "semiconductors"):
+            for name, ticker in ASSETS["us"][sector].items():
+                result = attempt(lambda t=ticker: regular_close(t, now))
+                out["us_regular_close"][name] = result["data"] if result["status"] == "PASS" else result
+                print("US_REGULAR_CLOSE", name, out["us_regular_close"][name].get("status"),
+                      out["us_regular_close"][name].get("source_date"), flush=True)
 
     official = attempt(lambda: http_json("https://openapi.taifex.com.tw/v1/DailyMarketReportFut"))
     if official["status"] == "PASS":

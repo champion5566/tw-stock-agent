@@ -31,7 +31,7 @@ def tick_observation(tick, checked_at, *, source, units):
     return result
 
 
-def collect_quotes(stock_codes=(), wait_seconds=25, *, sdk=None, clock=None, wait=None):
+def collect_quotes(stock_codes=(), wait_seconds=25, *, sdk=None, clock=None, wait=None, future_snapshot=False, stream=True):
     clock = clock or (lambda: datetime.now(TW))
     wait = wait or time.sleep
     result = {"provider": "Shioaji", "source": "Shioaji", "instrument": "TXFR1",
@@ -109,16 +109,29 @@ def collect_quotes(stock_codes=(), wait_seconds=25, *, sdk=None, clock=None, wai
         try:
             contract = api.Contracts.Futures.TXF.TXFR1
             result["contract_code"] = str(contract.code)
-            api.quote.set_on_tick_fop_v1_callback(on_future_tick)
-            subscribe(contract)
+            if future_snapshot:
+                snaps = api.snapshots([contract])
+                if snaps:
+                    snap = snaps[-1]
+                    stamp = shioaji_snapshot_time(getattr(snap, "ts", None))
+                    price = positive_price(getattr(snap, "close", None))
+                    result.update({"source":"Shioaji_futures_snapshot", "data_kind":"snapshot", "price":price,
+                                   "trade_time":stamp.isoformat() if stamp else None,
+                                   "status":quote_status(price, stamp, clock()), "is_live":False,
+                                   "units":{"price":"index_points"},
+                                   "note":"One request after session end; time/session must be validated by the report contract."})
+            if stream:
+                api.quote.set_on_tick_fop_v1_callback(on_future_tick)
+                subscribe(contract)
         except Exception as exc:
             result.update({"status": "ERROR", "error_type": type(exc).__name__})
-        wait(wait_seconds)
+        if stream:
+            wait(wait_seconds)
         if future_ticks:
             result.update(future_ticks[-1])
             result["ticks_observed"] = len(future_ticks)
             result["age_minutes"] = round((clock() - datetime.fromisoformat(result["trade_time"])).total_seconds()/60, 2)
-        elif result["status"] != "ERROR":
+        elif stream and result["status"] != "ERROR":
             result["status"] = "NO_TICKS_IN_WINDOW"
     except Exception as exc:
         result.update({"status": "ERROR", "error_type": type(exc).__name__, "is_live": False})
