@@ -1,16 +1,16 @@
 {
-  "checked_at_taipei": "2026-10-22T10:42:18.269828+08:00",
+  "checked_at_taipei": "2026-10-22T10:56:44.248624+08:00",
   "mode": "read_only_one_shot",
   "quotes": {
     "TAIEX": {
       "source": "TWSE_MIS",
-      "price": 46767.03,
+      "price": 46697.17,
       "open": 46942.75,
       "high": 47332.18,
-      "low": 46705.72,
+      "low": 46632.36,
       "previous_close": 46887.77,
       "volume_raw": null,
-      "trade_time": "2026-10-22T10:42:05+08:00",
+      "trade_time": "2026-10-22T10:56:05+08:00",
       "status": "PASS"
     },
     "2330": {
@@ -20,8 +20,8 @@
       "high": 2435.0,
       "low": 2400.0,
       "previous_close": 2420.0,
-      "volume_raw": "7685",
-      "trade_time": "2026-10-22T10:42:03+08:00",
+      "volume_raw": "7958",
+      "trade_time": "2026-10-22T10:56:04+08:00",
       "status": "STALE_OR_NO_TRADE"
     },
     "0050": {
@@ -29,21 +29,21 @@
       "price": null,
       "open": 108.95,
       "high": 109.15,
-      "low": 108.05,
+      "low": 107.85,
       "previous_close": 108.15,
-      "volume_raw": "30974",
-      "trade_time": "2026-10-22T10:42:04+08:00",
+      "volume_raw": "36660",
+      "trade_time": "2026-10-22T10:56:04+08:00",
       "status": "STALE_OR_NO_TRADE"
     },
     "TPEX": {
       "source": "TWSE_MIS",
-      "price": 392.79,
+      "price": 391.3,
       "open": 396.32,
       "high": 400.3,
-      "low": 391.59,
+      "low": 391.29,
       "previous_close": 395.42,
       "volume_raw": null,
-      "trade_time": "2026-10-22T10:42:05+08:00",
+      "trade_time": "2026-10-22T10:56:10+08:00",
       "status": "PASS"
     }
   },
@@ -52,12 +52,12 @@
       "status": "PASS",
       "source": "Shioaji",
       "is_live": true,
-      "price": 46862.0,
-      "trade_time": "2026-10-22T10:42:47.501000",
-      "volume": "1",
-      "ticks_observed": 38,
+      "price": 46864.0,
+      "trade_time": "2026-10-22T10:57:10.463000",
+      "volume": "2",
+      "ticks_observed": 35,
       "contract_code": "TXFR1"
     }
   },
-  "completed_at_taipei": "2026-10-22T10:42:48.375559+08:00"
+  "completed_at_taipei": "2026-10-22T10:57:12.131307+08:00"
 }
