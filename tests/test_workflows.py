@@ -15,7 +15,7 @@ class WorkflowContracts(unittest.TestCase):
         self.assertEqual([x['cron'] for x in triggers('market-data')['schedule']],
                          ['25 0 * * 1-5','15 14 * * 1-5'])
         self.assertEqual([x['cron'] for x in triggers('cross-market')['schedule']],
-                         ['35 21 * * 1-5','38 0 * * 1-5','52 14 * * 1-5'])
+                         ['35 21 * * 1-5','30 0 * * 1-5','39 0 * * 1-5','52 14 * * 1-5'])
         self.assertIn('workflow_dispatch',triggers('intraday-on-demand'))
 
     def test_research_is_separate_from_published_ingestion(self):
