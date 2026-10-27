@@ -13,7 +13,8 @@ on:
         default: evening
   schedule:
     - cron: '35 21 * * 1-5'  # 05:35 Taipei Tue-Sat (preceding night session): finished night session
-    - cron: '38 0 * * 1-5'   # 08:38 Taipei: source preparation before 08:45 cutoff / 08:50 report
+    - cron: '30 0 * * 1-5'   # 08:30 Taipei: morning primary, allow collection before 08:45
+    - cron: '39 0 * * 1-5'   # 08:39 Taipei: backup if primary schedule was missed
     - cron: '52 14 * * 1-5'  # 22:52 Taipei: fresh US/TX data before 22:58 cutoff / 23:00 report
   push:
     branches:
@@ -61,11 +62,19 @@ jobs:
             echo "REPORT_SLOT=$DISPATCH_SLOT" >> "$GITHUB_ENV"
           elif [ "$SCHEDULE" = '35 21 * * 1-5' ]; then
             echo 'REPORT_SLOT=nightclose' >> "$GITHUB_ENV"
-          elif [ "$SCHEDULE" = '38 0 * * 1-5' ]; then
+          elif [ "$SCHEDULE" = '30 0 * * 1-5' ] || [ "$SCHEDULE" = '39 0 * * 1-5' ]; then
             echo 'REPORT_SLOT=morning' >> "$GITHUB_ENV"
           else
             echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
           fi
+      # Morning must be self-contained. The previous design read the market-data
+      # workflow's separate published snapshot, which can be absent/stale when
+      # scheduled runs are delayed, skipped, or execute out of order.
+      - name: Collect Taiwan market snapshot in the same morning run
+        if: env.REPORT_SLOT == 'morning'
+        env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+        run: python collect_market.py
       - name: Test USA Japan Korea and futures
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
@@ -78,7 +87,7 @@ jobs:
           SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
         run: python collect_shioaji_night.py
       - name: Read already published Taiwan snapshot from a pinned data-branch checkout
-        if: env.REPORT_SLOT != 'nightclose'
+        if: env.REPORT_SLOT == 'evening'
         uses: actions/checkout@v4
         with:
           ref: data/snapshots
@@ -89,9 +98,17 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
         run: |
           if [ "$EVENT_NAME" = 'schedule' ]; then
-            python report_scenarios.py --scenario "$REPORT_SLOT" --market-root stored-snapshots
+            if [ "$REPORT_SLOT" = 'morning' ]; then
+              python report_scenarios.py --scenario morning --market-root out
+            else
+              python report_scenarios.py --scenario "$REPORT_SLOT" --market-root stored-snapshots
+            fi
           else
-            python report_scenarios.py --scenario "$REPORT_SLOT" --market-root stored-snapshots --experiment
+            if [ "$REPORT_SLOT" = 'morning' ]; then
+              python report_scenarios.py --scenario morning --market-root out --experiment
+            else
+              python report_scenarios.py --scenario "$REPORT_SLOT" --market-root stored-snapshots --experiment
+            fi
           fi
       - name: Save auditable test results
         if: always()
