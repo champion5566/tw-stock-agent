@@ -13,8 +13,8 @@ on:
         default: evening
   schedule:
     - cron: '35 21 * * 1-5'  # 05:35 Taipei Tue-Sat (preceding night session): finished night session
-    - cron: '30 0 * * 1-5'   # 08:30 Taipei: morning primary, allow collection before 08:45
-    - cron: '39 0 * * 1-5'   # 08:39 Taipei: backup if primary schedule was missed
+    - cron: '30 0 * * 1-5'   # 08:30 Taipei: morning primary, allow collection before 08:38
+    - cron: '35 0 * * 1-5'   # 08:35 Taipei: backup if primary schedule was missed
     - cron: '52 14 * * 1-5'  # 22:52 Taipei: fresh US/TX data before 22:58 cutoff / 23:00 report
   push:
     branches:
@@ -62,7 +62,7 @@ jobs:
             echo "REPORT_SLOT=$DISPATCH_SLOT" >> "$GITHUB_ENV"
           elif [ "$SCHEDULE" = '35 21 * * 1-5' ]; then
             echo 'REPORT_SLOT=nightclose' >> "$GITHUB_ENV"
-          elif [ "$SCHEDULE" = '30 0 * * 1-5' ] || [ "$SCHEDULE" = '39 0 * * 1-5' ]; then
+          elif [ "$SCHEDULE" = '30 0 * * 1-5' ] || [ "$SCHEDULE" = '35 0 * * 1-5' ]; then
             echo 'REPORT_SLOT=morning' >> "$GITHUB_ENV"
           else
             echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
