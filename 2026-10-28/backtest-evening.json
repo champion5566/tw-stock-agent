@@ -1,0 +1,229 @@
+{
+  "schema_version": "backtest-baseline-v1",
+  "created_at_taipei": "2026-10-28T23:05:34.800117+08:00",
+  "library": "backtesting.py",
+  "strategy": "SMA20_60_LONG_ONLY",
+  "execution": "signals on close, market order next bar open; no lookahead",
+  "cost_assumptions": {
+    "commission_each_side": 0.0015,
+    "spread": 0.001,
+    "note": "Assumed research friction, not Taiwan broker fee/tax schedule"
+  },
+  "minimum_bars": 120,
+  "holdout_fraction": 0.3,
+  "status": "EXPLORATORY_ONLY",
+  "stocks": {
+    "2313": {
+      "status": "EXPLORATORY_ONLY",
+      "bars": 169,
+      "train_end": "2026-08-11",
+      "holdout_start": "2026-08-12",
+      "holdout_end": "2026-10-28",
+      "in_sample": {
+        "return_pct": 0.0,
+        "buy_hold_return_pct": -17.383,
+        "max_drawdown_pct": -0.0,
+        "trades": 0,
+        "win_rate_pct": null
+      },
+      "holdout": {
+        "return_pct": -12.034,
+        "buy_hold_return_pct": 7.177,
+        "excess_return_pct_points": -19.211,
+        "max_drawdown_pct": -14.667,
+        "trades": 1,
+        "win_rate_pct": 0.0
+      },
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
+    },
+    "2330": {
+      "status": "EXPLORATORY_ONLY",
+      "bars": 169,
+      "train_end": "2026-08-11",
+      "holdout_start": "2026-08-12",
+      "holdout_end": "2026-10-28",
+      "in_sample": {
+        "return_pct": 0.0,
+        "buy_hold_return_pct": 8.617,
+        "max_drawdown_pct": -0.0,
+        "trades": 0,
+        "win_rate_pct": null
+      },
+      "holdout": {
+        "return_pct": -1.213,
+        "buy_hold_return_pct": 0.414,
+        "excess_return_pct_points": -1.627,
+        "max_drawdown_pct": -7.722,
+        "trades": 1,
+        "win_rate_pct": 0.0
+      },
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
+    },
+    "0050": {
+      "status": "EXPLORATORY_ONLY",
+      "bars": 169,
+      "train_end": "2026-08-11",
+      "holdout_start": "2026-08-12",
+      "holdout_end": "2026-10-28",
+      "in_sample": {
+        "return_pct": 0.0,
+        "buy_hold_return_pct": 12.352,
+        "max_drawdown_pct": -0.0,
+        "trades": 0,
+        "win_rate_pct": null
+      },
+      "holdout": {
+        "return_pct": 2.195,
+        "buy_hold_return_pct": 3.279,
+        "excess_return_pct_points": -1.085,
+        "max_drawdown_pct": -8.498,
+        "trades": 1,
+        "win_rate_pct": 100.0
+      },
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
+    },
+    "5483": {
+      "status": "EXPLORATORY_ONLY",
+      "bars": 169,
+      "train_end": "2026-08-11",
+      "holdout_start": "2026-08-12",
+      "holdout_end": "2026-10-28",
+      "in_sample": {
+        "return_pct": 0.0,
+        "buy_hold_return_pct": 23.897,
+        "max_drawdown_pct": -0.0,
+        "trades": 0,
+        "win_rate_pct": null
+      },
+      "holdout": {
+        "return_pct": -14.368,
+        "buy_hold_return_pct": 1.892,
+        "excess_return_pct_points": -16.26,
+        "max_drawdown_pct": -16.722,
+        "trades": 1,
+        "win_rate_pct": 0.0
+      },
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
+    },
+    "3707": {
+      "status": "EXPLORATORY_ONLY",
+      "bars": 169,
+      "train_end": "2026-08-11",
+      "holdout_start": "2026-08-12",
+      "holdout_end": "2026-10-28",
+      "in_sample": {
+        "return_pct": 0.0,
+        "buy_hold_return_pct": -14.856,
+        "max_drawdown_pct": -0.0,
+        "trades": 0,
+        "win_rate_pct": null
+      },
+      "holdout": {
+        "return_pct": -20.138,
+        "buy_hold_return_pct": 13.386,
+        "excess_return_pct_points": -33.523,
+        "max_drawdown_pct": -24.026,
+        "trades": 1,
+        "win_rate_pct": 0.0
+      },
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
+    },
+    "2367": {
+      "status": "EXPLORATORY_ONLY",
+      "bars": 169,
+      "train_end": "2026-08-11",
+      "holdout_start": "2026-08-12",
+      "holdout_end": "2026-10-28",
+      "in_sample": {
+        "return_pct": 0.0,
+        "buy_hold_return_pct": -29.305,
+        "max_drawdown_pct": -0.0,
+        "trades": 0,
+        "win_rate_pct": null
+      },
+      "holdout": {
+        "return_pct": -2.703,
+        "buy_hold_return_pct": -0.874,
+        "excess_return_pct_points": -1.828,
+        "max_drawdown_pct": -8.842,
+        "trades": 1,
+        "win_rate_pct": 0.0
+      },
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
+    },
+    "3491": {
+      "status": "EXPLORATORY_ONLY",
+      "bars": 168,
+      "train_end": "2026-08-11",
+      "holdout_start": "2026-08-12",
+      "holdout_end": "2026-10-28",
+      "in_sample": {
+        "return_pct": 0.0,
+        "buy_hold_return_pct": -27.762,
+        "max_drawdown_pct": -0.0,
+        "trades": 0,
+        "win_rate_pct": null
+      },
+      "holdout": {
+        "return_pct": -8.322,
+        "buy_hold_return_pct": 1.515,
+        "excess_return_pct_points": -9.837,
+        "max_drawdown_pct": -25.646,
+        "trades": 1,
+        "win_rate_pct": 0.0
+      },
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
+    },
+    "006208": {
+      "status": "EXPLORATORY_ONLY",
+      "bars": 169,
+      "train_end": "2026-08-11",
+      "holdout_start": "2026-08-12",
+      "holdout_end": "2026-10-28",
+      "in_sample": {
+        "return_pct": 0.0,
+        "buy_hold_return_pct": 10.781,
+        "max_drawdown_pct": -0.0,
+        "trades": 0,
+        "win_rate_pct": null
+      },
+      "holdout": {
+        "return_pct": 0.165,
+        "buy_hold_return_pct": 3.383,
+        "excess_return_pct_points": -3.218,
+        "max_drawdown_pct": -8.01,
+        "trades": 1,
+        "win_rate_pct": 100.0
+      },
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
+    },
+    "00631L": {
+      "status": "EXPLORATORY_ONLY",
+      "bars": 165,
+      "train_end": "2026-08-12",
+      "holdout_start": "2026-08-13",
+      "holdout_end": "2026-10-28",
+      "in_sample": {
+        "return_pct": -10.633,
+        "buy_hold_return_pct": 2.575,
+        "max_drawdown_pct": -28.115,
+        "trades": 1,
+        "win_rate_pct": 0.0
+      },
+      "holdout": {
+        "return_pct": -3.378,
+        "buy_hold_return_pct": 1.626,
+        "excess_return_pct_points": -5.004,
+        "max_drawdown_pct": -15.016,
+        "trades": 1,
+        "win_rate_pct": 0.0
+      },
+      "caution": "Same holdout dates for both returns. SMA warmed on prior sessions; one or few trades cannot establish alpha."
+    }
+  },
+  "warnings": [
+    "No parameter optimization or statistical significance claims.",
+    "Corporate actions, dividends, taxes and survivorship effects not fully modeled.",
+    "Holdout is chronological but remains exploratory with limited history."
+  ]
+}
