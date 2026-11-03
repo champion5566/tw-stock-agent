@@ -1,13 +1,13 @@
 {
   "schema_version": "scenario-report-v2",
   "scenario": "morning",
-  "generated_at_taipei": "2026-11-03T09:35:45.636406+08:00",
+  "generated_at_taipei": "2026-11-03T09:41:18.640747+08:00",
   "execution_kind": "REPORT",
   "point_in_time_verified": false,
   "source_fetched_at": {
-    "market": "2026-11-03T09:34:35.462519+08:00",
+    "market": "2026-11-03T09:40:23.061177+08:00",
     "intraday": null,
-    "cross": "2026-11-03T09:35:23.021804+08:00"
+    "cross": "2026-11-03T09:40:54.755829+08:00"
   },
   "stocks": {
     "2313": {
@@ -1157,34 +1157,34 @@
     },
     "kr": {
       "KOSPI": {
-        "price": 5705.1201171875,
+        "price": 5726.3798828125,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-03T09:15:00+08:00",
+        "latest_bar_at_taipei": "2026-11-03T09:20:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "KOSDAQ": {
-        "price": 714.280029296875,
+        "price": 717.0599975585938,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-03T09:15:00+08:00",
+        "latest_bar_at_taipei": "2026-11-03T09:20:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "SAMSUNG": {
-        "price": 221250.0,
+        "price": 222500.0,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-03T09:15:00+08:00",
+        "latest_bar_at_taipei": "2026-11-03T09:20:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "SK_HYNIX": {
-        "price": 1417000.0,
+        "price": 1429000.0,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-03T09:15:00+08:00",
+        "latest_bar_at_taipei": "2026-11-03T09:20:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       }
@@ -1193,13 +1193,13 @@
   "futures": {
     "TXFR1": {
       "price": null,
-      "trade_time": "2026-11-03T09:35:43.809000+08:00",
+      "trade_time": "2026-11-03T09:41:16.932000+08:00",
       "source": "Shioaji_futures_snapshot",
       "contract_code": "TXFR1",
       "data_kind": "snapshot",
       "status": "PASS",
       "is_live": false,
-      "last_observation_price": 44561.0
+      "last_observation_price": 44560.0
     }
   },
   "warnings": [
@@ -1328,12 +1328,12 @@
   "input_fingerprints": {
     "market/morning": {
       "snapshot": "2026-11-03/morning.json",
-      "sha256": "e9eccb87eef57206cdd5f7a21f8e793473f4ed374209e621d8ceea0f75194071"
+      "sha256": "13383ded739bba8042e10ced6df3ee76d41cfe4d6b4a8009b7650f0c09179b09"
     },
     "current/cross-morning": {
       "snapshot": "2026-11-03/cross-morning.json",
-      "sha256": "4667cd8222e9309edd60fdefd5c19bff6fdfafe5c0bf42be2fa3db14848fe4f1"
+      "sha256": "a21d4635e5d02fe56d00bd8bbe0414423175897a77f44ff04c9a3aa2b6496b0e"
     }
   },
-  "data_report_id": "DATA-2026-11-03-morning-41560572316"
+  "data_report_id": "DATA-2026-11-03-morning-41561222475"
 }
