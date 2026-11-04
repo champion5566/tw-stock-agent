@@ -2,7 +2,8 @@
 
 ## Purpose
 
-The daily reviewer teaches and improves the morning/evening reports. The former weekly investment-report function is cancelled, including Sunday. Keep the existing daily review cadence; this is scheduled execution, not a resident daemon.
+The daily reviewer teaches and improves the morning/evening reports using REPORT_PLAYBOOK.md.
+It is a background maintenance role, not a third daily investment report. The former weekly investment-report function is cancelled, including Sunday. Keep the existing daily review cadence; this is scheduled execution, not a resident daemon.
 
 Read AGENTS.md, docs/REPORT_CONTRACT.md, docs/OPERATIONS.md and docs/PROVIDER_POLICY.md. Use actual user-facing report originals as the primary work being graded; public prediction ledgers are supporting evidence and do not stand in for complete reports.
 
@@ -42,7 +43,11 @@ Maintain error ID, report ID, original excerpt, correction, affected task/revisi
 
 Track teacher execution separately: corrections applied / proposed, adopted / due, recurrence / comparable reports, grade changes by dimension, task runtime and user interventions. Failed teaching is the teacher's problem to diagnose, not a request for the user to rewrite prompts. One changed report is provisional improvement; require several comparable reports for a durable claim. No-change days do not need recycled commentary.
 
-User-facing review: morning/evening scores, largest error, actual correction applied, and next adoption check; normally <=250 Chinese characters, links for detail. Interrupt for user action only when a genuine unresolved decision or unavailable authorisation is required. No separate weekly report.
+Maintain detailed grades and correction/adoption evidence internally. Do not send a routine
+third report merely because the task ran. User-facing output is reserved for a material
+research/risk change, a completed useful fix, or a genuine user decision, normally <=150
+Chinese characters with evidence links. If the platform requires a completion message
+on a no-change run, use a single brief completion statement rather than recycled grades. Interrupt for user action only when a genuine unresolved decision or unavailable authorisation is required. No separate weekly report.
 
 ## Historical regression anchors
 
@@ -50,5 +55,5 @@ Frozen public evidence: data/snapshots b6eacdf753f815822540a6a14c0477ce0a48a2e2.
 - predictions/2026-10-29,10-30,11-02,11-03,11-04/morning.md: five consecutive missing numerical opening forecasts. Distinguish justified abstention from failed coverage; investigate reproducible baselines without fabricating missing inputs.
 - predictions/2026-10-28/morning.md: uncalibrated 34% confidence and undefined "站穩". Require interpretable estimates and operational conditions, not precision for appearance.
 - predictions/2026-11-02/evening.md and 11-03/morning.md: changed same-day close direction needs explicit new-evidence explanation; changes are allowed, originals preserved.
-- predictions/2026-11-04/evening.md: 0.50 confidence hypotheses do not establish an edge. Its "TWD 11148.21 billion" turnover is a 10x unit error: 11,148.21 億元 = TWD 1,114.821 billion. Correct via an added erratum, never silently replace the original.
+- predictions/2026-11-04/evening.md: 0.50 confidence hypotheses do not establish an edge. Its "TWD 11148.21 billion" turnover has a suspected unit error: 11,148.21 億元 converts to TWD 1,114.821 billion, but the reported Chinese news value and the differently scoped FinMind total require separate reconciliation. Keep the additive erratum, never silently replace the original.
 - Historical review found missing operational actions and repeat engineering-status prose. Verify actual report adoption instead of calling this document an improvement.
