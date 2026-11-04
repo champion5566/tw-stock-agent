@@ -1,13 +1,13 @@
 {
   "schema_version": "scenario-report-v2",
   "scenario": "morning",
-  "generated_at_taipei": "2026-11-04T09:34:57.463474+08:00",
+  "generated_at_taipei": "2026-11-04T09:39:51.023825+08:00",
   "execution_kind": "REPORT",
   "point_in_time_verified": false,
   "source_fetched_at": {
-    "market": "2026-11-04T09:34:11.476577+08:00",
+    "market": "2026-11-04T09:38:57.547773+08:00",
     "intraday": null,
-    "cross": "2026-11-04T09:34:37.315471+08:00"
+    "cross": "2026-11-04T09:39:31.378754+08:00"
   },
   "stocks": {
     "2313": {
@@ -1123,52 +1123,52 @@
     },
     "jp": {
       "NIKKEI225": {
-        "price": 61558.0703125,
+        "price": 61678.80859375,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T09:15:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T09:20:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "TOPIX_ETF_PROXY": {
-        "price": 407.79998779296875,
+        "price": 408.5,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T09:15:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T09:20:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "ADVANTEST": {
-        "price": 33720.0,
+        "price": 33760.0,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T09:15:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T09:20:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "TOKYO_ELECTRON": {
-        "price": 9511.0,
+        "price": 9562.0,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T09:15:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T09:20:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       }
     },
     "kr": {
       "KOSPI": {
-        "price": 5607.91015625,
+        "price": 5602.77978515625,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T09:10:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T09:15:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "KOSDAQ": {
-        "price": 691.719970703125,
+        "price": 693.760009765625,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T09:10:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T09:15:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
@@ -1176,15 +1176,15 @@
         "price": 217250.0,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T09:10:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T09:15:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "SK_HYNIX": {
-        "price": 1387000.0,
+        "price": 1385000.0,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T09:10:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T09:15:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       }
@@ -1193,13 +1193,13 @@
   "futures": {
     "TXFR1": {
       "price": null,
-      "trade_time": "2026-11-04T09:34:55.755000+08:00",
+      "trade_time": "2026-11-04T09:39:49.054000+08:00",
       "source": "Shioaji_futures_snapshot",
       "contract_code": "TXFR1",
       "data_kind": "snapshot",
       "status": "PASS",
       "is_live": false,
-      "last_observation_price": 43344.0
+      "last_observation_price": 43317.0
     }
   },
   "warnings": [
@@ -1328,12 +1328,12 @@
   "input_fingerprints": {
     "market/morning": {
       "snapshot": "2026-11-04/morning.json",
-      "sha256": "a068a4347d03719501f8efdc276292a371f9c893ae8ccc693612db57f4ab23b4"
+      "sha256": "a455d164afdccf9649cdabd10a795dccf9203af902fab5e3ab3ca8c6f0e05b68"
     },
     "current/cross-morning": {
       "snapshot": "2026-11-04/cross-morning.json",
-      "sha256": "de6bed01de9c2844130c7634cd09366387e0418ae884fd1bded8f2ed582fe68a"
+      "sha256": "a623e23448c3791273f5f36af2a2e8ec0dfdc28ecf6072cdc5f7be5c8c53309a"
     }
   },
-  "data_report_id": "DATA-2026-11-04-morning-41754906223"
+  "data_report_id": "DATA-2026-11-04-morning-41755447056"
 }
