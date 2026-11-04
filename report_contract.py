@@ -37,8 +37,16 @@ def cutoff_age_status(observation, checked, cutoff, maximum):
     return age_status(observation, checked, maximum)
 
 
-def section(statuses):
-    return {"status":"PASS" if statuses and all(x == "PASS" for x in statuses.values()) else "PARTIAL",
+def asia_status(area, observation, delivery, cutoff):
+    import exchange_calendars as calendars
+    calendar = calendars.get_calendar('XTKS' if area == 'jp' else 'XKRX')
+    if not calendar.is_session(cutoff.date().isoformat()):
+        return 'MARKET_CLOSED'
+    return cutoff_age_status(observation, delivery, cutoff, 15)
+
+
+def section(statuses, acceptable=("PASS",)):
+    return {"status":"PASS" if statuses and all(x in acceptable for x in statuses.values()) else "PARTIAL",
             "items":statuses}
 
 
@@ -96,8 +104,8 @@ def evaluate(report, market, cross, checked, experiment):
             close_items[name] = "PASS" if obs.get("source_date") == expected_us and obs.get("session_completed") and positive_price(obs.get("price")) else "MISSING_COMPLETED_SESSION_BAR"
         sections["us_regular_close"] = section(close_items)
         sections["us_regular_close"]["target_session"] = expected_us
-        sections["asia_open"] = section({f"{area}/{name}":cutoff_age_status(cross.get("assets", {}).get(area, {}).get(name, {}), delivery, cutoff, 15)
-                                        for area, names in ASIA_REQUIRED.items() for name in names})
+        sections["asia_open"] = section({f"{area}/{name}":asia_status(area, cross.get("assets", {}).get(area, {}).get(name, {}), delivery, cutoff)
+                                        for area, names in ASIA_REQUIRED.items() for name in names}, acceptable=("PASS", "MARKET_CLOSED"))
         tx = cross.get("taifex", {}).get("shioaji_session_tx", {})
         stamp = parse_time(tx.get("trade_time"))
         tw_previous = completed_session("XTAI", datetime.combine(checked.date(), time(8, 40), TW))["date"]

@@ -83,7 +83,7 @@ def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=Non
             for name, observation in assets.items():
                 # Expose only source-level fields, never label a Yahoo bar as live/official close.
                 report["cross_market"][area][name] = {k: observation.get(k) for k in (
-                    "price", "status", "source", "latest_bar_at_taipei", "data_kind", "is_formal_close")}
+                    "price", "status", "source", "latest_bar_at_taipei", "trade_time", "source_date", "source_url", "change_pct", "provider_time_text", "provider_delay_minutes", "timestamp_basis", "source_date_inferred", "regional_selection", "data_kind", "is_formal_close")}
     future = (cross.get("taifex", {}).get("shioaji_session_tx") if mode == "morning" else None) or intraday.get("futures", {}).get("TXFR1") or cross.get("taifex", {}).get("shioaji_live_tx") or {}
     if future:
         obs = {k: future.get(k) for k in ("price", "trade_time", "source", "contract_code", "data_kind")}
@@ -107,6 +107,9 @@ def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=Non
         for key in ("daily_ohlcv", "institutional", "margin"):
             coverage[key + "_target_session"] = sum(s[key]["status"] == "PASS" for s in report["stocks"].values())
         complete = all(value == len(STOCKS) for value in coverage.values())
+    report["market_context"] = market.get("market_context", {})
+    report["security_identity"] = cross.get("security_identity", {})
+    report["regional_source_errors"] = cross.get("regional_source_errors", [])
     report["us_regular_close"] = cross.get("us_regular_close", {}) if mode == "morning" else {}
     report["completed_night_input"] = cross.get("completed_night_input")
     report["coverage"] = coverage
