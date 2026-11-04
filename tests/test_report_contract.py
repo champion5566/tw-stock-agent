@@ -23,7 +23,7 @@ from shioaji_quotes import collect_quotes
 
 
 def fixture(mode='morning'):
-    checked = datetime(2026, 10, 22, 8, 42, tzinfo=TW) if mode == 'morning' else datetime(2026, 10, 22, 22, 56, tzinfo=TW)
+    checked = datetime(2026, 10, 22, 8, 36, tzinfo=TW) if mode == 'morning' else datetime(2026, 10, 22, 22, 56, tzinfo=TW)
     target = '2026-10-21' if mode == 'morning' else '2026-10-22'
     rows=[]
     for index, day in enumerate(pd.bdate_range(end=target, periods=25)):
@@ -48,10 +48,10 @@ def fixture(mode='morning'):
                     'futures_positioning':('foreign_net_contracts',)}
     for name, keys in context_fields.items():
         market['market_context'][name]={'status':'PASS','source_date':target,**{key:1 for key in keys}}
-    cross={'fetched_at_taipei':checked.replace(minute=38 if mode=='morning' else 52).isoformat(),
+    cross={'fetched_at_taipei':checked.replace(minute=30 if mode=='morning' else 52).isoformat(),
            'assets':{'us':{}}, 'taifex':{}, 'us_regular_close':{}}
     for area,names in ASIA_REQUIRED.items():
-        cross['assets'][area]={name:{'price':100,'status':'PASS','latest_bar_at_taipei':checked.replace(hour=8,minute=40).isoformat()}
+        cross['assets'][area]={name:{'price':100,'status':'PASS','latest_bar_at_taipei':checked.replace(hour=8,minute=30).isoformat()}
                                for name in names}
     for name in US_REQUIRED:
         cross['us_regular_close'][name]={'price':100,'source_date':'2026-10-21','session_completed':True,'status':'PASS'}
@@ -66,7 +66,7 @@ class CalendarAndRequirementTests(unittest.TestCase):
         self.assertEqual(set(REPORT_STOCKS),{'0050','006208','00631L','2330','3707','5483'})
         self.assertTrue(set(REPORT_STOCKS).issubset(STOCKS))
         self.assertFalse(set(REPORT_STOCKS).intersection(WATCH_STOCKS))
-        self.assertEqual(DELIVERY_TIMES['morning'].isoformat(),'08:50:00')
+        self.assertEqual(DELIVERY_TIMES['morning'].isoformat(),'08:40:00')
 
     def test_weekend_and_us_holiday_calendar(self):
         monday=datetime(2026,10,26,8,50,tzinfo=TW)

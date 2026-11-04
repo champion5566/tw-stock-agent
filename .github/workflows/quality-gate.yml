@@ -7,6 +7,7 @@ on:
       - '**.py'
       - '.github/workflows/*.yml'
       - 'scripts/*.sh'
+      - 'scripts/*.py'
       - 'tests/**'
 permissions:
   contents: read

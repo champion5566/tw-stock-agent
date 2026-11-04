@@ -1,3 +1,5 @@
+> Historical audit and acceptance evidence. Current timing and operations are defined by REPORT_CONTRACT.md and OPERATIONS.md; older times below describe prior revisions.
+
 # Architecture audit — 2026-10-22
 
 Scope: main branch source tree, workflow definitions, available run outcomes, recent PRs #20–#22, and the agreed user requirements. This is an incremental cleanup, **not** a claim of complete integration validation.

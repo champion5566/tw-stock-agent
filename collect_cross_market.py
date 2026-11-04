@@ -146,58 +146,66 @@ def main():
                 print("QUOTE", area, name, ticker, obs["status"],
                       obs.get("latest_bar_at_taipei"), flush=True)
 
-    # US daily OHLCV: FinMind first, Yahoo daily history as fallback.
-    # Keep each provider and its source date separate from intraday IEX trades.
-    out["us_daily"] = {}
-    symbols = sorted(set(t for group in ASSETS["us"].values()
-                         for t in group.values() if not t.startswith("^")))
-    start = (now.date() - timedelta(days=365)).isoformat()
-    end = now.date().isoformat()
-    for symbol in symbols:
-        primary = attempt(lambda s=symbol: finmind("USStockPrice", s, start, end))
-        rows = primary.get("data") if primary["status"] == "PASS" else None
-        if isinstance(rows, list) and rows:
-            rows.sort(key=lambda r: str(r.get("date", "")))
-            out["us_daily"][symbol] = {
-                "status": "PASS", "source": "FinMind USStockPrice",
-                "data_kind": "daily", "is_live": False,
-                "source_date": rows[-1].get("date"), "row_count": len(rows),
-                "history": rows, "latest": rows[-1],
-                "note": "Daily OHLCV, not live; compare trade dates and adjustments."
-            }
-        else:
-            # A provider error or missing ticker must not be represented as zero price.
-            fallback = attempt(lambda s=symbol: yf.Ticker(s).history(
-                period="1y", interval="1d", auto_adjust=False,
-                raise_errors=True))
-            if fallback["status"] == "PASS" and not fallback["data"].empty:
-                df = fallback["data"]
-                hist = [
-                    {"date": idx.date().isoformat(),
-                     "Open": float(row["Open"]), "High": float(row["High"]),
-                     "Low": float(row["Low"]), "Close": float(row["Close"]),
-                     "Volume": int(row["Volume"])}
-                    for idx, row in df.iterrows()
-                ]
+    # Report preparation does not download a year of history. The explicit
+    # full profile preserves the former research envelope for manual research.
+    out["history_profile"] = os.getenv("COLLECTION_PROFILE", "full")
+    if out["history_profile"] == "full":
+        # US daily OHLCV: FinMind first, Yahoo daily history as fallback.
+        # Keep each provider and its source date separate from intraday IEX trades.
+        out["us_daily"] = {}
+        symbols = sorted(set(t for group in ASSETS["us"].values()
+                             for t in group.values() if not t.startswith("^")))
+        start = (now.date() - timedelta(days=365)).isoformat()
+        end = now.date().isoformat()
+        for symbol in symbols:
+            primary = attempt(lambda s=symbol: finmind("USStockPrice", s, start, end))
+            rows = primary.get("data") if primary["status"] == "PASS" else None
+            if isinstance(rows, list) and rows:
+                rows.sort(key=lambda r: str(r.get("date", "")))
                 out["us_daily"][symbol] = {
-                    "status": "FALLBACK", "source": "Yahoo/yfinance 1d",
+                    "status": "PASS", "source": "FinMind USStockPrice",
                     "data_kind": "daily", "is_live": False,
-                    "source_date": hist[-1]["date"], "row_count": len(hist),
-                    "history": hist, "latest": hist[-1],
-                    "finmind_status": primary["status"],
-                    "finmind_error": primary.get("error"),
-                    "note": "Yahoo fallback; verify splits and dividends before backtests."
+                    "source_date": rows[-1].get("date"), "row_count": len(rows),
+                    "history": rows, "latest": rows[-1],
+                    "note": "Daily OHLCV, not live; compare trade dates and adjustments."
                 }
             else:
-                out["us_daily"][symbol] = {
-                    "status": "MISSING", "source": None,
-                    "finmind_status": primary["status"],
-                    "finmind_error": primary.get("error"),
-                    "yahoo_error": fallback.get("error")
-                }
-        print("US_DAILY", symbol, out["us_daily"][symbol]["status"],
-              out["us_daily"][symbol].get("source_date"), flush=True)
-        time.sleep(0.15)
+                # A provider error or missing ticker must not be represented as zero price.
+                fallback = attempt(lambda s=symbol: yf.Ticker(s).history(
+                    period="1y", interval="1d", auto_adjust=False,
+                    raise_errors=True))
+                if fallback["status"] == "PASS" and not fallback["data"].empty:
+                    df = fallback["data"]
+                    hist = [
+                        {"date": idx.date().isoformat(),
+                         "Open": float(row["Open"]), "High": float(row["High"]),
+                         "Low": float(row["Low"]), "Close": float(row["Close"]),
+                         "Volume": int(row["Volume"])}
+                        for idx, row in df.iterrows()
+                    ]
+                    out["us_daily"][symbol] = {
+                        "status": "FALLBACK", "source": "Yahoo/yfinance 1d",
+                        "data_kind": "daily", "is_live": False,
+                        "source_date": hist[-1]["date"], "row_count": len(hist),
+                        "history": hist, "latest": hist[-1],
+                        "finmind_status": primary["status"],
+                        "finmind_error": primary.get("error"),
+                        "note": "Yahoo fallback; verify splits and dividends before backtests."
+                    }
+                else:
+                    out["us_daily"][symbol] = {
+                        "status": "MISSING", "source": None,
+                        "finmind_status": primary["status"],
+                        "finmind_error": primary.get("error"),
+                        "yahoo_error": fallback.get("error")
+                    }
+            print("US_DAILY", symbol, out["us_daily"][symbol]["status"],
+                  out["us_daily"][symbol].get("source_date"), flush=True)
+            time.sleep(0.15)
+
+    else:
+        out["us_daily"] = {}
+        out["history_note"] = "Annual history excluded from report-critical path; full profile remains available."
 
     if slot in ("morning", "nightclose"):
         out["us_regular_close"] = {}
@@ -237,6 +245,7 @@ def main():
                 lambda t=tool, a=args: mcp("tools/call",
                                           {"name":t, "arguments":a}, 2))
             print("TAIFEX", tool, out["taifex"][tool]["status"], flush=True)
+    out["collection_completed_at_taipei"] = datetime.now(TW).isoformat()
     path = write_snapshot(out, now.date().isoformat(), "cross-" + slot)
     print("OUTPUT_PATH", path, "BYTES", path.stat().st_size)
 

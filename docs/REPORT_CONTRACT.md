@@ -1,105 +1,79 @@
-# Report data readiness and timing contract
+# Report contract v2
 
-The connected enabled ChatGPT tasks currently target **08:50** and **23:00 Asia/Taipei**.
-The old 08:20 task is disabled. Do not infer active delivery settings from older README
-text or change delivery times without checking the actual tasks.
+Executable authority: `report_contract.py`. All times are Asia/Taipei.
 
-## Roles and required data
-
-- Required report instruments: **0050, 006208, 00631L, 2330, 3707, 5483**.
-- Optional observations: **2313, 2367, 3491**. An observation is not a claim of ownership.
-- No private position size, cost, account or profit information is part of repository artifacts.
-
-`stock_data_status` describes only the historical stock subset. Overall data readiness
-is `DATA_READY` only when **all** required sections pass; otherwise `DATA_PARTIAL`.
-It never certifies the prediction ledger, analysis quality, message publication or receipt.
-
-| Section | Morning | Evening |
-|---|---|---|
-| Six stocks | Previous completed XTAI session | Latest completed XTAI session by report target |
-| Daily fields | Previous close, OHLC, shares, turnover TWD, amplitude, prior-5/prior-20-session volume ratios | Same |
-| Institutional | Foreign investor + foreign dealer-self, trust, dealer components, total and 5-session net shares | Same |
-| Credit | Margin/short balance, daily change and 5-session change in provider-native units | Same |
-| Market context | TAIEX/TPEX, breadth, aggregate institutions/margin and futures positioning for target session | Same |
-| US | Nine completed regular-session daily bars, separately from extended-hours last bars | Nine observations evaluated at 23:00; >15m delayed, >30m stale |
-| Japan/Korea | Eight opening observations, evaluated at 08:50; actual TOPIX required | Optional historical context |
-| TX | Last broker observation within 10 minutes of the completed night end, explicitly non-live | Actual Tick within 10 minutes of 23:00 |
-
-TOPIX ETF remains an optional proxy. It cannot satisfy the actual TOPIX requirement.
-Market context fields not yet collected are explicit blockers. The contract must expose
-these gaps rather than lower requirements until current sources happen to pass.
-
-Daily dates use the maintained `exchange_calendars` XTAI/XNYS calendars, including
-weekends, holidays and DST. Calendar expectations do not override actual source dates
-or certify unannounced closures. Older source rows cannot redefine the expected session.
-
-Completed US daily bars use yfinance `interval=1d`, `prepost=False`, and only the expected
-completed XNYS session. They are provider regular-session daily bars, **not** certified
-exchange settlement files. Broker TX snapshots are also not exchange settlement files.
-TX night-session validation keeps actual Taiwan timestamps; no automatic conversion of
-a trading-date label into an invented final trade timestamp is performed.
-
-FinMind institutional column semantics follow its official wide-dataset documentation:
-modern listed/OTC Dealer is split into Dealer_self + Dealer_Hedging, with Dealer aggregate
-zero in those rows. Components are used once; a nonzero conflicting aggregate is flagged.
-Foreign dealer-self is a real separate category and is included once in foreign totals.
-
-## Preparation and delivery
-
-| Stage | Taipei time | UTC cron | Deadline |
+| Scenario | Collection window | Data cutoff | Report target |
 |---|---|---|---|
-| Taiwan morning snapshot | 08:25 weekdays | `25 0 * * 1-5` | Morning artifact before 08:45 |
-| Cross-market morning + data report | 08:38 weekdays | `38 0 * * 1-5` | 08:45 |
-| ChatGPT morning | **08:50** daily | Managed by existing task | Record actual completion; no automatic delivery acknowledgment |
-| Taiwan evening refresh | 22:15 weekdays | `15 14 * * 1-5` | Evening artifact before 22:58 |
-| Cross-market evening + fresh TX + data report | 22:52 weekdays | `52 14 * * 1-5` | 22:58 |
-| ChatGPT evening | **23:00** daily | Managed by existing task | Record actual completion; no automatic delivery acknowledgment |
-| Post-night observation | 05:35 Tue-Sat | `35 21 * * 1-5` | Stored as historical session observation |
+| Morning | Never before 08:20 | 08:38 | 08:40 |
+| Evening | Request at 22:50; native backup 22:52 | 22:58 | 23:00 |
 
-GitHub and ChatGPT schedules are best effort. Late collection/generation is flagged;
-it must not silently pass the cutoff check. Quotes are tested for age **at delivery
-target**, not just at their earlier capture time. On closed markets or missing feeds,
-the user still receives a visible status report rather than silence.
+Morning preparation requests are independent of GitHub cron; both are best effort.
+Nightclose (05:35 Tue–Sat) stores historical night observations, not live morning ticks.
+Native Taiwan background refresh remains 08:25/22:15. Weekly reporting stays Sunday 19:00.
 
-The post-night and morning paths request a single futures snapshot without subscribing
-or waiting for a Tick outside the session. The evening path subscribes for a bounded
-window. A day-session or pre-open timestamp cannot satisfy the night-last-observation gate.
+## Required public data
 
-## Consumer artifact and independent evidence
+- Six instruments: 0050, 006208, 00631L, 2330, 3707, 5483. Watch-only: 2313, 2367, 3491.
+- Target completed XTAI session OHLCV, turnover TWD, previous close, amplitude,
+  prior-5/prior-20-session volume ratios, institutional components/5-session flow,
+  credit balances/daily and 5-session changes. Share and native-lot units are distinct.
+- Market context: TAIEX/TPEX, breadth, aggregate institutions/margin, futures positioning.
+- Morning: nine completed US regular-session daily bars, eight JP/KR observations
+  including actual TOPIX, and completed-night TX observation near actual 05:00 end.
+- Evening: nine US observations (>15m DELAYED, >30m STALE) and TX Tick within 10m
+  of the 23:00 target. Age must also be reassessed at actual completion.
+- ETF proxies cannot satisfy actual indices. Daily bars, snapshots and ticks remain
+  distinct. A valid previous completed session is expected historical morning data.
 
-Cross-market preparation reads the already-published Taiwan input using a pinned
-`data/snapshots` checkout and publishes small public-data-only consumer artifacts:
+`scenario-report-v2` remains the outer schema; `readiness.version=report-contract-v2`
+adds the corrected times and stricter cutoff/collection-window checks. Legacy v1
+packages remain readable historical evidence, not silently revalidated current packages.
+`stock_data_status=COMPLETE` describes only stock data. `DATA_READY` requires every
+required section; unavailable sections stay visible as DATA_PARTIAL.
 
-- `reports/YYYY-MM-DD/morning.json`
-- `reports/YYYY-MM-DD/evening.json`
+## Point-in-time and publication
 
-Each has the exact input SHA-256 fingerprints, generation time, target session,
-cutoff, per-section failures and deterministic features. Raw source histories remain
-in the original snapshot paths. The large raw files are not required for routine
-report generation when the consumer artifact exists.
+Collection completion is distinct from collection start. Input completion, generation
+and every morning Asia observation must be before the cutoff. Missing completion in
+legacy inputs falls back to the recorded fetch time, but does not establish publication.
+A source bar after cutoff is OBSERVATION_AFTER_CUTOFF, distinct from a provider clock
+being ahead of actual wall time. Morning source collection before 08:20 is rejected.
 
-The following are independent states:
+Bundles contain fingerprints, original clocks, run/commit identity and independent states.
+The publisher archives every candidate, records a pre-push check, and preserves a timely
+report against late/weaker retries. Preview output never outranks a timely formal package.
+Actual publication requires inspecting the GitHub file-changing commit and exact-revision
+readback. A pre-push timestamp alone is insufficient. A successful push is not user delivery.
 
-1. `data_readiness`: `DATA_READY` / `DATA_PARTIAL`.
-2. `parent_ledger_status`: `NOT_CHECKED` until the reporting task reads original text.
-3. New prediction-ledger persistence: only VERIFIED after actual write + readback.
-4. Report task execution: platform scheduled/start/completion and recorded output.
-5. User delivery: `NOT_ACKNOWLEDGED` / platform unknown until independent acknowledgment.
+Reporting tasks must pin a data-branch revision before reading a report and verify its
+file-changing commit is no later than cutoff. Original prediction text must exist before
+09:00 to count as a morning prediction. Late/backfilled/unverifiable samples are excluded
+from formal accuracy metrics. Missing evidence produces UNKNOWN/UNVERIFIABLE, never a
+reconstructed result. Data packages keep `formal_sample_eligible=false` because they
+cannot certify a separately created model prediction or ledger.
 
-A task record with visible content is evidence of generated output; it is not proof
-that a push notification reached a device or was opened. Previous blocked ledger writes
-are not bypassed or reconstructed as successful. Old original text and IDs remain intact.
+## Independent acceptance states
 
-## Verification
+| State | Evidence required |
+|---|---|
+| Code | Offline verification and actual CI |
+| Source execution | Run/commit, step outcomes and source clocks |
+| Data | Per-section checks and exact input fingerprints |
+| Publication | Successful push, file-changing commit before cutoff, exact readback |
+| Ledger | New non-personal original text, successful create and exact readback |
+| Report output | Platform scheduled/start/completion/result for the correct occurrence |
+| Notification receipt | Independent platform acknowledgment; otherwise UNKNOWN |
 
-Run `python -m unittest discover -s tests -v`. Tests cover unchanged existing behavior,
-calendar/DST, actual six-instrument requirements, missing/invalid fields, source priority,
-5-session calculations, source units, old/future/late inputs, TOPIX proxy rejection,
-regular-session vs ongoing/extended-hours bars, night end vs current ticks, broker
-cleanup, real backtesting and concurrent Git publishing. Actual provider runs and
-future delivery observation remain separate evidence.
+No position size, cost, account or profit information belongs in public artifacts.
+Historical ledgers are create-only, never rewritten or reconstructed. Existing report
+sections, scoring weights and original prediction identifiers are preserved.
 
-Primary references:
-- https://github.com/gerrymanoim/exchange_calendars
-- https://ranaroussi.github.io/yfinance/reference/yfinance.price_history.html
-- https://finmind.github.io/tutor/TaiwanMarket/Chip/
+## Verification and open coverage
+
+Run `bash scripts/verify.sh`, then inspect an actual live preparation run and published
+bundle. A current-time preview does not certify future 08:40/23:00 execution. Actual TOPIX,
+market context and provider completed-session gaps remain open until independently fixed
+and verified. Exchange calendars do not certify unannounced closures.
+
+Primary provider references remain exchange_calendars, yfinance regular-session history,
+FinMind Taiwan chip datasets and the official Shioaji SDK documentation.

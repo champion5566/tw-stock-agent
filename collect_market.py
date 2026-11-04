@@ -40,7 +40,8 @@ def main():
     if slot not in ("morning", "evening"):
         raise ValueError("REPORT_SLOT must be morning/evening")
     asof = now.date()
-    start = (asof - timedelta(days=260)).isoformat()
+    history_days = 60 if os.getenv("COLLECTION_PROFILE") == "report" else 260
+    start = (asof - timedelta(days=history_days)).isoformat()
     end = asof.isoformat()
     result = {
         "schema_version": "1.1",
@@ -126,6 +127,7 @@ def main():
         "live_quotes": sum(s["mcp_quote"].get("is_live", False)
                            for s in result["stocks"].values()),
     }
+    result["collection_completed_at_taipei"] = datetime.now(TZ).isoformat()
     out = write_snapshot(result, end, slot)
     print("OUTPUT_PATH", out, "BYTES", out.stat().st_size)
     print("FETCH_COMPLETED_WITH_PARTIAL_FAILURES_POSSIBLE")

@@ -20,6 +20,10 @@ on:
     branches:
       - main
     paths:
+      - preparation/requests/**/*.json
+      - scripts/resolve_preparation.py
+      - scripts/publish_overlay.py
+      - scripts/reuse_night_observation.py
       - collect_cross_market.py
       - report_contract.py
       - report_scenarios.py
@@ -45,33 +49,24 @@ jobs:
   quote-verification:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      COLLECTION_PROFILE: report
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install maintained quote client
         run: python -m pip install 'yfinance>=0.2.60,<2' 'shioaji>=1.2,<2' 'exchange_calendars>=4.5,<5'
-      - name: Resolve report slot
-        shell: bash
-        env:
-          DISPATCH_SLOT: ${{ github.event.inputs.slot }}
-          SCHEDULE: ${{ github.event.schedule }}
-        run: |
-          if [ -n "$DISPATCH_SLOT" ]; then
-            echo "REPORT_SLOT=$DISPATCH_SLOT" >> "$GITHUB_ENV"
-          elif [ "$SCHEDULE" = '35 21 * * 1-5' ]; then
-            echo 'REPORT_SLOT=nightclose' >> "$GITHUB_ENV"
-          elif [ "$SCHEDULE" = '30 0 * * 1-5' ] || [ "$SCHEDULE" = '35 0 * * 1-5' ]; then
-            echo 'REPORT_SLOT=morning' >> "$GITHUB_ENV"
-          else
-            echo 'REPORT_SLOT=evening' >> "$GITHUB_ENV"
-          fi
+      - name: Resolve validated preparation request or native schedule
+        run: python scripts/resolve_preparation.py
       # Morning must be self-contained. The previous design read the market-data
       # workflow's separate published snapshot, which can be absent/stale when
       # scheduled runs are delayed, skipped, or execute out of order.
-      - name: Collect Taiwan market snapshot in the same morning run
-        if: env.REPORT_SLOT == 'morning'
+      - name: Collect Taiwan snapshot in the same report run
+        if: env.REPORT_SLOT != 'nightclose'
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
         run: python collect_market.py
@@ -81,35 +76,27 @@ jobs:
           ALPACA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY_ID }}
           ALPACA_API_SECRET_KEY: ${{ secrets.ALPACA_API_SECRET_KEY }}
         run: python collect_cross_market.py
+      - name: Load published evidence for completed-night reuse
+        if: env.REPORT_SLOT == 'morning'
+        uses: actions/checkout@v4
+        with:
+          ref: data/snapshots
+          path: stored-snapshots
       - name: Capture read-only TX night quote with timestamp
         env:
           SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
           SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
         run: python collect_shioaji_night.py
-      - name: Read already published Taiwan snapshot from a pinned data-branch checkout
-        if: env.REPORT_SLOT == 'evening'
-        uses: actions/checkout@v4
-        with:
-          ref: data/snapshots
-          path: stored-snapshots
+      - name: Reuse completed night observation with original source and receipt clocks
+        if: env.REPORT_SLOT == 'morning'
+        run: python scripts/reuse_night_observation.py
       - name: Build small report consumer artifact with section-level readiness
         if: env.REPORT_SLOT != 'nightclose'
-        env:
-          EVENT_NAME: ${{ github.event_name }}
+        shell: bash
         run: |
-          if [ "$EVENT_NAME" = 'schedule' ]; then
-            if [ "$REPORT_SLOT" = 'morning' ]; then
-              python report_scenarios.py --scenario morning --market-root out
-            else
-              python report_scenarios.py --scenario "$REPORT_SLOT" --market-root stored-snapshots
-            fi
-          else
-            if [ "$REPORT_SLOT" = 'morning' ]; then
-              python report_scenarios.py --scenario morning --market-root out --experiment
-            else
-              python report_scenarios.py --scenario "$REPORT_SLOT" --market-root stored-snapshots --experiment
-            fi
-          fi
+          args=()
+          if [ "$PREPARATION_KIND" = 'PREVIEW' ]; then args+=(--experiment); fi
+          python report_scenarios.py --scenario "$REPORT_SLOT" --market-root out "${args[@]}"
       - name: Save auditable test results
         if: always()
         uses: actions/upload-artifact@v4
