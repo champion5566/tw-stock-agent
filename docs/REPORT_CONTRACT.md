@@ -79,8 +79,10 @@ cannot certify a separately created model prediction or ledger.
 | Notification receipt | Independent platform acknowledgment; otherwise UNKNOWN |
 
 No position size, cost, account or profit information belongs in public artifacts.
-Historical ledgers are create-only, never rewritten or reconstructed. Existing report
-sections, scoring weights and original prediction identifiers are preserved.
+Historical ledgers are create-only, never rewritten or reconstructed. Required data/content
+coverage, scoring weights and original prediction identifiers are preserved. Visible A–L
+headings and repeated audit tables are replaced by the compact presentation in
+REPORT_PLAYBOOK.md. Both slots carry shared RESEARCH_STATE in their new immutable ledgers.
 
 ## Verification and open coverage
 
