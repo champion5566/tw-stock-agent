@@ -70,6 +70,7 @@ class LedgerReviewTests(unittest.TestCase):
 
     def test_invalid_target_date_fails_closed(self):
         self.prediction["fields"]["期間"] = "2026-02-30 regular session"
+        self.prediction["fields"]["數字門檻"] = "2026-02-30 official 2330 close <2295.00 TWD"
         self.assertEqual(self.evaluate(report())["reason"], "INVALID_TARGET_DATE")
 
     def test_market_provider_outcome_is_not_official_certification(self):
