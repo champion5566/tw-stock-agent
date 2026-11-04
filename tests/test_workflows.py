@@ -28,3 +28,12 @@ class WorkflowContracts(unittest.TestCase):
         research='\n'.join(step.get('run','') for step in jobs['research']['steps'])
         self.assertIn('SOURCE_SNAPSHOT',research)
         self.assertIn('backtest_baseline.py',research)
+
+    def test_ledger_review_is_outside_ingestion_and_pins_published_revision(self):
+        workflow=yaml.safe_load((ROOT/'.github/workflows/market-data.yml').read_text())
+        job=workflow['jobs']['ledger-review']
+        self.assertEqual(job['needs'],'snapshot')
+        commands='\n'.join(step.get('run','') for step in job['steps'])
+        self.assertIn('--data-ref FETCH_HEAD',commands)
+        self.assertIn('$REVIEW_RUN_ID.json',commands)
+        self.assertIn('publish_snapshots.sh',commands)
