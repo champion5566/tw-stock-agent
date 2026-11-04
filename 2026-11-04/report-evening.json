@@ -1,13 +1,13 @@
 {
   "schema_version": "scenario-report-v2",
   "scenario": "evening",
-  "generated_at_taipei": "2026-11-04T23:05:21.917214+08:00",
-  "execution_kind": "REPORT",
+  "generated_at_taipei": "2026-11-04T23:08:16.411692+08:00",
+  "execution_kind": "CURRENT_TIME_PREVIEW",
   "point_in_time_verified": false,
   "source_fetched_at": {
-    "market": "2026-11-04T23:03:43.516236+08:00",
+    "market": "2026-11-04T23:06:44.497535+08:00",
     "intraday": null,
-    "cross": "2026-11-04T23:04:34.058024+08:00"
+    "cross": "2026-11-04T23:07:27.069971+08:00"
   },
   "stocks": {
     "2313": {
@@ -977,146 +977,146 @@
   "cross_market": {
     "us": {
       "SP500": {
-        "price": 7705.06982421875,
+        "price": 7698.9501953125,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "NASDAQ": {
-        "price": 25976.44921875,
+        "price": 25968.693359375,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "SOX": {
-        "price": 10511.3212890625,
+        "price": 10529.93359375,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "VIX": {
-        "price": 17.329999923706055,
+        "price": 17.239999771118164,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T22:45:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T22:50:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "NVDA": {
-        "price": 205.72999572753906,
+        "price": 205.7100067138672,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "AMD": {
-        "price": 496.82000732421875,
+        "price": 499.3900146484375,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "AVGO": {
-        "price": 332.20001220703125,
+        "price": 331.5199890136719,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "MU": {
-        "price": 839.6663208007812,
+        "price": 839.5499877929688,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "TSM_ADR": {
-        "price": 405.6600036621094,
+        "price": 406.3006896972656,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "AMZN": {
-        "price": 270.82000732421875,
+        "price": 271.30499267578125,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "BRK.B": {
-        "price": 567.4600219726562,
+        "price": 566.6649780273438,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "GOOG": {
-        "price": 292.5799865722656,
+        "price": 292.2777099609375,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "META": {
-        "price": 631.6300048828125,
+        "price": 632.5399780273438,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "QCOM": {
-        "price": 170.7100067138672,
+        "price": 170.72999572753906,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "SPCX": {
-        "price": 137.4219970703125,
+        "price": 138.13389587402344,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "TLT": {
-        "price": 81.26000213623047,
+        "price": 81.18009948730469,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "TSLA": {
-        "price": 386.30999755859375,
+        "price": 386.3599853515625,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       },
       "QQQ": {
-        "price": 698.9500122070312,
+        "price": 699.02001953125,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-04T23:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-04T23:05:00+08:00",
         "data_kind": "bar",
         "is_formal_close": false
       }
@@ -1192,8 +1192,8 @@
   },
   "futures": {
     "TXFR1": {
-      "price": 43879.0,
-      "trade_time": "2026-11-04T23:05:18.157000+08:00",
+      "price": 43926.0,
+      "trade_time": "2026-11-04T23:08:14.669000+08:00",
       "source": "Shioaji",
       "contract_code": "TXFR1",
       "data_kind": "tick",
@@ -1202,6 +1202,7 @@
     }
   },
   "warnings": [
+    "現時資料流程試跑；不代表已在08:40或23:00執行或送達，亦非歷史時點回放。",
     "交易日使用 exchange_calendars XTAI；臨時停市以來源實際狀態另行核對。"
   ],
   "session_calendar": {
@@ -1255,23 +1256,23 @@
         }
       },
       "us_intraday": {
-        "status": "PASS",
+        "status": "PARTIAL",
         "items": {
-          "SP500": "PASS",
-          "NASDAQ": "PASS",
-          "SOX": "PASS",
+          "SP500": "OBSERVATION_AFTER_CUTOFF",
+          "NASDAQ": "OBSERVATION_AFTER_CUTOFF",
+          "SOX": "OBSERVATION_AFTER_CUTOFF",
           "VIX": "PASS",
-          "TSM_ADR": "PASS",
-          "NVDA": "PASS",
-          "AMD": "PASS",
-          "AVGO": "PASS",
-          "MU": "PASS"
+          "TSM_ADR": "OBSERVATION_AFTER_CUTOFF",
+          "NVDA": "OBSERVATION_AFTER_CUTOFF",
+          "AMD": "OBSERVATION_AFTER_CUTOFF",
+          "AVGO": "OBSERVATION_AFTER_CUTOFF",
+          "MU": "OBSERVATION_AFTER_CUTOFF"
         }
       },
       "tx_live": {
         "status": "PARTIAL",
         "items": {
-          "TXFR1": "FUTURE_TIMESTAMP"
+          "TXFR1": "OBSERVATION_AFTER_CUTOFF"
         }
       },
       "cutoff": {
@@ -1285,7 +1286,7 @@
     },
     "cutoff_taipei": "2026-11-04T22:58:00+08:00",
     "delivery_target_taipei": "2026-11-04T23:00:00+08:00",
-    "execution_kind": "SCHEDULED_PREPARATION",
+    "execution_kind": "PREVIEW",
     "parent_ledger_status": "NOT_CHECKED",
     "delivery_status": "NOT_ACKNOWLEDGED",
     "limitations": [
@@ -1312,19 +1313,19 @@
   "input_fingerprints": {
     "market/evening": {
       "snapshot": "2026-11-04/evening.json",
-      "sha256": "7c734a757e41b3600247d9dfd54d44d4a061a1bdde7b84613024ff4a7e4a5640"
+      "sha256": "ef133531700d2ec24d57e4c694c1f044b693706b6e11eadecf328417aa8c10c0"
     },
     "current/cross-evening": {
       "snapshot": "2026-11-04/cross-evening.json",
-      "sha256": "df80e5c6ae64c65d3baa8cc92dbccd3d1e22e8a5776c7fff939ce765e01a7908"
+      "sha256": "d5b9cbbda657aaef4572b8d9a6362244b01c4e795b0d9b1eee6e15c4ca7627e6"
     }
   },
   "execution_evidence": {
-    "run_id": "41853621340",
+    "run_id": "41854282951",
     "run_attempt": "1",
-    "commit": "68d6843addf3a2b16705146a8110a7ecf017b5ae",
+    "commit": "e30c6105e6c5b8fa42a0f042020400b6ce8faff2",
     "event": "push",
-    "started_at_taipei": "2026-11-04T23:03:43.432509+08:00"
+    "started_at_taipei": "2026-11-04T23:06:44.431840+08:00"
   },
-  "data_report_id": "DATA-2026-11-04-evening-41853621340"
+  "data_report_id": "DATA-2026-11-04-evening-41854282951"
 }
