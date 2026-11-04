@@ -9,7 +9,19 @@ Executable authority: `report_contract.py`. All times are Asia/Taipei.
 
 Morning preparation requests are independent of GitHub cron; both are best effort.
 Nightclose (05:35 Tue–Sat) stores historical night observations, not live morning ticks.
-Native Taiwan background refresh remains 08:25/22:15. Weekly reporting stays Sunday 19:00.
+Native Taiwan background refresh remains 08:25/22:15. The former weekly report is cancelled;
+the report teacher reviews and corrects morning/evening output daily at 19:00.
+
+## Independent outcome settlement
+
+`ledger_review.py` reads a pinned data revision and adds `evaluations/ledger-review-*.json`.
+It evaluates only explicit supported close thresholds against matching-date PASS sections.
+DATA_PARTIAL does not prevent a valid individual outcome being PROVIDER_MATCHED; this is
+not official-direct certification, formal forecast eligibility, or a composite score.
+Missing outcomes, unsupported/conditional rules and unfinished target sessions remain
+explicitly unverifiable or pending. Original ledgers are untouched. Unit-error flags keep
+arithmetic conversion separate from reconciliation of differently scoped provider totals.
+The lightweight review job runs independently after publication, outside report collection.
 
 ## Required public data
 

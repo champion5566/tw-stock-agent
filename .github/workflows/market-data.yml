@@ -23,6 +23,7 @@ on:
       - market_sources.py
       - quote_quality.py
       - snapshot_io.py
+      - ledger_review.py
       - .github/workflows/market-data.yml
 
 permissions:
@@ -81,6 +82,31 @@ jobs:
       - name: Publish immutable dated snapshot on data branch
         if: github.ref == 'refs/heads/main'
         shell: bash
+        run: bash scripts/publish_snapshots.sh
+
+  ledger-review:
+    needs: snapshot
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Pin actual published data and settle independent ledger outcomes
+        env:
+          REVIEW_RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          git fetch origin refs/heads/data/snapshots
+          python ledger_review.py --data-ref FETCH_HEAD --output "out/evaluations/ledger-review-$REVIEW_RUN_ID.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ledger-review-${{ github.run_id }}
+          path: out/
+          retention-days: 14
+      - name: Publish additive outcome evidence
+        if: github.ref == 'refs/heads/main'
         run: bash scripts/publish_snapshots.sh
 
   research:
