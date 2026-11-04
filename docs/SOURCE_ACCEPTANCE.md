@@ -45,3 +45,19 @@ columns and units, both futures schemas, two-market totals and derived-scope cou
 Run `bash scripts/verify.sh`. PR CI, post-merge source execution, exact published readback
 and scheduled-time observations are independent acceptance stages. Actual rollout evidence
 is appended after those executions; no green CI result substitutes for source availability.
+
+## Deployed acceptance
+
+- Merged [PR #34](https://github.com/champion5566/tw-stock-agent/pull/34), code revision `8e276d3072335246430f9416d193fa46f660eba3`.
+- Full offline suite: **81 tests PASS**, compilation, shell syntax and diff checks pass.
+- PR CI: [41859557223](https://github.com/champion5566/tw-stock-agent/actions/runs/41859557223), PASS; merged-code Quality Gate also passed.
+- Actual merged-code source/generation/publication run: [41859790574](https://github.com/champion5566/tw-stock-agent/actions/runs/41859790574), PASS.
+- Exact remote [report readback](https://github.com/champion5566/tw-stock-agent/blob/f3338d6e88716382b9eb5584247488eb2aea7b64/2026-11-04/report-evening.json), data-report ID `DATA-2026-11-04-evening-41859790574`, generation 23:40:32 Taipei.
+- Six required stocks: PASS. All six required market-context items (TAIEX, TPEX, breadth, combined institutional totals, margin totals, foreign TX positioning): **PASS**, each actual source date 2026-11-04.
+- Nine regional observations, including actual TOPIX, were present with provider timestamps. Closed-market observations correctly remained STALE for live purposes.
+- Overall DATA_PARTIAL/CURRENT_TIME_PREVIEW is expected after the 22:58 cutoff; this is not a retroactive 23:00 report or proof of tomorrow's morning freshness.
+- All five active reporting/preparation task prompts were updated and independently read back with the provider-selection policy. Existing delivery times remain unchanged.
+
+The remaining platform-receipt, actual future timing, historical-position mapping and
+forecast-calibration boundaries are recorded in PROVIDER_POLICY.md. They are not silently
+reclassified as resolved quote-source gaps.
