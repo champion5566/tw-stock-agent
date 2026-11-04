@@ -50,3 +50,24 @@ The reusable-workflow lane may identify patterns relevant to document version/am
 For each candidate record: problem, existing mature solution, expected practical benefit, next smallest demonstrable deliverable, acceptance measure and current state (proposed / implemented / live-accepted). Agent count, prompt volume and installed-skill count are not outcome measures. Prefer working source adapters, executable checks and settled research cases over additional policy files.
 
 ECC's harness optimizer has a configuration-only role; do not treat it as a product-code author. Map its methodology to available tools honestly. Do not run Claude/Codex CLI commands, native hook scripts or model routing by name unless the actual host supports them. Platform-native lifecycle compatibility must be established separately.
+
+## Historical content audit — reviewed 2026-11-05
+
+Evidence boundary: public ledgers below are frozen at data/snapshots revision b6eacdf753f815822540a6a14c0477ce0a48a2e2. They are prediction records, not necessarily the full user-facing reports. Platform report quality must be checked against actual output, separately from these files.
+
+Observed content failures:
+- Opening point forecasts are N/A on five consecutive trading days: 2026-10-29, 10-30, 11-02, 11-03 and 11-04 (predictions/{date}/morning.md). Honest abstention is appropriate for an unsupported estimate; repeated abstention is also a capability/coverage failure to fix, not a delivered prediction.
+- 2026-10-28 morning.md explicitly calls its 46,340 opening estimate and 34% confidence an uncalibrated heuristic. Confidence meaning and the reproducible estimation rule are missing. Do not confuse a successful single estimate with a calibrated method.
+- 2026-10-28 morning.md uses "2405上方站穩" and "未確認量價突破前不追高" without operational definitions. A price level alone does not specify a decision, timeframe, invalidation or cost.
+- 2026-11-02 evening.md predicts next-day TAIEX up at confidence 0.53; 11-03 morning.md predicts that same close down at 0.52 after new overnight evidence. This is not inherently inconsistent, but the update should explicitly say which prior hypothesis was revised and why, while preserving the original score.
+- 2026-11-04 evening.md issues two DOWN hypotheses with confidence 0.50. Without a defined calibrated edge or a discriminating research question, these add predictions without demonstrated decision value.
+- 2026-11-04 evening.md labels turnover as "TWD 11148.21 billion". The associated report's 11,148.21 億元 equals TWD 1,114.821 billion: a 10x unit error in the ledger. Preserve the original; append an explicit correction if a correction record is added.
+
+Content acceptance targets for the next product change:
+1. Actual report first screen identifies the most decision-relevant change, evidence, implication and invalidation. Full pipeline audit belongs in an appendix; retain all required evidence without repeating it across sections.
+2. Preserve the required opening forecast section. Define and evaluate a reproducible baseline/experimental estimator separately from availability of an enriched model. Do not invent missing observations or exempt failed coverage from reporting.
+3. Where evidence supports a conditional action, give one or two operational scenarios with timeframe, trigger and invalidation, and save them for outcome evaluation. Do not fabricate an action merely to populate an ID.
+4. Settle individual verified outcomes independently; one missing sector ranking must not block an otherwise verifiable index prediction. Keep the unavailable composite score N/A.
+5. Weekly review must connect a prior finding to an actual change and an acceptance result; do not substitute another priority list for follow-through. Compare utility with simple baselines, show observation dependence/sample size and distinguish opening direction from executable returns.
+
+These are diagnosed failures and acceptance targets. No new forecasting model, decision engine or proven trading improvement is certified by this audit.
