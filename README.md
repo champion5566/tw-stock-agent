@@ -1,167 +1,70 @@
-# tw-stock-agent — 台股研究 Agent
+# tw-stock-agent
 
-Read-only market data pipeline; **not** an execution or trading bot.
+Read-only public market research pipeline. Shioaji is quote-only; no orders or CA activation.
 
-## Production entrypoints
+## Current operating contract
 
-| Workflow | Purpose | Trigger | Output |
-|---|---|---|---|
-| Market Data Snapshots | TW historical daily OHLCV, institutional, margin, research baseline | 08:25 / 20:40 Taipei (GitHub best effort), manual | `out/YYYY-MM-DD/{morning,evening}.json`, research/backtest |
-| Cross Market Source Verification | US/JP/KR quotes and TAIFEX data | 05:35 / 08:30 / 22:45 Taipei, manual | `out/YYYY-MM-DD/cross-{slot}.json` |
-| Intraday Read-only Quote On Demand | TWSE MIS indices + Shioaji stock and TX quotes | **Manual only** | `out/YYYY-MM-DD/intraday.json` |
-
-The latest dated snapshots are committed to the `data/snapshots` branch. A successful workflow **does not** certify every symbol is current or that a ChatGPT report was delivered. Inspect per-symbol `status` and `trade_time`.
-
-## Data policy
-- Shioaji: read-only quote credentials via Actions secrets `SHIOAJI_API_KEY` and `SHIOAJI_SECRET_KEY`; no CA / orders.
-- TWSE MIS: `z='-'` means missing last-trade price; never substitute `pz` or previous close.
-- FinMind: historical data; daily bars are not a substitute for live ticks.
-- Explicit freshness and source timestamps; `quote_quality.py` holds shared checks.
-- Snapshot writers use one retrying publisher script; independent workflow concurrency avoids dropped cross-workflow queues.
-
-## Verify
-```bash
-python -m compileall -q .
-python -m unittest discover -s tests -p 'test_quote_quality.py' -v
-bash -n scripts/publish_snapshots.sh
-```
-
-See [architecture audit](docs/ARCHITECTURE_AUDIT.md) for known issues, migration stages and operational risks.
-
-## Scope note
-The older `stock-test`, `mcp-smoke`, `ieobserve-*` and Fugle workflows are experimental probes, **not** report delivery. Do not treat their red CI state as proof of core quote-feed failure.
-
-## Integrated pipeline
-
-The public CLI entry points remain unchanged. Shared modules have one responsibility:
-
-| Module | Responsibility |
+| Item | Asia/Taipei |
 |---|---|
-| `market_sources.py` | Existing TWSE MCP / FinMind HTTP clients and source failures |
-| `shioaji_quotes.py` | One read-only SDK session, stock snapshots, TX ticks and cleanup |
-| `quote_quality.py` | Positive finite prices, provider clocks, daily versus live quality, complete-source selection |
-| `snapshot_io.py` | Latest JSON at existing paths and immutable observations |
-| `collect_*.py` | Orchestration and existing output envelopes |
-| `research_ledger.py`, `backtest_baseline.py` | Offline analysis of an explicitly selected collected snapshot |
+| Morning preparation request | 08:20 weekdays; never collect earlier |
+| Native morning backup | 08:30 and 08:35 weekdays |
+| Morning cutoff / report target | **08:38 / 08:40** |
+| Evening Taiwan background refresh | 22:15 weekdays |
+| Evening preparation request / native backup | 22:50 / 22:52 weekdays |
+| Evening cutoff / report target | **22:58 / 23:00** |
+| Night-session historical observation | 05:35 Tue–Sat |
+| Weekly reporting | Existing Sunday 19:00 ChatGPT task |
 
-`Market Data Snapshots` publishes collection **before** the separate `research` job.
-Research consumes the same run's artifact, including across midnight; it never blocks
-collection publishing and publishes only its own research/backtest files. Morning
-and evening research outputs remain available. All existing cron times are retained.
+Schedules are best effort. See [report contract](docs/REPORT_CONTRACT.md) and
+[operations](docs/OPERATIONS.md) for evidence requirements and failure handling.
 
-Publishing uses a bounded fetch/overlay/push retry with no force push. Independent
-workflows no longer share GitHub's single pending concurrency slot (which could cancel
-queued runs). Each publisher has a temporary worktree and removes it on success or failure.
+## Data flow
 
-Snapshots keep the existing `YYYY-MM-DD/{slot}.json`, `cross-{slot}.json` and
-`intraday.json` paths. Additional immutable observations live under
-`YYYY-MM-DD/observations/{name}/{run}-{attempt}-{uuid}.json`. `latest` means latest
-published observation, not a promise of a live trade. No automatic historical deletion
-is enabled; repository growth/retention remains an operational follow-up.
+GitHub native schedules or validated `preparation/requests/YYYY-MM-DD/{morning,evening}.json`
+pushes start `cross-market.yml`. Each report run collects its own Taiwan input, then
+cross-market observations and quote-only TX. Morning can reuse the previously collected
+nightclose observation only if the original trade timestamp matches the completed night.
 
-## Quality contract
+The `report` collection profile excludes annual US history and limits Taiwan history to
+60 calendar days (still validated for actual 5/20-session features). The default `full`
+CLI profile preserves the prior long-history research behavior. `market-data.yml` still
+publishes ingestion separately from its existing research/backtesting job.
 
-| Value | Meaning |
-|---|---|
-| `PASS` on a quote with `is_live: true` | Positive finite trade with source timestamp within freshness tolerance |
-| `PASS` on `data_kind: daily` | Source date is the requested calendar date; never a live quote |
-| `PRIOR_SESSION` | Previous date within daily tolerance, or an older-date quote outside live tolerance |
-| `NO_LAST_TRADE`, `NO_TIMESTAMP` | Price or source clock absent; collection time never fills either gap |
-| `FUTURE_TIMESTAMP`, `STALE` | Source clock is future or outside freshness tolerance |
-| `HISTORICAL_BAR` | Yahoo observation outside the collector's bar-age tolerance |
-| `MISSING`, `FAIL`, `ERROR`, `NOT_CONFIGURED`, `NO_TICKS_IN_WINDOW` | Inspect source diagnostics; never infer zero or prior close |
+Source snapshots and small `reports/YYYY-MM-DD/{morning,evening}.json` bundles are
+published on `data/snapshots`. Original source clocks, input SHA-256 fingerprints,
+run/commit identity, per-section readiness and immutable observations remain available.
+Later/weaker report retries cannot replace a timely, stronger report bundle; every
+publication candidate is archived under `publication-observations`.
 
-Daily tolerance is a documented calendar-day heuristic, **not** an exchange holiday
-calendar. A fresh tick just before midnight can remain live after midnight. Source
-exchange trading dates are kept independently; no weekend/holiday trading date is invented.
-MCP uses the actual `last` field and source `date` + `time`; a same-day `last: "-"`
-is `NO_LAST_TRADE`. Selecting Shioaji or IEX keeps that source's fields and timestamps;
-MIS/Yahoo OHLC is available only in the nested diagnostic, never silently combined.
-The legacy `fetch_quotes.py` CLI now also requires a fresh quote after market close.
+`publication_check_at_taipei` is a **pre-push** check, not proof of publication. Consumers
+must verify the file-changing GitHub commit timestamp and reread the exact revision.
+`formal_sample_eligible` stays false in data packages: only the reporting/ledger audit
+can establish original pre-open predictions and complete qualification evidence.
 
-Full verification:
+## Verification
 
 ```bash
 python -m pip install -r requirements-test.txt
-python -m unittest discover -s tests -v
-python -m compileall -q .
-bash -n scripts/publish_snapshots.sh
+bash scripts/verify.sh
 ```
 
-The suite includes provider cleanup/failure isolation, missing-price regression,
-midnight handling, collector/storage integration, real `backtesting.py` execution,
-workflow schedule contracts and simultaneous Git publishers. Test fixtures do not
-substitute for live-provider availability checks. Experimental probes retain their
-original entry points and workflows; they do not control production publishing.
+Offline tests cover source and clock semantics, calendars/DST, report requirements,
+late retries, request validation, completed-night reuse and concurrent Git publishing.
+Live data availability, actual scheduled completion and user notification receipt are
+separate acceptance checks.
 
-Existing GitHub ingestion starts at **08:25**, while requested report delivery is
-08:20/23:00 in ChatGPT. This repository does not yet contain a report delivery or
-acknowledgment service. Neither the current refactor nor a green Actions run certifies
-those reports were delivered. Schedule changes require a separate delivery design.
+## Scope and remaining gaps
 
-## Shioaji-first quote policy and three-scenario experiment
+Required instruments: 0050/006208/00631L/2330/3707/5483. Optional observations
+2313/2367/3491 never imply ownership. Public artifacts contain no private positions.
+FinMind shares and provider-native credit units remain distinct. Actual TOPIX,
+market-wide context and unavailable US completed-session bars remain explicit blockers;
+this upgrade does not lower requirements to manufacture DATA_READY.
 
-Taiwan stock queries now use **Shioaji stock Tick -> one Shioaji snapshot -> MIS**.
-TX continues to use the Shioaji futures Tick feed. All seven configured stocks are
-covered. The shared SDK session subscribes once, waits a bounded window, unsubscribes
-all successful subscriptions and logs out. It does not poll snapshots or place orders.
-Indicative `simtrade` ticks are excluded. A fresh snapshot is a request observation
-(`is_live: false`), distinct from an actually received fresh Tick (`is_live: true`).
+Experimental `ieobserve-*`, Fugle, `stock-test` and MCP probes remain separate from
+production report readiness. Historical architecture/experiment notes are retained as
+historical evidence; the current contract supersedes their older schedule notes.
 
-MIS observations, primary/fallback statuses and the selected source remain in
-`source_observations` / `quote_selection`. Shioaji Tick OHLC and volume come from the
-same event; other providers' fields are not merged into it. Snapshot OHLC comes from
-the same Shioaji snapshot. Daily FinMind bars, institutional data and margin are not
-replaced by intraday observations.
-
-`Morning Night Intraday Acceptance Experiment` can be run manually. It sequentially
-runs three scenarios to avoid unnecessary concurrent broker sessions:
-
-- `morning`: prior available trading-date OHLCV / institutional / margin report;
-- `evening`: current-date completed daily data, with missing/previous-date data
-  explicitly withheld from current-session values;
-- `intraday`: Shioaji-first selected stock observations and TX Tick, timestamp
-  freshness and source diagnostics.
-
-Each scenario collects actual current data and uploads raw observations plus
-`report-{scenario}.json` and `report-{scenario}.md` as an artifact. Run locally after
-collecting the corresponding inputs:
-
-```bash
-REPORT_SLOT=morning python collect_market.py
-REPORT_SLOT=morning python collect_cross_market.py
-python collect_intraday.py
-python report_scenarios.py --scenario morning --experiment
-```
-
-The experiment is a **current-time preview**, not proof of execution at 08:20/23:00,
-not a point-in-time historical replay and not a delivery acknowledgment. Offline
-08:20 and 23:00 regression fixtures separately verify date selection. During a
-daytime evening preview, `SESSION_NOT_CLOSED` and a partial report are expected.
-Actual missing data must not be replaced by yesterday's prices or institutional flows.
-This report builder provides auditable data tables; news/forecast commentary and
-scheduled message delivery remain separate work.
-
-Official SDK behavior references:
-- https://sinotrade.github.io/tutor/market_data/streaming/stocks/
-- https://sinotrade.github.io/tutor/market_data/snapshot/
-- https://sinotrade.github.io/tutor/limit/
-
-Actual three-scenario outputs from the 2026-10-22 daytime acceptance run:
-[morning preview](docs/experiments/2026-10-22-morning.md),
-[evening preview](docs/experiments/2026-10-22-evening.md),
-[immediate query](docs/experiments/2026-10-22-intraday.md).
-The shared Taiwan watchlist lives in `instruments.py`.
-
-## Current report contract (supersedes older timing/coverage notes above)
-
-The enabled morning task is **08:50**, evening **23:00 Taipei**. Six report instruments
-are mandatory (0050/006208/00631L/2330/3707/5483); three optional observations remain.
-A stock subset being complete no longer marks a complete report. Missing market context,
-actual TOPIX, stale quotes, wrong sessions or cutoff violations remain explicit blockers.
-
-Production preparation publishes `reports/YYYY-MM-DD/{morning,evening}.json` with small,
-public-data-only facts, input SHA-256 fingerprints and section-level `DATA_READY` /
-`DATA_PARTIAL`. Ledger persistence, task execution and user delivery remain independent.
-See [report contract](docs/REPORT_CONTRACT.md) for the definitive requirements, preparation
-crons, deadlines, source semantics and validation procedure.
+[ECC workflow adoption](docs/ECC_ADOPTION.md) describes the reused engineering approach.
+No global ECC plugin, background learner, new paid service or replacement quote stack
+is required.

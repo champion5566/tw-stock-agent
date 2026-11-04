@@ -2,6 +2,7 @@
 # Optimistic Git transaction: each retry overlays this run's files on latest HEAD.
 set -euo pipefail
 workspace=${GITHUB_WORKSPACE:?GITHUB_WORKSPACE required}
+script_directory=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 test -d "$workspace/out" || { echo 'No output directory'; exit 1; }
 temporary=$(mktemp -d)
 cleanup() { git -C "$workspace" worktree remove --force "$temporary/tree" >/dev/null 2>&1 || true; rm -rf "$temporary"; }
@@ -14,7 +15,7 @@ for attempt in 1 2 3 4 5; do
   else
     git -C "$workspace" worktree add --detach "$temporary/tree" "$base_sha"
   fi
-  cp -R "$workspace/out/." "$temporary/tree/"
+  python "$script_directory/publish_overlay.py" "$workspace/out" "$temporary/tree"
   git -C "$temporary/tree" add -- '*.json'
   if git -C "$temporary/tree" diff --cached --quiet; then
     echo 'No snapshot changes'; exit 0

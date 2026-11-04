@@ -22,6 +22,7 @@ def main():
               collect_quotes(future_snapshot=True, stream=False))
     key = "shioaji_live_tx" if slot == "evening" else "shioaji_session_tx"
     snapshot.setdefault("taifex", {})[key] = result
+    snapshot["collection_completed_at_taipei"] = datetime.now(TW).isoformat()
     write_snapshot(snapshot, now.date().isoformat(), "cross-" + slot)
     print("SHIOAJI_TX", result["status"], result.get("price"),
           result.get("trade_time"), "age_min", result.get("age_minutes"))

@@ -6,9 +6,9 @@ from quote_quality import TW, positive_price
 from session_calendar import completed_session
 from stock_metrics import number
 
-CONTRACT_VERSION = "report-contract-v1"
-DELIVERY_TIMES = {"morning":time(8, 50), "evening":time(23, 0)}
-CUTOFF_TIMES = {"morning":time(8, 45), "evening":time(22, 58)}
+CONTRACT_VERSION = "report-contract-v2"
+DELIVERY_TIMES = {"morning":time(8, 40), "evening":time(23, 0)}
+CUTOFF_TIMES = {"morning":time(8, 38), "evening":time(22, 58)}
 US_REQUIRED = ("SP500", "NASDAQ", "SOX", "VIX", "TSM_ADR", "NVDA", "AMD", "AVGO", "MU")
 ASIA_REQUIRED = {"jp":("NIKKEI225", "TOPIX", "ADVANTEST", "TOKYO_ELECTRON"),
                  "kr":("KOSPI", "KOSDAQ", "SAMSUNG", "SK_HYNIX")}
@@ -28,6 +28,13 @@ def age_status(observation, checked, maximum):
         return "MISSING"
     age = (checked-stamp).total_seconds()/60
     return "FUTURE_TIMESTAMP" if age < -2 else "PASS" if age <= maximum else "DELAYED" if age <= 30 else "STALE"
+
+
+def cutoff_age_status(observation, checked, cutoff, maximum):
+    stamp = parse_time(observation.get("trade_time") or observation.get("latest_bar_at_taipei"))
+    if stamp is not None and stamp > cutoff:
+        return "OBSERVATION_AFTER_CUTOFF"
+    return age_status(observation, checked, maximum)
 
 
 def section(statuses):
@@ -89,11 +96,11 @@ def evaluate(report, market, cross, checked, experiment):
             close_items[name] = "PASS" if obs.get("source_date") == expected_us and obs.get("session_completed") and positive_price(obs.get("price")) else "MISSING_COMPLETED_SESSION_BAR"
         sections["us_regular_close"] = section(close_items)
         sections["us_regular_close"]["target_session"] = expected_us
-        sections["asia_open"] = section({f"{area}/{name}":age_status(cross.get("assets", {}).get(area, {}).get(name, {}), delivery, 15)
+        sections["asia_open"] = section({f"{area}/{name}":cutoff_age_status(cross.get("assets", {}).get(area, {}).get(name, {}), delivery, cutoff, 15)
                                         for area, names in ASIA_REQUIRED.items() for name in names})
         tx = cross.get("taifex", {}).get("shioaji_session_tx", {})
         stamp = parse_time(tx.get("trade_time"))
-        tw_previous = completed_session("XTAI", datetime.combine(checked.date(), time(8, 50), TW))["date"]
+        tw_previous = completed_session("XTAI", datetime.combine(checked.date(), time(8, 40), TW))["date"]
         night_end_day = datetime.fromisoformat(tw_previous).date() + timedelta(days=1)
         end = datetime.combine(night_end_day, time(5), TW)
         valid = stamp is not None and end-timedelta(minutes=10) <= stamp <= end and checked >= end and positive_price(tx.get("price"))
@@ -106,9 +113,11 @@ def evaluate(report, market, cross, checked, experiment):
         sections["tx_live"] = section({"TXFR1":age_status(tx, delivery, 10) if tx.get("data_kind") == "tick" else "MISSING_TICK"})
     timing = {}
     for key, payload in (("market", market), ("cross", cross)):
-        stamp = parse_time(payload.get("fetched_at_taipei"))
-        valid = stamp is not None and stamp.astimezone(TW).date() == checked.date() and stamp <= cutoff
+        stamp = parse_time(payload.get("collection_completed_at_taipei") or payload.get("fetched_at_taipei"))
+        valid = stamp is not None and stamp.astimezone(TW).date() == checked.date() and stamp <= min(cutoff, checked)
         timing[key] = "PASS" if valid else "MISSING_OR_AFTER_CUTOFF"
+    if mode == "morning":
+        timing["collection_window"] = "PASS" if parse_time(cross.get("fetched_at_taipei")) is not None and parse_time(cross["fetched_at_taipei"]) >= datetime.combine(checked.date(), time(8, 20), TW) else "BEFORE_0820_OR_MISSING"
     timing["generation"] = "PASS" if checked <= cutoff else "AFTER_CUTOFF"
     sections["cutoff"] = section(timing)
     ready = all(s["status"] == "PASS" for s in sections.values())

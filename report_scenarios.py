@@ -52,7 +52,7 @@ def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=Non
                                     "cross": cross.get("fetched_at_taipei")},
               "stocks": {}, "cross_market": {}, "futures": {}, "warnings": []}
     if experiment:
-        report["warnings"].append("現時資料流程試跑；不代表已在08:20或23:00執行或送達，亦非歷史時點回放。")
+        report["warnings"].append("現時資料流程試跑；不代表已在08:40或23:00執行或送達，亦非歷史時點回放。")
     if mode == "intraday":
         for code, raw in intraday.get("quotes", {}).items():
             quote = dict(raw)
@@ -107,6 +107,8 @@ def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=Non
         for key in ("daily_ohlcv", "institutional", "margin"):
             coverage[key + "_target_session"] = sum(s[key]["status"] == "PASS" for s in report["stocks"].values())
         complete = all(value == len(STOCKS) for value in coverage.values())
+    report["us_regular_close"] = cross.get("us_regular_close", {}) if mode == "morning" else {}
+    report["completed_night_input"] = cross.get("completed_night_input")
     report["coverage"] = coverage
     report["stock_data_status"] = "COMPLETE" if complete else "PARTIAL"
     report["readiness"] = evaluate(report, market, cross, checked, experiment)
@@ -189,6 +191,7 @@ def main():
     report = build_report(args.scenario, read(args.scenario, args.market_root), read("intraday"), read("cross-" + args.scenario),
                           checked_at=now, experiment=args.experiment)
     report["input_fingerprints"] = fingerprints
+    report["execution_evidence"] = {"run_id":os.getenv("GITHUB_RUN_ID"), "run_attempt":os.getenv("GITHUB_RUN_ATTEMPT"), "commit":os.getenv("GITHUB_SHA"), "event":os.getenv("GITHUB_EVENT_NAME"), "started_at_taipei":os.getenv("PREPARATION_STARTED_AT")}
     report["data_report_id"] = "DATA-" + now.date().isoformat() + "-" + args.scenario + "-" + os.getenv("GITHUB_RUN_ID", now.strftime("%H%M%S"))
     directory.mkdir(parents=True, exist_ok=True)
     (directory / ("report-" + args.scenario + ".json")).write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
@@ -197,7 +200,12 @@ def main():
     # Small, public-data-only consumer artifact. No positions/account values/LLM ledger.
     bundle = Path(args.output_root) / "reports" / now.date().isoformat()
     bundle.mkdir(parents=True, exist_ok=True)
-    (bundle / (args.scenario + ".json")).write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    body = json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+    (bundle / (args.scenario + ".json")).write_text(body, encoding="utf-8")
+    from uuid import uuid4
+    archive = bundle / "observations" / args.scenario
+    archive.mkdir(parents=True, exist_ok=True)
+    (archive / (os.getenv("GITHUB_RUN_ID", "local") + "-" + uuid4().hex + ".json")).write_text(body, encoding="utf-8")
     print("SCENARIO_REPORT", json.dumps({k:report[k] for k in ("scenario", "generated_at_taipei", "status", "coverage")}, ensure_ascii=False))
     print(markdown)
 
