@@ -17,6 +17,7 @@ from market_sources import mcp, attempt, http_json, finmind
 from snapshot_io import write_snapshot
 from quote_quality import select_observation, positive_price
 from session_calendar import completed_session
+from regional_quotes import collect_asia, select_regional
 
 TW = ZoneInfo("Asia/Taipei")
 ASSETS = {
@@ -34,7 +35,7 @@ ASSETS = {
         },
     },
     "jp": {
-        "indices": {"NIKKEI225":"^N225", "TOPIX_ETF_PROXY":"1306.T"},
+        "indices": {"NIKKEI225":"^N225", "TOPIX":"998405.T"},
         "semiconductors": {"ADVANTEST":"6857.T", "TOKYO_ELECTRON":"8035.T"},
     },
     "kr": {
@@ -90,6 +91,32 @@ def regular_close(ticker, checked_at):
             "note":"Completed provider daily bar; not an exchange-certified closing/settlement file."}
 
 
+def completed_us_close(ticker, checked):
+    """Existing Yahoo client, then the already-used FinMind daily source."""
+    first = attempt(lambda:regular_close(ticker, checked))
+    observation = first.get('data') or {'status':'FAIL','error':first.get('error')}
+    if observation.get('status') == 'PASS': return observation
+    target = completed_session('XNYS', checked)
+    rows = finmind('USStockPrice', ticker, target['date'], target['date'])
+    row = next((r for r in rows if r.get('date') == target['date'] and r.get('stock_id') == ticker), {})
+    price = positive_price(row.get('close') if 'close' in row else row.get('Close'))
+    return {'status':'PASS' if price else 'MISSING', 'price':price, 'ticker':ticker,
+            'source':'FinMind USStockPrice completed-session fallback', 'source_date':row.get('date'),
+            'cash_session_closed_at':target['closed_at'], 'session_completed':bool(price),
+            'data_kind':'regular_session_daily_bar', 'is_live':False, 'is_formal_close':False,
+            'yahoo_diagnostic':observation}
+
+
+def security_identity(checked):
+    # Current security master is separate from the identity of any old position.
+    from regional_quotes import get
+    master = get('https://www.sec.gov/files/company_tickers.json').json()
+    row = next((r for r in master.values() if r.get('ticker') == 'SPCX'), None)
+    return {'SPCX':{'status':'VERIFIED_CURRENT_SECURITY' if row else 'UNVERIFIABLE',
+                   'record':row, 'source_url':'https://www.sec.gov/files/company_tickers.json',
+                   'verified_at_taipei':checked.isoformat(), 'historical_position_mapping':'NOT_VERIFIED_DO_NOT_REASSIGN'}}
+
+
 def main():
     now = datetime.now(TW)
     slot = os.environ.get("REPORT_SLOT", "evening")
@@ -99,6 +126,12 @@ def main():
            "limitations":["Yahoo is not an official realtime provider",
                           "Futures daily settlement is not a live night-session quote",
                           "Bar time is not necessarily official session close"]}
+    regional_result = attempt(lambda:collect_asia(now))
+    regional = regional_result.get('data') or {}
+    out['regional_source_errors'] = regional.get('errors', [])
+    if regional_result.get('status') != 'PASS': out['regional_source_errors'].append({'error':regional_result.get('error')})
+    identity_result = attempt(lambda:security_identity(now))
+    out['security_identity'] = identity_result.get('data') or {'status':'UNVERIFIABLE','error':identity_result.get('error')}
     # Free IEX quote overlay; retain Yahoo observation as historical/fallback.
     us_symbols = [ticker for group in ASSETS["us"].values()
                   for ticker in group.values() if not ticker.startswith("^")]
@@ -112,7 +145,9 @@ def main():
         out["assets"][area] = {}
         for sector, tickers in sectors.items():
             for name, ticker in tickers.items():
-                obs = attempt(lambda t=ticker: observe(t))
+                candidate = regional.get(area, {}).get(name, {})
+                obs = ({'status':'NOT_REQUESTED_PRIMARY_FRESH','source':'Yahoo/global fallback'}
+                       if candidate.get('status') == 'PASS' or name == 'TOPIX' and candidate.get('price') is not None else attempt(lambda t=ticker: observe(t)))
                 if obs["status"] == "PASS":
                     obs = obs["data"]
                     age_min = (now.astimezone(timezone.utc)
@@ -142,10 +177,16 @@ def main():
                             "yfinance/"),
                         "note": "Yahoo 5m bar is not an exchange-certified realtime trade."
                     }
+                if area in ('jp', 'kr'):
+                    obs = select_regional(regional.get(area, {}).get(name, {}), obs, now)
                 out["assets"][area][name] = obs
                 print("QUOTE", area, name, ticker, obs["status"],
                       obs.get("latest_bar_at_taipei"), flush=True)
 
+    if regional.get('jp', {}).get('TOPIX'):
+        out['assets'].setdefault('jp', {})['TOPIX'] = regional['jp']['TOPIX']
+    if regional.get('kr', {}).get('KOSPI200'):
+        out['assets'].setdefault('kr', {})['KOSPI200'] = regional['kr']['KOSPI200']
     # Report preparation does not download a year of history. The explicit
     # full profile preserves the former research envelope for manual research.
     out["history_profile"] = os.getenv("COLLECTION_PROFILE", "full")
@@ -211,7 +252,7 @@ def main():
         out["us_regular_close"] = {}
         for sector in ("indices", "semiconductors"):
             for name, ticker in ASSETS["us"][sector].items():
-                result = attempt(lambda t=ticker: regular_close(t, now))
+                result = attempt(lambda t=ticker: completed_us_close(t, now))
                 out["us_regular_close"][name] = result["data"] if result["status"] == "PASS" else result
                 print("US_REGULAR_CLOSE", name, out["us_regular_close"][name].get("status"),
                       out["us_regular_close"][name].get("source_date"), flush=True)

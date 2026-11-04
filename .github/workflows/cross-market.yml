@@ -24,6 +24,9 @@ on:
       - scripts/resolve_preparation.py
       - scripts/publish_overlay.py
       - scripts/reuse_night_observation.py
+      - market_context.py
+      - regional_quotes.py
+      - scripts/align_asia_window.py
       - collect_cross_market.py
       - report_contract.py
       - report_scenarios.py
@@ -59,7 +62,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install maintained quote client
-        run: python -m pip install 'yfinance>=0.2.60,<2' 'shioaji>=1.2,<2' 'exchange_calendars>=4.5,<5'
+        run: python -m pip install 'yfinance>=0.2.60,<2' 'shioaji>=1.2,<2' 'exchange_calendars>=4.5,<5' 'beautifulsoup4>=4.12,<5' 'requests>=2.31,<3'
       - name: Resolve validated preparation request or native schedule
         run: python scripts/resolve_preparation.py
       # Morning must be self-contained. The previous design read the market-data
@@ -70,6 +73,14 @@ jobs:
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
         run: python collect_market.py
+      - name: Fill market-wide context from dated official sources and existing fallback
+        if: env.REPORT_SLOT != 'nightclose'
+        env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+        run: python market_context.py
+      - name: Align Asia observations with the morning freshness window
+        if: env.REPORT_SLOT == 'morning'
+        run: python scripts/align_asia_window.py
       - name: Test USA Japan Korea and futures
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}

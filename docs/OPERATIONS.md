@@ -74,3 +74,7 @@ Record source revision/PR, checks executed, CI/run links, published file revisio
 remaining gaps, next target-time observation and whether user action is actually needed.
 This durable project record replaces relying on conversational recollection; no automatic
 session observer or self-learning hook is enabled.
+
+## Source-gap maintenance
+
+Apply `PROVIDER_POLICY.md` to all existing and future gaps. The source matrix and acceptance evidence live there and in `SOURCE_ACCEPTANCE.md`. The report bundle now includes actual market_context, completed US closes, regional selection/time provenance and a separate current security identity. Quotes can use regional primary plus independent fallback. Calendar-confirmed Asia holidays are MARKET_CLOSED. Source repairs never relax source-date, cutoff, units, ledger or delivery-evidence requirements.

@@ -57,9 +57,7 @@ separate acceptance checks.
 
 Required instruments: 0050/006208/00631L/2330/3707/5483. Optional observations
 2313/2367/3491 never imply ownership. Public artifacts contain no private positions.
-FinMind shares and provider-native credit units remain distinct. Actual TOPIX,
-market-wide context and unavailable US completed-session bars remain explicit blockers;
-this upgrade does not lower requirements to manufacture DATA_READY.
+FinMind shares and provider-native credit units remain distinct. Regional actual TOPIX, official market-wide context and independent US completed-session fallback are connected. Their actual dates, source clocks and statuses still determine readiness. See [provider policy](docs/PROVIDER_POLICY.md) and [source acceptance](docs/SOURCE_ACCEPTANCE.md).
 
 Experimental `ieobserve-*`, Fugle, `stock-test` and MCP probes remain separate from
 production report readiness. Historical architecture/experiment notes are retained as

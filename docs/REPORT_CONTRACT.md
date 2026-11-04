@@ -19,7 +19,7 @@ Native Taiwan background refresh remains 08:25/22:15. Weekly reporting stays Sun
   credit balances/daily and 5-session changes. Share and native-lot units are distinct.
 - Market context: TAIEX/TPEX, breadth, aggregate institutions/margin, futures positioning.
 - Morning: nine completed US regular-session daily bars, eight JP/KR observations
-  including actual TOPIX, and completed-night TX observation near actual 05:00 end.
+  including actual TOPIX (regional portal sources), and completed-night TX observation near actual 05:00 end.
 - Evening: nine US observations (>15m DELAYED, >30m STALE) and TX Tick within 10m
   of the 23:00 target. Age must also be reassessed at actual completion.
 - ETF proxies cannot satisfy actual indices. Daily bars, snapshots and ticks remain
@@ -30,6 +30,8 @@ adds the corrected times and stricter cutoff/collection-window checks. Legacy v1
 packages remain readable historical evidence, not silently revalidated current packages.
 `stock_data_status=COMPLETE` describes only stock data. `DATA_READY` requires every
 required section; unavailable sections stay visible as DATA_PARTIAL.
+
+Asia sections accept calendar-confirmed MARKET_CLOSED as a non-trading-day state; carried prices are not fresh quotes. Provider timestamp/date inference must be explicitly recorded. Market context exposes source scope and separate TWSE/TPEx components. See PROVIDER_POLICY.md for active routes.
 
 ## Point-in-time and publication
 
@@ -71,9 +73,7 @@ sections, scoring weights and original prediction identifiers are preserved.
 ## Verification and open coverage
 
 Run `bash scripts/verify.sh`, then inspect an actual live preparation run and published
-bundle. A current-time preview does not certify future 08:40/23:00 execution. Actual TOPIX,
-market context and provider completed-session gaps remain open until independently fixed
-and verified. Exchange calendars do not certify unannounced closures.
+bundle. A current-time preview does not certify future 08:40/23:00 execution. Regional actual TOPIX, market context and completed-session fallback routes are now connected; actual availability remains independently checked for each run. Exchange calendars do not certify unannounced closures.
 
 Primary provider references remain exchange_calendars, yfinance regular-session history,
 FinMind Taiwan chip datasets and the official Shioaji SDK documentation.
