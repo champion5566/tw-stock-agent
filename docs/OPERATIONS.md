@@ -49,8 +49,9 @@ current data must not retroactively qualify a pre-open sample. Read original par
 create the new public-only ledger without overwriting, and verify exact text by readback.
 
 Separate workflow success, DATA_READY/PARTIAL, publication, ledger and report output.
-Keep DELIVERY_ACK=UNKNOWN unless an independent acknowledgment exists. Preserve the
-current A–L requirements and opening prediction/verification blocks.
+Keep DELIVERY_ACK=UNKNOWN unless an independent acknowledgment exists. Follow the shared
+REPORT_PLAYBOOK.md compact workflow, preserving required coverage and opening prediction/
+verification blocks. Full audit evidence is retained once, not repeated in the main message.
 
 ## Diagnose
 
