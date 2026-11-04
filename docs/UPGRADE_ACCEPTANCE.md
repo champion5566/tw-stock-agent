@@ -44,3 +44,13 @@ intended report. A successful quote step is not evidence of valid target-time fr
 Data-package `publication_status=PENDING_PUSH_AND_READBACK` is the saved pre-push state;
 the independent exact remote readback above establishes publication for that specific
 revision. It is not a notification acknowledgment or proof of timely publication.
+
+## Final diagnostic correction live acceptance
+
+Merged PR #33 code `e30c6105e6c5b8fa42a0f042020400b6ce8faff2` also passed an actual live source run:
+[41854282951](https://github.com/champion5566/tw-stock-agent/actions/runs/41854282951).
+Source collection, TX capture, report generation and remote publication steps all passed.
+Exact-revision [report readback](https://github.com/champion5566/tw-stock-agent/blob/733ddaf20c85d744377499134ccd2c4dbed107cc/2026-11-04/report-evening.json)
+confirmed the final code/run identity, report-contract-v2, six-stock PASS, and
+TX `OBSERVATION_AFTER_CUTOFF` rather than a misleading future-clock diagnosis.
+It correctly remains a current-time preview and DATA_PARTIAL, not timed acceptance.
