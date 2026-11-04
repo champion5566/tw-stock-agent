@@ -108,9 +108,9 @@ def evaluate(report, market, cross, checked, experiment):
         sections["tx_completed_night"].update({"night_end_taipei":end.isoformat(), "is_live":False,
                                                "note":"Broker last-trade observation near completed night end; not an exchange-certified settlement."})
     else:
-        sections["us_intraday"] = section({name:age_status(cross.get("assets", {}).get("us", {}).get(name, {}), delivery, 15) for name in US_REQUIRED})
+        sections["us_intraday"] = section({name:cutoff_age_status(cross.get("assets", {}).get("us", {}).get(name, {}), delivery, cutoff, 15) for name in US_REQUIRED})
         tx = cross.get("taifex", {}).get("shioaji_live_tx", {})
-        sections["tx_live"] = section({"TXFR1":age_status(tx, delivery, 10) if tx.get("data_kind") == "tick" else "MISSING_TICK"})
+        sections["tx_live"] = section({"TXFR1":cutoff_age_status(tx, delivery, cutoff, 10) if tx.get("data_kind") == "tick" else "MISSING_TICK"})
     timing = {}
     for key, payload in (("market", market), ("cross", cross)):
         stamp = parse_time(payload.get("collection_completed_at_taipei") or payload.get("fetched_at_taipei"))

@@ -23,6 +23,14 @@ class PreparationTests(unittest.TestCase):
         report = build_report('morning', market, cross=cross, checked_at=now)
         self.assertEqual(report['readiness']['sections']['asia_open']['items']['jp/NIKKEI225'], 'OBSERVATION_AFTER_CUTOFF')
 
+    def test_late_evening_observations_are_cutoff_failures_not_clock_errors(self):
+        now, market, cross = fixture('evening')
+        cross['assets']['us']['NVDA']['latest_bar_at_taipei'] = now.replace(hour=23, minute=2).isoformat()
+        cross['taifex']['shioaji_live_tx']['trade_time'] = now.replace(hour=23, minute=2).isoformat()
+        report = build_report('evening', market, cross=cross, checked_at=now.replace(hour=23, minute=3))
+        self.assertEqual(report['readiness']['sections']['us_intraday']['items']['NVDA'], 'OBSERVATION_AFTER_CUTOFF')
+        self.assertEqual(report['readiness']['sections']['tx_live']['items']['TXFR1'], 'OBSERVATION_AFTER_CUTOFF')
+
     def test_collection_completion_not_start_decides_cutoff(self):
         now, market, cross = fixture()
         cross['collection_completed_at_taipei'] = now.replace(minute=39).isoformat()
