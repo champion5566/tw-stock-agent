@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "fetched_at_taipei": "2026-11-04T23:38:29.131646+08:00",
+  "fetched_at_taipei": "2026-11-04T23:40:57.923478+08:00",
   "trade_date_requested": "2026-11-04",
   "slot": "evening",
   "sources": {
@@ -16787,7 +16787,7 @@
     "daily_available": 9,
     "live_quotes": 0
   },
-  "collection_completed_at_taipei": "2026-11-04T23:39:43.881627+08:00",
+  "collection_completed_at_taipei": "2026-11-04T23:44:11.820304+08:00",
   "market_context": {
     "TAIEX": {
       "status": "PASS",
@@ -16871,14 +16871,14 @@
         "scope": "TWSE stocks; excludes warrant-heavy all-security counts"
       },
       "TPEx": {
-        "status": "PASS",
-        "source_date": "2026-11-04",
+        "status": "MISSING_OR_WRONG_SESSION",
+        "source_date": null,
         "source": "TPEx daily close; derived four-digit stock breadth",
-        "advances": 397,
-        "declines": 416,
+        "advances": null,
+        "declines": null,
         "scope": "TPEx four-digit stocks; ETFs/warrants excluded",
-        "not_comparable": 12,
-        "pool_size": 893
+        "not_comparable": 0,
+        "pool_size": 0
       }
     },
     "margin_by_market": {
@@ -17224,8 +17224,8 @@
       {
         "name": "otc_quotes",
         "url": "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes",
-        "status": "FETCHED",
-        "error": null
+        "status": "FAIL",
+        "error": "ChunkedEncodingError: Response ended prematurely"
       },
       {
         "name": "otc_margin",
@@ -17263,6 +17263,6 @@
         "target": "2026-11-04"
       }
     ],
-    "_collected_at_taipei": "2026-11-04T23:38:56.186765+08:00"
+    "_collected_at_taipei": "2026-11-04T23:41:21.424723+08:00"
   }
 }
