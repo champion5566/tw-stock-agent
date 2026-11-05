@@ -6,6 +6,28 @@ the message, or generate a separate daily review report. Data coverage, cutoff c
 original forecast IDs, scoring definitions and immutable ledgers remain unchanged.
 The user's existing opening prediction/recap remains the first visible block.
 
+## Current priority: correctness and missing data first
+
+The user has explicitly prioritised (1) wrong values, dates, units and source mixing;
+(2) missing required data and failed lookups/fallbacks; (3) output omissions and factual
+consistency; only then report structure and investment utility. Do not change presentation
+or expand trading research while verified data/output defects remain unresolved. Preserve
+the current required content and existing deadlines; a prose rewrite is not a source repair.
+
+Track each defect with original evidence, cause, actual correction, regression result and
+current state. Never declare a source repaired from a prompt/document change. Retest the
+specific failed path and independently mark live acceptance pending until exercised.
+
+For six-stock daily closes, use stock_close_table_markdown from the bundle when available;
+its values are produced from exact-session daily_ohlcv.data.close, never broker snapshots.
+For an existing/older bundle, use that same daily field directly. Before delivery, check
+the draft with report_output_quality.py when code execution is available; a FAIL must be
+corrected and rechecked. This checker covers displayed daily closes only, not the full
+report or exchange truth. If code execution is unavailable, compare every printed close
+with the exact JSON field and report only manual verification, not automatic PASS.
+Correctly disclosed missing data remains partial; do not confuse N/A with an invented price.
+Source conflicts require dated independent verification, not arbitrary choice or averaging.
+
 ## Division of work
 
 - Existing collectors provide observations, clocks, provenance and readiness. Reuse their
