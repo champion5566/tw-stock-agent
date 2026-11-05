@@ -61,3 +61,12 @@ is appended after those executions; no green CI result substitutes for source av
 The remaining platform-receipt, actual future timing, historical-position mapping and
 forecast-calibration boundaries are recorded in PROVIDER_POLICY.md. They are not silently
 reclassified as resolved quote-source gaps.
+
+## Data and output defect repairs — 2026-11-05
+
+- [PR36](https://github.com/champion5566/tw-stock-agent/pull/36), merged `5d717af3`: sources must qualify at collection and morning delivery before skipping fallback; TOPIX selection is retained; US daily comparisons keep exact prior dates and same-source returns; canonical close rendering/draft checks added.
+- Replayed the original morning report: 006208 229.20 vs source 228.55 and 00631L 31.23 vs source 30.85 are both detected as CLOSE_MISMATCH. The generated six-stock table passes. Correct N/A source omissions remain PARTIAL, not wrong-price failures. This check covers displayed daily-close tables, not all narrative facts or independent exchange truth.
+- Actual post-merge [run41956106866](https://github.com/champion5566/tw-stock-agent/actions/runs/41956106866) succeeded. [Pinned preview](https://github.com/champion5566/tw-stock-agent/blob/a2e7d51e360d29af0fbb7fff1d78c98327d97360/2026-11-05/report-morning.json) contains the canonical six prices and NVDA previous/current session closes with a computed return. It is a 10:35 CURRENT_TIME_PREVIEW; the valid 08:28 morning bundle was preserved, not overwritten.
+- The two native backups failed at the resolver in runs41950117538/41950663762: cron incorrectly re-read the old request file at HEAD and rejected its age. [PR37](https://github.com/champion5566/tw-stock-agent/pull/37), merged `5dc311bb`, only parses request-file changes for push events. Cron/dispatch semantics stay separate; actual push requests still reject old/future timestamps.
+- Full final suite: **113 tests PASS**. PR36 CI41956030262 and PR37 CI41956368788 passed; independent targeted reviews passed with no remaining blocking findings.
+- Still pending: next actual 08:40 source freshness/fallback and producer adoption; next native backup execution. Preview/offline checks do not certify these. Report timing, output fidelity and source completeness remain independent.
