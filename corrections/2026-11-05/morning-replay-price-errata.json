@@ -1,0 +1,25 @@
+{
+  "schema_version": "report-correction-v1",
+  "original_report": "2026-11-05-AM",
+  "classification": "REPLAY_SOURCE_CONSISTENCY_ERRATUM_NOT_ORIGINAL_FORECAST",
+  "data_revision": "ada6ff8159dbf15439f5d08d9476900bc7e62dc8",
+  "source_path": "reports/2026-11-05/morning.json",
+  "source_date": "2026-11-04",
+  "source": "FinMind TaiwanStockPrice daily_ohlcv.data.close",
+  "items": [
+    {
+      "code": "006208",
+      "original_report_value": 229.2,
+      "pinned_daily_close": 228.55
+    },
+    {
+      "code": "00631L",
+      "original_report_value": 31.23,
+      "pinned_daily_close": 30.85
+    }
+  ],
+  "limitations": [
+    "This confirms discrepancy with the cited data package, not a new direct-exchange certification.",
+    "The replay uses pinned daily close fields consistently; original report and ledger are unchanged."
+  ]
+}
