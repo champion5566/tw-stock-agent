@@ -87,3 +87,44 @@ A shorter rewrite proves only presentation changes. Judge research utility over 
 comparable reports and settled decisions. Maintained full-stack tools such as
 ZhuLinsen/daily_stock_analysis are candidates for a controlled comparison, not installed
 or assumed to satisfy Taiwan market coverage, live data or alpha requirements.
+
+## Corrections from the actual 2026-11-05 morning report
+
+AM-1105-TIME: Compare evidence by observation time, instrument and session. A completed
+TX observation at 04:59 cannot establish Taiwan resilience against Korean/Japanese moves
+observed at 08:27–08:28. Show the lag explicitly. Opposite signs alone do not justify a
+neutral/mixed conclusion; give a main interpretation and competing explanation, with
+a test that can distinguish them. Do not claim a contemporaneous futures/spot basis.
+
+AM-1105-CHANGE: Absolute index/stock levels do not explain strength. Whenever describing
+a completed US session, provide dated previous and current closes plus calculated daily
+returns, from existing data where available. Distinguish broad-market gains from sector
+weakness. Missing comparison inputs are explicit; never mix regular and extended hours.
+For this historical report, prior ledger values imply Nasdaq +1.44%, SOX -3.13%, TSM ADR
+-2.24%. A positive Nasdaq does not offset semiconductor weakness by simple averaging.
+
+AM-1105-COVERAGE: A single delayed Nikkei observation must not erase the valid TOPIX,
+Advantest and Tokyo Electron observations. Use available relevant data; label the missing
+or delayed item only. In the actual report, 08:27 Advantest -9.00% and Tokyo Electron
+-5.99% were present in the package but omitted from the analytical comparison.
+
+AM-1105-DECISION: "Watch whether it stabilizes" is not a useful instrument conclusion.
+Give the evidence for that instrument, what it changes, and the next measurable test;
+if it changes nothing, say "no distinct signal" rather than add generic prose.
+5483 foreign + trust buying is not sufficient to call accumulation: compare its negative
+price return, total dealer-inclusive flow, five-session flow and same-source volume.
+Do not infer a margin-call cascade solely from an ETF margin-balance increase.
+
+AM-1105-LEARNING: Every active research candidate must name the target, comparison metric,
+date/time horizon and reject condition. "Sustain relative strength" without definitions
+does not qualify. A research test is not a trading rule or a backfilled forecast.
+N/A opening forecasts are coverage failures to investigate, even when abstention is honest;
+absence of a calibrated model cannot be solved by adding more N/A report fields.
+
+AM-1105-LENGTH: Keep the actual reader-facing analysis compact. Technical contract tables,
+last night's pipeline failure and ledger-writing success belong in a linked audit record;
+put only a material exception and source/ledger links in the footer. Do not claim report
+quality improved merely because ingestion became punctual.
+
+These corrections are prospective. The original 2026-11-05 report/ledger is unchanged;
+any rewrite or new test defined after that report is retrospective teaching, unscored.
