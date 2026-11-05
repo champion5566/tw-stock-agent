@@ -17,7 +17,7 @@ from market_sources import mcp, attempt, http_json, finmind
 from snapshot_io import write_snapshot
 from quote_quality import select_observation, positive_price
 from session_calendar import completed_session
-from regional_quotes import collect_asia, select_regional
+from regional_quotes import collect_asia, select_regional, regional_usable
 
 TW = ZoneInfo("Asia/Taipei")
 ASSETS = {
@@ -35,7 +35,7 @@ ASSETS = {
         },
     },
     "jp": {
-        "indices": {"NIKKEI225":"^N225", "TOPIX":"998405.T"},
+        "indices": {"NIKKEI225":"^N225", "TOPIX":"^TOPX"},
         "semiconductors": {"ADVANTEST":"6857.T", "TOKYO_ELECTRON":"8035.T"},
     },
     "kr": {
@@ -83,10 +83,19 @@ def regular_close(ticker, checked_at):
         return {"status":"MISSING", "ticker":ticker, "expected_session":session["date"]}
     index, row = matches[-1]
     price = positive_price(row["Close"])
+    prior_session = completed_session("XNYS", datetime.fromisoformat(session["closed_at"])-timedelta(seconds=1))
+    prior_rows = [r for idx, r in hist.iterrows() if idx.date().isoformat() == prior_session["date"]]
+    previous = positive_price(prior_rows[-1]["Close"]) if prior_rows else None
+    split = row.get("Stock Splits", 0)
+    comparable = bool(price and previous and not split)
     return {"status":"PASS" if price else "NO_LAST_TRADE", "ticker":ticker,
             "source":"Yahoo/yfinance regular-session 1d", "price":price,
             "source_date":session["date"], "cash_session_closed_at":session["closed_at"],
             "session_completed":True, "data_kind":"regular_session_daily_bar",
+            "previous_close":previous, "previous_source_date":prior_session["date"] if previous else None,
+            "change_pct":(price/previous-1)*100 if comparable else None,
+            "change_status":"PASS" if comparable else "CORPORATE_ACTION_OR_MISSING_PREVIOUS_SESSION",
+            "return_basis":"unadjusted regular-session close-to-close price return, not total return",
             "is_live":False, "is_formal_close":False,
             "note":"Completed provider daily bar; not an exchange-certified closing/settlement file."}
 
@@ -97,13 +106,20 @@ def completed_us_close(ticker, checked):
     observation = first.get('data') or {'status':'FAIL','error':first.get('error')}
     if observation.get('status') == 'PASS': return observation
     target = completed_session('XNYS', checked)
-    rows = finmind('USStockPrice', ticker, target['date'], target['date'])
+    previous_session = completed_session('XNYS', datetime.fromisoformat(target['closed_at'])-timedelta(seconds=1))
+    rows = finmind('USStockPrice', ticker, previous_session['date'], target['date'])
     row = next((r for r in rows if r.get('date') == target['date'] and r.get('stock_id') == ticker), {})
+    prior = next((r for r in rows if r.get('date') == previous_session['date'] and r.get('stock_id') == ticker), {})
+    previous = positive_price(prior.get('close') if 'close' in prior else prior.get('Close'))
     price = positive_price(row.get('close') if 'close' in row else row.get('Close'))
     return {'status':'PASS' if price else 'MISSING', 'price':price, 'ticker':ticker,
             'source':'FinMind USStockPrice completed-session fallback', 'source_date':row.get('date'),
             'cash_session_closed_at':target['closed_at'], 'session_completed':bool(price),
             'data_kind':'regular_session_daily_bar', 'is_live':False, 'is_formal_close':False,
+            'previous_close':previous, 'previous_source_date':previous_session['date'] if previous else None,
+            'change_pct':(price/previous-1)*100 if price and previous else None,
+            'change_status':'UNADJUSTED_CORPORATE_ACTION_UNCHECKED' if price and previous else 'MISSING_PREVIOUS_SESSION',
+            'return_basis':'unadjusted same-provider regular-session close-to-close; corporate actions unverified',
             'yahoo_diagnostic':observation}
 
 
@@ -147,7 +163,7 @@ def main():
             for name, ticker in tickers.items():
                 candidate = regional.get(area, {}).get(name, {})
                 obs = ({'status':'NOT_REQUESTED_PRIMARY_FRESH','source':'Yahoo/global fallback'}
-                       if candidate.get('status') == 'PASS' or name == 'TOPIX' and candidate.get('price') is not None else attempt(lambda t=ticker: observe(t)))
+                       if regional_usable(candidate, now) else attempt(lambda t=ticker: observe(t)))
                 if obs["status"] == "PASS":
                     obs = obs["data"]
                     age_min = (now.astimezone(timezone.utc)
@@ -183,8 +199,8 @@ def main():
                 print("QUOTE", area, name, ticker, obs["status"],
                       obs.get("latest_bar_at_taipei"), flush=True)
 
-    if regional.get('jp', {}).get('TOPIX'):
-        out['assets'].setdefault('jp', {})['TOPIX'] = regional['jp']['TOPIX']
+    # Keep the selection above: do not overwrite an independent fresh fallback
+    # with the same regional observation which failed the delivery-time check.
     if regional.get('kr', {}).get('KOSPI200'):
         out['assets'].setdefault('kr', {})['KOSPI200'] = regional['kr']['KOSPI200']
     # Report preparation does not download a year of history. The explicit

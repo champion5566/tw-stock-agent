@@ -6,7 +6,7 @@ precision, response clock and market state stay attached to the selected source.
 import json
 import re
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 from email.utils import parsedate_to_datetime
 from zoneinfo import ZoneInfo
 
@@ -142,6 +142,25 @@ def japan_quote(code, checked):
     return parse_japan(response.text, code, checked, response.headers.get('Date'))
 
 
+def qualification_time(checked):
+    """Morning sources must survive until delivery, not merely their fetch time."""
+    local = checked.astimezone(TW)
+    if time(8, 20) <= local.time() <= time(8, 38):
+        return local.replace(hour=8, minute=40, second=0, microsecond=0)
+    return checked
+
+
+def regional_usable(item, checked):
+    if not item or item.get('status') != 'PASS':
+        return False
+    try:
+        stamp = datetime.fromisoformat(item.get('trade_time') or item['latest_bar_at_taipei'])
+        return (quote_status(item.get('price'), stamp, checked, 15) == 'PASS'
+                and quote_status(item.get('price'), stamp, qualification_time(checked), 15) == 'PASS')
+    except (KeyError, TypeError, ValueError):
+        return False
+
+
 def collect_asia(checked):
     jobs = [('kr', None, lambda:naver_group('index', 'KOSPI,KOSDAQ,KPI200', checked)),
             ('kr', None, lambda:naver_group('stock', '005930,000660', checked))]
@@ -165,12 +184,10 @@ def collect_asia(checked):
 
 
 def select_regional(primary, fallback, checked):
-    def valid(item):
-        if not item or item.get('status') != 'PASS': return False
-        try: stamp = datetime.fromisoformat(item.get('trade_time') or item['latest_bar_at_taipei'])
-        except (KeyError, TypeError, ValueError): return False
-        return quote_status(item.get('price'), stamp, checked, 15) == 'PASS'
+    def valid(item): return regional_usable(item, checked)
     chosen = primary if valid(primary) else fallback if valid(fallback) else fallback if fallback.get('price') is not None and fallback.get('trade_time') and not primary.get('trade_time') else primary if primary.get('price') is not None else fallback
     return {**chosen, 'regional_selection':{'primary_source':primary.get('source'), 'primary_status':primary.get('status'),
             'fallback_source':fallback.get('source'), 'fallback_status':fallback.get('status'),
-            'selected_source':chosen.get('source')}, 'source_observations':{'regional':primary,'global_yahoo':fallback}}
+            'selected_source':chosen.get('source'),
+            'qualification_at_taipei':qualification_time(checked).isoformat(),
+            'selected_qualified_through_delivery':valid(chosen)}, 'source_observations':{'regional':primary,'global_yahoo':fallback}}
