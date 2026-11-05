@@ -1,0 +1,52 @@
+{
+  "schema_version": "report-correction-v1",
+  "correction_date": "2026-11-05",
+  "original_report": "2026-11-05-AM",
+  "original_ledger": "predictions/2026-11-05/morning.md",
+  "source_revision": "458ef99218a3a415345bf0ee354c826ecabd992a",
+  "original_data_revision": "ada6ff8159dbf15439f5d08d9476900bc7e62dc8",
+  "historical_original_unchanged": true,
+  "classification": "RETROSPECTIVE_TEACHING_NOT_AN_EX_ANTE_FORECAST",
+  "quality_rubric": "report-teacher-v1",
+  "quality_score": {
+    "data": 20,
+    "reasoning": 14,
+    "decision_usefulness": 6,
+    "verification": 11,
+    "clarity": 4,
+    "total": 55
+  },
+  "correction_ids": [
+    "AM-1105-TIME",
+    "AM-1105-CHANGE",
+    "AM-1105-COVERAGE",
+    "AM-1105-DECISION",
+    "AM-1105-LEARNING",
+    "AM-1105-LENGTH"
+  ],
+  "corrected_analysis": "主判是半導體短線承壓風險高，而非泛稱訊號分化。美股Nasdaq約漲1.44%，費半卻跌3.13%、TSM ADR跌2.24%；08:27日本愛德萬跌9%、東京威力跌5.99%，08:28三星跌4.24%、SK海力士跌7.16%，顯示弱勢集中晶片鏈。04:59台指完成夜盤較現貨前收高455點，但時間早於亞洲這波報價，不能據此宣稱台灣已抗跌，也不是同時點基差。持股方面，5483外資加投信買超約1034張，仍收跌1.23%，含自營合計買超約876張、五日合計賣超約1898張；單日買超尚不能升級為趨勢反轉。後續研究應核對2330及半導體族群的相對大盤報酬，不能只寫『觀察是否止跌』。",
+  "calculated_us_changes": {
+    "NASDAQ": {
+      "previous_close": 25372.01,
+      "current_close": 25736.513671875,
+      "change_pct": 1.44
+    },
+    "SOX": {
+      "previous_close": 10600.4,
+      "current_close": 10268.654296875,
+      "change_pct": -3.13
+    },
+    "TSM_ADR": {
+      "previous_close": 404.8,
+      "current_close": 395.75,
+      "change_pct": -2.24
+    }
+  },
+  "limitations": [
+    "Previous US comparison closes are verified against the previous original ledger, not newly certified exchange closing files.",
+    "The futures cash difference is across sessions and is not simultaneous basis.",
+    "No post-opening outcome is used to grade the ex-ante reasoning.",
+    "No new opening estimator has been implemented or retrospectively backfilled.",
+    "Adoption and effectiveness of prospective corrections await subsequent actual reports."
+  ]
+}
