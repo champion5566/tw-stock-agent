@@ -14,7 +14,9 @@ SLOTS = {'35 21 * * 1-5':'nightclose', '30 0 * * 1-5':'morning',
 def resolve(event, event_name, now, changed=()):
     slot = event.get('inputs', {}).get('slot') or SLOTS.get(event.get('schedule'))
     kind = 'SCHEDULED_PREPARATION' if event_name == 'schedule' else 'PREVIEW'
-    requests = [p for p in changed if p.startswith('preparation/requests/') and p.endswith('.json')]
+    # Only a push represents a newly submitted request. Cron/dispatch may run
+    # with a request-file commit at HEAD; that does not resubmit the old request.
+    requests = [p for p in changed if p.startswith('preparation/requests/') and p.endswith('.json')] if event_name == 'push' else []
     if requests:
         if len(requests) != 1:
             raise ValueError('Exactly one preparation request per push')

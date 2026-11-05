@@ -17,6 +17,26 @@ from scripts.reuse_night_observation import select
 
 
 class PreparationTests(unittest.TestCase):
+    def test_native_schedule_does_not_resubmit_request_at_head(self):
+        now = datetime(2026, 11, 5, 9, 45, tzinfo=TW)
+        path = 'preparation/requests/2026-11-05/morning.json'
+        # The request can be old or absent locally; cron is not a new push.
+        with tempfile.TemporaryDirectory() as tmp, in_directory(tmp):
+            self.assertEqual(resolve({'schedule':'30 0 * * 1-5'},'schedule',now,[path]),
+                             ('morning','SCHEDULED_PREPARATION'))
+            self.assertEqual(resolve({'inputs':{'slot':'evening'}},'workflow_dispatch',now,[path]),
+                             ('evening','PREVIEW'))
+
+    def test_actual_push_still_rejects_stale_request(self):
+        now = datetime(2026, 11, 5, 9, 45, tzinfo=TW)
+        path = 'preparation/requests/2026-11-05/morning.json'
+        with tempfile.TemporaryDirectory() as tmp, in_directory(tmp):
+            Path(path).parent.mkdir(parents=True)
+            Path(path).write_text(json.dumps({'schema_version':'preparation-request-v1',
+                'slot':'morning','requested_at_taipei':'2026-11-05T08:21:54+08:00'}))
+            with self.assertRaisesRegex(ValueError,'recent'):
+                resolve({},'push',now,[path])
+
     def test_cutoff_rejects_postcutoff_asia_bar_despite_fresh_price(self):
         now, market, cross = fixture()
         cross['assets']['jp']['NIKKEI225']['latest_bar_at_taipei'] = now.replace(minute=39).isoformat()
