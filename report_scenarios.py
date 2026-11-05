@@ -121,6 +121,9 @@ def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=Non
     report["delivery_status"] = "NOT_ACKNOWLEDGED"
     report["required_stocks"] = list(REPORT_STOCKS)
     report["watch_stocks"] = list(WATCH_STOCKS)
+    if mode != "intraday":
+        from report_output_quality import render_close_table
+        report["stock_close_table_markdown"] = render_close_table(report)
     return report
 
 

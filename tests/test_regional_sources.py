@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from quote_quality import TW
-from regional_quotes import parse_naver, parse_japan, select_regional
+from regional_quotes import parse_naver, parse_japan, select_regional, regional_usable
 from market_context import parse_context, day
 from collect_cross_market import completed_us_close, security_identity
 from report_contract import asia_status
@@ -66,6 +66,25 @@ class RegionalSourceTests(unittest.TestCase):
         self.assertEqual(selected['source'],'global')
         self.assertNotIn('high',selected)
         self.assertEqual(selected['source_observations']['regional'],old)
+
+    def test_quote_fresh_at_fetch_but_delayed_at_delivery_requires_fallback(self):
+        checked = NOW.replace(minute=28)
+        old = {'price':100,'source':'Naver','status':'PASS','trade_time':'2026-11-05T08:13:02+08:00'}
+        fresh = {'price':101,'source':'Yahoo','status':'PASS','trade_time':'2026-11-05T08:27:00+08:00'}
+        self.assertFalse(regional_usable(old, checked))
+        selected = select_regional(old, fresh, checked)
+        self.assertEqual(selected['source'], 'Yahoo')
+        self.assertTrue(selected['regional_selection']['selected_qualified_through_delivery'])
+
+    def test_delivery_clock_does_not_legitimise_future_provider_quote(self):
+        q={'price':100,'status':'PASS','trade_time':'2026-11-05T08:38:00+08:00'}
+        self.assertFalse(regional_usable(q, NOW.replace(minute=28)))
+
+    def test_no_fresh_alternative_keeps_original_clock_and_unqualified_state(self):
+        q={'price':100,'source':'Naver','status':'PASS','trade_time':'2026-11-05T08:13:02+08:00'}
+        selected=select_regional(q, {'status':'FAIL'}, NOW.replace(minute=28))
+        self.assertEqual(selected['trade_time'],q['trade_time'])
+        self.assertFalse(selected['regional_selection']['selected_qualified_through_delivery'])
 
     def test_date_only_topix_prefers_timestamped_true_index_observation(self):
         a={'price':3895.38,'source':'JP','status':'NO_TIMESTAMP'}

@@ -91,6 +91,32 @@ class CalendarAndRequirementTests(unittest.TestCase):
             self.assertFalse(ticker.return_value.history.call_args.kwargs['prepost'])
             self.assertFalse(result['is_formal_close'])
 
+    def test_us_daily_return_uses_exact_previous_completed_session(self):
+        checked=datetime(2026,11,5,8,28,tzinfo=TW)
+        history=pd.DataFrame({'Close':[100,97,110]},index=pd.to_datetime(['2026-11-03','2026-11-04','2026-11-05']).tz_localize('America/New_York'))
+        with patch.object(collect_cross_market.yf,'Ticker') as ticker:
+            ticker.return_value.history.return_value=history
+            result=collect_cross_market.regular_close('NVDA',checked)
+        self.assertEqual(result['previous_source_date'],'2026-11-03')
+        self.assertEqual(result['price'],97)
+        self.assertAlmostEqual(result['change_pct'],-3)
+
+    def test_us_missing_previous_session_is_not_multiday_return(self):
+        checked=datetime(2026,11,5,8,28,tzinfo=TW)
+        history=pd.DataFrame({'Close':[100,97]},index=pd.to_datetime(['2026-11-02','2026-11-04']).tz_localize('America/New_York'))
+        with patch.object(collect_cross_market.yf,'Ticker') as ticker:
+            ticker.return_value.history.return_value=history
+            result=collect_cross_market.regular_close('NVDA',checked)
+        self.assertIsNone(result['change_pct'])
+
+    def test_us_split_day_does_not_report_unadjusted_drop_as_daily_return(self):
+        checked=datetime(2026,11,5,8,28,tzinfo=TW)
+        history=pd.DataFrame({'Close':[100,25],'Stock Splits':[0,4]},index=pd.to_datetime(['2026-11-03','2026-11-04']).tz_localize('America/New_York'))
+        with patch.object(collect_cross_market.yf,'Ticker') as ticker:
+            ticker.return_value.history.return_value=history
+            result=collect_cross_market.regular_close('NVDA',checked)
+        self.assertIsNone(result['change_pct'])
+
 
 class ReadinessTests(unittest.TestCase):
     def report(self, mode='morning'):
