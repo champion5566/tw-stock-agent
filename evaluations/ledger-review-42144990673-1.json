@@ -1,0 +1,539 @@
+{
+  "schema_version": "ledger-review-v1",
+  "as_of_taipei": "2026-11-06T09:37:51.017171+08:00",
+  "data_revision": "01532256d5348bb429411428daa69a07ccd49ae4",
+  "results": [
+    {
+      "id": "2026-10-26-PM-MKT-01",
+      "original_text": "2026-10-27或下一個實際台股交易日，加權指數正式收盤將低於2026-10-22正式收盤46,041.43點。",
+      "original_threshold": "TAIEX official close < 46041.43 points",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "RULE_NOT_SUPPORTED_NO_INFERENCE",
+      "original_path": "predictions/2026-10-26/evening.md",
+      "original_sha256": "d5678e40d74bfae8bb1039710b73c144ae1978dc91f33032518c52c4be0f696d"
+    },
+    {
+      "id": "2026-10-26-PM-5483-01",
+      "original_text": "2026-10-27或下一個實際台股交易日，5483正式收盤將不高於2026-10-22收盤186.00元。",
+      "original_threshold": "5483 official close <= TWD 186.00",
+      "formal_score_eligible": false,
+      "target_date": "2026-10-27",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "HIT",
+      "actual": 184.5,
+      "operator": "<=",
+      "threshold": 186.0,
+      "evidence": {
+        "path": "reports/2026-10-27/evening.json",
+        "field": "$.stocks['5483'].daily_ohlcv.data.close",
+        "source": "FinMind TaiwanStockPrice",
+        "source_date": "2026-10-27",
+        "sha256": "81fc3383e9f18b80db0eefc1543c1bbaf19432a0afcbe3bcd6a7ad12e4559dc6",
+        "report_generated_at": "2026-10-27T23:33:10.324342+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-10-26/evening.md",
+      "original_sha256": "d5678e40d74bfae8bb1039710b73c144ae1978dc91f33032518c52c4be0f696d"
+    },
+    {
+      "id": "2026-10-27-PM-MKT-01",
+      "original_text": "2026-10-28台股正常交易日，加權指數正式收盤將低於2026-10-27正式收盤46,096.23點。",
+      "original_threshold": "official TAIEX close < 46096.23 points",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "RULE_NOT_SUPPORTED_NO_INFERENCE",
+      "original_path": "predictions/2026-10-27/evening.md",
+      "original_sha256": "8ddef0082ce2411e85a7c8c372a55892cab60b9ea8f60f5f928c58d3a391a742"
+    },
+    {
+      "id": "2026-10-27-PM-5483-01",
+      "original_text": "2026-10-28中美晶5483正常交易日正式收盤將不高於2026-10-27收盤184.50元。",
+      "original_threshold": "5483 official close <= TWD 184.50",
+      "formal_score_eligible": false,
+      "target_date": "2026-10-28",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "MISS",
+      "actual": 188.5,
+      "operator": "<=",
+      "threshold": 184.5,
+      "evidence": {
+        "path": "reports/2026-10-28/evening.json",
+        "field": "$.stocks['5483'].daily_ohlcv.data.close",
+        "source": "FinMind TaiwanStockPrice",
+        "source_date": "2026-10-28",
+        "sha256": "81021d62f6f0ffd685a4324c3618833bf882de494108b286688235f5155362bc",
+        "report_generated_at": "2026-10-28T23:36:47.005072+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-10-27/evening.md",
+      "original_sha256": "8ddef0082ce2411e85a7c8c372a55892cab60b9ea8f60f5f928c58d3a391a742"
+    },
+    {
+      "id": "2026-10-27-AM-MKT-OPEN-01",
+      "original_text": "2026-10-27台股正式開盤時，加權指數開盤點位將高於上一有效台股交易日2026-10-22的正式收盤46,041.43點。",
+      "original_threshold": "official TAIEX opening index > 46041.43 points",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "RULE_NOT_SUPPORTED_NO_INFERENCE",
+      "original_path": "predictions/2026-10-27/morning.md",
+      "original_sha256": "b5069b9fee9ad3f88899640ec385d4b506ac44499770594be8f22f86725ba46d"
+    },
+    {
+      "id": "2026-10-27-AM-2330-OPEN-01",
+      "original_text": "2026-10-27台積電2330正式開盤價將高於2026-10-22正式收盤價2,385元。",
+      "original_threshold": "2330 official opening price > TWD 2385",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "RULE_NOT_SUPPORTED_NO_INFERENCE",
+      "original_path": "predictions/2026-10-27/morning.md",
+      "original_sha256": "b5069b9fee9ad3f88899640ec385d4b506ac44499770594be8f22f86725ba46d"
+    },
+    {
+      "id": "2026-10-28-PM-MKT-01",
+      "original_text": "預測2026-10-29臺灣證券交易所加權指數正式收盤將不低於2026-10-28正式收盤47,035.58點。",
+      "original_threshold": "official 2026-10-29 TAIEX close >=47035.58",
+      "formal_score_eligible": false,
+      "target_date": "2026-10-29",
+      "status": "UNVERIFIABLE",
+      "reason": "OUTCOME_SECTION_NOT_CURRENT_PASS",
+      "original_path": "predictions/2026-10-28/evening.md",
+      "original_sha256": "ac9ec717a1a296cc5817db24ed6523887f83c58debeec7d211264da93f564646"
+    },
+    {
+      "id": "2026-10-28-PM-5483-01",
+      "original_text": "預測2026-10-29中美晶5483正式收盤將低於2026-10-28收盤188.50元。",
+      "original_threshold": "official TPEx 5483 close < TWD 188.50",
+      "formal_score_eligible": false,
+      "target_date": "2026-10-29",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "HIT",
+      "actual": 184.0,
+      "operator": "<",
+      "threshold": 188.5,
+      "evidence": {
+        "path": "reports/2026-10-29/evening.json",
+        "field": "$.stocks['5483'].daily_ohlcv.data.close",
+        "source": "FinMind TaiwanStockPrice",
+        "source_date": "2026-10-29",
+        "sha256": "de55be55f3a8af01e42d0fa2b458c3395035488fb41a2cf318728be04190e925",
+        "report_generated_at": "2026-10-29T23:38:12.726908+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-10-28/evening.md",
+      "original_sha256": "ac9ec717a1a296cc5817db24ed6523887f83c58debeec7d211264da93f564646"
+    },
+    {
+      "id": "OPEN-20261028-AM",
+      "original_text": "預測2026-10-28臺灣證券交易所加權股價指數09:00正式開盤指數為46,340.00點，較2026-10-27正式收盤46,096.23點上漲+243.77點（+0.529%）；預測區間46,060.00至46,620.00點，信心34%。",
+      "original_threshold": "official TAIEX 09:00 opening index; predicted center=46340.00; interval=[46060.00,46620.00]",
+      "formal_score_eligible": false,
+      "status": "NOT_TESTED",
+      "reason": "NO_SUPPORTED_CLOSE_RULE",
+      "original_path": "predictions/2026-10-28/morning.md",
+      "original_sha256": "9edc93591d3a47c03426012e3b5f63087b0a8e13d3e85dc07a4d3f22f26ca990"
+    },
+    {
+      "id": "2026-10-28-AM-2330-OPEN-01",
+      "original_text": "預測2026-10-28台積電2330正式開盤價高於2026-10-27正式收盤價2,400元。",
+      "original_threshold": "TWSE 2330 opening price > TWD 2400",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "RULE_NOT_SUPPORTED_NO_INFERENCE",
+      "original_path": "predictions/2026-10-28/morning.md",
+      "original_sha256": "9edc93591d3a47c03426012e3b5f63087b0a8e13d3e85dc07a4d3f22f26ca990"
+    },
+    {
+      "id": "2026-10-29-PM-MKT-01",
+      "original_text": "預測2026-10-30臺灣證券交易所加權股價指數正常交易日正式收盤將低於2026-10-29正式收盤46,368.33點。",
+      "original_threshold": "official 2026-10-30 TAIEX regular-session close < 46368.33",
+      "formal_score_eligible": false,
+      "target_date": "2026-10-30",
+      "status": "UNVERIFIABLE",
+      "reason": "OUTCOME_SECTION_NOT_CURRENT_PASS",
+      "original_path": "predictions/2026-10-29/evening.md",
+      "original_sha256": "a8f7ba5d4a4b88782ca01817fb240c87af017c383c27df1dc7679dfd31d0b549"
+    },
+    {
+      "id": "2026-10-29-PM-5483-01",
+      "original_text": "預測2026-10-30中美晶5483正常交易日正式收盤將低於2026-10-29暫定收盤183.50元。",
+      "original_threshold": "official TPEx 5483 regular-session close < TWD 183.50, conditional on official confirmation of 2026-10-29 183.50 reference",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "CONDITIONAL_RULE_NEEDS_REVIEW",
+      "original_path": "predictions/2026-10-29/evening.md",
+      "original_sha256": "a8f7ba5d4a4b88782ca01817fb240c87af017c383c27df1dc7679dfd31d0b549"
+    },
+    {
+      "id": "OPEN-20261029-AM",
+      "original_text": "昨日台積電2330收盤2425元、最高2430元、最低2410元；今日僅觀察2430突破或2410跌破，不將條件觀察誤記成方向性預測。",
+      "original_threshold": "2430/2410; observation only",
+      "formal_score_eligible": false,
+      "status": "NOT_TESTED",
+      "reason": "NO_SUPPORTED_CLOSE_RULE",
+      "original_path": "predictions/2026-10-29/morning.md",
+      "original_sha256": "2c6987f0d0581cd849492ef74210478fddce5678c77efa9b27d104712f184ad1"
+    },
+    {
+      "id": "2026-10-30-PM-MKT-01",
+      "original_text": "預測2026-11-02臺灣證券交易所加權股價指數正常交易日正式收盤將低於2026-10-30正式收盤45,211.83點。",
+      "original_threshold": "official 2026-11-02 TAIEX regular close < 45211.83",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-02",
+      "status": "UNVERIFIABLE",
+      "reason": "OUTCOME_SECTION_NOT_CURRENT_PASS",
+      "original_path": "predictions/2026-10-30/evening.md",
+      "original_sha256": "5a5ec674d2f9f457c011a4b8a7d70a5c231e265ba435d82783890c26794e3886"
+    },
+    {
+      "id": "2026-10-30-PM-5483-01",
+      "original_text": "預測2026-11-02中美晶5483正常交易日正式收盤將低於2026-10-30 TPEx官方正式收盤174.00元。",
+      "original_threshold": "official TPEx 2026-11-02 5483 regular close < TWD 174.00",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-02",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "MISS",
+      "actual": 174.5,
+      "operator": "<",
+      "threshold": 174.0,
+      "evidence": {
+        "path": "reports/2026-11-02/evening.json",
+        "field": "$.stocks['5483'].daily_ohlcv.data.close",
+        "source": "FinMind TaiwanStockPrice",
+        "source_date": "2026-11-02",
+        "sha256": "b1dce13e2e22ab4c2063a8157aa4d8732f4dd6562c117de9d03326ce876c1122",
+        "report_generated_at": "2026-11-02T23:41:21.084124+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-10-30/evening.md",
+      "original_sha256": "5a5ec674d2f9f457c011a4b8a7d70a5c231e265ba435d82783890c26794e3886"
+    },
+    {
+      "id": "OPEN-20261030-AM",
+      "original_text": "2026-10-30臺灣證券交易所加權股價指數09:00正式開盤單一中心點位N/A；相對2026-10-29正式收盤46,368.33點之預估漲跌點數N/A、漲跌幅N/A、區間N/A、信心N/A。方向性背景偏空，但台指期與現貨基差未獲有效校準，日韓08:20至08:38開盤資料缺失；本報告實際開始08:41:26已超過正式08:40時點，非即時盤前預測／不可計入正式樣本。",
+      "original_threshold": "N/A",
+      "formal_score_eligible": false,
+      "status": "NOT_TESTED",
+      "reason": "NO_SUPPORTED_CLOSE_RULE",
+      "original_path": "predictions/2026-10-30/morning.md",
+      "original_sha256": "01348104c27d200232e8c3cdd1878efddd5a4dc79c72893c719cc7cd033e6716"
+    },
+    {
+      "id": "2026-10-30-AM-MKT-01",
+      "original_text": "低信心情境假設：2026-10-30臺灣加權指數正式收盤低於2026-10-29正式收盤46,368.33點。",
+      "original_threshold": "official 2026-10-30 TAIEX regular close < 46368.33",
+      "formal_score_eligible": false,
+      "target_date": "2026-10-30",
+      "status": "UNVERIFIABLE",
+      "reason": "OUTCOME_SECTION_NOT_CURRENT_PASS",
+      "original_path": "predictions/2026-10-30/morning.md",
+      "original_sha256": "01348104c27d200232e8c3cdd1878efddd5a4dc79c72893c719cc7cd033e6716"
+    },
+    {
+      "id": "2026-10-30-AM-2330-01",
+      "original_text": "低信心情境假設：2026-10-30台積電2330正式收盤低於2026-10-29正式收盤2415元。",
+      "original_threshold": "official TWSE 2026-10-30 2330 regular close < TWD 2415",
+      "formal_score_eligible": false,
+      "target_date": "2026-10-30",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "HIT",
+      "actual": 2370.0,
+      "operator": "<",
+      "threshold": 2415.0,
+      "evidence": {
+        "path": "reports/2026-10-30/evening.json",
+        "field": "$.stocks['2330'].daily_ohlcv.data.close",
+        "source": "FinMind TaiwanStockPrice",
+        "source_date": "2026-10-30",
+        "sha256": "01f821a39dcf9edeb2aa4cf72bc7f625ace8b8d34760d7b37a53279adbf35c44",
+        "report_generated_at": "2026-10-30T23:36:30.915213+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-10-30/morning.md",
+      "original_sha256": "01348104c27d200232e8c3cdd1878efddd5a4dc79c72893c719cc7cd033e6716"
+    },
+    {
+      "id": "2026-10-31-PM-2330-01",
+      "original_text": "預測2026-11-02台積電2330正常交易日官方收盤價將低於2026-10-30正式收盤2,370元。",
+      "original_threshold": "official 2026-11-02 2330 regular-session close < TWD 2370.00",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-02",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "HIT",
+      "actual": 2330.0,
+      "operator": "<",
+      "threshold": 2370.0,
+      "evidence": {
+        "path": "reports/2026-11-02/evening.json",
+        "field": "$.stocks['2330'].daily_ohlcv.data.close",
+        "source": "FinMind TaiwanStockPrice",
+        "source_date": "2026-11-02",
+        "sha256": "b1dce13e2e22ab4c2063a8157aa4d8732f4dd6562c117de9d03326ce876c1122",
+        "report_generated_at": "2026-11-02T23:41:21.084124+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-10-31/evening.md",
+      "original_sha256": "b57569682ef94eb64f374e79578e47ffa3d9e4b8a4cfe9791b3c9ac1679f38ed"
+    },
+    {
+      "id": "2026-10-31-PM-00631L-01",
+      "original_text": "預測2026-11-02元大台灣50正2（00631L）正常交易日官方收盤價將低於2026-10-30正式收盤34.16元。",
+      "original_threshold": "official 2026-11-02 00631L regular-session close < TWD 34.16",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "RULE_NOT_SUPPORTED_NO_INFERENCE",
+      "original_path": "predictions/2026-10-31/evening.md",
+      "original_sha256": "b57569682ef94eb64f374e79578e47ffa3d9e4b8a4cfe9791b3c9ac1679f38ed"
+    },
+    {
+      "id": "OPEN-20261031-AM",
+      "original_text": "2026-10-31星期六臺灣證券交易所休市，不存在當日09:00官方加權股價指數開盤；單一中心點位N/A、預估漲跌點N/A、漲跌幅N/A、合理區間N/A、信心N/A。最近正式前收2026-10-30為45,211.83點。不得把10月31日凌晨台指期夜盤末筆44,433點、10月30日現貨收盤或11月2日未來開盤當成10月31日開盤預測。週一2026-11-02方向風險偏空，但缺少11月2日08:20至08:38日韓開盤及當日夜盤校準，不產生週一正式數值預測。",
+      "original_threshold": "N/A",
+      "formal_score_eligible": false,
+      "status": "NOT_TESTED",
+      "reason": "NO_SUPPORTED_CLOSE_RULE",
+      "original_path": "predictions/2026-10-31/morning.md",
+      "original_sha256": "1d20f2b49cdf00295e8f5ddb8879ec5d8e5d39074cb213a7c2714469375d1ee0"
+    },
+    {
+      "id": "2026-11-01-PM-BREADTH-01",
+      "original_text": "預測2026-11-02臺灣證券交易所上市股票下跌家數至少為上漲家數的2倍（下跌家數／上漲家數≥2.00）。",
+      "original_threshold": "official TWSE 2026-11-02 regular-session listed-stock declining count / advancing count >= 2.00; unchanged stocks excluded from ratio",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "RULE_NOT_SUPPORTED_NO_INFERENCE",
+      "original_path": "predictions/2026-11-01/evening.md",
+      "original_sha256": "859e79e24dde35ed5e71cb40e9d1af03c89342177f1c089f8d8a36a639f0d77d"
+    },
+    {
+      "id": "2026-11-01-PM-SECTOR-01",
+      "original_text": "預測2026-11-02臺灣證券交易所半導體類指數單日漲跌幅低於同日加權股價指數單日漲跌幅。",
+      "original_threshold": "official TWSE 2026-11-02 semiconductor sector index regular-session percent change minus official TAIEX regular-session percent change < 0.00 percentage points",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "RULE_NOT_SUPPORTED_NO_INFERENCE",
+      "original_path": "predictions/2026-11-01/evening.md",
+      "original_sha256": "859e79e24dde35ed5e71cb40e9d1af03c89342177f1c089f8d8a36a639f0d77d"
+    },
+    {
+      "id": "OPEN-20261101-AM",
+      "original_text": "2026-11-01星期日臺灣證券交易所休市，不存在當日09:00官方加權股價指數開盤。單一中心點位N/A、相對最近正式前收45,211.83點的預估漲跌點N/A、預估漲跌幅N/A、合理預測區間N/A、信心N/A。10月31日04:59:59台指期夜盤末筆44,433點不是11月1日現貨開盤，也不是11月2日現貨開盤預測；週一2026-11-02的正式預測須於當日08:38前依當時有效市場資料獨立產生，不得事後回填。週五費半-7.20%及台指夜盤走弱屬週一風險背景，不是可計分開盤預測。",
+      "original_threshold": "N/A",
+      "formal_score_eligible": false,
+      "status": "NOT_TESTED",
+      "reason": "NO_SUPPORTED_CLOSE_RULE",
+      "original_path": "predictions/2026-11-01/morning.md",
+      "original_sha256": "00fab3f4255207da38c42e076e5ef678ed90cbda1c7189916c8326ea38463dfc"
+    },
+    {
+      "id": "2026-11-02-PM-MKT-01",
+      "original_text": "預測2026-11-03臺灣證券交易所加權股價指數正常交易日官方收盤點位高於2026-11-02正式收盤44,920.14點。",
+      "original_threshold": "2026-11-03 official TAIEX regular-session close > 44920.14",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-03",
+      "status": "UNVERIFIABLE",
+      "reason": "OUTCOME_SECTION_NOT_CURRENT_PASS",
+      "original_path": "predictions/2026-11-02/evening.md",
+      "original_sha256": "a488759a56c285f449180142d869138cb7b628009991075b4888eb8dc79d776a"
+    },
+    {
+      "id": "2026-11-02-PM-BREADTH-01",
+      "original_text": "預測2026-11-03臺灣證券交易所上市股票正常交易日收盤上漲家數將大於下跌家數。",
+      "original_threshold": "official TWSE listed-stock advancing count > declining count, unchanged excluded",
+      "formal_score_eligible": false,
+      "status": "UNVERIFIABLE",
+      "reason": "RULE_NOT_SUPPORTED_NO_INFERENCE",
+      "original_path": "predictions/2026-11-02/evening.md",
+      "original_sha256": "a488759a56c285f449180142d869138cb7b628009991075b4888eb8dc79d776a"
+    },
+    {
+      "id": "OPEN-20261102-AM",
+      "original_text": "預測2026-11-02臺灣證券交易所加權股價指數09:00官方開盤之單一中心點位N/A；相對2026-10-30官方前收45,211.83點的預估漲跌點N/A、預估漲跌幅N/A、合理預測區間N/A、數值信心N/A。盤前方向性風險偏空，理由為2026-10-30美股費半-7.20%、Nasdaq-2.86%、TSM ADR-5.95%與2026-10-31完成夜盤台指期末筆44,433點；但無合格08:20至08:38日韓觀測與有效校準期現貨基差，且正式2026-11-02晨報資料包截至08:38缺失，故不發布不可驗證的數值預測，不把44,433點當成現貨開盤。",
+      "original_threshold": "N/A",
+      "formal_score_eligible": false,
+      "status": "NOT_TESTED",
+      "reason": "NO_SUPPORTED_CLOSE_RULE",
+      "original_path": "predictions/2026-11-02/morning.md",
+      "original_sha256": "fceb13da4112d15cbaf054b5823829b3ff53fa40eb95b3f2e5a5e53f4ee53522"
+    },
+    {
+      "id": "2026-11-03-PM-MKT-01",
+      "original_text": "預測2026-11-04 TWSE加權指數正常交易日官方收盤低於2026-11-03收盤43,307.54點。",
+      "original_threshold": "2026-11-04 official TAIEX regular close <43307.54",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-04",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "HIT",
+      "actual": 42948.91,
+      "operator": "<",
+      "threshold": 43307.54,
+      "evidence": {
+        "path": "reports/2026-11-04/evening.json",
+        "field": "$.market_context.TAIEX.close",
+        "source": "FinMind TaiwanStockPrice TAIEX",
+        "source_date": "2026-11-04",
+        "sha256": "0a917368d5439cd8edc5f838bbaba2a57067336afd1365a8189c0d14825226e4",
+        "report_generated_at": "2026-11-04T23:45:05.958054+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-11-03/evening.md",
+      "original_sha256": "ecdb2eca4c4d02cbc49554431d9883a4375873d81a013df3e6deb3f6ab5b7474"
+    },
+    {
+      "id": "2026-11-03-PM-2330-01",
+      "original_text": "預測2026-11-04台積電2330正常交易日官方收盤低於2026-11-03收盤2,295元。",
+      "original_threshold": "2026-11-04 official 2330 regular close <2295.00 TWD",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-04",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "HIT",
+      "actual": 2260.0,
+      "operator": "<",
+      "threshold": 2295.0,
+      "evidence": {
+        "path": "reports/2026-11-04/evening.json",
+        "field": "$.stocks['2330'].daily_ohlcv.data.close",
+        "source": "FinMind TaiwanStockPrice",
+        "source_date": "2026-11-04",
+        "sha256": "0a917368d5439cd8edc5f838bbaba2a57067336afd1365a8189c0d14825226e4",
+        "report_generated_at": "2026-11-04T23:45:05.958054+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-11-03/evening.md",
+      "original_sha256": "ecdb2eca4c4d02cbc49554431d9883a4375873d81a013df3e6deb3f6ab5b7474"
+    },
+    {
+      "id": "OPEN-20261103-AM",
+      "original_text": "預測2026-11-03 TWSE加權指數09:00官方開盤中心點位N/A；相對2026-11-02已完成交易收盤44,920.14點預估漲跌點數N/A、漲跌幅N/A、合理區間N/A、數值信心N/A。已知2026-11-02美股Nasdaq收25,164.32約-1.07%、S&P500收7,541.40約-0.51%、費半收10,328.33約-3.37%、TSM ADR收398.63約-1.85%；2026-11-03台指期完成夜盤04:59:59.590最後觀測44,310點；2026-11-03日本文化日現貨休市，韓國08:20至08:38合格行情、美元台幣與校準期現貨基差未取得，正式晨報JSON於08:38截止前404。故方向性風險偏空，但不捏造單一點位、權重或點數貢獻；不可將44,310當成現貨開盤。數值預測不可計分。",
+      "original_threshold": "N/A",
+      "formal_score_eligible": false,
+      "status": "NOT_TESTED",
+      "reason": "NO_SUPPORTED_CLOSE_RULE",
+      "original_path": "predictions/2026-11-03/morning.md",
+      "original_sha256": "af4edcc270a5f8cbb2f37fd4a9af6994b112689bb1ed2ca7f6e54b133ce72de3"
+    },
+    {
+      "id": "2026-11-03-AM-MKT-01",
+      "original_text": "預測2026-11-03 TWSE加權指數正常交易日官方收盤低於2026-11-02收盤44,920.14點。這是低信心、可驗證的方向性假設，不是09:00開盤點位預測。",
+      "original_threshold": "2026-11-03 official TAIEX regular close <44920.14",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-03",
+      "status": "UNVERIFIABLE",
+      "reason": "OUTCOME_SECTION_NOT_CURRENT_PASS",
+      "original_path": "predictions/2026-11-03/morning.md",
+      "original_sha256": "af4edcc270a5f8cbb2f37fd4a9af6994b112689bb1ed2ca7f6e54b133ce72de3"
+    },
+    {
+      "id": "2026-11-03-AM-2330-01",
+      "original_text": "預測2026-11-03台積電2330正常交易日官方收盤低於2026-11-02收盤2,330元。此為低信心、可驗證的方向性假設。",
+      "original_threshold": "2026-11-03 official 2330 close <2330.00 TWD",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-03",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "HIT",
+      "actual": 2295.0,
+      "operator": "<",
+      "threshold": 2330.0,
+      "evidence": {
+        "path": "reports/2026-11-03/evening.json",
+        "field": "$.stocks['2330'].daily_ohlcv.data.close",
+        "source": "FinMind TaiwanStockPrice",
+        "source_date": "2026-11-03",
+        "sha256": "ea8e9efa221534f9cc4b85a6bd50cf4d895b83f56842f70367f26fba1b145e40",
+        "report_generated_at": "2026-11-03T23:30:28.288566+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-11-03/morning.md",
+      "original_sha256": "af4edcc270a5f8cbb2f37fd4a9af6994b112689bb1ed2ca7f6e54b133ce72de3"
+    },
+    {
+      "id": "2026-11-04-PM-MKT-01",
+      "original_text": "預測2026-11-05臺灣證交所加權指數正常交易日官方收盤低於2026-11-04收盤42,948.91點。",
+      "original_threshold": "TAIEX official close <42948.91",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-05",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "HIT",
+      "actual": 41574.72,
+      "operator": "<",
+      "threshold": 42948.91,
+      "evidence": {
+        "path": "reports/2026-11-05/evening.json",
+        "field": "$.market_context.TAIEX.close",
+        "source": "FinMind TaiwanStockPrice TAIEX",
+        "source_date": "2026-11-05",
+        "sha256": "3ffd0c402492b3fb0431d4d937545796148f2fc451bb090c3345f2fe38ee0f83",
+        "report_generated_at": "2026-11-05T23:43:43.628145+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-11-04/evening.md",
+      "original_sha256": "a41d5b668c0f5996c1a4bd846016dfbb0f9c11635421e787b618bb424d0f1a4b"
+    },
+    {
+      "id": "2026-11-04-PM-2330-01",
+      "original_text": "預測2026-11-05台積電2330正常交易日官方收盤低於2026-11-04收盤2,260元。",
+      "original_threshold": "TWSE 2330 official close <2260.00",
+      "formal_score_eligible": false,
+      "target_date": "2026-11-05",
+      "status": "PROVIDER_MATCHED",
+      "outcome": "HIT",
+      "actual": 2240.0,
+      "operator": "<",
+      "threshold": 2260.0,
+      "evidence": {
+        "path": "reports/2026-11-05/evening.json",
+        "field": "$.stocks['2330'].daily_ohlcv.data.close",
+        "source": "FinMind TaiwanStockPrice",
+        "source_date": "2026-11-05",
+        "sha256": "3ffd0c402492b3fb0431d4d937545796148f2fc451bb090c3345f2fe38ee0f83",
+        "report_generated_at": "2026-11-05T23:43:43.628145+08:00"
+      },
+      "reason": "OUTCOME_ONLY_NOT_TIMELY_FORECAST_CERTIFICATION",
+      "original_path": "predictions/2026-11-04/evening.md",
+      "original_sha256": "a41d5b668c0f5996c1a4bd846016dfbb0f9c11635421e787b618bb424d0f1a4b"
+    },
+    {
+      "id": "OPEN-20261104-AM",
+      "original_text": "預測2026-11-04臺灣證交所加權指數09:00官方開盤單一中心點位N/A、相對2026-11-03前收43,307.54點的預估漲跌點N/A、預估漲跌幅N/A、合理區間N/A、數值信心N/A。正式晨報JSON於08:38檢查時404；沒有08:20至08:38合格的日韓開盤及匯率觀測，且沒有校準的期現貨基差，不得以夜盤43,779點或美股完成日線直接代替開盤點位。2026-11-03美股完成日線Nasdaq 25,372.01、SOX 10,600.40、TSM ADR 404.80；2026-11-04完成夜盤Shioaji snapshot 43,779，末筆時間04:59:58.571。此為資料不完整的不可計分數值預測，方向不作正式判定。",
+      "original_threshold": "N/A",
+      "formal_score_eligible": false,
+      "status": "NOT_TESTED",
+      "reason": "NO_SUPPORTED_CLOSE_RULE",
+      "original_path": "predictions/2026-11-04/morning.md",
+      "original_sha256": "aa65a3059d9c01a568e59135f1f9febaea4c82d6c27c4c27b2d13641f78f2576"
+    },
+    {
+      "id": "OPEN-20261105-AM",
+      "original_text": "2026-11-05 TWSE加權指數09:00官方開盤中心點N/A；相對2026-11-04官方前收42,948.91點之漲跌點N/A、漲跌幅N/A、區間N/A、數值信心N/A。原因：缺少已用原始預測與正式開盤結果校準且可重算的期現貨傳導模型，且本次報告實際開始晚於08:40。不得以TX夜盤末筆43,404點冒充現貨開盤預測。盤前證據顯示美國費半疲弱、韓國半導體大跌而台指夜盤相對前收偏高，方向分化；沒有可交易的經校準開盤點數優勢。",
+      "original_threshold": "N/A",
+      "formal_score_eligible": false,
+      "status": "NOT_TESTED",
+      "reason": "NO_SUPPORTED_CLOSE_RULE",
+      "original_path": "predictions/2026-11-05/morning.md",
+      "original_sha256": "1c3330fe1f045703b82fc498d00f8bb3015da3d27d53b0212898936c20e9eee5"
+    }
+  ],
+  "errata": [
+    {
+      "id": "ERR-20261104-PM-TURNOVER-UNIT",
+      "original_path": "predictions/2026-11-04/evening.md",
+      "original_sha256": "a41d5b668c0f5996c1a4bd846016dfbb0f9c11635421e787b618bb424d0f1a4b",
+      "original": "TWD 11148.21 billion",
+      "conditional_conversion": "11,148.21 億元 = TWD 1114.821 billion",
+      "basis": "11,148.21 億元 * 100,000,000 / 1,000,000,000",
+      "status": "SUSPECTED_UNIT_ERROR_NEEDS_SOURCE_RECONCILIATION",
+      "unit_conversion_factor": 10,
+      "scope_note": "Unit conversion only; do not substitute differently scoped totals."
+    }
+  ],
+  "counts": {
+    "UNVERIFIABLE": 16,
+    "PROVIDER_MATCHED": 11,
+    "NOT_TESTED": 9
+  },
+  "outcome_counts": {
+    "HIT": 9,
+    "MISS": 2
+  },
+  "warning": "Provider outcome verification only. No aggregate accuracy/alpha claim; publication, original timing, dependent samples and full report grades remain separate."
+}
