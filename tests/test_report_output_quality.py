@@ -32,14 +32,14 @@ class OutputQualityTests(unittest.TestCase):
 
     def test_missing_five_rows_cannot_pass_when_one_close_matches(self):
         b = bundle()
-        text = '| 代號 | 收盤 |\\n|---|---:|\\n| 006208 | 228.55 |'
+        text = '| 代號 | 收盤 |\n|---|---:|\n| 006208 | 228.55 |'
         result = check_close_table(b, text)
         self.assertEqual(result['status'], 'FAIL')
         self.assertIn('00631L', [x['code'] for x in result['errors'] if x['reason'] == 'REQUIRED_CLOSE_ROW_MISSING'])
 
     def test_duplicate_close_row_fails(self):
         b = bundle()
-        text = render_close_table(b) + '\\n| 006208 | 228.55 |'
+        text = render_close_table(b) + '\n| 006208 | 228.55 |'
         result = check_close_table(b, text)
         self.assertEqual(result['status'], 'FAIL')
         self.assertIn('DUPLICATE_CLOSE_ROW', [x['reason'] for x in result['errors']])
