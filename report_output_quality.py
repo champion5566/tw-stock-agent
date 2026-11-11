@@ -54,8 +54,8 @@ def render_us_regular_close_table(bundle):
                      and previous.is_finite() and current.is_finite() and change.is_finite()
                      and previous > 0 and current > 0
                      and isinstance(previous_date, str) and isinstance(current_date, str)
-                     and re.fullmatch(r'\\d{4}-\\d{2}-\\d{2}', previous_date)
-                     and re.fullmatch(r'\\d{4}-\\d{2}-\\d{2}', current_date)
+                     and re.fullmatch(r'\d{4}-\d{2}-\d{2}', previous_date)
+                     and re.fullmatch(r'\d{4}-\d{2}-\d{2}', current_date)
                      and previous_date < current_date)
         except (InvalidOperation, TypeError, ValueError):
             valid = False
@@ -63,7 +63,7 @@ def render_us_regular_close_table(bundle):
             rows.append(f'| {code} | {previous_date} | {previous:.2f} | {current_date} | {current:.2f} | {change:+.2f}% |')
         else:
             rows.append(f'| {code} | N/A | N/A | N/A | N/A | N/A |')
-    return '\\n'.join(rows)
+    return '\n'.join(rows)
 
 
 def check_close_table(bundle, markdown):
