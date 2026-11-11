@@ -20,7 +20,14 @@ specific failed path and independently mark live acceptance pending until exerci
 
 For six-stock daily closes, use stock_close_table_markdown from the bundle when available;
 its values are produced from exact-session daily_ohlcv.data.close, never broker snapshots.
-For an existing/older bundle, use that same daily field directly. Before delivery, check
+For an existing/older bundle, use that same daily field directly. Morning bundles also
+provide `us_regular_close_table_markdown` (dated previous close, completed regular close,
+close-to-close return). Prefer this deterministic table when showing US regular-session
+comparison; if unavailable, verify `us_regular_close.*` dates/values manually. A table
+showing only current US close and percentage change is incomplete even when arithmetic
+is correct. The table is a source artifact, not proof it was included in the delivered
+report; inspect the next actual morning original before marking adoption verified.
+Before delivery, check
 the draft with report_output_quality.py when code execution is available; a FAIL must be
 corrected and rechecked. This checker covers displayed daily closes only, not the full
 report or exchange truth. If code execution is unavailable, compare every printed close
