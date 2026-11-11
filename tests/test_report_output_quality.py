@@ -15,7 +15,8 @@ class OutputQualityTests(unittest.TestCase):
         text='| 代號 | 收盤 | 今日重點 |\n|---|---:|---|\n| 006208 | 229.20 | 觀察 |\n| 00631L | 31.23 | 風險 |'
         result=check_close_table(bundle(),text)
         self.assertEqual(result['status'],'FAIL')
-        self.assertEqual([x['code'] for x in result['errors']],['006208','00631L'])
+        self.assertEqual([x['code'] for x in result['errors'] if x['reason'] == 'CLOSE_MISMATCH'], ['006208', '00631L'])
+        self.assertEqual(len([x for x in result['errors'] if x['reason'] == 'REQUIRED_CLOSE_ROW_MISSING']), 4)
 
     def test_render_uses_daily_close_not_snapshot_or_model(self):
         text=render_close_table(bundle())
