@@ -1,5 +1,5 @@
 import unittest
-from report_output_quality import check_close_table, render_close_table
+from report_output_quality import check_close_table, render_close_table, render_us_regular_close_table
 
 
 def bundle():
@@ -29,6 +29,37 @@ class OutputQualityTests(unittest.TestCase):
     def test_missing_printed_value_when_source_exists_is_an_output_failure(self):
         text='| 代號 | 收盤 |\n|---|---:|\n| 006208 | N/A |'
         self.assertEqual(check_close_table(bundle(),text)['status'],'FAIL')
+
+    def test_missing_five_rows_cannot_pass_when_one_close_matches(self):
+        b = bundle()
+        text = '| 代號 | 收盤 |\\n|---|---:|\\n| 006208 | 228.55 |'
+        result = check_close_table(b, text)
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('00631L', [x['code'] for x in result['errors'] if x['reason'] == 'REQUIRED_CLOSE_ROW_MISSING'])
+
+    def test_duplicate_close_row_fails(self):
+        b = bundle()
+        text = render_close_table(b) + '\\n| 006208 | 228.55 |'
+        result = check_close_table(b, text)
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('DUPLICATE_CLOSE_ROW', [x['reason'] for x in result['errors']])
+
+    def test_us_regular_table_includes_dated_previous_close_and_return(self):
+        b = {'scenario': 'morning', 'us_regular_close': {'SP500': {
+            'status': 'PASS', 'change_status': 'PASS', 'session_completed': True,
+            'previous_close': 7549.94, 'price': 7520.93, 'change_pct': -0.3842,
+            'previous_source_date': '2026-11-09', 'source_date': '2026-11-10'}}}
+        text = render_us_regular_close_table(b)
+        self.assertIn('| SP500 | 2026-11-09 | 7549.94 | 2026-11-10 | 7520.93 | -0.38% |', text)
+        self.assertIn('| SOX | N/A | N/A | N/A | N/A | N/A |', text)
+        self.assertEqual(render_us_regular_close_table({'scenario': 'evening'}), '')
+
+    def test_us_regular_table_rejects_missing_prior_session(self):
+        b = {'scenario': 'morning', 'us_regular_close': {'SP500': {
+            'status': 'PASS', 'change_status': 'PASS', 'session_completed': True,
+            'previous_close': 7549.94, 'price': 7520.93, 'change_pct': -0.3842,
+            'previous_source_date': None, 'source_date': '2026-11-10'}}}
+        self.assertIn('| SP500 | N/A | N/A | N/A | N/A | N/A |', render_us_regular_close_table(b))
 
     def test_no_table_is_not_a_claim_of_successful_validation(self):
         self.assertEqual(check_close_table(bundle(),'no table')['status'],'NOT_CHECKED_NO_CLOSE_TABLE')
