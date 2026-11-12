@@ -78,7 +78,8 @@ def check_close_table(bundle, markdown):
             continue
         if cells[0] not in REPORT_STOCKS:
             if not re.fullmatch(r'[-: ]+', cells[0]):
-                active = ('收盤' in cells[1] and not any(x in cells[1] for x in ('預測', '前收', '目標', '成本')))
+                active = (any(label in cells[1] for label in ('收盤', '昨收'))
+                          and not any(x in cells[1] for x in ('預測', '前收', '目標', '成本')))
                 table_seen = table_seen or active
             continue
         if not active:
@@ -119,5 +120,5 @@ if __name__ == '__main__':
     if args.report:
         result = check_close_table(bundle, Path(args.report).read_text(encoding='utf-8'))
         print(json.dumps(result, ensure_ascii=False, indent=2))
-        raise SystemExit(1 if result['status'] == 'FAIL' else 0)
+        raise SystemExit(1 if result['status'] in ('FAIL', 'NOT_CHECKED_NO_CLOSE_TABLE') else 0)
     print(render_close_table(bundle))

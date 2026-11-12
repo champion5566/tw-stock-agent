@@ -38,6 +38,31 @@ class OutputQualityTests(unittest.TestCase):
         self.assertEqual(result['status'], 'FAIL')
         self.assertIn('00631L', [x['code'] for x in result['errors'] if x['reason'] == 'REQUIRED_CLOSE_ROW_MISSING'])
 
+    def test_actual_1112_morning_yesterday_close_header_is_checked(self):
+        b = bundle()
+        text = ('| 代號 | 昨收 | 日漲幅 | 關鍵觀察 |\n'
+                '|---|---:|---:|---|\n'
+                '| 0050 | N/A | N/A | — |\n'
+                '| 006208 | 228.55 | +1% | — |\n'
+                '| 00631L | 30.85 | +2% | — |\n'
+                '| 2330 | N/A | N/A | — |\n'
+                '| 3707 | N/A | N/A | — |\n'
+                '| 5483 | N/A | N/A | — |')
+        result = check_close_table(b, text)
+        self.assertEqual(result['status'], 'PARTIAL')
+        self.assertEqual(result['checked'], 2)
+
+    def test_yesterday_close_header_catches_wrong_price(self):
+        b = bundle()
+        text = ('| 代號 | 昨收 | 日漲幅 |\n'
+                '|---|---:|---:|\n'
+                '| 006208 | 229.20 | +1% |\n'
+                '| 00631L | 30.85 | +2% |')
+        result = check_close_table(b, text)
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('006208', [x['code'] for x in result['errors']
+                                   if x['reason'] == 'CLOSE_MISMATCH'])
+
     def test_duplicate_close_row_fails(self):
         b = bundle()
         text = render_close_table(b) + '\n| 006208 | 228.55 |'
