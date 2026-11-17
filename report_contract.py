@@ -116,7 +116,15 @@ def evaluate(report, market, cross, checked, experiment):
         sections["tx_completed_night"].update({"night_end_taipei":end.isoformat(), "is_live":False,
                                                "note":"Broker last-trade observation near completed night end; not an exchange-certified settlement."})
     else:
-        sections["us_intraday"] = section({name:cutoff_age_status(cross.get("assets", {}).get("us", {}).get(name, {}), delivery, cutoff, 15) for name in US_REQUIRED})
+        us_items = {name:cutoff_age_status(cross.get("assets", {}).get("us", {}).get(name, {}), delivery, cutoff, 15) for name in US_REQUIRED}
+        # CBOE volatility index can publish slower than tradeable US quotes.
+        # Keep its actual delay visible; only a 15–30m delay is nonblocking.
+        # Missing, stale (>30m), future and post-cutoff VIX remain failures.
+        sections["us_intraday"] = section(us_items, acceptable=("PASS", "DELAYED") if us_items["VIX"] == "DELAYED"
+                                         and all(status == "PASS" for name, status in us_items.items() if name != "VIX")
+                                         else ("PASS",))
+        sections["us_intraday"]["degraded_observations"] = {"VIX": "DELAYED"} if us_items["VIX"] == "DELAYED" else {}
+        sections["us_intraday"]["note"] = "VIX 15–30m delayed bar is disclosed and nonblocking; never represented as realtime."
         tx = cross.get("taifex", {}).get("shioaji_live_tx", {})
         sections["tx_live"] = section({"TXFR1":cutoff_age_status(tx, delivery, cutoff, 10) if tx.get("data_kind") == "tick" else "MISSING_TICK"})
     timing = {}
