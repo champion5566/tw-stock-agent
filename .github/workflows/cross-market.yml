@@ -102,14 +102,16 @@ jobs:
         if: env.REPORT_SLOT == 'morning'
         run: python scripts/reuse_night_observation.py
       - name: Build small report consumer artifact with section-level readiness
-        if: env.REPORT_SLOT != 'nightclose'
+        # Even if a collector fails, publish an explicitly PARTIAL report bundle.
+        # The job still fails from the collector step; missing sections are visible.
+        if: ${{ always() && env.REPORT_SLOT != 'nightclose' && env.PREPARATION_KIND != '' }}
         shell: bash
         run: |
           args=()
           if [ "$PREPARATION_KIND" = 'PREVIEW' ]; then args+=(--experiment); fi
           python report_scenarios.py --scenario "$REPORT_SLOT" --market-root out "${args[@]}"
       - name: Require report bundle before publishing
-        if: env.REPORT_SLOT != 'nightclose'
+        if: ${{ always() && env.REPORT_SLOT != 'nightclose' && env.PREPARATION_KIND != '' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -134,7 +136,9 @@ jobs:
           retention-days: 7
           if-no-files-found: warn
       - name: Publish versioned data snapshot
-        if: github.ref == 'refs/heads/main'
+        # Publish the partial, provenance-marked artifact despite failed collectors.
+        # A failed collector remains a failed job; this is not a greenwashing retry.
+        if: ${{ always() && github.ref == 'refs/heads/main' && env.PREPARATION_KIND != '' }}
         shell: bash
         run: |
           set -euo pipefail
