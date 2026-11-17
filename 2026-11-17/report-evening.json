@@ -1,13 +1,13 @@
 {
   "schema_version": "scenario-report-v2",
   "scenario": "evening",
-  "generated_at_taipei": "2026-11-17T22:52:01.989162+08:00",
+  "generated_at_taipei": "2026-11-17T23:40:11.158360+08:00",
   "execution_kind": "REPORT",
   "point_in_time_verified": false,
   "source_fetched_at": {
-    "market": "2026-11-17T22:50:23.069502+08:00",
+    "market": "2026-11-17T23:38:45.018927+08:00",
     "intraday": null,
-    "cross": "2026-11-17T22:51:15.150059+08:00"
+    "cross": "2026-11-17T23:39:21.083240+08:00"
   },
   "stocks": {
     "2313": {
@@ -977,10 +977,10 @@
   "cross_market": {
     "us": {
       "SP500": {
-        "price": 7403.91015625,
+        "price": 7355.93017578125,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -994,10 +994,10 @@
         "is_formal_close": false
       },
       "NASDAQ": {
-        "price": 24479.708984375,
+        "price": 24272.642578125,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1011,10 +1011,10 @@
         "is_formal_close": false
       },
       "SOX": {
-        "price": 9667.2255859375,
+        "price": 9479.1337890625,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1028,10 +1028,10 @@
         "is_formal_close": false
       },
       "VIX": {
-        "price": 23.010000228881836,
+        "price": 22.84000015258789,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:35:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:20:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1045,10 +1045,10 @@
         "is_formal_close": false
       },
       "NVDA": {
-        "price": 155.57000732421875,
+        "price": 152.1300048828125,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1062,10 +1062,10 @@
         "is_formal_close": false
       },
       "AMD": {
-        "price": 503.197998046875,
+        "price": 494.239990234375,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1079,10 +1079,10 @@
         "is_formal_close": false
       },
       "AVGO": {
-        "price": 338.8299865722656,
+        "price": 335.2300109863281,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1096,10 +1096,10 @@
         "is_formal_close": false
       },
       "MU": {
-        "price": 711.1300048828125,
+        "price": 686.2197875976562,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1113,10 +1113,10 @@
         "is_formal_close": false
       },
       "TSM_ADR": {
-        "price": 368.54998779296875,
+        "price": 359.9100036621094,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1130,10 +1130,10 @@
         "is_formal_close": false
       },
       "AMZN": {
-        "price": 258.56500244140625,
+        "price": 258.0199890136719,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1147,10 +1147,10 @@
         "is_formal_close": false
       },
       "BRK.B": {
-        "price": 589.7899780273438,
+        "price": 591.3400268554688,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1164,10 +1164,10 @@
         "is_formal_close": false
       },
       "GOOG": {
-        "price": 279.17999267578125,
+        "price": 279.5104064941406,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1181,10 +1181,10 @@
         "is_formal_close": false
       },
       "META": {
-        "price": 620.9299926757812,
+        "price": 621.8900146484375,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1198,10 +1198,10 @@
         "is_formal_close": false
       },
       "QCOM": {
-        "price": 167.11000061035156,
+        "price": 165.28500366210938,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1215,10 +1215,10 @@
         "is_formal_close": false
       },
       "SPCX": {
-        "price": 140.7100067138672,
+        "price": 140.00999450683594,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1232,10 +1232,10 @@
         "is_formal_close": false
       },
       "TLT": {
-        "price": 79.28500366210938,
+        "price": 79.51000213623047,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1249,10 +1249,10 @@
         "is_formal_close": false
       },
       "TSLA": {
-        "price": 381.2250061035156,
+        "price": 379.2200012207031,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1266,10 +1266,10 @@
         "is_formal_close": false
       },
       "QQQ": {
-        "price": 660.7100219726562,
+        "price": 654.739990234375,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-17T22:50:00+08:00",
+        "latest_bar_at_taipei": "2026-11-17T23:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1303,7 +1303,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver world index quote",
-          "qualification_at_taipei": "2026-11-17T22:51:15.150059+08:00",
+          "qualification_at_taipei": "2026-11-17T23:39:21.083240+08:00",
           "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
@@ -1328,7 +1328,7 @@
           "fallback_source": null,
           "fallback_status": "FAIL",
           "selected_source": "Naver world index quote",
-          "qualification_at_taipei": "2026-11-17T22:51:15.150059+08:00",
+          "qualification_at_taipei": "2026-11-17T23:39:21.083240+08:00",
           "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
@@ -1353,7 +1353,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver world stock quote",
-          "qualification_at_taipei": "2026-11-17T22:51:15.150059+08:00",
+          "qualification_at_taipei": "2026-11-17T23:39:21.083240+08:00",
           "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
@@ -1378,7 +1378,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver world stock quote",
-          "qualification_at_taipei": "2026-11-17T22:51:15.150059+08:00",
+          "qualification_at_taipei": "2026-11-17T23:39:21.083240+08:00",
           "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
@@ -1405,7 +1405,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-17T22:51:15.150059+08:00",
+          "qualification_at_taipei": "2026-11-17T23:39:21.083240+08:00",
           "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
@@ -1430,7 +1430,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-17T22:51:15.150059+08:00",
+          "qualification_at_taipei": "2026-11-17T23:39:21.083240+08:00",
           "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
@@ -1455,7 +1455,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-17T22:51:15.150059+08:00",
+          "qualification_at_taipei": "2026-11-17T23:39:21.083240+08:00",
           "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
@@ -1480,7 +1480,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-17T22:51:15.150059+08:00",
+          "qualification_at_taipei": "2026-11-17T23:39:21.083240+08:00",
           "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
@@ -1507,8 +1507,8 @@
   },
   "futures": {
     "TXFR1": {
-      "price": 40089.0,
-      "trade_time": "2026-11-17T22:51:57.724000+08:00",
+      "price": 39565.0,
+      "trade_time": "2026-11-17T23:40:10.394000+08:00",
       "source": "Shioaji",
       "contract_code": "TXFR1",
       "data_kind": "tick",
@@ -1632,13 +1632,13 @@
         "scope": "TWSE"
       },
       "TPEx": {
-        "status": "MISSING_OR_WRONG_SESSION",
-        "source_date": null,
+        "status": "PASS",
+        "source_date": "2026-11-17",
         "source": "TPEx margin balances, unique instrument rows summed",
-        "margin_balance": null,
-        "margin_change": null,
-        "short_balance": null,
-        "short_change": null,
+        "margin_balance": 2086351.0,
+        "margin_change": -32658.0,
+        "short_balance": 34077.0,
+        "short_change": -5132.0,
         "units": "TPEx provider-native balance units; reported separately, not combined with differently scoped totals"
       }
     },
@@ -1968,8 +1968,8 @@
       {
         "name": "otc_margin",
         "url": "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_margin_balance",
-        "status": "FAIL",
-        "error": "HTTPError: 520 Server Error: <none> for url: https://www.tpex.org.tw/openapi/v1/tpex_mainboard_margin_balance"
+        "status": "FETCHED",
+        "error": null
       },
       {
         "name": "otc_institutional",
@@ -2001,7 +2001,7 @@
         "target": "2026-11-17"
       }
     ],
-    "_collected_at_taipei": "2026-11-17T22:50:48.878242+08:00"
+    "_collected_at_taipei": "2026-11-17T23:39:07.282305+08:00"
   },
   "security_identity": {
     "status": "UNVERIFIABLE",
@@ -2054,29 +2054,29 @@
       "us_intraday": {
         "status": "PARTIAL",
         "items": {
-          "SP500": "PASS",
-          "NASDAQ": "PASS",
-          "SOX": "PASS",
-          "VIX": "DELAYED",
-          "TSM_ADR": "PASS",
-          "NVDA": "PASS",
-          "AMD": "PASS",
-          "AVGO": "PASS",
-          "MU": "PASS"
+          "SP500": "OBSERVATION_AFTER_CUTOFF",
+          "NASDAQ": "OBSERVATION_AFTER_CUTOFF",
+          "SOX": "OBSERVATION_AFTER_CUTOFF",
+          "VIX": "OBSERVATION_AFTER_CUTOFF",
+          "TSM_ADR": "OBSERVATION_AFTER_CUTOFF",
+          "NVDA": "OBSERVATION_AFTER_CUTOFF",
+          "AMD": "OBSERVATION_AFTER_CUTOFF",
+          "AVGO": "OBSERVATION_AFTER_CUTOFF",
+          "MU": "OBSERVATION_AFTER_CUTOFF"
         }
       },
       "tx_live": {
-        "status": "PASS",
+        "status": "PARTIAL",
         "items": {
-          "TXFR1": "PASS"
+          "TXFR1": "OBSERVATION_AFTER_CUTOFF"
         }
       },
       "cutoff": {
-        "status": "PASS",
+        "status": "PARTIAL",
         "items": {
-          "market": "PASS",
-          "cross": "PASS",
-          "generation": "PASS"
+          "market": "MISSING_OR_AFTER_CUTOFF",
+          "cross": "MISSING_OR_AFTER_CUTOFF",
+          "generation": "AFTER_CUTOFF"
         }
       }
     },
@@ -2110,19 +2110,19 @@
   "input_fingerprints": {
     "market/evening": {
       "snapshot": "2026-11-17/evening.json",
-      "sha256": "ac4f3a045b3ea0477c90fe10727620939f0ebc50b77801448628265618b4b339"
+      "sha256": "628b3975b578923812c2a2e0f9448abb6403ae0e75b8036f24885f9e9884075b"
     },
     "current/cross-evening": {
       "snapshot": "2026-11-17/cross-evening.json",
-      "sha256": "35906a52a6a1e5e089a23f0b57bdf89379a56a3cca408ccdff1e2517888597ec"
+      "sha256": "b7f549bfbef20edbd7cf87712a375f0ea0156c272bb4aeddf23a712ffeae119f"
     }
   },
   "execution_evidence": {
-    "run_id": "44107447314",
+    "run_id": "44116617081",
     "run_attempt": "1",
     "commit": "7681735e21def7a8ce63ba1d28e39463c68fb5df",
-    "event": "push",
-    "started_at_taipei": "2026-11-17T22:50:22.989142+08:00"
+    "event": "schedule",
+    "started_at_taipei": "2026-11-17T23:38:44.966055+08:00"
   },
-  "data_report_id": "DATA-2026-11-17-evening-44107447314"
+  "data_report_id": "DATA-2026-11-17-evening-44116617081"
 }
