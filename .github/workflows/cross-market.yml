@@ -108,6 +108,23 @@ jobs:
           args=()
           if [ "$PREPARATION_KIND" = 'PREVIEW' ]; then args+=(--experiment); fi
           python report_scenarios.py --scenario "$REPORT_SLOT" --market-root out "${args[@]}"
+      - name: Require report bundle before publishing
+        if: env.REPORT_SLOT != 'nightclose'
+        shell: bash
+        run: |
+          set -euo pipefail
+          day=$(TZ=Asia/Taipei date +%F)
+          path="out/reports/$day/$REPORT_SLOT.json"
+          test -s "$path" || { echo "::error::Missing report bundle: $path"; exit 1; }
+          python - "$path" "$REPORT_SLOT" "$day" <<'PY'
+          import json, sys
+          from pathlib import Path
+          path, slot, day = sys.argv[1:]
+          data = json.loads(Path(path).read_text(encoding="utf-8"))
+          assert data.get("scenario") == slot, "report scenario mismatch"
+          assert data.get("generated_at_taipei", "").startswith(day), "report date mismatch"
+          print("REPORT_BUNDLE_BUILT", path)
+          PY
       - name: Save auditable test results
         if: always()
         uses: actions/upload-artifact@v4
@@ -119,4 +136,23 @@ jobs:
       - name: Publish versioned data snapshot
         if: github.ref == 'refs/heads/main'
         shell: bash
-        run: bash scripts/publish_snapshots.sh
+        run: |
+          set -euo pipefail
+          bash scripts/publish_snapshots.sh
+          if [ "$REPORT_SLOT" != 'nightclose' ]; then
+            day=$(TZ=Asia/Taipei date +%F)
+            path="reports/$day/$REPORT_SLOT.json"
+            git fetch origin refs/heads/data/snapshots
+            git show "FETCH_HEAD:$path" > /tmp/published-report.json || {
+              echo "::error::Report bundle absent from published data branch: $path"; exit 1;
+            }
+            python - "$REPORT_SLOT" "$day" <<'PY'
+          import json, sys
+          from pathlib import Path
+          slot, day = sys.argv[1:]
+          data = json.loads(Path("/tmp/published-report.json").read_text(encoding="utf-8"))
+          assert data.get("scenario") == slot, "published scenario mismatch"
+          assert data.get("generated_at_taipei", "").startswith(day), "published date mismatch"
+          print("REPORT_BUNDLE_PUBLISHED_READBACK", day, slot)
+          PY
+          fi
