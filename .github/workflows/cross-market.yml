@@ -134,7 +134,9 @@ jobs:
           retention-days: 7
           if-no-files-found: warn
       - name: Publish versioned data snapshot
-        if: github.ref == 'refs/heads/main'
+        # Push-triggered code previews must not overwrite scheduled production bundles.
+        # Only scheduled runs or validated preparation requests may publish.
+        if: ${{ github.ref == 'refs/heads/main' && env.PREPARATION_KIND != 'PREVIEW' }}
         shell: bash
         run: |
           set -euo pipefail
