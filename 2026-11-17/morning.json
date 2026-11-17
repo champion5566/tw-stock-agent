@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "fetched_at_taipei": "2026-11-17T09:45:22.179750+08:00",
+  "fetched_at_taipei": "2026-11-17T09:51:08.875510+08:00",
   "trade_date_requested": "2026-11-17",
   "slot": "morning",
   "sources": {
@@ -21,13 +21,13 @@
           "high": "192.5000",
           "low": "181.5000",
           "prev_close": "193.0000",
-          "volume": "19216",
-          "bid": "187.0000",
-          "ask": "187.5000",
+          "volume": "20308",
+          "bid": "182.5000",
+          "ask": "183.0000",
           "limit_up": "212.0000",
           "limit_down": "174.0000",
           "date": "2026-11-17",
-          "time": "09:44:00"
+          "time": "09:50:00"
         },
         "source_date": "2026-11-17",
         "units": {
@@ -36,7 +36,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-17T09:44:00+08:00"
+        "trade_time": "2026-11-17T09:50:00+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -1838,13 +1838,13 @@
           "high": "2270.0000",
           "low": "2180.0000",
           "prev_close": "2215.0000",
-          "volume": "20690",
-          "bid": "2225.0000",
-          "ask": "2230.0000",
+          "volume": "21921",
+          "bid": "2200.0000",
+          "ask": "2205.0000",
           "limit_up": "2435.0000",
           "limit_down": "1995.0000",
           "date": "2026-11-17",
-          "time": "09:43:55"
+          "time": "09:49:55"
         },
         "source_date": "2026-11-17",
         "units": {
@@ -1853,7 +1853,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-17T09:43:55+08:00"
+        "trade_time": "2026-11-17T09:49:55+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -3655,13 +3655,13 @@
           "high": "97.4500",
           "low": "93.5500",
           "prev_close": "96.4500",
-          "volume": "136681",
-          "bid": "95.8500",
-          "ask": "95.9000",
+          "volume": "149618",
+          "bid": "94.7000",
+          "ask": "94.7500",
           "limit_up": "106.0500",
           "limit_down": "86.8500",
           "date": "2026-11-17",
-          "time": "09:43:59"
+          "time": "09:49:59"
         },
         "source_date": "2026-11-17",
         "units": {
@@ -3670,7 +3670,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-17T09:43:59+08:00"
+        "trade_time": "2026-11-17T09:49:59+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -5472,13 +5472,13 @@
           "high": "149.5000",
           "low": "141.5000",
           "prev_close": "150.0000",
-          "volume": "2816",
-          "bid": "145.5000",
-          "ask": "146.0000",
+          "volume": "3085",
+          "bid": "142.5000",
+          "ask": "143.0000",
           "limit_up": "165.0000",
           "limit_down": "135.0000",
           "date": "2026-11-17",
-          "time": "09:44:01"
+          "time": "09:49:54"
         },
         "source_date": "2026-11-17",
         "units": {
@@ -5487,7 +5487,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-17T09:44:01+08:00"
+        "trade_time": "2026-11-17T09:49:54+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -7289,13 +7289,13 @@
           "high": "55.0000",
           "low": "51.5000",
           "prev_close": "54.7000",
-          "volume": "1316",
-          "bid": "53.2000",
-          "ask": "53.4000",
+          "volume": "1453",
+          "bid": "52.1000",
+          "ask": "52.2000",
           "limit_up": "60.1000",
           "limit_down": "49.2500",
           "date": "2026-11-17",
-          "time": "09:44:35"
+          "time": "09:50:05"
         },
         "source_date": "2026-11-17",
         "units": {
@@ -7304,7 +7304,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-17T09:44:35+08:00"
+        "trade_time": "2026-11-17T09:50:05+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -9106,13 +9106,13 @@
           "high": "37.2000",
           "low": "34.9500",
           "prev_close": "37.2500",
-          "volume": "2232",
-          "bid": "36.1500",
-          "ask": "36.2500",
+          "volume": "2366",
+          "bid": "35.6000",
+          "ask": "35.7000",
           "limit_up": "40.9500",
           "limit_down": "33.5500",
           "date": "2026-11-17",
-          "time": "09:44:30"
+          "time": "09:50:13"
         },
         "source_date": "2026-11-17",
         "units": {
@@ -9121,7 +9121,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-17T09:44:30+08:00"
+        "trade_time": "2026-11-17T09:50:13+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -10923,13 +10923,13 @@
           "high": "1420.0000",
           "low": "1315.0000",
           "prev_close": "1405.0000",
-          "volume": "1976",
-          "bid": "1375.0000",
-          "ask": "1380.0000",
+          "volume": "2038",
+          "bid": "1350.0000",
+          "ask": "1355.0000",
           "limit_up": "1545.0000",
           "limit_down": "1265.0000",
           "date": "2026-11-17",
-          "time": "09:44:00"
+          "time": "09:50:00"
         },
         "source_date": "2026-11-17",
         "units": {
@@ -10938,7 +10938,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-17T09:44:00+08:00"
+        "trade_time": "2026-11-17T09:50:00+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -12740,13 +12740,13 @@
           "high": "220.0000",
           "low": "211.3000",
           "prev_close": "216.9500",
-          "volume": "2313",
-          "bid": "216.3500",
-          "ask": "216.4000",
+          "volume": "2547",
+          "bid": "213.6000",
+          "ask": "214.0500",
           "limit_up": "238.6500",
           "limit_down": "195.3000",
           "date": "2026-11-17",
-          "time": "09:44:04"
+          "time": "09:49:59"
         },
         "source_date": "2026-11-17",
         "units": {
@@ -12755,7 +12755,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-17T09:44:04+08:00"
+        "trade_time": "2026-11-17T09:49:59+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -14557,13 +14557,13 @@
           "high": "29.0900",
           "low": "26.6800",
           "prev_close": "27.9500",
-          "volume": "272798",
-          "bid": "28.1200",
-          "ask": "28.1500",
+          "volume": "297096",
+          "bid": "27.4200",
+          "ask": "27.4500",
           "limit_up": "33.5400",
           "limit_down": "22.3600",
           "date": "2026-11-17",
-          "time": "09:43:59"
+          "time": "09:49:59"
         },
         "source_date": "2026-11-17",
         "units": {
@@ -14572,7 +14572,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-17T09:43:59+08:00"
+        "trade_time": "2026-11-17T09:49:59+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -16373,7 +16373,7 @@
     "daily_available": 9,
     "live_quotes": 0
   },
-  "collection_completed_at_taipei": "2026-11-17T09:46:12.640317+08:00",
+  "collection_completed_at_taipei": "2026-11-17T09:51:52.086107+08:00",
   "market_context": {
     "TAIEX": {
       "status": "PASS",
@@ -16845,6 +16845,6 @@
         "error": null
       }
     ],
-    "_collected_at_taipei": "2026-11-17T09:45:46.841674+08:00"
+    "_collected_at_taipei": "2026-11-17T09:51:41.215226+08:00"
   }
 }
