@@ -116,7 +116,15 @@ def evaluate(report, market, cross, checked, experiment):
         sections["tx_completed_night"].update({"night_end_taipei":end.isoformat(), "is_live":False,
                                                "note":"Broker last-trade observation near completed night end; not an exchange-certified settlement."})
     else:
-        sections["us_intraday"] = section({name:cutoff_age_status(cross.get("assets", {}).get("us", {}).get(name, {}), delivery, cutoff, 15) for name in US_REQUIRED})
+        us_items = {name:cutoff_age_status(cross.get("assets", {}).get("us", {}).get(name, {}), delivery, cutoff, 15) for name in US_REQUIRED}
+        # VIX is supplementary risk context, not a mandatory trade signal.
+        # Its source status is still reported verbatim; missing/stale VIX must
+        # never be relabeled as PASS or as a live observation.
+        core_us = {name:status for name, status in us_items.items() if name != "VIX"}
+        sections["us_intraday"] = section(core_us)
+        sections["us_intraday"]["items"] = us_items
+        sections["us_intraday"]["supplementary"] = {"VIX": us_items["VIX"]}
+        sections["us_intraday"]["note"] = "VIX is optional risk context; its true freshness is disclosed and does not gate core US data readiness."
         tx = cross.get("taifex", {}).get("shioaji_live_tx", {})
         sections["tx_live"] = section({"TXFR1":cutoff_age_status(tx, delivery, cutoff, 10) if tx.get("data_kind") == "tick" else "MISSING_TICK"})
     timing = {}
