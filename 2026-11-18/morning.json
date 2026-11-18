@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "fetched_at_taipei": "2026-11-18T09:49:21.751072+08:00",
+  "fetched_at_taipei": "2026-11-18T09:53:13.307735+08:00",
   "trade_date_requested": "2026-11-18",
   "slot": "morning",
   "sources": {
@@ -19,15 +19,15 @@
           "last": "-",
           "open": "193.0000",
           "high": "193.0000",
-          "low": "177.5000",
+          "low": "176.0000",
           "prev_close": "184.5000",
-          "volume": "17281",
-          "bid": "178.0000",
-          "ask": "178.5000",
+          "volume": "18132",
+          "bid": "176.0000",
+          "ask": "177.0000",
           "limit_up": "202.5000",
           "limit_down": "166.5000",
           "date": "2026-11-18",
-          "time": "09:48:00"
+          "time": "09:52:00"
         },
         "source_date": "2026-11-18",
         "units": {
@@ -36,7 +36,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-18T09:48:00+08:00"
+        "trade_time": "2026-11-18T09:52:00+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -1838,13 +1838,13 @@
           "high": "2210.0000",
           "low": "2165.0000",
           "prev_close": "2170.0000",
-          "volume": "12365",
-          "bid": "2175.0000",
-          "ask": "2180.0000",
+          "volume": "13091",
+          "bid": "2165.0000",
+          "ask": "2170.0000",
           "limit_up": "2385.0000",
           "limit_down": "1955.0000",
           "date": "2026-11-18",
-          "time": "09:48:00"
+          "time": "09:51:55"
         },
         "source_date": "2026-11-18",
         "units": {
@@ -1853,7 +1853,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-18T09:48:00+08:00"
+        "trade_time": "2026-11-18T09:51:55+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -3655,13 +3655,13 @@
           "high": "95.9500",
           "low": "93.4500",
           "prev_close": "94.0000",
-          "volume": "82674",
-          "bid": "93.9000",
-          "ask": "93.9500",
+          "volume": "88933",
+          "bid": "93.5500",
+          "ask": "93.6000",
           "limit_up": "103.4000",
           "limit_down": "84.6000",
           "date": "2026-11-18",
-          "time": "09:47:59"
+          "time": "09:51:59"
         },
         "source_date": "2026-11-18",
         "units": {
@@ -3670,7 +3670,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-18T09:47:59+08:00"
+        "trade_time": "2026-11-18T09:51:59+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -5463,22 +5463,22 @@
     "5483": {
       "market": "otc",
       "mcp_quote": {
-        "status": "PASS",
+        "status": "NO_LAST_TRADE",
         "data": {
           "code": "5483",
           "name": "中美晶",
-          "last": "141.0000",
+          "last": "-",
           "open": "149.0000",
           "high": "150.0000",
           "low": "140.0000",
           "prev_close": "144.0000",
-          "volume": "2461",
+          "volume": "2674",
           "bid": "140.5000",
           "ask": "141.0000",
           "limit_up": "158.0000",
           "limit_down": "130.0000",
           "date": "2026-11-18",
-          "time": "09:48:01"
+          "time": "09:52:38"
         },
         "source_date": "2026-11-18",
         "units": {
@@ -5486,8 +5486,8 @@
           "volume": "lots"
         },
         "data_kind": "quote_observation",
-        "is_live": true,
-        "trade_time": "2026-11-18T09:48:01+08:00"
+        "is_live": false,
+        "trade_time": "2026-11-18T09:52:38+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -7287,15 +7287,15 @@
           "last": "-",
           "open": "53.0000",
           "high": "53.8000",
-          "low": "50.8000",
+          "low": "50.3000",
           "prev_close": "52.0000",
-          "volume": "1290",
-          "bid": "50.7000",
-          "ask": "50.9000",
+          "volume": "1375",
+          "bid": "50.4000",
+          "ask": "50.6000",
           "limit_up": "57.2000",
           "limit_down": "46.8000",
           "date": "2026-11-18",
-          "time": "09:48:35"
+          "time": "09:52:41"
         },
         "source_date": "2026-11-18",
         "units": {
@@ -7304,7 +7304,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-18T09:48:35+08:00"
+        "trade_time": "2026-11-18T09:52:41+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -9104,15 +9104,15 @@
           "last": "-",
           "open": "35.5000",
           "high": "36.4000",
-          "low": "34.5000",
+          "low": "34.2000",
           "prev_close": "35.1000",
-          "volume": "2202",
-          "bid": "34.6000",
-          "ask": "34.7000",
+          "volume": "2336",
+          "bid": "34.2500",
+          "ask": "34.3500",
           "limit_up": "38.6000",
           "limit_down": "31.6000",
           "date": "2026-11-18",
-          "time": "09:48:01"
+          "time": "09:52:15"
         },
         "source_date": "2026-11-18",
         "units": {
@@ -9121,7 +9121,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-18T09:48:01+08:00"
+        "trade_time": "2026-11-18T09:52:15+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -10921,15 +10921,15 @@
           "last": "-",
           "open": "1520.0000",
           "high": "1520.0000",
-          "low": "1385.0000",
+          "low": "1380.0000",
           "prev_close": "1445.0000",
-          "volume": "1644",
-          "bid": "1390.0000",
-          "ask": "1400.0000",
+          "volume": "1683",
+          "bid": "1380.0000",
+          "ask": "1390.0000",
           "limit_up": "1585.0000",
           "limit_down": "1305.0000",
           "date": "2026-11-18",
-          "time": "09:49:30"
+          "time": "09:52:00"
         },
         "source_date": "2026-11-18",
         "units": {
@@ -10938,7 +10938,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-18T09:49:30+08:00"
+        "trade_time": "2026-11-18T09:52:00+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -12740,13 +12740,13 @@
           "high": "216.5000",
           "low": "210.5500",
           "prev_close": "211.9000",
-          "volume": "1054",
-          "bid": "211.5000",
-          "ask": "212.0000",
+          "volume": "1134",
+          "bid": "210.6500",
+          "ask": "211.0000",
           "limit_up": "233.0500",
           "limit_down": "190.7500",
           "date": "2026-11-18",
-          "time": "09:47:59"
+          "time": "09:51:58"
         },
         "source_date": "2026-11-18",
         "units": {
@@ -12755,7 +12755,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-18T09:47:59+08:00"
+        "trade_time": "2026-11-18T09:51:58+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -14557,13 +14557,13 @@
           "high": "28.0000",
           "low": "26.5800",
           "prev_close": "26.8600",
-          "volume": "250848",
-          "bid": "26.8200",
-          "ask": "26.8300",
+          "volume": "258505",
+          "bid": "26.6500",
+          "ask": "26.6700",
           "limit_up": "32.2300",
           "limit_down": "21.4900",
           "date": "2026-11-18",
-          "time": "09:47:59"
+          "time": "09:51:59"
         },
         "source_date": "2026-11-18",
         "units": {
@@ -14572,7 +14572,7 @@
         },
         "data_kind": "quote_observation",
         "is_live": false,
-        "trade_time": "2026-11-18T09:47:59+08:00"
+        "trade_time": "2026-11-18T09:51:59+08:00"
       },
       "daily_ohlcv": {
         "status": "PRIOR_SESSION",
@@ -16371,9 +16371,9 @@
   "coverage": {
     "stocks_total": 9,
     "daily_available": 9,
-    "live_quotes": 1
+    "live_quotes": 0
   },
-  "collection_completed_at_taipei": "2026-11-18T09:50:05.894708+08:00",
+  "collection_completed_at_taipei": "2026-11-18T09:53:59.852833+08:00",
   "market_context": {
     "TAIEX": {
       "status": "PASS",
@@ -16845,6 +16845,6 @@
         "error": null
       }
     ],
-    "_collected_at_taipei": "2026-11-18T09:49:46.796993+08:00"
+    "_collected_at_taipei": "2026-11-18T09:53:36.337361+08:00"
   }
 }
