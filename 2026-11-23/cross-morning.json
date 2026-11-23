@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+  "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
   "date_taipei": "2026-11-23",
   "slot": "morning",
   "assets": {
@@ -22,7 +22,7 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 3169.1
+        "age_minutes": 3175.2
       },
       "NASDAQ": {
         "status": "HISTORICAL_BAR",
@@ -41,7 +41,7 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 3169.1
+        "age_minutes": 3175.2
       },
       "SOX": {
         "status": "HISTORICAL_BAR",
@@ -60,7 +60,7 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 3169.1
+        "age_minutes": 3175.2
       },
       "VIX": {
         "status": "HISTORICAL_BAR",
@@ -79,7 +79,7 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 3169.1
+        "age_minutes": 3175.2
       },
       "NVDA": {
         "status": "HISTORICAL_BAR",
@@ -98,12 +98,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -127,12 +127,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -156,12 +156,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -185,12 +185,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -214,12 +214,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -243,12 +243,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -272,12 +272,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -301,12 +301,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -330,12 +330,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -359,12 +359,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2944.1,
+        "age_minutes": 2950.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:45:00+08:00",
-          "age_minutes": 2944.1,
+          "age_minutes": 2950.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -388,12 +388,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -417,12 +417,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -446,12 +446,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -475,12 +475,12 @@
         "is_live": false,
         "data_kind": "bar",
         "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-        "age_minutes": 2934.1,
+        "age_minutes": 2940.2,
         "quote_selection": {
           "selected_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "selected_status": "HISTORICAL_BAR",
           "bar_at_taipei": "2026-11-21T08:55:00+08:00",
-          "age_minutes": 2934.1,
+          "age_minutes": 2940.2,
           "freshness": "STALE",
           "iex_status": "NOT_CONFIGURED",
           "fallback_to_yahoo": true,
@@ -507,7 +507,7 @@
         "is_live": false,
         "is_formal_close": false,
         "timestamp_basis": "provider localTradedAt with explicit offset",
-        "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+        "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
         "source_url": "https://api.stock.naver.com/index/.N225/basic",
         "regional_selection": {
           "primary_source": "Naver world index quote",
@@ -515,7 +515,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver world index quote",
-          "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+          "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
           "selected_qualified_through_delivery": false
         },
         "source_observations": {
@@ -537,7 +537,7 @@
             "is_live": false,
             "is_formal_close": false,
             "timestamp_basis": "provider localTradedAt with explicit offset",
-            "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+            "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
             "source_url": "https://api.stock.naver.com/index/.N225/basic",
             "regional_selection": {
               "primary_source": "Yahoo Japan regional page",
@@ -545,7 +545,7 @@
               "fallback_source": "Naver world index quote",
               "fallback_status": "PRIOR_SESSION",
               "selected_source": "Naver world index quote",
-              "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+              "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
               "selected_qualified_through_delivery": false
             },
             "source_observations": {
@@ -559,7 +559,7 @@
                 "latest_bar_at_taipei": null,
                 "source_date": "2026-11-20",
                 "provider_time_text": "11/20",
-                "provider_response_date": "Mon, 23 Nov 2026 01:49:04 GMT",
+                "provider_response_date": "Mon, 23 Nov 2026 01:55:10 GMT",
                 "timestamp_basis": "provider date only; no source clock invented",
                 "source_date_inferred": false,
                 "timestamp_precision": "date",
@@ -568,7 +568,7 @@
                 "data_kind": "provider_quote",
                 "is_live": false,
                 "is_formal_close": false,
-                "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00"
+                "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00"
               },
               "global_yahoo": {
                 "price": 56436.65,
@@ -588,7 +588,7 @@
                 "is_live": false,
                 "is_formal_close": false,
                 "timestamp_basis": "provider localTradedAt with explicit offset",
-                "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+                "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
                 "source_url": "https://api.stock.naver.com/index/.N225/basic"
               }
             }
@@ -610,7 +610,7 @@
             "is_live": false,
             "data_kind": "bar",
             "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-            "age_minutes": 4039.1
+            "age_minutes": 4045.2
           }
         }
       },
@@ -632,7 +632,7 @@
         "is_live": false,
         "is_formal_close": false,
         "timestamp_basis": "provider localTradedAt with explicit offset",
-        "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+        "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
         "source_url": "https://api.stock.naver.com/index/.TOPX/basic",
         "regional_selection": {
           "primary_source": "Naver world index quote",
@@ -640,7 +640,7 @@
           "fallback_source": null,
           "fallback_status": "FAIL",
           "selected_source": "Naver world index quote",
-          "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+          "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
           "selected_qualified_through_delivery": false
         },
         "source_observations": {
@@ -662,7 +662,7 @@
             "is_live": false,
             "is_formal_close": false,
             "timestamp_basis": "provider localTradedAt with explicit offset",
-            "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+            "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
             "source_url": "https://api.stock.naver.com/index/.TOPX/basic",
             "regional_selection": {
               "primary_source": "Yahoo Japan regional page",
@@ -670,7 +670,7 @@
               "fallback_source": "Naver world index quote",
               "fallback_status": "PRIOR_SESSION",
               "selected_source": "Naver world index quote",
-              "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+              "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
               "selected_qualified_through_delivery": false
             },
             "source_observations": {
@@ -684,7 +684,7 @@
                 "latest_bar_at_taipei": null,
                 "source_date": "2026-11-20",
                 "provider_time_text": "11/20",
-                "provider_response_date": "Mon, 23 Nov 2026 01:49:04 GMT",
+                "provider_response_date": "Mon, 23 Nov 2026 01:55:10 GMT",
                 "timestamp_basis": "provider date only; no source clock invented",
                 "source_date_inferred": false,
                 "timestamp_precision": "date",
@@ -693,7 +693,7 @@
                 "data_kind": "provider_quote",
                 "is_live": false,
                 "is_formal_close": false,
-                "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00"
+                "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00"
               },
               "global_yahoo": {
                 "price": 3674.22,
@@ -713,7 +713,7 @@
                 "is_live": false,
                 "is_formal_close": false,
                 "timestamp_basis": "provider localTradedAt with explicit offset",
-                "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+                "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
                 "source_url": "https://api.stock.naver.com/index/.TOPX/basic"
               }
             }
@@ -743,7 +743,7 @@
         "is_live": false,
         "is_formal_close": false,
         "timestamp_basis": "provider localTradedAt with explicit offset",
-        "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+        "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
         "source_url": "https://api.stock.naver.com/stock/6857.T/basic",
         "regional_selection": {
           "primary_source": "Naver world stock quote",
@@ -751,7 +751,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver world stock quote",
-          "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+          "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
           "selected_qualified_through_delivery": false
         },
         "source_observations": {
@@ -773,7 +773,7 @@
             "is_live": false,
             "is_formal_close": false,
             "timestamp_basis": "provider localTradedAt with explicit offset",
-            "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+            "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
             "source_url": "https://api.stock.naver.com/stock/6857.T/basic",
             "regional_selection": {
               "primary_source": "Yahoo Japan regional page",
@@ -781,7 +781,7 @@
               "fallback_source": "Naver world stock quote",
               "fallback_status": "PRIOR_SESSION",
               "selected_source": "Naver world stock quote",
-              "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+              "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
               "selected_qualified_through_delivery": false
             },
             "source_observations": {
@@ -795,7 +795,7 @@
                 "latest_bar_at_taipei": null,
                 "source_date": "2026-11-20",
                 "provider_time_text": "11/20",
-                "provider_response_date": "Mon, 23 Nov 2026 01:49:05 GMT",
+                "provider_response_date": "Mon, 23 Nov 2026 01:55:11 GMT",
                 "timestamp_basis": "provider date only; no source clock invented",
                 "source_date_inferred": false,
                 "timestamp_precision": "date",
@@ -804,7 +804,7 @@
                 "data_kind": "provider_quote",
                 "is_live": false,
                 "is_formal_close": false,
-                "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00"
+                "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00"
               },
               "global_yahoo": {
                 "price": 24255.0,
@@ -824,7 +824,7 @@
                 "is_live": false,
                 "is_formal_close": false,
                 "timestamp_basis": "provider localTradedAt with explicit offset",
-                "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+                "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
                 "source_url": "https://api.stock.naver.com/stock/6857.T/basic"
               }
             }
@@ -846,7 +846,7 @@
             "is_live": false,
             "data_kind": "bar",
             "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-            "age_minutes": 4039.1
+            "age_minutes": 4045.2
           }
         }
       },
@@ -868,7 +868,7 @@
         "is_live": false,
         "is_formal_close": false,
         "timestamp_basis": "provider localTradedAt with explicit offset",
-        "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+        "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
         "source_url": "https://api.stock.naver.com/stock/8035.T/basic",
         "regional_selection": {
           "primary_source": "Naver world stock quote",
@@ -876,7 +876,7 @@
           "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
           "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver world stock quote",
-          "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+          "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
           "selected_qualified_through_delivery": false
         },
         "source_observations": {
@@ -898,7 +898,7 @@
             "is_live": false,
             "is_formal_close": false,
             "timestamp_basis": "provider localTradedAt with explicit offset",
-            "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+            "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
             "source_url": "https://api.stock.naver.com/stock/8035.T/basic",
             "regional_selection": {
               "primary_source": "Yahoo Japan regional page",
@@ -906,7 +906,7 @@
               "fallback_source": "Naver world stock quote",
               "fallback_status": "PRIOR_SESSION",
               "selected_source": "Naver world stock quote",
-              "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+              "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
               "selected_qualified_through_delivery": false
             },
             "source_observations": {
@@ -920,7 +920,7 @@
                 "latest_bar_at_taipei": null,
                 "source_date": "2026-11-20",
                 "provider_time_text": "11/20",
-                "provider_response_date": "Mon, 23 Nov 2026 01:49:05 GMT",
+                "provider_response_date": "Mon, 23 Nov 2026 01:55:11 GMT",
                 "timestamp_basis": "provider date only; no source clock invented",
                 "source_date_inferred": false,
                 "timestamp_precision": "date",
@@ -929,7 +929,7 @@
                 "data_kind": "provider_quote",
                 "is_live": false,
                 "is_formal_close": false,
-                "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00"
+                "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00"
               },
               "global_yahoo": {
                 "price": 8309.0,
@@ -949,7 +949,7 @@
                 "is_live": false,
                 "is_formal_close": false,
                 "timestamp_basis": "provider localTradedAt with explicit offset",
-                "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+                "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
                 "source_url": "https://api.stock.naver.com/stock/8035.T/basic"
               }
             }
@@ -971,23 +971,23 @@
             "is_live": false,
             "data_kind": "bar",
             "note": "Last bar is NOT a confirmed regular-session close; inspect session before use.",
-            "age_minutes": 4039.1
+            "age_minutes": 4045.2
           }
         }
       }
     },
     "kr": {
       "KOSPI": {
-        "price": 4699.28,
+        "price": 4680.92,
         "status": "PASS",
         "source": "Naver public regional quote",
         "ticker": "KOSPI",
-        "trade_time": "2026-11-23T10:49:04+09:00",
-        "latest_bar_at_taipei": "2026-11-23T09:49:04+08:00",
-        "provider_time_text": "2026-11-23T10:49:04+09:00",
+        "trade_time": "2026-11-23T10:55:10+09:00",
+        "latest_bar_at_taipei": "2026-11-23T09:55:10+08:00",
+        "provider_time_text": "2026-11-23T10:55:10+09:00",
         "market_status": "OPEN",
         "provider_delay_minutes": 0,
-        "change_pct": -3.5,
+        "change_pct": -3.88,
         "open": 4734.9,
         "high": 4759.65,
         "low": 4656.76,
@@ -995,7 +995,7 @@
         "is_live": false,
         "is_formal_close": false,
         "timestamp_basis": "provider localTradedAt with explicit offset",
-        "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+        "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ,KPI200",
         "regional_selection": {
           "primary_source": "Naver public regional quote",
@@ -1003,21 +1003,21 @@
           "fallback_source": "Yahoo/global fallback",
           "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+          "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
           "selected_qualified_through_delivery": true
         },
         "source_observations": {
           "regional": {
-            "price": 4699.28,
+            "price": 4680.92,
             "status": "PASS",
             "source": "Naver public regional quote",
             "ticker": "KOSPI",
-            "trade_time": "2026-11-23T10:49:04+09:00",
-            "latest_bar_at_taipei": "2026-11-23T09:49:04+08:00",
-            "provider_time_text": "2026-11-23T10:49:04+09:00",
+            "trade_time": "2026-11-23T10:55:10+09:00",
+            "latest_bar_at_taipei": "2026-11-23T09:55:10+08:00",
+            "provider_time_text": "2026-11-23T10:55:10+09:00",
             "market_status": "OPEN",
             "provider_delay_minutes": 0,
-            "change_pct": -3.5,
+            "change_pct": -3.88,
             "open": 4734.9,
             "high": 4759.65,
             "low": 4656.76,
@@ -1025,7 +1025,7 @@
             "is_live": false,
             "is_formal_close": false,
             "timestamp_basis": "provider localTradedAt with explicit offset",
-            "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+            "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
             "source_url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ,KPI200"
           },
           "global_yahoo": {
@@ -1035,16 +1035,16 @@
         }
       },
       "KOSDAQ": {
-        "price": 631.57,
+        "price": 629.34,
         "status": "PASS",
         "source": "Naver public regional quote",
         "ticker": "KOSDAQ",
-        "trade_time": "2026-11-23T10:49:04+09:00",
-        "latest_bar_at_taipei": "2026-11-23T09:49:04+08:00",
-        "provider_time_text": "2026-11-23T10:49:04+09:00",
+        "trade_time": "2026-11-23T10:55:10+09:00",
+        "latest_bar_at_taipei": "2026-11-23T09:55:10+08:00",
+        "provider_time_text": "2026-11-23T10:55:10+09:00",
         "market_status": "OPEN",
         "provider_delay_minutes": 0,
-        "change_pct": -2.19,
+        "change_pct": -2.53,
         "open": 634.93,
         "high": 645.93,
         "low": 625.21,
@@ -1052,7 +1052,7 @@
         "is_live": false,
         "is_formal_close": false,
         "timestamp_basis": "provider localTradedAt with explicit offset",
-        "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+        "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ,KPI200",
         "regional_selection": {
           "primary_source": "Naver public regional quote",
@@ -1060,21 +1060,21 @@
           "fallback_source": "Yahoo/global fallback",
           "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+          "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
           "selected_qualified_through_delivery": true
         },
         "source_observations": {
           "regional": {
-            "price": 631.57,
+            "price": 629.34,
             "status": "PASS",
             "source": "Naver public regional quote",
             "ticker": "KOSDAQ",
-            "trade_time": "2026-11-23T10:49:04+09:00",
-            "latest_bar_at_taipei": "2026-11-23T09:49:04+08:00",
-            "provider_time_text": "2026-11-23T10:49:04+09:00",
+            "trade_time": "2026-11-23T10:55:10+09:00",
+            "latest_bar_at_taipei": "2026-11-23T09:55:10+08:00",
+            "provider_time_text": "2026-11-23T10:55:10+09:00",
             "market_status": "OPEN",
             "provider_delay_minutes": 0,
-            "change_pct": -2.19,
+            "change_pct": -2.53,
             "open": 634.93,
             "high": 645.93,
             "low": 625.21,
@@ -1082,7 +1082,7 @@
             "is_live": false,
             "is_formal_close": false,
             "timestamp_basis": "provider localTradedAt with explicit offset",
-            "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+            "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
             "source_url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ,KPI200"
           },
           "global_yahoo": {
@@ -1092,16 +1092,16 @@
         }
       },
       "SAMSUNG": {
-        "price": 176000.0,
+        "price": 175300.0,
         "status": "PASS",
         "source": "Naver public regional quote",
         "ticker": "005930",
-        "trade_time": "2026-11-23T10:49:05.042934+09:00",
-        "latest_bar_at_taipei": "2026-11-23T09:49:05.042934+08:00",
-        "provider_time_text": "2026-11-23T10:49:05.042934+09:00",
+        "trade_time": "2026-11-23T10:55:10.761115+09:00",
+        "latest_bar_at_taipei": "2026-11-23T09:55:10.761115+08:00",
+        "provider_time_text": "2026-11-23T10:55:10.761115+09:00",
         "market_status": "OPEN",
         "provider_delay_minutes": 0,
-        "change_pct": -3.88,
+        "change_pct": -4.26,
         "open": 177600.0,
         "high": 178500.0,
         "low": 174000.0,
@@ -1109,7 +1109,7 @@
         "is_live": false,
         "is_formal_close": false,
         "timestamp_basis": "provider localTradedAt with explicit offset",
-        "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+        "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660",
         "regional_selection": {
           "primary_source": "Naver public regional quote",
@@ -1117,21 +1117,21 @@
           "fallback_source": "Yahoo/global fallback",
           "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+          "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
           "selected_qualified_through_delivery": true
         },
         "source_observations": {
           "regional": {
-            "price": 176000.0,
+            "price": 175300.0,
             "status": "PASS",
             "source": "Naver public regional quote",
             "ticker": "005930",
-            "trade_time": "2026-11-23T10:49:05.042934+09:00",
-            "latest_bar_at_taipei": "2026-11-23T09:49:05.042934+08:00",
-            "provider_time_text": "2026-11-23T10:49:05.042934+09:00",
+            "trade_time": "2026-11-23T10:55:10.761115+09:00",
+            "latest_bar_at_taipei": "2026-11-23T09:55:10.761115+08:00",
+            "provider_time_text": "2026-11-23T10:55:10.761115+09:00",
             "market_status": "OPEN",
             "provider_delay_minutes": 0,
-            "change_pct": -3.88,
+            "change_pct": -4.26,
             "open": 177600.0,
             "high": 178500.0,
             "low": 174000.0,
@@ -1139,7 +1139,7 @@
             "is_live": false,
             "is_formal_close": false,
             "timestamp_basis": "provider localTradedAt with explicit offset",
-            "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+            "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
             "source_url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660"
           },
           "global_yahoo": {
@@ -1149,16 +1149,16 @@
         }
       },
       "SK_HYNIX": {
-        "price": 1077000.0,
+        "price": 1071000.0,
         "status": "PASS",
         "source": "Naver public regional quote",
         "ticker": "000660",
-        "trade_time": "2026-11-23T10:49:05.042943+09:00",
-        "latest_bar_at_taipei": "2026-11-23T09:49:05.042943+08:00",
-        "provider_time_text": "2026-11-23T10:49:05.042943+09:00",
+        "trade_time": "2026-11-23T10:55:10.761125+09:00",
+        "latest_bar_at_taipei": "2026-11-23T09:55:10.761125+08:00",
+        "provider_time_text": "2026-11-23T10:55:10.761125+09:00",
         "market_status": "OPEN",
         "provider_delay_minutes": 0,
-        "change_pct": -3.23,
+        "change_pct": -3.77,
         "open": 1079000.0,
         "high": 1097000.0,
         "low": 1062000.0,
@@ -1166,7 +1166,7 @@
         "is_live": false,
         "is_formal_close": false,
         "timestamp_basis": "provider localTradedAt with explicit offset",
-        "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+        "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660",
         "regional_selection": {
           "primary_source": "Naver public regional quote",
@@ -1174,21 +1174,21 @@
           "fallback_source": "Yahoo/global fallback",
           "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+          "qualification_at_taipei": "2026-11-23T09:55:09.679500+08:00",
           "selected_qualified_through_delivery": true
         },
         "source_observations": {
           "regional": {
-            "price": 1077000.0,
+            "price": 1071000.0,
             "status": "PASS",
             "source": "Naver public regional quote",
             "ticker": "000660",
-            "trade_time": "2026-11-23T10:49:05.042943+09:00",
-            "latest_bar_at_taipei": "2026-11-23T09:49:05.042943+08:00",
-            "provider_time_text": "2026-11-23T10:49:05.042943+09:00",
+            "trade_time": "2026-11-23T10:55:10.761125+09:00",
+            "latest_bar_at_taipei": "2026-11-23T09:55:10.761125+08:00",
+            "provider_time_text": "2026-11-23T10:55:10.761125+09:00",
             "market_status": "OPEN",
             "provider_delay_minutes": 0,
-            "change_pct": -3.23,
+            "change_pct": -3.77,
             "open": 1079000.0,
             "high": 1097000.0,
             "low": 1062000.0,
@@ -1196,7 +1196,7 @@
             "is_live": false,
             "is_formal_close": false,
             "timestamp_basis": "provider localTradedAt with explicit offset",
-            "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+            "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
             "source_url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660"
           },
           "global_yahoo": {
@@ -1206,16 +1206,16 @@
         }
       },
       "KOSPI200": {
-        "price": 728.52,
+        "price": 725.65,
         "status": "PASS",
         "source": "Naver public regional quote",
         "ticker": "KPI200",
-        "trade_time": "2026-11-23T10:49:04+09:00",
-        "latest_bar_at_taipei": "2026-11-23T09:49:04+08:00",
-        "provider_time_text": "2026-11-23T10:49:04+09:00",
+        "trade_time": "2026-11-23T10:55:10+09:00",
+        "latest_bar_at_taipei": "2026-11-23T09:55:10+08:00",
+        "provider_time_text": "2026-11-23T10:55:10+09:00",
         "market_status": "OPEN",
         "provider_delay_minutes": 0,
-        "change_pct": -3.55,
+        "change_pct": -3.93,
         "open": 733.86,
         "high": 737.97,
         "low": 721.53,
@@ -1223,7 +1223,7 @@
         "is_live": false,
         "is_formal_close": false,
         "timestamp_basis": "provider localTradedAt with explicit offset",
-        "fetched_at_taipei": "2026-11-23T09:49:03.919253+08:00",
+        "fetched_at_taipei": "2026-11-23T09:55:09.679500+08:00",
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ,KPI200"
       }
     }
@@ -1950,13 +1950,13 @@
       "provider": "Shioaji",
       "source": "Shioaji_futures_snapshot",
       "instrument": "TXFR1",
-      "checked_at_taipei": "2026-11-23T09:49:15.944093+08:00",
+      "checked_at_taipei": "2026-11-23T09:55:23.469751+08:00",
       "status": "PASS",
       "is_live": false,
       "contract_code": "TXFR1",
       "data_kind": "snapshot",
-      "price": 36376.0,
-      "trade_time": "2026-11-23T09:49:17.484000+08:00",
+      "price": 36318.0,
+      "trade_time": "2026-11-23T09:55:25.338000+08:00",
       "units": {
         "price": "index_points"
       },
@@ -2145,5 +2145,5 @@
       "note": "Completed provider daily bar; not an exchange-certified closing/settlement file."
     }
   },
-  "collection_completed_at_taipei": "2026-11-23T09:49:19.042309+08:00"
+  "collection_completed_at_taipei": "2026-11-23T09:55:26.701591+08:00"
 }
