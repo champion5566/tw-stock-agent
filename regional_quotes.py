@@ -190,4 +190,10 @@ def select_regional(primary, fallback, checked):
             'fallback_source':fallback.get('source'), 'fallback_status':fallback.get('status'),
             'selected_source':chosen.get('source'),
             'qualification_at_taipei':qualification_time(checked).isoformat(),
-            'selected_qualified_through_delivery':valid(chosen)}, 'source_observations':{'regional':primary,'global_yahoo':fallback}}
+            'selected_qualified_through_delivery':valid(chosen),
+            'fallback_qualified_through_delivery':valid(fallback),
+            'fallback_rejection_reason': (
+                'NO_VERIFIABLE_TIMESTAMP' if fallback.get('status') == 'PASS'
+                and not (fallback.get('trade_time') or fallback.get('latest_bar_at_taipei'))
+                else 'NOT_FRESH_THROUGH_DELIVERY' if fallback.get('status') == 'PASS' and not valid(fallback)
+                else None)}, 'source_observations':{'regional':primary,'global_yahoo':fallback}}
