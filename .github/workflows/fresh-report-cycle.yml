@@ -1,0 +1,178 @@
+name: Collect fresh market report cycle
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/fresh-report-cycle.yml
+      - .github/workflows/preview-market-collection.yml
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fresh-report-cycle.yml
+
+permissions:
+  contents: read
+
+jobs:
+  first-morning:
+    uses: ./.github/workflows/preview-market-collection.yml
+    with:
+      preview_slot: morning
+      preview_stage: cycle-morning-first
+    secrets: inherit
+
+  teacher:
+    needs: first-morning
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: data/snapshots
+          path: snapshots
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cycle-morning-first
+          path: inputs
+      - name: Audit the fresh morning and existing repair queue
+        run: |
+          mkdir -p evidence
+          python teacher_audit.py snapshots > evidence/teacher-audit.json
+          python - <<'PY'
+          import json
+          import subprocess
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          target = Path("evidence/teacher-audit.json")
+          audit = json.loads(target.read_text())
+          reports = sorted(Path("inputs").glob("*/reports/*/morning.json"))
+          audit["morning_preview"] = None
+          if reports:
+              report = json.loads(reports[-1].read_text())
+              audit["morning_preview"] = {
+                  key: report.get(key) for key in (
+                      "generated_at_taipei", "execution_kind", "source_fetched_at",
+                      "readiness", "input_fingerprints", "opening_forecast",
+                  )
+              }
+          audit["snapshot_revision"] = subprocess.check_output(
+              ["git", "-C", "snapshots", "rev-parse", "HEAD"], text=True
+          ).strip()
+          audit["audited_at"] = datetime.now(timezone.utc).isoformat()
+          target.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cycle-teacher
+          path: evidence/
+          retention-days: 30
+
+  evening:
+    needs: teacher
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/preview-market-collection.yml
+    with:
+      preview_slot: evening
+      preview_stage: cycle-evening
+    secrets: inherit
+
+  final-morning:
+    needs: evening
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/preview-market-collection.yml
+    with:
+      preview_slot: morning
+      preview_stage: cycle-morning-last
+    secrets: inherit
+
+  ledger:
+    needs: [first-morning, teacher, evening, final-morning]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    env:
+      FIRST_MORNING_RESULT: ${{ needs.first-morning.result }}
+      TEACHER_RESULT: ${{ needs.teacher.result }}
+      EVENING_RESULT: ${{ needs.evening.result }}
+      FINAL_MORNING_RESULT: ${{ needs.final-morning.result }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cycle-*
+          path: cycle-inputs
+      - name: Build execution ledger
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          stages = (
+              ("morning-first", "FIRST_MORNING_RESULT", "reports/*/morning.json"),
+              ("teacher", "TEACHER_RESULT", "teacher-audit.json"),
+              ("evening", "EVENING_RESULT", "reports/*/evening.json"),
+              ("morning-last", "FINAL_MORNING_RESULT", "reports/*/morning.json"),
+          )
+          run_id = os.environ["GITHUB_RUN_ID"]
+          attempt = os.environ["GITHUB_RUN_ATTEMPT"]
+          relative = f"ledger/manual-cycles/{run_id}-{attempt}.json"
+          output = Path("out") / relative
+          output.parent.mkdir(parents=True, exist_ok=True)
+          steps = []
+          for stage, result_key, pattern in stages:
+              artifact = f"cycle-{stage}"
+              candidates = sorted((Path("cycle-inputs") / artifact).glob(pattern))
+              step = {"stage": stage, "job_result": os.environ[result_key], "artifact": artifact}
+              if candidates:
+                  payload = candidates[-1].read_bytes()
+                  step["sha256"] = hashlib.sha256(payload).hexdigest()
+                  step["result"] = json.loads(payload)
+              else:
+                  step["error"] = "No report or audit artifact produced by this stage."
+              steps.append(step)
+          ledger = {
+              "schema_version": "manual-report-cycle-v1",
+              "recorded_at": datetime.now(timezone.utc).isoformat(),
+              "run_id": run_id,
+              "run_attempt": attempt,
+              "code_revision": os.environ["GITHUB_SHA"],
+              "formal_sample_eligible": False,
+              "steps": steps,
+          }
+          output.write_text(json.dumps(ledger, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
+          with open(os.environ["GITHUB_ENV"], "a") as env:
+              print(f"LEDGER_PATH={relative}", file=env)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as summary:
+              print("# Fresh market report cycle\n", file=summary)
+              for step in steps:
+                  result = step.get("result", {})
+                  timestamp = result.get("generated_at_taipei", result.get("audited_at", "unavailable"))
+                  status = result.get("readiness", {}).get("data_readiness") or result.get("gate", {}).get("status") or "unavailable"
+                  print(f'- {step["stage"]}: {step["job_result"]}, {timestamp}, {status}', file=summary)
+              print(f"\nLedger: `{relative}`", file=summary)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cycle-execution-ledger
+          path: out/ledger/manual-cycles/*.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Publish and verify the ledger on the data branch
+        if: github.ref == 'refs/heads/main'
+        run: |
+          bash scripts/publish_snapshots.sh
+          git fetch origin refs/heads/data/snapshots
+          git show "FETCH_HEAD:$LEDGER_PATH" | cmp "out/$LEDGER_PATH" -
+          echo "Ledger verified on data/snapshots: $LEDGER_PATH"
