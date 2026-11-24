@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - .github/workflows/fresh-report-cycle.yml
+      - .github/workflows/preview-market-collection.yml
   push:
     branches: [main]
     paths:
@@ -15,7 +16,7 @@ permissions:
 
 jobs:
   first-morning:
-    uses: ./.github/workflows/cross-market.yml
+    uses: ./.github/workflows/preview-market-collection.yml
     with:
       preview_slot: morning
       preview_stage: cycle-morning-first
@@ -76,7 +77,7 @@ jobs:
   evening:
     needs: teacher
     if: ${{ !cancelled() }}
-    uses: ./.github/workflows/cross-market.yml
+    uses: ./.github/workflows/preview-market-collection.yml
     with:
       preview_slot: evening
       preview_stage: cycle-evening
@@ -85,7 +86,7 @@ jobs:
   final-morning:
     needs: evening
     if: ${{ !cancelled() }}
-    uses: ./.github/workflows/cross-market.yml
+    uses: ./.github/workflows/preview-market-collection.yml
     with:
       preview_slot: morning
       preview_stage: cycle-morning-last
