@@ -1,0 +1,43 @@
+name: Teacher Evidence Audit
+on:
+  pull_request:
+    paths:
+      - teacher_audit.py
+      - execution_supervisor.py
+      - docs/repair_queue.json
+      - .github/workflows/teacher-audit.yml
+  push:
+    branches: [main]
+    paths:
+      - teacher_audit.py
+      - execution_supervisor.py
+      - docs/repair_queue.json
+      - .github/workflows/teacher-audit.yml
+  workflow_run:
+    workflows: [Cross Market Source Verification]
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: data/snapshots
+          path: snapshots
+          persist-credentials: false
+      - name: Run teacher evidence audit
+        run: |
+          set -euo pipefail
+          python teacher_audit.py snapshots | tee teacher-evidence.json
+          python -m json.tool teacher-evidence.json > /dev/null
+      - uses: actions/upload-artifact@v4
+        with:
+          name: teacher-evidence
+          path: teacher-evidence.json
