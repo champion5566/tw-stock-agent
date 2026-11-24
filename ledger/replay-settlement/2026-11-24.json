@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-24",
+  "eligible": false,
+  "kind": "POST_OPEN_REPLAY_SETTLEMENT",
+  "original_ref": "449a5bb5f869f150dc7d76ce46fcc156b94789a7:ledger/replay/2026-11-24.json",
+  "actual_ref": "https://www.cna.com.tw/news/afe/202611240032.aspx",
+  "actual_secondary_ref": "449a5bb5f869f150dc7d76ce46fcc156b94789a7:reports/2026-11-24/evening.json",
+  "actual_source_status": "PROVIDER_MATCHED_NOT_OFFICIAL_DIRECT; TWSE monthly endpoint ends 1151123; dated endpoints inaccessible",
+  "actual": 39148.91,
+  "previous_close": 36811.89,
+  "scores": {
+    "V0-CARRY": {
+      "center": 36811.89,
+      "signed_error": -2337.020000000004,
+      "absolute_error": 2337.020000000004,
+      "direction_match": false
+    },
+    "V1-TX-ZERO-BASIS": {
+      "center": 39829,
+      "signed_error": 680.0899999999965,
+      "absolute_error": 680.0899999999965,
+      "direction_match": true
+    },
+    "V2-CROSS-BLEND": {
+      "center": 40360.7728200187,
+      "signed_error": 1211.862820018694,
+      "absolute_error": 1211.862820018694,
+      "direction_match": true
+    },
+    "V3-SHRINK-075": {
+      "center": 39473.55211501403,
+      "signed_error": 324.64211501402315,
+      "absolute_error": 324.64211501402315,
+      "direction_match": true
+    }
+  },
+  "method": "opening_baseline.py settle equivalent JavaScript",
+  "official_confirmation_pending": true
+}
