@@ -30,3 +30,20 @@ class TeacherAuditTest(unittest.TestCase):
         rows = [{"Date":"115/11/23","OpeningIndex":"99"},{"Date":"115/11/24","OpeningIndex":"102.5"}]
         self.assertEqual(official_open("2026-11-24", rows)["open"],102.5)
         self.assertEqual(official_open("2026-11-25", rows),{})
+
+    def test_monthly_fallback_settles_only_exact_session(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            replay = root / "ledger/replay/2026-11-24.json"
+            replay.parent.mkdir(parents=True)
+            replay.write_text(json.dumps({
+                "date": "2026-11-24", "previous_close": 100,
+                "models": {"V0": {"center": 100}},
+            }))
+            monthly = lambda day: [
+                {"Date": "115/11/23", "OpeningIndex": "99"},
+                {"Date": "115/11/24", "OpeningIndex": "102"},
+            ]
+            result = audit([], root, lambda: [], monthly)["replays"][0]
+            self.assertEqual(result["actual"], 102)
+            self.assertIn("date=20261101", result["actual_ref"])
