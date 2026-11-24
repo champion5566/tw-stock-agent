@@ -110,6 +110,14 @@ jobs:
         with:
           pattern: cycle-*
           path: cycle-inputs
+      - uses: actions/checkout@v4
+        with:
+          ref: data/snapshots
+          path: settlement-snapshots
+          persist-credentials: false
+      - name: Retry replay settlement after the evening collection
+        continue-on-error: true
+        run: python teacher_audit.py settlement-snapshots > settlement-evidence.json
       - name: Build execution ledger
         run: |
           python - <<'PY'
@@ -150,7 +158,11 @@ jobs:
               "code_revision": os.environ["GITHUB_SHA"],
               "formal_sample_eligible": False,
               "steps": steps,
+              "post_evening_settlement": None,
           }
+          settlement = Path("settlement-evidence.json")
+          if settlement.is_file() and settlement.stat().st_size:
+              ledger["post_evening_settlement"] = json.loads(settlement.read_text())
           output.write_text(json.dumps(ledger, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
           with open(os.environ["GITHUB_ENV"], "a") as env:
               print(f"LEDGER_PATH={relative}", file=env)
