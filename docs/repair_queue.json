@@ -38,5 +38,33 @@
       "CI": "exact head 1dfead5a success",
       "MERGED": "58ddd0b"
     }
+  },
+  {
+    "id": "stock-close-regression",
+    "stage": "OPEN",
+    "priority": 1,
+    "evidence": {},
+    "detail": "PR36: verify 006208/00631L against same-session official daily close"
+  },
+  {
+    "id": "nikkei-fresh-fallback",
+    "stage": "OPEN",
+    "priority": 2,
+    "evidence": {},
+    "detail": "PR45: qualify independent fallback at delivery"
+  },
+  {
+    "id": "evening-publication-gap",
+    "stage": "OPEN",
+    "priority": 2,
+    "evidence": {},
+    "detail": "PR40: reproduce missing artifact and verify publication"
+  },
+  {
+    "id": "private-draft-validation",
+    "stage": "OPEN",
+    "priority": 3,
+    "evidence": {},
+    "detail": "PR39: verify actual draft access or document limitation"
   }
 ]
