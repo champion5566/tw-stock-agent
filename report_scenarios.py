@@ -126,6 +126,9 @@ def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=Non
         report["stock_close_table_markdown"] = render_close_table(report)
         if mode == "morning":
             report["us_regular_close_table_markdown"] = render_us_regular_close_table(report)
+    if mode == "morning":
+        from opening_baseline import forecast
+        report["opening_forecast"] = forecast(report)
     return report
 
 
