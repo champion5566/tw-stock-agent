@@ -59,6 +59,12 @@ def forecast(bundle):
                 "weights": {k: weights[k]/total for k in factors},
                 "formula": "weighted_mean_of_available_returns",
                 "limitation": "Heuristic weights; overlapping signals; not calibrated."}
+    if "V2-CROSS-BLEND" in models:
+        raw = models["V2-CROSS-BLEND"]
+        ret = raw["return_pct"] * .75
+        models["V3-SHRINK-075"] = {"center": close*(1+ret/100),
+            "delta": close*ret/100, "return_pct": ret,
+            "formula": "0.75 * V2 return", "limitation": "Post-replay candidate; prospective evaluation required."}
     return {"warnings": warnings, "status": "UNCALIBRATED", "previous_session": date,
             "source": row.get("source"), "previous_close": close,
             "models": models,
