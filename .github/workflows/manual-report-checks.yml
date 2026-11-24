@@ -1,0 +1,114 @@
+name: Run market report checks
+
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: Task to run
+        type: choice
+        options: [all, teacher, morning, evening]
+        default: all
+      report_date:
+        description: Taipei report date (YYYY-MM-DD); leave blank for latest published report per slot
+        type: string
+  pull_request:
+    paths:
+      - .github/workflows/manual-report-checks.yml
+
+permissions:
+  contents: read
+
+jobs:
+  report-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TASK: ${{ inputs.task || 'all' }}
+      REPORT_DATE: ${{ inputs.report_date }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: data/snapshots
+          path: snapshots
+          persist-credentials: false
+      - name: Read published morning and evening reports
+        if: env.TASK != 'teacher'
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+          import subprocess
+          from datetime import date
+          from pathlib import Path
+
+          requested = os.environ["REPORT_DATE"].strip()
+          if requested and (not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", requested)
+                            or date.fromisoformat(requested).isoformat() != requested):
+              raise SystemExit("Use YYYY-MM-DD for the Taipei report date.")
+
+          task = os.environ["TASK"]
+          slots = ("morning", "evening") if task == "all" else (task,)
+          root = Path("snapshots")
+          revision = subprocess.check_output(
+              ["git", "-C", str(root), "rev-parse", "HEAD"], text=True
+          ).strip()
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              print(f"# Published market reports\n\nSnapshot revision: `{revision}`", file=summary)
+              for slot in slots:
+                  print(f"\n## {slot.title()}\n", file=summary)
+                  reports = root / "reports"
+                  candidates = ([reports / requested / f"{slot}.json"] if requested else
+                                sorted(reports.glob(f"????-??-??/{slot}.json"), reverse=True))
+                  for path in candidates:
+                      if not path.is_file():
+                          continue
+                      report = json.loads(path.read_text(encoding="utf-8"))
+                      if report.get("scenario") != slot:
+                          raise ValueError(f"Scenario mismatch: {path}")
+                      if not requested and report.get("execution_kind") != "REPORT":
+                          continue
+                      readiness = report.get("readiness", {})
+                      evidence = report.get("execution_evidence", {})
+                      url = (f'{os.environ["GITHUB_SERVER_URL"]}/{os.environ["GITHUB_REPOSITORY"]}'
+                             f'/blob/{revision}/{path.relative_to(root).as_posix()}')
+                      print(f"[Open data bundle]({url})", file=summary)
+                      print(f'\n- Generated in Taipei: {report.get("generated_at_taipei", "UNKNOWN")}', file=summary)
+                      print(f'- Execution kind: {report.get("execution_kind", "UNKNOWN")}', file=summary)
+                      print(f'- Data readiness: {readiness.get("data_readiness", "UNKNOWN")}', file=summary)
+                      print(f'- Producer run ID: {evidence.get("run_id", "UNKNOWN")}', file=summary)
+                      sections = readiness.get("sections", {})
+                      for section, details in sections.items():
+                          if details.get("status") == "PASS":
+                              continue
+                          exceptions = ", ".join(
+                              f"{item}={status}" for item, status in details.get("items", {}).items()
+                              if status != "PASS"
+                          )
+                          print(f'- {section}: {details.get("status", "UNKNOWN")} {exceptions}', file=summary)
+                      table = report.get("stock_close_table_markdown")
+                      if table:
+                          print(f"\n{table}", file=summary)
+                      break
+                  else:
+                      print("No matching published report.", file=summary)
+          PY
+      - name: Run teacher evidence audit
+        if: ${{ !cancelled() && (env.TASK == 'all' || env.TASK == 'teacher') }}
+        run: |
+          python teacher_audit.py snapshots > teacher-evidence.json
+          python -m json.tool teacher-evidence.json > /dev/null
+          {
+            echo '## Teacher evidence audit'
+            echo
+            echo 'See the teacher-evidence artifact for the stop gate, replay results, and blockers.'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() && (env.TASK == 'all' || env.TASK == 'teacher') }}
+        with:
+          name: teacher-evidence
+          path: teacher-evidence.json
+          if-no-files-found: error
