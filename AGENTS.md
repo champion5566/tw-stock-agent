@@ -12,3 +12,6 @@ This repository collects public market observations. Broker access is quote-only
 8. For work handoff record revision, checks run, actual run/artifact links, unresolved failures and next action. Keep scheduled acceptance separate from current-time preview. Platform delivery acknowledgment remains UNKNOWN without independent evidence.
 
 Workflow references and upstream revision: `docs/ECC_ADOPTION.md`. No runtime plugin or self-learning hook installation is implied by these project rules.
+
+## Shared repair session (interactive and scheduled)
+For every repair request, including live chat follow-ups, read the current queue and run `python -m scripts.repair_session --mode interactive` (scheduled maintenance uses `--mode scheduled`). Execute the returned next action, update queue evidence, then rerun with `--attempts <current-run-json>`. CONTINUE is not a successful handoff. WAIT requires current-run evidence and retry conditions for every remaining item. Record new defects in the queue. If Python is unavailable, evaluate the same rules explicitly; do not claim execution. This entrypoint does not invoke an AI or override platform turn limits. Do not wait for 19:00 to perform available work.
