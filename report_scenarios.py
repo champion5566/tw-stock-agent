@@ -33,7 +33,8 @@ def daily_selection(item, target, checked, mode):
             "data": row if available else None,
             "prior_reference": row if not available else None,
             "data_kind": "daily", "is_live": False,
-            "provider_status": item.get("status", "MISSING")}
+            "provider_status": item.get("status", "MISSING"),
+            "source": item.get("source") or item.get("dataset")}
 
 
 def build_report(mode, market=None, intraday=None, cross=None, *, checked_at=None, experiment=False):
