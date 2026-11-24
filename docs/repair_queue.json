@@ -1,0 +1,34 @@
+[
+  {
+    "id": "opening-directional-model",
+    "stage": "OPEN",
+    "priority": 1,
+    "evidence": {}
+  },
+  {
+    "id": "opening-producer",
+    "stage": "MERGED",
+    "priority": 2,
+    "evidence": {
+      "PR": "48",
+      "CI": "45301671316",
+      "MERGED": "518ff5a0"
+    }
+  },
+  {
+    "id": "extreme-event-research",
+    "stage": "MERGED",
+    "priority": 2,
+    "evidence": {
+      "PR": "50",
+      "CI": "45307973260",
+      "MERGED": "b79227ee"
+    }
+  },
+  {
+    "id": "opening-settlement",
+    "stage": "OPEN",
+    "priority": 1,
+    "evidence": {}
+  }
+]
