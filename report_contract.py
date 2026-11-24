@@ -62,6 +62,7 @@ def evaluate(report, market, cross, checked, experiment):
     cutoff = datetime.combine(checked.date(), CUTOFF_TIMES[mode], TW)
     delivery = datetime.combine(checked.date(), DELIVERY_TIMES[mode], TW)
     stock_items = {}
+    stock_diagnostics = {}
     for code in REPORT_STOCKS:
         item = report["stocks"].get(code, {})
         daily = item.get("daily_ohlcv", {})
@@ -84,7 +85,32 @@ def evaluate(report, market, cross, checked, experiment):
         if number(row.get("Trading_Volume")) is not None and number(row.get("Trading_money")) is not None:
             valid = valid and number(row["Trading_Volume"]) >= 0 and number(row["Trading_money"]) >= 0
         stock_items[code] = "PASS" if valid else "MISSING_OR_INVALID_FIELDS"
+        if not valid:
+            source_fields = {
+                "daily_ohlcv": (row, ("open", "max", "min", "close", "Trading_Volume", "Trading_money")),
+                "metrics": (feature, ("previous_close", "amplitude_pct", "volume_ratio_5d", "volume_ratio_20d")),
+                "institutional": (inst, ("foreign_net_shares", "trust_net_shares", "dealer_net_shares", "total_net_shares", "net_5d_shares")),
+                "margin": (credit, ("margin_balance", "margin_change", "margin_change_5d", "short_balance", "short_change", "short_change_5d")),
+            }
+            stock_diagnostics[code] = {
+                "missing_or_non_numeric": {
+                    group: [key for key in keys if number(values.get(key)) is None]
+                    for group, (values, keys) in source_fields.items()
+                },
+                "sources": {
+                    group: {key: item.get(group, {}).get(key)
+                            for key in ("status", "target_session", "source_date", "source")}
+                    for group in ("daily_ohlcv", "institutional", "margin")
+                },
+                "invalid_prices": [key for key in ("open", "max", "min", "close")
+                                   if positive_price(row.get(key)) is None],
+                "ohlc_out_of_order": None not in prices and not low <= min(opened, closed) <= max(opened, closed) <= high,
+                "negative_activity": [key for key in ("Trading_Volume", "Trading_money")
+                                      if number(row.get(key)) is not None and number(row[key]) < 0],
+                "dealer_components_conflict": bool(inst.get("dealer_components_conflict")),
+            }
     sections = {"required_stock_data":section(stock_items)}
+    sections["required_stock_data"]["diagnostics"] = stock_diagnostics
     context = market.get("market_context", {})
     required_context = {"TAIEX":("open", "high", "low", "close", "volume", "turnover"),
                         "TPEX":("open", "high", "low", "close", "volume", "turnover"),
