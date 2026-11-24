@@ -6,8 +6,8 @@ on:
       task:
         description: Task to run
         type: choice
-        options: [all, teacher, morning, evening]
-        default: all
+        options: [cycle, all, teacher, morning, evening]
+        default: cycle
       report_date:
         description: Taipei report date (YYYY-MM-DD); leave blank for latest published report per slot
         type: string
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      TASK: ${{ inputs.task || 'all' }}
+      TASK: ${{ inputs.task || 'cycle' }}
       REPORT_DATE: ${{ inputs.report_date }}
     steps:
       - uses: actions/checkout@v4
@@ -34,10 +34,9 @@ jobs:
           ref: data/snapshots
           path: snapshots
           persist-credentials: false
-      - name: Read published morning and evening reports
-        if: env.TASK != 'teacher'
+      - name: Prepare report summary renderer
         run: |
-          python - <<'PY'
+          cat > "$RUNNER_TEMP/report-summary.py" <<'PY'
           import json
           import os
           import re
@@ -57,7 +56,7 @@ jobs:
               ["git", "-C", str(root), "rev-parse", "HEAD"], text=True
           ).strip()
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
-              print(f"# Published market reports\n\nSnapshot revision: `{revision}`", file=summary)
+              print(f"# Ordered cycle — 1. Morning\n\nSnapshot revision: `{revision}`", file=summary)
               for slot in slots:
                   print(f"\n## {slot.title()}\n", file=summary)
                   reports = root / "reports"
@@ -96,19 +95,41 @@ jobs:
                   else:
                       print("No matching published report.", file=summary)
           PY
+      - name: 1. Morning
+        if: ${{ !cancelled() && env.TASK == 'cycle' }}
+        env:
+          TASK: morning
+        run: |
+          python "$RUNNER_TEMP/report-summary.py"
+      - name: Read published morning and evening reports
+        if: env.TASK == 'all' || env.TASK == 'morning' || env.TASK == 'evening'
+        run: |
+          python "$RUNNER_TEMP/report-summary.py"
       - name: Run teacher evidence audit
-        if: ${{ !cancelled() && (env.TASK == 'all' || env.TASK == 'teacher') }}
+        if: ${{ !cancelled() && (env.TASK == 'all' || env.TASK == 'teacher' || env.TASK == 'cycle') }}
         run: |
           python teacher_audit.py snapshots > teacher-evidence.json
           python -m json.tool teacher-evidence.json > /dev/null
           {
-            echo '## Teacher evidence audit'
+            echo '## Teacher evidence audit (step 2 in cycle mode)'
             echo
             echo 'See the teacher-evidence artifact for the stop gate, replay results, and blockers.'
           } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() && (env.TASK == 'all' || env.TASK == 'teacher') }}
+        if: ${{ !cancelled() && (env.TASK == 'all' || env.TASK == 'teacher' || env.TASK == 'cycle') }}
         with:
           name: teacher-evidence
           path: teacher-evidence.json
           if-no-files-found: error
+      - name: 3. Evening
+        if: ${{ !cancelled() && env.TASK == 'cycle' }}
+        env:
+          TASK: evening
+        run: |
+          python "$RUNNER_TEMP/report-summary.py"
+      - name: 4. Morning
+        if: ${{ !cancelled() && env.TASK == 'cycle' }}
+        env:
+          TASK: morning
+        run: |
+          python "$RUNNER_TEMP/report-summary.py"
