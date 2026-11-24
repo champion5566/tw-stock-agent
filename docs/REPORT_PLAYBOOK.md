@@ -157,3 +157,6 @@ quality improved merely because ingestion became punctual.
 
 These corrections are prospective. The original 2026-11-05 report/ledger is unchanged;
 any rewrite or new test defined after that report is retrospective teaching, unscored.
+
+## Opening forecast minimum viable delivery (2026-11-24)
+On each eligible trading morning, use a numerical experimental center when verified prior TAIEX close exists, even if other sections are partial. V0-CARRY is the mandatory comparison benchmark, not directional skill. Prefer a directional experimental estimate using same-contract TX night/day return when verified; otherwise a verified completed TSM ADR return can be a separately labeled uncalibrated one-for-one transmission hypothesis, not a calibrated coefficient. Record formula, inputs, source dates, center and version before cutoff. Do not invent intervals or probabilities: mark them uncalibrated without suppressing center. Missing optional factors do not veto a valid benchmark. Preserve original ledgers and timing eligibility. Evening compares each original model with official open, signed error, MAE and direction; compare paired prospective samples. Teacher must pursue actual producer integration, source validation and settlement, not close the issue on this documentation change.
