@@ -1,9 +1,13 @@
 [
   {
     "id": "opening-directional-model",
-    "stage": "OPEN",
+    "stage": "MERGED",
     "priority": 1,
-    "evidence": {}
+    "evidence": {
+      "PR": "53",
+      "CI": "45309465344",
+      "MERGED": "02cde545"
+    }
   },
   {
     "id": "opening-producer",
@@ -27,8 +31,12 @@
   },
   {
     "id": "opening-settlement",
-    "stage": "OPEN",
+    "stage": "MERGED",
     "priority": 1,
-    "evidence": {}
+    "evidence": {
+      "PR": "54",
+      "CI": "exact head 1dfead5a success",
+      "MERGED": "58ddd0b"
+    }
   }
 ]

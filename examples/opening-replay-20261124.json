@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-24",
+  "eligible": false,
+  "original_ref": "retrospective calculation from reports/2026-11-24/morning.json",
+  "actual_ref": "https://money.udn.com/money/story/5607/9897798",
+  "actual": 39148.91,
+  "previous_close": 36811.89,
+  "models": {
+    "V0": {
+      "center": 36811.89
+    },
+    "V1": {
+      "center": 39829
+    },
+    "V2": {
+      "center": 40360.7728200187
+    },
+    "V3": {
+      "center": 39473.55211501403
+    }
+  },
+  "note": "V3 proposed after observing actual; no formal score."
+}
