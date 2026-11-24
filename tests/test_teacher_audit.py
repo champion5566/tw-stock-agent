@@ -24,3 +24,9 @@ class TeacherAuditTest(unittest.TestCase):
             self.assertEqual(second["replays"][0]["scores"]["V1"]["absolute_error"],1)
             self.assertTrue(second["replays"][0]["scores"]["V1"]["direction_match"])
             self.assertEqual(second["replays"][0]["scores"]["V0"]["signed_error"],-2)
+
+    def test_official_fallback_date(self):
+        from teacher_audit import official_open
+        rows = [{"Date":"115/11/23","OpeningIndex":"99"},{"Date":"115/11/24","OpeningIndex":"102.5"}]
+        self.assertEqual(official_open("2026-11-24", rows)["open"],102.5)
+        self.assertEqual(official_open("2026-11-25", rows),{})
