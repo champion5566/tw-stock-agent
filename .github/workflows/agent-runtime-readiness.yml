@@ -1,0 +1,19 @@
+name: Agent Runtime Readiness
+on:
+  pull_request:
+    paths: [.github/workflows/agent-runtime-readiness.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check configuration presence without exposing values
+        env:
+          OPENAI_CONFIGURED: ${{ secrets.OPENAI_API_KEY != '' || secrets.CODEX_API_KEY != '' }}
+          COPILOT_CONFIGURED: ${{ secrets.COPILOT_GITHUB_TOKEN != '' }}
+        run: |
+          echo "OpenAI credential configured: $OPENAI_CONFIGURED"
+          echo "Copilot credential configured: $COPILOT_CONFIGURED"
+          echo "Presence only; inference access and billing not tested."
