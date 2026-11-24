@@ -56,7 +56,8 @@ jobs:
               ["git", "-C", str(root), "rev-parse", "HEAD"], text=True
           ).strip()
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
-              print(f"# Ordered cycle — 1. Morning\n\nSnapshot revision: `{revision}`", file=summary)
+              title = os.getenv('SUMMARY_TITLE', 'Published market reports')
+              print(f"# {title}\n\nSnapshot revision: `{revision}`", file=summary)
               for slot in slots:
                   print(f"\n## {slot.title()}\n", file=summary)
                   reports = root / "reports"
@@ -99,6 +100,7 @@ jobs:
         if: ${{ !cancelled() && env.TASK == 'cycle' }}
         env:
           TASK: morning
+          SUMMARY_TITLE: "1. Morning"
         run: |
           python "$RUNNER_TEMP/report-summary.py"
       - name: Read published morning and evening reports
@@ -125,11 +127,13 @@ jobs:
         if: ${{ !cancelled() && env.TASK == 'cycle' }}
         env:
           TASK: evening
+          SUMMARY_TITLE: "3. Evening"
         run: |
           python "$RUNNER_TEMP/report-summary.py"
       - name: 4. Morning
         if: ${{ !cancelled() && env.TASK == 'cycle' }}
         env:
           TASK: morning
+          SUMMARY_TITLE: "4. Morning"
         run: |
           python "$RUNNER_TEMP/report-summary.py"
