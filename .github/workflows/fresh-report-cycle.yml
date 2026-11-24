@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - market_context.py
+      - report_scenarios.py
       - .github/workflows/fresh-report-cycle.yml
       - .github/workflows/preview-market-collection.yml
   push:
