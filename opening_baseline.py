@@ -11,7 +11,12 @@ def forecast(bundle):
             or isinstance(close, bool) or not isinstance(close, (int, float))
             or not math.isfinite(close) or close <= 0):
         return {"status": "MISSING_VERIFIED_PREVIOUS_CLOSE", "models": {}}
-    return {"status": "UNCALIBRATED", "previous_session": date,
+    adr = bundle.get("us_regular_close", {}).get("TSM_ADR", {})
+    pct = adr.get("change_pct")
+    warnings = []
+    if isinstance(pct, (int, float)) and not isinstance(pct, bool) and math.isfinite(pct) and abs(pct) >= 10:
+        warnings.append("ADR_EXTREME_RETURN_REQUIRES_INDEPENDENT_CHECK")
+    return {"warnings": warnings, "status": "UNCALIBRATED", "previous_session": date,
             "source": row.get("source"), "previous_close": close,
             "models": {"V0-CARRY": {"center": close, "delta": 0, "return_pct": 0,
                                      "formula": "previous_close"}},
