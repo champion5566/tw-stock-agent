@@ -17,7 +17,9 @@ class TeacherAuditTest(unittest.TestCase):
             self.assertIn("blocker", first["replays"][0])
             e = root / "reports/2026-11-24/evening.json"
             e.parent.mkdir(parents=True)
-            e.write_text(json.dumps({"market_context":{"TAIEX":{"status":"PASS","source_date":"2026-11-24","source":"TWSE","open":102}}}))
+            e.write_text(json.dumps({"market_context":{}}))
+            self.assertIn("blocker", audit(q, root)["replays"][0])
+            e.write_text(json.dumps({"market_context":{"TAIEX":{"status":"PASS","source_date":"2026-11-24","source":"TWSE MI_5MINS_HIST","open":102}}}))
             second = audit(q, root)
             self.assertEqual(second["replays"][0]["scores"]["V1"]["absolute_error"],1)
             self.assertTrue(second["replays"][0]["scores"]["V1"]["direction_match"])
