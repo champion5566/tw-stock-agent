@@ -13,9 +13,9 @@ def audit(queue, root):
             record = json.loads(path.read_text())
             day = record["date"]
             bundle = root / "reports" / day / "evening.json"
-            row = json.loads(bundle.read_text())["market_context"]["TAIEX"] if bundle.exists() else {}
+            row = json.loads(bundle.read_text()).get("market_context", {}).get("TAIEX", {}) if bundle.exists() else {}
             entry = {"date": day, "record": str(path.relative_to(root)), "models": record["models"]}
-            if row.get("status") == "PASS" and row.get("source_date") == day and "TWSE" in row.get("source", ""):
+            if row.get("status") == "PASS" and row.get("source_date") == day and row.get("source", "").startswith("TWSE MI_5MINS_HIST"):
                 entry["actual"] = row["open"]
                 entry["scores"] = {k: settle(v["center"], row["open"], record["previous_close"]) for k,v in record["models"].items()}
                 entry["actual_ref"] = str(bundle.relative_to(root))
