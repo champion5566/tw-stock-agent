@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-24",
+  "kind": "POST_OPEN_REPLAY_BASELINE",
+  "eligible": false,
+  "computed_at_taipei": "2026-11-24T19:27:00+08:00",
+  "original_ref": "23f9213be891e2f25b2e47f975472e02d815d1b1",
+  "source_path": "reports/2026-11-24/morning.json",
+  "previous_close": 36811.89,
+  "models": {
+    "V0-CARRY": {
+      "center": 36811.89,
+      "delta": 0,
+      "return_pct": 0
+    },
+    "V1-TX-ZERO-BASIS": {
+      "center": 39829,
+      "delta": 3017.1100000000006,
+      "return_pct": 8.19602036189937
+    },
+    "V2-CROSS-BLEND": {
+      "center": 40360.7728200187,
+      "delta": 3548.882820018698,
+      "return_pct": 9.640588462093902
+    },
+    "V3-SHRINK-075": {
+      "center": 39473.55211501403,
+      "delta": 2661.662115014027,
+      "return_pct": 7.2304413465704265
+    }
+  },
+  "inputs": {
+    "TSM_ADR": 14.08490974615859,
+    "SOX": 14.026846152023676,
+    "NASDAQ": 6.507408544078119,
+    "TOPIX": 2.26,
+    "KOSPI": 5.93,
+    "TX": 8.19602036189937
+  },
+  "weights": {
+    "TSM_ADR": 0.2,
+    "SOX": 0.15,
+    "NASDAQ": 0.05,
+    "TOPIX": 0.05,
+    "KOSPI": 0.1,
+    "TX": 0.45
+  },
+  "actual": null,
+  "warning": "ADR extreme return requires independent check; computed using same main formula, JavaScript equivalent, not original pre-open prediction."
+}
