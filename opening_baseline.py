@@ -28,12 +28,43 @@ def forecast(bundle):
             "return_pct": (price/close-1)*100, "formula": "night_last_minus_assumed_zero_basis",
             "source": tx.get("source"), "trade_time": tx.get("trade_time"),
             "limitation": "Unknown futures basis; experimental comparison only."}
+    sections = bundle.get("readiness", {}).get("sections", {})
+    us = bundle.get("us_regular_close", {})
+    cross = bundle.get("cross_market", {})
+    factors = {}
+    for key in ("TSM_ADR", "SOX", "NASDAQ"):
+        v = us.get(key, {})
+        p = v.get("change_pct")
+        if (sections.get("us_regular_close", {}).get("items", {}).get(key) == "PASS"
+                and v.get("change_status") == "PASS" and isinstance(p, (int, float))
+                and not isinstance(p, bool) and math.isfinite(p)):
+            factors[key] = p
+    for region, key in (("jp", "TOPIX"), ("kr", "KOSPI")):
+        p = cross.get(region, {}).get(key, {}).get("change_pct")
+        if (sections.get("asia_open", {}).get("items", {}).get(region+"/"+key) == "PASS"
+                and isinstance(p, (int, float)) and not isinstance(p, bool) and math.isfinite(p)):
+            factors[key] = p
+    # Blend overlapping signals rather than adding their full returns.
+    weights = {"TSM_ADR": .20, "SOX": .15, "NASDAQ": .05, "TOPIX": .05, "KOSPI": .10}
+    if "V1-TX-ZERO-BASIS" in models:
+        factors["TX"] = models["V1-TX-ZERO-BASIS"]["return_pct"]
+        weights["TX"] = .45
+    if factors:
+        total = sum(weights[k] for k in factors)
+        ret = sum(weights[k]*v for k,v in factors.items())/total
+        center = close*(1+ret/100)
+        if center > 0:
+            models["V2-CROSS-BLEND"] = {"center": center, "delta": center-close,
+                "return_pct": ret, "inputs": factors,
+                "weights": {k: weights[k]/total for k in factors},
+                "formula": "weighted_mean_of_available_returns",
+                "limitation": "Heuristic weights; overlapping signals; not calibrated."}
     return {"warnings": warnings, "status": "UNCALIBRATED", "previous_session": date,
             "source": row.get("source"), "previous_close": close,
             "models": models,
             "interval": None, "confidence": None,
             "formal_sample_eligible": False,
-            "note": "Benchmark only; consumer must verify target trading day, publication cutoff and original ledger timing."}
+            "note": "Experimental models; consumer must verify target trading day, publication cutoff and original ledger timing."}
 
 def settle(center, actual, previous_close):
     for x in (center, actual, previous_close):
