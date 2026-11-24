@@ -22,8 +22,34 @@ def supervise(items):
             else "BLOCKED" if pending else "COMPLETE", "pending": pending,
             "next": next((x for x in pending if not x["blocked"]), None)}
 
+def stop_gate(items, attempts):
+    """Require a current-run attempt for every unresolved item before yielding."""
+    result = supervise(items)
+    by_id = {a["id"]: a for a in attempts}
+    actionable = []
+    waiting = []
+    for item in result["pending"]:
+        a = by_id.get(item["id"], {})
+        # A prior queue blocker is not sufficient: recheck it this run.
+        if (a.get("outcome") in ("EXTERNAL_BLOCKER", "WAITING_FUTURE_SESSION")
+                and a.get("evidence") and a.get("retry_condition")
+                and a.get("action") == item["next"]):
+            waiting.append(item["id"])
+        else:
+            actionable.append(item)
+    return {"stop_allowed": not actionable,
+            "next": actionable[0] if actionable else None,
+            "unattempted_or_incomplete": actionable,
+            "waiting": waiting,
+            "status": "CONTINUE" if actionable else "WAIT" if waiting else "COMPLETE"}
+
 if __name__ == "__main__":
     with open(sys.argv[1], encoding="utf-8") as f:
         result = supervise(json.load(f))
+    if len(sys.argv) > 2:
+        with open(sys.argv[2], encoding="utf-8") as f:
+            result = stop_gate(json.load(open(sys.argv[1], encoding="utf-8")), json.load(f))
+        print(json.dumps(result, indent=2))
+        sys.exit(0 if result["stop_allowed"] else 1)
     print(json.dumps(result, indent=2))
     sys.exit(1 if result["status"] == "ACTION_REQUIRED" else 2 if result["status"] == "BLOCKED" else 0)
