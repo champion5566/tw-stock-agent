@@ -161,7 +161,7 @@ def render_markdown(report):
             cells = [code + ("（必備）" if code in REPORT_STOCKS else "（觀察）"), daily["source_date"], *[row.get(k) for k in ("open", "max", "min", "close", "Trading_Volume")], daily["status"],
                      f"{display(inst['source_date'])} / {inst['status']}", f"{display(margin['source_date'])} / {margin['status']}"]
             lines.append("| " + " | ".join(display(v) for v in cells) + " |")
-        lines += ["", "六檔必備衍生欄位（同一 FinMind 來源；法人單位為股，融資券為來源原生張數）：", "",
+        lines += ["", "六檔必備衍生欄位（法人單位為股；融資券使用各檔同一來源的張數）：", "",
                   "| 股票 | 前收 | 成交值TWD | 振幅% | 5日量比 | 20日量比 | 外資淨買 | 投信淨買 | 自營淨買 | 法人5日合計 | 融資增減 | 融券增減 |",
                   "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
         for code in REPORT_STOCKS:
