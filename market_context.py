@@ -8,16 +8,17 @@ import io
 import json
 import os
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime
+from datetime import date, datetime, time, timedelta
 from pathlib import Path
 
 import requests
 
 from quote_quality import TW
-from session_calendar import completed_session
+from session_calendar import calendar, completed_session
 from report_contract import DELIVERY_TIMES
 from snapshot_io import write_snapshot
 from market_sources import finmind
+from instruments import REPORT_STOCKS
 
 HEADERS = {'User-Agent':'Mozilla/5.0 (compatible; tw-stock-agent public market research)', 'Accept':'application/json,text/csv'}
 
@@ -239,6 +240,89 @@ def collect_context(target, checked):
     return context
 
 
+def official_credit_rows(payload, target):
+    if not isinstance(payload, dict) or day(payload.get("date")) != target:
+        return {}
+    tables = payload.get("tables") or [{
+        "fields": payload.get("fieldsCredit", payload.get("fields", [])),
+        "data": payload.get("dataCredit", payload.get("data", [])),
+    }]
+    for table in tables:
+        fields = [str(field).strip() for field in table.get("fields", [])]
+        if "股票代號" not in fields:
+            continue
+        previous = [i for i, field in enumerate(fields) if field == "前日餘額"]
+        current = [i for i, field in enumerate(fields) if field == "今日餘額"]
+        if len(previous) != 2 or len(current) != 2 or not previous[0] < current[0] < previous[1] < current[1]:
+            continue
+        code_index = fields.index("股票代號")
+        columns = (previous[0], current[0], previous[1], current[1])
+        keys = ("MarginPurchaseYesterdayBalance", "MarginPurchaseTodayBalance",
+                "ShortSaleYesterdayBalance", "ShortSaleTodayBalance")
+        result = {}
+        for row in table.get("data", []):
+            if len(row) <= max(code_index, *columns):
+                continue
+            raw = [str(row[index]).replace(",", "").strip() for index in columns]
+            if all(value.isdecimal() for value in raw):
+                result[str(row[code_index]).strip()] = {
+                    "date": target, **dict(zip(keys, map(int, raw))),
+                }
+        return result
+    return {}
+
+
+def fill_official_stock_credit(snapshot, target):
+    if not target:
+        return
+    stocks = snapshot.get("stocks", {})
+    pending = {}
+    for code in REPORT_STOCKS:
+        item = stocks.get(code, {})
+        credit = item.get("margin", {})
+        if item.get("market") == "tse" and not any(
+            row.get("date") == target for row in credit.get("history", [])
+        ):
+            pending[code] = item
+    if not pending:
+        return
+
+    def fetch_day(session):
+        url = "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN"
+        params = {"date": session.replace("-", ""), "selectType": "ALL", "response": "json"}
+        try:
+            return official_credit_rows(fetch(url, params=params), session)
+        except (OSError, ValueError) as exc:
+            print("TWSE_STOCK_CREDIT_UNAVAILABLE", session, type(exc).__name__, flush=True)
+            return {}
+
+    target_rows = fetch_day(target)
+    pending = {code: item for code, item in pending.items() if code in target_rows}
+    if not pending:
+        return
+    start = (date.fromisoformat(target) - timedelta(days=21)).isoformat()
+    sessions = [stamp.date().isoformat() for stamp in calendar("XTAI").sessions_in_range(start, target)][-5:]
+    if len(sessions) != 5 or sessions[-1] != target:
+        return
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        previous_rows = list(pool.map(fetch_day, sessions[:-1]))
+    for code, item in pending.items():
+        if not all(code in rows for rows in previous_rows):
+            continue
+        history = [rows[code] for rows in previous_rows] + [target_rows[code]]
+        item["margin"] = {
+            "status": "PASS",
+            "data": history[-1],
+            "history": history,
+            "source_date": target,
+            "source": "TWSE MI_MARGN dated stock detail",
+            "units": "lots",
+            "data_kind": "daily",
+            "is_live": False,
+        }
+        print("TWSE_STOCK_CREDIT_FALLBACK", code, target, flush=True)
+
+
 def main():
     now = datetime.now(TW)
     slot = os.environ.get('REPORT_SLOT', 'evening')
@@ -249,6 +333,8 @@ def main():
         payload['market_context'] = collect_context(target, now)
     except Exception as exc:
         payload['market_context'] = {'_error':type(exc).__name__+': '+str(exc)[:200], '_status':'PARTIAL_CONTEXT_FAILURE'}
+    if slot == "evening" and now.time() >= time(13, 30):
+        fill_official_stock_credit(payload, target)
     payload['collection_completed_at_taipei'] = datetime.now(TW).isoformat()
     write_snapshot(payload, now.date().isoformat(), slot)
     print('MARKET_CONTEXT', json.dumps({k:v.get('status') for k,v in payload['market_context'].items() if not k.startswith('_')},ensure_ascii=False))
