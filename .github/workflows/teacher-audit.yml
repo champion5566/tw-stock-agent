@@ -16,6 +16,7 @@ on:
   workflow_run:
     workflows: [Cross Market Source Verification]
     types: [completed]
+    branches: [main]
 permissions:
   contents: read
 jobs:
@@ -33,6 +34,7 @@ jobs:
           persist-credentials: false
       - name: Run teacher evidence audit
         run: |
+          set -euo pipefail
           python teacher_audit.py snapshots | tee teacher-evidence.json
           python -m json.tool teacher-evidence.json > /dev/null
       - uses: actions/upload-artifact@v4
