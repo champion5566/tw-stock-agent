@@ -107,13 +107,22 @@ def session_file(paths, before, slot):
 
 
 def report_chain(ref, day, paths, actual_loader):
-    evening_path = session_file(paths, day, "evening")
-    parent = original(ref, evening_path) if evening_path else None
     current = original(ref, f"predictions/{day}/morning.md")
     forecast, status = qualify(ref, day, current)
+    expected = None
+    try:
+        _, morning = publication(forecast["source_ref"] if forecast else ref, f"reports/{day}/morning.json")
+        row = morning.get("market_context", {}).get("TAIEX", {})
+        if row.get("status") == "PASS" and row.get("source_date", day) < day:
+            expected = row["source_date"]
+    except (KeyError, TypeError, ValueError, subprocess.CalledProcessError):
+        pass
+    evening_path = f"predictions/{expected}/evening.md" if expected else session_file(paths, day, "evening")
+    parent = original(ref, evening_path) if evening_path else None
     result = {
         "date": day, "morning_ref": current["ref"] if current else None,
         "opening_status": status,
+        "expected_previous_session": expected,
         "previous_evening_ref": parent["ref"] if parent else None,
         "previous_evening_state": "AVAILABLE" if parent and block(parent["text"], "RESEARCH_STATE") else "MISSING",
         "same_day_evening_ref": None,
@@ -166,13 +175,21 @@ def paper_review(ref, paths, as_of):
         return {"open": values.get("open"), "high": values.get("max"), "low": values.get("min"),
                 "volume": values.get("Trading_Volume"), "ref": f"{ref}:reports/{day}/evening.json"}
 
-    for path in paths[-80:]:
+    try:
+        supported = set(git("grep", "-l", "-e", r"^\[ACT\][[:space:]]*$", ref, "--", "predictions").splitlines())
+    except subprocess.CalledProcessError as exc:
+        if exc.returncode != 1:
+            raise
+        supported = set()
+    for path in paths:
+        if f"{ref}:{path}" not in supported:
+            continue
         if not path.endswith(("/morning.md", "/evening.md")) or path.split("/")[1] > as_of:
             continue
         record = original(ref, path)
         if not record:
             continue
-        for section in re.finditer(r"(?ms)^\\[ACT\\][ \\t]*\\n(.*?)(?=^\\[[A-Z_]+\\][ \\t]*$|\\Z)", record["text"]):
+        for section in re.finditer(r"(?ms)^\[ACT\][ \t]*\n(.*?)(?=^\[[A-Z_]+\][ \t]*$|\Z)", record["text"]):
             raw = section[1].strip()
             if raw.startswith("```json"):
                 raw = raw.removeprefix("```json").removesuffix("```").strip()
@@ -220,7 +237,7 @@ def audit(ref, as_of):
     chain = [report_chain(ref, day, paths, actual) for day in days]
     latest = chain[-1]
     try:
-        _, morning = publication(ref, f"reports/{as_of}/morning.json")
+        _, morning = publication(latest.get("source_ref", ref), f"reports/{as_of}/morning.json")
         breadth = morning.get("market_context", {}).get("breadth", {})
     except (ValueError, subprocess.CalledProcessError):
         breadth = {}

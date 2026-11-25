@@ -39,7 +39,8 @@ def evaluate(action, published, quote, as_of):
         if (not action["id"] or action["rule"] != "PREPLACED_BUY_LIMIT_OPEN_TO_OPEN"
                 or not published <= start <= opening_time or published >= opening_time
                 or exit_day <= entry or symbol not in ("0050", "006208", "00631L", "2330", "3707", "5483")
-                or not positive(action["limit"]) or not action["invalidation"]
+                or not positive(action["limit"])
+                or action["invalidation"] != "CANCEL_IF_ENTRY_AUCTION_MISSED"
                 or action["benchmark"] != "0050"):
             return result
         costs = action["costs"]

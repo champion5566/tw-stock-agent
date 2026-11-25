@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 from opening_review import review
 from paper_actions import evaluate, summarize
-from report_handoff import document_status, qualify
+from report_handoff import document_status, qualify, report_chain
 
 
 class ReportHandoffTest(unittest.TestCase):
@@ -44,12 +44,38 @@ class ReportHandoffTest(unittest.TestCase):
             git.return_value.returncode = 0
             self.assertEqual(qualify("ref", day, record)[1], "SOURCE_OUTSIDE_CUTOFF")
 
+    def test_original_evening_handoff_and_next_morning_readback(self):
+        day = "2026-11-25"
+        previous_path = "predictions/2026-11-24/evening.md"
+        morning_path = f"predictions/{day}/morning.md"
+        evening_path = f"predictions/{day}/evening.md"
+        next_path = "predictions/2026-11-26/morning.md"
+        entries = {
+            previous_path: {"ref": "prior:" + previous_path, "text": "[RESEARCH_STATE]\nstate"},
+            morning_path: {"ref": "original:" + morning_path, "text": ""},
+            evening_path: {"ref": "evening:" + evening_path, "text": "[RESEARCH_STATE]\nstate"},
+            next_path: {"ref": "next:" + next_path, "text": "[RESEARCH_STATE]\nparent evening:" + evening_path},
+        }
+        forecast = {"date": day, "source_ref": "data"}
+        with patch("report_handoff.original", side_effect=lambda ref, path: entries.get(path)), patch(
+            "report_handoff.qualify", return_value=(forecast, "VERIFIED_PREOPEN_ORIGINAL")
+        ), patch("report_handoff.publication", return_value=("time", {
+            "market_context": {"TAIEX": {"status": "PASS", "source_date": "2026-11-24"}}
+        })):
+            result = report_chain("data", day, sorted(entries), lambda _: {"open": 102, "ref": "TWSE"})
+            self.assertEqual(result["previous_evening_state"], "AVAILABLE")
+            self.assertEqual(result["settlement_status"], "OFFICIAL_SETTLED")
+            self.assertEqual(result["next_morning_handoff"], "VERIFIED")
+            del entries[previous_path]
+            result = report_chain("data", day, sorted(entries), lambda _: {"open": 102, "ref": "TWSE"})
+            self.assertEqual(result["previous_evening_state"], "MISSING")
+
     def test_paper_costs_and_locked_session(self):
         action = {
             "id": "ACT-1", "version": "v1", "symbol": "2330",
             "rule": "PREPLACED_BUY_LIMIT_OPEN_TO_OPEN", "limit": 102,
             "entry_day": "2026-11-25", "exit_day": "2026-11-26",
-            "earliest_at": "2026-11-25T08:45:00+08:00", "invalidation": "cancel at entry auction",
+            "earliest_at": "2026-11-25T08:45:00+08:00", "invalidation": "CANCEL_IF_ENTRY_AUCTION_MISSED",
             "benchmark": "0050", "costs": {"version": "sim-v1", "trade_method": "cash_swing",
                 "instrument_type": "stock", "fee_bps_per_side": 15, "sell_tax_bps": 30,
                 "slippage_bps_per_side": 10},

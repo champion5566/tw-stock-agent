@@ -13,7 +13,7 @@
 
 原始報告可在既有 `[ACT]` 區塊加一個 JSON，最後一個 ACT 後可接 `[RESEARCH_STATE]`。最多兩個情境。決策欄位用 `id`、`version`、`symbol`、`rule`、`limit`、`earliest_at`、`entry_day`、`exit_day`、`invalidation`、`benchmark` 和 `costs`。費用欄位 `version`、`instrument_type`（stock 或 etf）、`trade_method`（cash_swing）、`fee_bps_per_side`、`sell_tax_bps`、`slippage_bps_per_side` 使用公開的固定模擬假設，禁止現實帳戶費率與持倉。原始 commit 須早於入場時間。交易日、價格和觸發依據事前固定。
 
-現行可計分規則 `PREPLACED_BUY_LIMIT_OPEN_TO_OPEN` 只模擬開盤前已決定的現金多單和預定交易日開盤出場。開盤嚴格優於限價且滑價後仍在限價內才使用保守成交代理。跳空超過限價不觸發；等於限價、單一價格鎖死、零量、缺同日資料、只有日線且需要盤中順序的條件都不計成交。未證實流動性時只能稱模擬。基準 0050 用相同日期開盤毛報酬，另列假設成本後淨報酬、每筆平倉後回撤、n 和樣本日期；這些只是已平倉樣本的資金曲線，並未量測盤中回撤。重疊樣本不疊加成獨立投資。沒有正優勢證據時正文寫等待。規則改版只影響未來原始 ACT。
+現行可計分規則 `PREPLACED_BUY_LIMIT_OPEN_TO_OPEN`（`invalidation=CANCEL_IF_ENTRY_AUCTION_MISSED`） 只模擬開盤前已決定的現金多單和預定交易日開盤出場。開盤嚴格優於限價且滑價後仍在限價內才使用保守成交代理。跳空超過限價不觸發；等於限價、單一價格鎖死、零量、缺同日資料、只有日線且需要盤中順序的條件都不計成交。未證實流動性時只能稱模擬。基準 0050 用相同日期開盤毛報酬，另列假設成本後淨報酬、每筆平倉後回撤、n 和樣本日期；這些只是已平倉樣本的資金曲線，並未量測盤中回撤。重疊樣本不疊加成獨立投資。沒有正優勢證據時正文寫等待。規則改版只影響未來原始 ACT。
 
 ## 採用依據
 
