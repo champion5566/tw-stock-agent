@@ -6,7 +6,7 @@ Consumers must also check the data-branch commit time against the report cutoff.
 import json
 import shutil
 import sys
-from datetime import datetime
+from datetime import datetime, time
 from pathlib import Path
 from uuid import uuid4
 from zoneinfo import ZoneInfo
@@ -27,7 +27,13 @@ def rank(report):
     cutoff = timestamp(readiness.get('cutoff_taipei'))
     generated = timestamp(report.get('generated_at_taipei'))
     checked = timestamp(report.get('publication_check_at_taipei'))
-    timely = bool(cutoff and generated and checked and generated <= checked <= cutoff
+    start = {"morning": time(8, 20), "evening": time(22, 50)}.get(report.get("scenario"))
+    in_window = bool(
+        start and generated and cutoff
+        and generated.astimezone(TW).date() == cutoff.astimezone(TW).date()
+        and generated.astimezone(TW).time() >= start
+    )
+    timely = bool(in_window and cutoff and generated and checked and generated <= checked <= cutoff
                   and readiness.get('sections', {}).get('cutoff', {}).get('status') == 'PASS'
                   and report.get('execution_kind') != 'CURRENT_TIME_PREVIEW')
     passed = sum(s.get('status') == 'PASS' for s in readiness.get('sections', {}).values())
