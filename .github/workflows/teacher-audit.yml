@@ -48,11 +48,26 @@ jobs:
         with:
           name: teacher-evidence
           path: teacher-evidence.json
+      - name: Exercise an absent document on the teacher entry
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          revision=$(git rev-parse HEAD)
+          path=docs/__teacher_acceptance_nonexistent__.md
+          status=$(curl --silent --show-error --max-time 15 --output /dev/null --write-out '%{http_code}' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/$path?ref=$revision")
+          echo "Pinned document lookup: $path ref=$revision HTTP=$status"
+          test "$status" = 404
+          echo "TEACHER_DOCUMENT_HTTP=$status" >> "$GITHUB_ENV"
       - name: Verify handoffs and settle original public ledgers
         if: ${{ !cancelled() }}
         run: |
           git fetch origin refs/heads/data/snapshots
-          python report_handoff.py --data-ref FETCH_HEAD --output report-handoff.json
+          args=()
+          if [ -n "${TEACHER_DOCUMENT_HTTP:-}" ]; then
+            args+=(--missing-probe-status "$TEACHER_DOCUMENT_HTTP")
+          fi
+          python report_handoff.py --data-ref FETCH_HEAD --output report-handoff.json "${args[@]}"
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
