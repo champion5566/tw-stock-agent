@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "fetched_at_taipei": "2026-11-25T20:15:19.977827+08:00",
+  "fetched_at_taipei": "2026-11-25T20:23:11.403285+08:00",
   "trade_date_requested": "2026-11-25",
   "slot": "evening",
   "sources": {
@@ -74027,7 +74027,7 @@
     "daily_available": 9,
     "live_quotes": 0
   },
-  "collection_completed_at_taipei": "2026-11-25T20:16:15.272518+08:00",
+  "collection_completed_at_taipei": "2026-11-25T20:23:53.778424+08:00",
   "market_context": {
     "TAIEX": {
       "status": "PASS",
@@ -74503,6 +74503,6 @@
         "target": "2026-11-25"
       }
     ],
-    "_collected_at_taipei": "2026-11-25T20:15:47.379019+08:00"
+    "_collected_at_taipei": "2026-11-25T20:23:36.178038+08:00"
   }
 }
