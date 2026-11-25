@@ -20,12 +20,23 @@ def review(records):
     metrics = {}
     for n in (5,20):
         window = rows[-n:]
-        common = set.intersection(*(set(x["scores"]) for x in window)) if window else set()
-        metrics[str(n)] = {"n":len(window), "models":{
-            k: {"mae":sum(x["scores"][k]["absolute_error"] for x in window)/len(window),
-                "bias":sum(x["scores"][k]["signed_error"] for x in window)/len(window),
-                "direction_rate":sum(x["scores"][k]["direction_match"] for x in window)/len(window)}
-            for k in sorted(common)}}
+        model_names = sorted({key for row in window for key in row["scores"]})
+        baseline = "V0-CARRY" if "V0-CARRY" in model_names else "V0"
+        paired = {}
+        for key in model_names:
+            samples = [row for row in window if key in row["scores"] and baseline in row["scores"]]
+            if not samples:
+                continue
+            n_common = len(samples)
+            paired[key] = {
+                "n": n_common,
+                "dates": [row["date"] for row in samples],
+                "mae": sum(row["scores"][key]["absolute_error"] for row in samples) / n_common,
+                "bias": sum(row["scores"][key]["signed_error"] for row in samples) / n_common,
+                "direction_rate": sum(row["scores"][key]["direction_match"] for row in samples) / n_common,
+                "v0_mae_same_dates": sum(row["scores"][baseline]["absolute_error"] for row in samples) / n_common,
+            }
+        metrics[str(n)] = {"n": len(window), "models": paired}
     return {"rows":rows,"paired_metrics":metrics}
 
 if __name__ == "__main__":

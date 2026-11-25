@@ -24,6 +24,8 @@ on:
       - quote_quality.py
       - snapshot_io.py
       - ledger_review.py
+      - report_handoff.py
+      - paper_actions.py
       - .github/workflows/market-data.yml
 
 permissions:
@@ -88,9 +90,11 @@ jobs:
     needs: snapshot
     if: always()
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -100,6 +104,10 @@ jobs:
         run: |
           git fetch origin refs/heads/data/snapshots
           python ledger_review.py --data-ref FETCH_HEAD --output "out/evaluations/ledger-review-$REVIEW_RUN_ID.json"
+      - name: Persist public report-chain evidence
+        env:
+          REVIEW_RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+        run: python report_handoff.py --data-ref FETCH_HEAD --output "out/evaluations/report-handoff-$REVIEW_RUN_ID.json"
       - uses: actions/upload-artifact@v4
         with:
           name: ledger-review-${{ github.run_id }}

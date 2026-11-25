@@ -2,6 +2,9 @@ name: Teacher Evidence Audit
 on:
   pull_request:
     paths:
+      - report_handoff.py
+      - paper_actions.py
+      - opening_review.py
       - teacher_audit.py
       - execution_supervisor.py
       - docs/repair_queue.json
@@ -9,6 +12,9 @@ on:
   push:
     branches: [main]
     paths:
+      - report_handoff.py
+      - paper_actions.py
+      - opening_review.py
       - teacher_audit.py
       - execution_supervisor.py
       - docs/repair_queue.json
@@ -27,6 +33,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/checkout@v4
         with:
           ref: data/snapshots
@@ -41,3 +48,14 @@ jobs:
         with:
           name: teacher-evidence
           path: teacher-evidence.json
+      - name: Verify handoffs and settle original public ledgers
+        if: ${{ !cancelled() }}
+        run: |
+          git fetch origin refs/heads/data/snapshots
+          python report_handoff.py --data-ref FETCH_HEAD --output report-handoff.json
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: report-handoff
+          path: report-handoff.json
+          if-no-files-found: error
