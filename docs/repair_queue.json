@@ -66,7 +66,18 @@
     "stage": "OPEN",
     "priority": 2,
     "evidence": {},
-    "detail": "PR40: reproduce missing artifact and verify publication"
+    "detail": "PR40: reproduce missing artifact and verify publication",
+    "investigation": {
+      "incident": "2026-11-16 Asia/Taipei",
+      "historical_workflow_ref": "f13e5dc0830c769ba289f7ac05b1eb445465a754:.github/workflows/cross-market.yml",
+      "expected_native_run": "2026-11-16T22:52:00+08:00",
+      "run_list": "https://api.github.com/repos/champion5566/tw-stock-agent/actions/runs?created=2026-11-16",
+      "last_visible_cross_before_window": "43789406024",
+      "next_visible_cross_after_window": "43907643571",
+      "timely_bundle": "MISSING_AFTER_DEADLINE",
+      "evening_original_ref": "f75709c88ec08faf3a92d4d4f975ce647096b8e6:predictions/2026-11-16/evening.md",
+      "recovery": "Keep incident open. Verify next applicable preparation request, scheduled trigger, report bundle publication by 22:58 and original evening ledger after 23:00; never backdate or replace an original."
+    }
   },
   {
     "id": "private-draft-validation",
