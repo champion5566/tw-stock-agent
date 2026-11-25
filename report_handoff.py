@@ -212,7 +212,88 @@ def document_status(paths, required):
             for path in required}
 
 
-def audit(ref, as_of):
+def evening_status(ref, day, observed):
+    report_path = f"reports/{day}/evening.json"
+    ledger_path = f"predictions/{day}/evening.md"
+    status = {"date": day, "report_path": report_path, "ledger_path": ledger_path}
+    try:
+        tracked = set(git("ls-tree", "-r", "--name-only", ref, "--", report_path, ledger_path).splitlines())
+        status["tracked"] = sorted(tracked)
+        status["original_ref"] = None
+        status["timely_bundle"] = False
+        if ledger_path in tracked:
+            record = original(ref, ledger_path)
+            if not record:
+                raise ValueError("Original ledger commit could not be read")
+            status["original_ref"] = record["ref"]
+            status["ledger_published_at"] = record["published"]
+        if report_path in tracked:
+            timestamp, bundle = publication(ref, report_path)
+            committed = local_time(timestamp)
+            generated = local_time(bundle["generated_at_taipei"])
+            status["bundle_published_at"] = timestamp
+            status["timely_bundle"] = (
+                bundle.get("scenario") == "evening" and bundle.get("execution_kind") == "REPORT"
+                and generated.date().isoformat() == day and committed.date().isoformat() == day
+                and time(22, 50) <= generated.time() <= committed.time() <= time(22, 58)
+                and bundle.get("readiness", {}).get("sections", {}).get("cutoff", {}).get("status") == "PASS"
+            )
+    except (KeyError, TypeError, ValueError, subprocess.CalledProcessError) as exc:
+        return {**status, "status": "LOOKUP_FAILED", "error": type(exc).__name__,
+                "retry": "Fetch the data branch and repeat the exact revision/tree and original file lookup."}
+    missing = []
+    if not status["timely_bundle"]:
+        missing.append("TIMELY_BUNDLE_MISSING")
+    if not status["original_ref"]:
+        missing.append("EVENING_ORIGINAL_MISSING")
+    status["missing"] = missing
+    if not missing:
+        return {**status, "status": "PUBLISHED", "retry": None}
+    due = datetime.combine(datetime.fromisoformat(day).date(), time(23), TW)
+    if observed < due:
+        return {**status, "status": "NOT_DUE", "retry": f"After {due.isoformat()}, repin the branch and inspect scheduled execution and both paths."}
+    return {**status, "status": "MISSING_AFTER_DEADLINE",
+            "retry": "Inspect the actual preparation and evening producer runs; retry only after the missing stage has evidence. Preserve original timestamps."}
+
+
+def correction_handoffs(ref, day, paths):
+    prefix = f"ledger/corrections/{day}-"
+    files = git("ls-tree", "-r", "--name-only", ref, "--", "ledger/corrections").splitlines()
+    correction_refs = []
+    for path in files:
+        if not path.startswith(prefix) or not path.endswith(".json"):
+            continue
+        record = original(ref, path)
+        if record:
+            body = json.loads(record["text"])
+            if body.get("date") == day and body.get("original_ref") and body.get("id"):
+                correction_refs.append({"id": body["id"], "ref": record["ref"], "morning_ref": body["original_ref"]})
+    evening = original(ref, f"predictions/{day}/evening.md")
+    following = next((p for p in paths if p.endswith("/morning.md") and p.split("/")[1] > day), None)
+    next_morning = original(ref, following) if following and evening else None
+    links = {"date": day, "corrections": correction_refs,
+             "evening_ref": evening["ref"] if evening else None,
+             "next_morning_ref": next_morning["ref"] if next_morning else None}
+    if not correction_refs:
+        return {**links, "status": "WAIT_CORRECTION", "retry": "Read back a dated correction linked to the morning original."}
+    morning = original(ref, f"predictions/{day}/morning.md")
+    if not morning or any(c["morning_ref"] != morning["ref"] for c in correction_refs):
+        return {**links, "status": "CORRECTION_MORNING_REF_MISMATCH", "retry": "Check the correction against the immutable morning original."}
+    if not evening:
+        return {**links, "status": "WAIT_EVENING", "retry": "After the scheduled evening, read the original and verify both refs."}
+    if any(c["ref"] not in evening["text"] for c in correction_refs):
+        return {**links, "status": "EVENING_CORRECTION_REF_MISSING", "retry": "Verify the correction readback and an additive evening acknowledgement; preserve the original."}
+    if not next_morning:
+        return {**links, "status": "WAIT_NEXT_MORNING", "retry": "Read the next eligible trading day's original after the scheduled morning."}
+    parent_state = block(next_morning["text"], "RESEARCH_STATE")
+    if evening["ref"] not in parent_state:
+        return {**links, "status": "NEXT_MORNING_REF_MISSING", "retry": "Check the next morning's actual RESEARCH_STATE and retain the missing reference as a repair."}
+    return {**links, "status": "VERIFIED", "retry": None}
+
+
+def audit(ref, as_of, observed=None, missing_probe_status=None):
+    observed = observed or datetime.now(TW)
+
     paths = sorted(path for path in git("ls-tree", "-r", "--name-only", ref, "--", "predictions").splitlines()
                    if re.fullmatch(r"predictions/\d{4}-\d{2}-\d{2}/(morning|evening)\.md", path))
     days = sorted({p.split("/")[1] for p in paths if re.fullmatch(
@@ -258,10 +339,23 @@ def audit(ref, as_of):
     queue = json.loads(raw_queue)
     attempts = []
     gate = stop_gate(queue, attempts)
+    gate_before = gate
+    formal = review(chain)
+    publication_check = evening_status(ref, as_of, observed)
+    incident = evening_status(ref, "2026-11-16", observed)
+    linked_days = sorted({as_of, *(path.split("/")[-1][:10] for path in git("ls-tree", "-r", "--name-only", ref, "--", "ledger/corrections").splitlines() if re.match(r"ledger/corrections/\d{4}-\d{2}-\d{2}-", path))})
+    handoffs = []
+    for day in linked_days:
+        try:
+            handoffs.append(correction_handoffs(ref, day, paths))
+        except (ValueError, TypeError, KeyError, subprocess.CalledProcessError) as exc:
+            handoffs.append({"date": day, "status": "LOOKUP_FAILED", "error": type(exc).__name__,
+                             "retry": "Re-read the pinned tree, correction JSON and original ledgers."})
     # Each entry gets an actual evidence lookup. Retain continuation for items
     # that still require a patch or independent report-consumer verification.
     for pending in gate["unattempted_or_incomplete"]:
         issue = pending["id"]
+        outcome = "CHECKED"
         evidence = {
             "opening-directional-model": latest["opening_status"],
             "opening-producer": latest["morning_ref"],
@@ -269,7 +363,7 @@ def audit(ref, as_of):
             "extreme-event-research": [record["id"] for record in corrections],
             "stock-close-regression": "reports",
             "nikkei-fresh-fallback": "cross_market",
-            "evening-publication-gap": latest["same_day_evening_ref"],
+            "evening-publication-gap": {"current": publication_check, "incident_2026_11_16": incident},
             "private-draft-validation": "PRIVATE_DRAFT_REQUIRES_CONSUMER_EVIDENCE",
         }.get(issue)
         if evidence in ("reports", "cross_market"):
@@ -279,13 +373,42 @@ def audit(ref, as_of):
                 evidence = sections.get("asia_open" if issue == "nikkei-fresh-fallback" else "required_stock_data")
             except (ValueError, subprocess.CalledProcessError):
                 evidence = None
-        attempts.append({"id": issue, "action": pending["next"], "outcome": "CHECKED",
+        if issue == "opening-directional-model":
+            score = next((row for row in formal["rows"] if row["date"] == as_of), None)
+            evidence = {
+                "opening_status": latest["opening_status"],
+                "original_ref": latest.get("original_ref"),
+                "source_ref": latest.get("source_ref"),
+                "published_at": latest.get("published_at"),
+                "actual_ref": latest.get("actual_ref"),
+                "scores": score["scores"] if score else {},
+            }
+            missing = []
+            if latest["opening_status"] != "VERIFIED_PREOPEN_ORIGINAL":
+                missing.append("qualified pre-open original")
+            if set(latest.get("models", {})) != MODELS:
+                missing.append("all four original models")
+            if latest.get("settlement_status") != "OFFICIAL_SETTLED" or set(evidence["scores"]) != MODELS:
+                missing.append("same-session official paired settlement")
+            evidence["remaining_acceptance"] = missing
+            outcome = "ACCEPTANCE_MET" if not missing else "ACCEPTANCE_PENDING"
+        if issue == "evening-publication-gap":
+            outcome = incident["status"]
+        attempts.append({"id": issue, "action": pending["next"], "outcome": outcome,
                          "evidence": evidence, "data_revision": ref})
     gate = stop_gate(queue, attempts)
+    probe = None
+    if missing_probe_status is not None:
+        missing_path = "docs/__teacher_acceptance_nonexistent__.md"
+        probe = {"path": missing_path, "http_status": missing_probe_status,
+                 "tree_status": document_status(tree, [missing_path])[missing_path],
+                 "subsequent_work": [attempt["id"] for attempt in attempts]}
     return {"data_revision": ref, "code_revision": code, "as_of_taipei": as_of,
-            "chain": chain, "formal_opening": review(chain), "corrections": corrections,
+            "chain": chain, "formal_opening": formal, "corrections": corrections,
             "paper_research": paper_review(ref, paths, as_of),
-            "documentation": documents, "attempts": attempts, "repair_gate": gate}
+            "documentation": documents, "missing_document_probe": probe,
+            "evening_publication": publication_check, "correction_handoffs": handoffs,
+            "attempts": attempts, "repair_gate_before": gate_before, "repair_gate": gate}
 
 
 def main():
@@ -293,13 +416,15 @@ def main():
     parser.add_argument("--data-ref", required=True)
     parser.add_argument("--as-of", default=datetime.now(TW).date().isoformat())
     parser.add_argument("--output", required=True)
+    parser.add_argument("--missing-probe-status", type=int)
     args = parser.parse_args()
     ref = git("rev-parse", "--verify", "--end-of-options", args.data_ref + "^{commit}")
-    result = audit(ref, args.as_of)
+    result = audit(ref, args.as_of, missing_probe_status=args.missing_probe_status)
     path = Path(args.output)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
-    print(json.dumps({"latest": result["chain"][-1], "formal_opening": result["formal_opening"]},
+    print(json.dumps({key: result[key] for key in ("repair_gate_before", "attempts", "repair_gate",
+                                                   "missing_document_probe", "correction_handoffs")},
                      ensure_ascii=False))
 
 
