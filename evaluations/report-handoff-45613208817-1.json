@@ -1,0 +1,682 @@
+{
+  "data_revision": "1af5e34f4a65cb0de6c01aa6d38e11aca7ffb701",
+  "code_revision": "d4264e9dff31be2c5d3ce6e97f3428488a77263b",
+  "as_of_taipei": "2026-11-25",
+  "chain": [
+    {
+      "date": "2026-11-05",
+      "morning_ref": "e2e3cd441fcd2d8facd992c4033db1569e555fa3:predictions/2026-11-05/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": "2026-11-04",
+      "previous_evening_ref": "852860898bd55bfcc8d7ad454040fc8af0b09cf4:predictions/2026-11-04/evening.md",
+      "previous_evening_state": "MISSING",
+      "same_day_evening_ref": "14c2b3ff38741f4187fa1d1c570ab954808056f6:predictions/2026-11-05/evening.md",
+      "next_morning_ref": "5dbaadc4dc210c0f68c78ca101fd868973d53ade:predictions/2026-11-06/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-06",
+      "morning_ref": "5dbaadc4dc210c0f68c78ca101fd868973d53ade:predictions/2026-11-06/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": "2026-11-05",
+      "previous_evening_ref": "14c2b3ff38741f4187fa1d1c570ab954808056f6:predictions/2026-11-05/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "8923c9f8505833641ea602a4a80c4ab85c59762d:predictions/2026-11-06/evening.md",
+      "next_morning_ref": "e2cb122fedea1c6d4b6083356678f141717c9055:predictions/2026-11-07/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-07",
+      "morning_ref": "e2cb122fedea1c6d4b6083356678f141717c9055:predictions/2026-11-07/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": null,
+      "previous_evening_ref": "8923c9f8505833641ea602a4a80c4ab85c59762d:predictions/2026-11-06/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "c48d434dd866bf78440101c8cba15696146154db:predictions/2026-11-07/evening.md",
+      "next_morning_ref": "eeaab38eb50c0179d92498930f947e4e14b928f6:predictions/2026-11-08/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-08",
+      "morning_ref": "eeaab38eb50c0179d92498930f947e4e14b928f6:predictions/2026-11-08/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": null,
+      "previous_evening_ref": "c48d434dd866bf78440101c8cba15696146154db:predictions/2026-11-07/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "2c46544644e8beec1a153c8f1ea7202bc44463b6:predictions/2026-11-08/evening.md",
+      "next_morning_ref": "a83a6d4375dbc8f55bbe71a17637b74a57ff8270:predictions/2026-11-09/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-09",
+      "morning_ref": "a83a6d4375dbc8f55bbe71a17637b74a57ff8270:predictions/2026-11-09/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": "2026-11-06",
+      "previous_evening_ref": "8923c9f8505833641ea602a4a80c4ab85c59762d:predictions/2026-11-06/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "09b4f3e8d21d5ed5fc5564e43aeaefa6e98eb2e0:predictions/2026-11-09/evening.md",
+      "next_morning_ref": "8624cae2d2d133334c1460e32b6f683a0e38aca8:predictions/2026-11-10/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-10",
+      "morning_ref": "8624cae2d2d133334c1460e32b6f683a0e38aca8:predictions/2026-11-10/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": "2026-11-09",
+      "previous_evening_ref": "09b4f3e8d21d5ed5fc5564e43aeaefa6e98eb2e0:predictions/2026-11-09/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "d9149b2206b6ae5d5d1520fc5c3aefbe021d5f5d:predictions/2026-11-10/evening.md",
+      "next_morning_ref": "e2d88cb4f9aa30422e90551c67d183f84f9abbd6:predictions/2026-11-11/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-11",
+      "morning_ref": "e2d88cb4f9aa30422e90551c67d183f84f9abbd6:predictions/2026-11-11/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": "2026-11-10",
+      "previous_evening_ref": "d9149b2206b6ae5d5d1520fc5c3aefbe021d5f5d:predictions/2026-11-10/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "f1e303685644dc27f66fa8feb4d7480dd7387fba:predictions/2026-11-11/evening.md",
+      "next_morning_ref": "d4f451b882deeb22dacb3878b0d9f9ec1e98db22:predictions/2026-11-12/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-12",
+      "morning_ref": "d4f451b882deeb22dacb3878b0d9f9ec1e98db22:predictions/2026-11-12/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": "2026-11-11",
+      "previous_evening_ref": "f1e303685644dc27f66fa8feb4d7480dd7387fba:predictions/2026-11-11/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "f9a114b6a31f41e98b49091167c84a013e57c7da:predictions/2026-11-12/evening.md",
+      "next_morning_ref": "00d75a82f8417936aaa30ab0c97bce4437eeb338:predictions/2026-11-13/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-13",
+      "morning_ref": "00d75a82f8417936aaa30ab0c97bce4437eeb338:predictions/2026-11-13/morning.md",
+      "opening_status": "OUTSIDE_PREOPEN_WINDOW",
+      "expected_previous_session": "2026-11-12",
+      "previous_evening_ref": "f9a114b6a31f41e98b49091167c84a013e57c7da:predictions/2026-11-12/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "41a619fb84bc19a0d11440252c9e69fe50b4a3ae:predictions/2026-11-13/evening.md",
+      "next_morning_ref": "7f17f706bad2deb3c1320ecd2d323d003172e726:predictions/2026-11-14/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-14",
+      "morning_ref": "7f17f706bad2deb3c1320ecd2d323d003172e726:predictions/2026-11-14/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": null,
+      "previous_evening_ref": "41a619fb84bc19a0d11440252c9e69fe50b4a3ae:predictions/2026-11-13/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "2048caad1301e9f71fd4a94df6601ec27b93e2e6:predictions/2026-11-14/evening.md",
+      "next_morning_ref": "c5b17ff234755510beb21e340b57464b2e6d380c:predictions/2026-11-15/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-15",
+      "morning_ref": "c5b17ff234755510beb21e340b57464b2e6d380c:predictions/2026-11-15/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": null,
+      "previous_evening_ref": "2048caad1301e9f71fd4a94df6601ec27b93e2e6:predictions/2026-11-14/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "3a20270643d732b14fe46580b899cc80aa20980f:predictions/2026-11-15/evening.md",
+      "next_morning_ref": "9e53763db8ff5ae60145fb0211f4c333138557a1:predictions/2026-11-16/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-16",
+      "morning_ref": "9e53763db8ff5ae60145fb0211f4c333138557a1:predictions/2026-11-16/morning.md",
+      "opening_status": "OUTSIDE_PREOPEN_WINDOW",
+      "expected_previous_session": "2026-11-13",
+      "previous_evening_ref": "41a619fb84bc19a0d11440252c9e69fe50b4a3ae:predictions/2026-11-13/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "f75709c88ec08faf3a92d4d4f975ce647096b8e6:predictions/2026-11-16/evening.md",
+      "next_morning_ref": "19d262bda58fbba275bb4bfc5c0fe27a92b0c535:predictions/2026-11-17/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-17",
+      "morning_ref": "19d262bda58fbba275bb4bfc5c0fe27a92b0c535:predictions/2026-11-17/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": "2026-11-16",
+      "previous_evening_ref": "f75709c88ec08faf3a92d4d4f975ce647096b8e6:predictions/2026-11-16/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "66ddbe1a2177206239f41ac0171fe6a3387a495c:predictions/2026-11-17/evening.md",
+      "next_morning_ref": "edc2159edd64de6a59ad296cf6c9b7e57ed49bbe:predictions/2026-11-18/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-18",
+      "morning_ref": "edc2159edd64de6a59ad296cf6c9b7e57ed49bbe:predictions/2026-11-18/morning.md",
+      "opening_status": "OUTSIDE_PREOPEN_WINDOW",
+      "expected_previous_session": "2026-11-17",
+      "previous_evening_ref": "66ddbe1a2177206239f41ac0171fe6a3387a495c:predictions/2026-11-17/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "0169908fda2a14107187ea1fba4c52683dd22602:predictions/2026-11-18/evening.md",
+      "next_morning_ref": "f38f970203c517b52f2771d3c292bebf3f654e6d:predictions/2026-11-19/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-19",
+      "morning_ref": "f38f970203c517b52f2771d3c292bebf3f654e6d:predictions/2026-11-19/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": "2026-11-18",
+      "previous_evening_ref": "0169908fda2a14107187ea1fba4c52683dd22602:predictions/2026-11-18/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "38b106d32da15719cfd3e9c3cef3fa4e53c1c065:predictions/2026-11-19/evening.md",
+      "next_morning_ref": "73736b7433ad2c02ba6b682868b50f872ec47207:predictions/2026-11-20/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-20",
+      "morning_ref": "73736b7433ad2c02ba6b682868b50f872ec47207:predictions/2026-11-20/morning.md",
+      "opening_status": "OUTSIDE_PREOPEN_WINDOW",
+      "expected_previous_session": "2026-11-19",
+      "previous_evening_ref": "38b106d32da15719cfd3e9c3cef3fa4e53c1c065:predictions/2026-11-19/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "7223af213d7a6df71e2ca7b504f6305e7815c6f9:predictions/2026-11-20/evening.md",
+      "next_morning_ref": "32cc8833703d3192ef8c48ab946d0ceb14092026:predictions/2026-11-21/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-21",
+      "morning_ref": "32cc8833703d3192ef8c48ab946d0ceb14092026:predictions/2026-11-21/morning.md",
+      "opening_status": "OUTSIDE_PREOPEN_WINDOW",
+      "expected_previous_session": null,
+      "previous_evening_ref": "7223af213d7a6df71e2ca7b504f6305e7815c6f9:predictions/2026-11-20/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "7e83bff26df92ce28d5b89aad7ea777c2d8cdb70:predictions/2026-11-21/evening.md",
+      "next_morning_ref": "94d3a193c9339e1f195809159ce3c62db77dcdb7:predictions/2026-11-22/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-22",
+      "morning_ref": "94d3a193c9339e1f195809159ce3c62db77dcdb7:predictions/2026-11-22/morning.md",
+      "opening_status": "OUTSIDE_PREOPEN_WINDOW",
+      "expected_previous_session": null,
+      "previous_evening_ref": "7e83bff26df92ce28d5b89aad7ea777c2d8cdb70:predictions/2026-11-21/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "aed524ecc246e1cbeb77d85975e22100f126cf46:predictions/2026-11-22/evening.md",
+      "next_morning_ref": "3ec81e79dd375063fb42354f283d96b6bd620f31:predictions/2026-11-23/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-23",
+      "morning_ref": "3ec81e79dd375063fb42354f283d96b6bd620f31:predictions/2026-11-23/morning.md",
+      "opening_status": "UNVERIFIED_SOURCE_REF",
+      "expected_previous_session": "2026-11-20",
+      "previous_evening_ref": "7223af213d7a6df71e2ca7b504f6305e7815c6f9:predictions/2026-11-20/evening.md",
+      "previous_evening_state": "AVAILABLE",
+      "same_day_evening_ref": "87753c17ab05741c59a0d2d240647fbb1e659ccc:predictions/2026-11-23/evening.md",
+      "next_morning_ref": "700198886f73dcd68dfcdf28cd4463ef696cd441:predictions/2026-11-25/morning.md",
+      "next_morning_handoff": "PARENT_REF_MISSING"
+    },
+    {
+      "date": "2026-11-25",
+      "morning_ref": "700198886f73dcd68dfcdf28cd4463ef696cd441:predictions/2026-11-25/morning.md",
+      "opening_status": "VERIFIED_PREOPEN_ORIGINAL",
+      "expected_previous_session": "2026-11-24",
+      "previous_evening_ref": null,
+      "previous_evening_state": "MISSING",
+      "same_day_evening_ref": null,
+      "next_morning_ref": null,
+      "next_morning_handoff": "PENDING",
+      "original_ref": "700198886f73dcd68dfcdf28cd4463ef696cd441:predictions/2026-11-25/morning.md",
+      "published_at": "2026-11-25T08:40:28+08:00",
+      "source_ref": "d16152e83a643326fcdfaa214b59a5633c56b03d",
+      "models": {
+        "V0-CARRY": {
+          "center": 40122.35,
+          "delta": 0,
+          "return_pct": 0,
+          "formula": "previous_close"
+        },
+        "V1-TX-ZERO-BASIS": {
+          "center": 38482,
+          "delta": -1640.3499999999985,
+          "return_pct": -4.088369699182626,
+          "formula": "night_last_minus_assumed_zero_basis",
+          "source": "Shioaji_futures_snapshot",
+          "trade_time": "2026-11-25T04:59:57.724000+08:00",
+          "limitation": "Unknown futures basis; experimental comparison only."
+        },
+        "V2-CROSS-BLEND": {
+          "center": 38368.09740073792,
+          "delta": -1754.2525992620795,
+          "return_pct": -4.37225785444293,
+          "inputs": {
+            "TSM_ADR": -3.960394294488745,
+            "SOX": -7.880109547987746,
+            "NASDAQ": -1.4779239742967576,
+            "TOPIX": -0.23,
+            "KOSPI": -4.73,
+            "TX": -4.088369699182626
+          },
+          "weights": {
+            "TSM_ADR": 0.2,
+            "SOX": 0.15,
+            "NASDAQ": 0.05,
+            "TOPIX": 0.05,
+            "KOSPI": 0.1,
+            "TX": 0.45
+          },
+          "formula": "weighted_mean_of_available_returns",
+          "limitation": "Heuristic weights; overlapping signals; not calibrated."
+        },
+        "V3-SHRINK-075": {
+          "center": 38806.66055055343,
+          "delta": -1315.6894494465623,
+          "return_pct": -3.2791933908321975,
+          "formula": "0.75 * V2 return",
+          "limitation": "Post-replay candidate; prospective evaluation required."
+        }
+      },
+      "previous_close": 40122.35,
+      "actual": 39983.91,
+      "actual_ref": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20261101&response=json#session=2026-11-25",
+      "eligible": true,
+      "settlement_status": "OFFICIAL_SETTLED"
+    }
+  ],
+  "formal_opening": {
+    "rows": [
+      {
+        "date": "2026-11-25",
+        "scores": {
+          "V0-CARRY": {
+            "signed_error": 138.43999999999505,
+            "absolute_error": 138.43999999999505,
+            "direction_match": false
+          },
+          "V1-TX-ZERO-BASIS": {
+            "signed_error": -1501.9100000000035,
+            "absolute_error": 1501.9100000000035,
+            "direction_match": true
+          },
+          "V2-CROSS-BLEND": {
+            "signed_error": -1615.8125992620844,
+            "absolute_error": 1615.8125992620844,
+            "direction_match": true
+          },
+          "V3-SHRINK-075": {
+            "signed_error": -1177.2494494465718,
+            "absolute_error": 1177.2494494465718,
+            "direction_match": true
+          }
+        }
+      }
+    ],
+    "paired_metrics": {
+      "5": {
+        "n": 1,
+        "models": {
+          "V0-CARRY": {
+            "n": 1,
+            "dates": [
+              "2026-11-25"
+            ],
+            "mae": 138.43999999999505,
+            "bias": 138.43999999999505,
+            "direction_rate": 0.0,
+            "v0_mae_same_dates": 138.43999999999505
+          },
+          "V1-TX-ZERO-BASIS": {
+            "n": 1,
+            "dates": [
+              "2026-11-25"
+            ],
+            "mae": 1501.9100000000035,
+            "bias": -1501.9100000000035,
+            "direction_rate": 1.0,
+            "v0_mae_same_dates": 138.43999999999505
+          },
+          "V2-CROSS-BLEND": {
+            "n": 1,
+            "dates": [
+              "2026-11-25"
+            ],
+            "mae": 1615.8125992620844,
+            "bias": -1615.8125992620844,
+            "direction_rate": 1.0,
+            "v0_mae_same_dates": 138.43999999999505
+          },
+          "V3-SHRINK-075": {
+            "n": 1,
+            "dates": [
+              "2026-11-25"
+            ],
+            "mae": 1177.2494494465718,
+            "bias": -1177.2494494465718,
+            "direction_rate": 1.0,
+            "v0_mae_same_dates": 138.43999999999505
+          }
+        }
+      },
+      "20": {
+        "n": 1,
+        "models": {
+          "V0-CARRY": {
+            "n": 1,
+            "dates": [
+              "2026-11-25"
+            ],
+            "mae": 138.43999999999505,
+            "bias": 138.43999999999505,
+            "direction_rate": 0.0,
+            "v0_mae_same_dates": 138.43999999999505
+          },
+          "V1-TX-ZERO-BASIS": {
+            "n": 1,
+            "dates": [
+              "2026-11-25"
+            ],
+            "mae": 1501.9100000000035,
+            "bias": -1501.9100000000035,
+            "direction_rate": 1.0,
+            "v0_mae_same_dates": 138.43999999999505
+          },
+          "V2-CROSS-BLEND": {
+            "n": 1,
+            "dates": [
+              "2026-11-25"
+            ],
+            "mae": 1615.8125992620844,
+            "bias": -1615.8125992620844,
+            "direction_rate": 1.0,
+            "v0_mae_same_dates": 138.43999999999505
+          },
+          "V3-SHRINK-075": {
+            "n": 1,
+            "dates": [
+              "2026-11-25"
+            ],
+            "mae": 1177.2494494465718,
+            "bias": -1177.2494494465718,
+            "direction_rate": 1.0,
+            "v0_mae_same_dates": 138.43999999999505
+          }
+        }
+      }
+    }
+  },
+  "corrections": [
+    {
+      "id": "BREADTH-2026-11-25",
+      "scope": "prior-session TWSE stocks",
+      "source": {
+        "status": "PASS",
+        "source_date": "2026-11-24",
+        "source": "TWSE MI_INDEX stock-only breadth",
+        "advances": 1053.0,
+        "declines": 26.0,
+        "scope": "TWSE stocks; excludes warrant-heavy all-security counts"
+      },
+      "rule": "Describe breadth with counts. Broad advance does not establish limit-up breadth or a confirmed reversal."
+    }
+  ],
+  "opening_settlement_counts": {
+    "formal": {
+      "n": 1,
+      "dates": [
+        "2026-11-25"
+      ]
+    },
+    "replay": {
+      "n": null,
+      "dates": [],
+      "by_date": {}
+    }
+  },
+  "paper_research": {
+    "rows": [],
+    "metrics": {
+      "n": 0,
+      "net_return": null,
+      "benchmark_gross_return": null,
+      "max_closed_trade_drawdown": null
+    }
+  },
+  "documentation": {
+    "docs/REPORT_CONTRACT.md": "PRESENT_AT_PINNED_COMMIT",
+    "docs/OPERATIONS.md": "PRESENT_AT_PINNED_COMMIT",
+    "docs/PROVIDER_POLICY.md": "PRESENT_AT_PINNED_COMMIT",
+    "docs/REVIEW_AGENT.md": "PRESENT_AT_PINNED_COMMIT",
+    "docs/REPORT_PLAYBOOK.md": "PRESENT_AT_PINNED_COMMIT"
+  },
+  "missing_document_probe": null,
+  "evening_publication": {
+    "date": "2026-11-25",
+    "report_path": "reports/2026-11-25/evening.json",
+    "ledger_path": "predictions/2026-11-25/evening.md",
+    "tracked": [
+      "reports/2026-11-25/evening.json"
+    ],
+    "original_ref": null,
+    "timely_bundle": false,
+    "bundle_published_at": "2026-11-24T23:41:44Z",
+    "missing": [
+      "TIMELY_BUNDLE_MISSING",
+      "EVENING_ORIGINAL_MISSING"
+    ],
+    "status": "NOT_DUE",
+    "retry": "After 2026-11-25T23:00:00+08:00, repin the branch and inspect scheduled execution and both paths."
+  },
+  "correction_handoffs": [
+    {
+      "date": "2026-11-25",
+      "corrections": [
+        {
+          "id": "BREADTH-2026-11-25",
+          "ref": "d1e930e0f5481eb14e63814ac71d454da10ff994:ledger/corrections/2026-11-25-breadth.json",
+          "morning_ref": "700198886f73dcd68dfcdf28cd4463ef696cd441:predictions/2026-11-25/morning.md"
+        }
+      ],
+      "evening_ref": null,
+      "next_morning_ref": null,
+      "status": "WAIT_EVENING",
+      "retry": "After the scheduled evening, read the original and verify both refs."
+    }
+  ],
+  "attempts": [
+    {
+      "id": "stock-close-regression",
+      "action": "reproduce_and_patch",
+      "outcome": "CHECKED",
+      "evidence": {
+        "status": "PASS",
+        "items": {
+          "0050": "PASS",
+          "006208": "PASS",
+          "00631L": "PASS",
+          "2330": "PASS",
+          "3707": "PASS",
+          "5483": "PASS"
+        },
+        "diagnostics": {}
+      },
+      "data_revision": "1af5e34f4a65cb0de6c01aa6d38e11aca7ffb701"
+    },
+    {
+      "id": "evening-publication-gap",
+      "action": "reproduce_and_patch",
+      "outcome": "MISSING_AFTER_DEADLINE",
+      "evidence": {
+        "current": {
+          "date": "2026-11-25",
+          "report_path": "reports/2026-11-25/evening.json",
+          "ledger_path": "predictions/2026-11-25/evening.md",
+          "tracked": [
+            "reports/2026-11-25/evening.json"
+          ],
+          "original_ref": null,
+          "timely_bundle": false,
+          "bundle_published_at": "2026-11-24T23:41:44Z",
+          "missing": [
+            "TIMELY_BUNDLE_MISSING",
+            "EVENING_ORIGINAL_MISSING"
+          ],
+          "status": "NOT_DUE",
+          "retry": "After 2026-11-25T23:00:00+08:00, repin the branch and inspect scheduled execution and both paths."
+        },
+        "incident_2026_11_16": {
+          "date": "2026-11-16",
+          "report_path": "reports/2026-11-16/evening.json",
+          "ledger_path": "predictions/2026-11-16/evening.md",
+          "tracked": [
+            "predictions/2026-11-16/evening.md"
+          ],
+          "original_ref": "f75709c88ec08faf3a92d4d4f975ce647096b8e6:predictions/2026-11-16/evening.md",
+          "timely_bundle": false,
+          "ledger_published_at": "2026-11-16T23:22:57+08:00",
+          "missing": [
+            "TIMELY_BUNDLE_MISSING"
+          ],
+          "status": "MISSING_AFTER_DEADLINE",
+          "retry": "Inspect the actual preparation and evening producer runs; retry only after the missing stage has evidence. Preserve original timestamps."
+        }
+      },
+      "data_revision": "1af5e34f4a65cb0de6c01aa6d38e11aca7ffb701"
+    },
+    {
+      "id": "extreme-event-research",
+      "action": "verify_production",
+      "outcome": "CHECKED",
+      "evidence": [
+        "BREADTH-2026-11-25"
+      ],
+      "data_revision": "1af5e34f4a65cb0de6c01aa6d38e11aca7ffb701"
+    },
+    {
+      "id": "nikkei-fresh-fallback",
+      "action": "reproduce_and_patch",
+      "outcome": "CHECKED",
+      "evidence": {
+        "status": "PARTIAL",
+        "items": {
+          "jp/NIKKEI225": "DELAYED",
+          "jp/TOPIX": "PASS",
+          "jp/ADVANTEST": "PASS",
+          "jp/TOKYO_ELECTRON": "PASS",
+          "kr/KOSPI": "PASS",
+          "kr/KOSDAQ": "PASS",
+          "kr/SAMSUNG": "PASS",
+          "kr/SK_HYNIX": "PASS"
+        }
+      },
+      "data_revision": "1af5e34f4a65cb0de6c01aa6d38e11aca7ffb701"
+    },
+    {
+      "id": "opening-producer",
+      "action": "verify_production",
+      "outcome": "CHECKED",
+      "evidence": "700198886f73dcd68dfcdf28cd4463ef696cd441:predictions/2026-11-25/morning.md",
+      "data_revision": "1af5e34f4a65cb0de6c01aa6d38e11aca7ffb701"
+    },
+    {
+      "id": "private-draft-validation",
+      "action": "reproduce_and_patch",
+      "outcome": "CHECKED",
+      "evidence": "PRIVATE_DRAFT_REQUIRES_CONSUMER_EVIDENCE",
+      "data_revision": "1af5e34f4a65cb0de6c01aa6d38e11aca7ffb701"
+    }
+  ],
+  "repair_gate_before": {
+    "stop_allowed": false,
+    "next": {
+      "id": "stock-close-regression",
+      "next": "reproduce_and_patch",
+      "priority": 1,
+      "blocked": null
+    },
+    "unattempted_or_incomplete": [
+      {
+        "id": "stock-close-regression",
+        "next": "reproduce_and_patch",
+        "priority": 1,
+        "blocked": null
+      },
+      {
+        "id": "evening-publication-gap",
+        "next": "reproduce_and_patch",
+        "priority": 2,
+        "blocked": null
+      },
+      {
+        "id": "extreme-event-research",
+        "next": "verify_production",
+        "priority": 2,
+        "blocked": null
+      },
+      {
+        "id": "nikkei-fresh-fallback",
+        "next": "reproduce_and_patch",
+        "priority": 2,
+        "blocked": null
+      },
+      {
+        "id": "opening-producer",
+        "next": "verify_production",
+        "priority": 2,
+        "blocked": null
+      },
+      {
+        "id": "private-draft-validation",
+        "next": "reproduce_and_patch",
+        "priority": 3,
+        "blocked": null
+      }
+    ],
+    "waiting": [],
+    "status": "CONTINUE"
+  },
+  "repair_gate": {
+    "stop_allowed": false,
+    "next": {
+      "id": "stock-close-regression",
+      "next": "reproduce_and_patch",
+      "priority": 1,
+      "blocked": null
+    },
+    "unattempted_or_incomplete": [
+      {
+        "id": "stock-close-regression",
+        "next": "reproduce_and_patch",
+        "priority": 1,
+        "blocked": null
+      },
+      {
+        "id": "evening-publication-gap",
+        "next": "reproduce_and_patch",
+        "priority": 2,
+        "blocked": null
+      },
+      {
+        "id": "extreme-event-research",
+        "next": "verify_production",
+        "priority": 2,
+        "blocked": null
+      },
+      {
+        "id": "nikkei-fresh-fallback",
+        "next": "reproduce_and_patch",
+        "priority": 2,
+        "blocked": null
+      },
+      {
+        "id": "opening-producer",
+        "next": "verify_production",
+        "priority": 2,
+        "blocked": null
+      },
+      {
+        "id": "private-draft-validation",
+        "next": "reproduce_and_patch",
+        "priority": 3,
+        "blocked": null
+      }
+    ],
+    "waiting": [],
+    "status": "CONTINUE"
+  }
+}
