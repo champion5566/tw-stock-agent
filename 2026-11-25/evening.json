@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "fetched_at_taipei": "2026-11-25T19:47:13.720050+08:00",
+  "fetched_at_taipei": "2026-11-25T20:15:19.977827+08:00",
   "trade_date_requested": "2026-11-25",
   "slot": "evening",
   "sources": {
@@ -74027,7 +74027,7 @@
     "daily_available": 9,
     "live_quotes": 0
   },
-  "collection_completed_at_taipei": "2026-11-25T19:47:58.157790+08:00",
+  "collection_completed_at_taipei": "2026-11-25T20:16:15.272518+08:00",
   "market_context": {
     "TAIEX": {
       "status": "PASS",
@@ -74064,9 +74064,9 @@
       "source_date": "2026-11-25",
       "source": "TWSE BFI82U + TPEx official summary; TWD",
       "foreign_net_twd": -130587455153.0,
-      "trust_net_twd": 58650637992.0,
+      "trust_net_twd": 60013983574.0,
       "dealer_net_twd": -14970170225.0,
-      "total_net_twd": -86906987386.0,
+      "total_net_twd": -85543641804.0,
       "scope": "TWSE + TPEx; foreign dealers not double counted"
     },
     "institutional_by_market": {
@@ -74075,9 +74075,9 @@
         "source_date": "2026-11-25",
         "source": "TWSE BFI82U TWD; foreign dealer not double counted",
         "foreign_net_twd": -123654798153.0,
-        "trust_net_twd": 53532129263.0,
+        "trust_net_twd": 55034724295.0,
         "dealer_net_twd": -12833216530.0,
-        "total_net_twd": -82955885420.0,
+        "total_net_twd": -81453290388.0,
         "scope": "TWSE; foreign-dealer amounts are already included in dealer/official total"
       },
       "TPEx": {
@@ -74085,9 +74085,9 @@
         "source_date": "2026-11-25",
         "source": "TPEx tpex_3insti_summary TWD",
         "foreign_net_twd": -6932657000.0,
-        "trust_net_twd": 5118508729.0,
+        "trust_net_twd": 4979259279.0,
         "dealer_net_twd": -2136953695.0,
-        "total_net_twd": -3951101966.0
+        "total_net_twd": -4090351416.0
       }
     },
     "margin_totals": {
@@ -74503,6 +74503,6 @@
         "target": "2026-11-25"
       }
     ],
-    "_collected_at_taipei": "2026-11-25T19:47:46.552907+08:00"
+    "_collected_at_taipei": "2026-11-25T20:15:47.379019+08:00"
   }
 }
