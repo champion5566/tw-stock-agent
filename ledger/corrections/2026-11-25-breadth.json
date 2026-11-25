@@ -1,0 +1,14 @@
+{
+  "schema_version": "report-correction-v1",
+  "id": "BREADTH-2026-11-25",
+  "date": "2026-11-25",
+  "original_ref": "700198886f73dcd68dfcdf28cd4463ef696cd441:predictions/2026-11-25/morning.md",
+  "data_ref": "d16152e83a643326fcdfaa214b59a5633c56b03d:reports/2026-11-25/morning.json",
+  "issue_id": "extreme-event-research",
+  "status": "EVIDENCE_CONFIRMED",
+  "expires_on": "2026-11-26",
+  "correction": "2026-11-24 TWSE stock-only breadth: 1,053 advances and 26 declines; TAIEX closed +8.99%. This supports a broad rally. Limit-up breadth was not established. The reversal was a pre-open risk scenario. On 2026-11-25 the independently reported opening was 39,983.91 and close was 38,195.43, with 39 advances and 1,053 declines. The closing observation is outcome evidence only.",
+  "official_open_ref": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20261101&response=json",
+  "independent_ref": "https://www.cna.com.tw/news/afe/202611250141.aspx",
+  "recovery_point": "Read this correction in the next evening original; verify its immutable ref in the next eligible morning's RESEARCH_STATE."
+}
