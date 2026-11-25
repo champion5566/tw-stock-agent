@@ -152,6 +152,12 @@ def evaluate(report, market, cross, checked, experiment):
         timing[key] = "PASS" if valid else "MISSING_OR_AFTER_CUTOFF"
     if mode == "morning":
         timing["collection_window"] = "PASS" if parse_time(cross.get("fetched_at_taipei")) is not None and parse_time(cross["fetched_at_taipei"]) >= datetime.combine(checked.date(), time(8, 20), TW) else "BEFORE_0820_OR_MISSING"
+    else:
+        started = parse_time(cross.get("fetched_at_taipei"))
+        timing["collection_window"] = (
+            "PASS" if started and started >= datetime.combine(checked.date(), time(22, 50), TW)
+            else "BEFORE_2250_OR_MISSING"
+        )
     timing["generation"] = "PASS" if checked <= cutoff else "AFTER_CUTOFF"
     sections["cutoff"] = section(timing)
     ready = all(s["status"] == "PASS" for s in sections.values())
