@@ -39,12 +39,29 @@
   },
   {
     "id": "opening-settlement",
-    "stage": "MERGED",
+    "stage": "VERIFIED",
     "priority": 1,
     "evidence": {
       "PR": "54",
       "CI": "exact head 1dfead5a success",
-      "MERGED": "58ddd0b"
+      "MERGED": "58ddd0b",
+      "VERIFIED": {
+        "run": "https://github.com/champion5566/tw-stock-agent/actions/runs/45612926927/job/139200833810",
+        "data_revision": "31a0e65cb008d7a7a3245fb1ce9aae4aa7a4675c",
+        "formal": {
+          "n": 1,
+          "date": "2026-11-25",
+          "original_ref": "700198886f73dcd68dfcdf28cd4463ef696cd441:predictions/2026-11-25/morning.md",
+          "official_actual": 39983.91
+        },
+        "replay": {
+          "n": 1,
+          "date": "2026-11-24",
+          "record_ref": "449a5bb5f869f150dc7d76ce46fcc156b94789a7:ledger/replay/2026-11-24.json",
+          "official_actual": 39148.91
+        },
+        "dedup_verified": true
+      }
     }
   },
   {
