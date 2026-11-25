@@ -1,12 +1,20 @@
 [
   {
     "id": "opening-directional-model",
-    "stage": "MERGED",
+    "stage": "VERIFIED",
     "priority": 1,
     "evidence": {
       "PR": "53",
       "CI": "45309465344",
-      "MERGED": "02cde545"
+      "MERGED": "02cde545",
+      "VERIFIED": {
+        "run": "https://github.com/champion5566/tw-stock-agent/actions/runs/45611500213/job/139195912276",
+        "report_handoff": "https://github.com/champion5566/tw-stock-agent/blob/16e11053943f725978902a4caae3d16461772224/evaluations/report-handoff-45607613648-1.json",
+        "original_ref": "700198886f73dcd68dfcdf28cd4463ef696cd441:predictions/2026-11-25/morning.md",
+        "source_ref": "d16152e83a643326fcdfaa214b59a5633c56b03d:reports/2026-11-25/morning.json",
+        "official_actual_ref": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20261101&response=json#session=2026-11-25",
+        "scope": "All four original model values and same-session official paired scores independently verified; no claim of predictive advantage."
+      }
     }
   },
   {
