@@ -76,7 +76,12 @@
       "next_visible_cross_after_window": "43907643571",
       "timely_bundle": "MISSING_AFTER_DEADLINE",
       "evening_original_ref": "f75709c88ec08faf3a92d4d4f975ce647096b8e6:predictions/2026-11-16/evening.md",
-      "recovery": "Keep incident open. Verify next applicable preparation request, scheduled trigger, report bundle publication by 22:58 and original evening ledger after 23:00; never backdate or replace an original."
+      "recovery": "Keep incident open. Verify next applicable preparation request, scheduled trigger, report bundle publication by 22:58 and original evening ledger after 23:00; never backdate or replace an original.",
+      "first_proven_gap": "No visible evening acquisition run or preparation request before the 22:58 cutoff. The first visible evening job resolved using the next Taipei day; its publication did not fail.",
+      "late_run": "https://github.com/champion5566/tw-stock-agent/actions/runs/43907643571/job/133440671996",
+      "late_run_start_taipei": "2026-11-17T00:27:33+08:00",
+      "late_publication_ref": "dc64d3426ac0932186be00200a4b6fa0fe56b4cf:reports/2026-11-17/evening.json",
+      "missing_root_cause_evidence": "Raw 22:52 schedule event or GitHub scheduler queue/drop record for the intended occurrence; 22:50 preparation task execution and attempted write trace. The retained evening job logs do not expose the originally scheduled occurrence."
     }
   },
   {

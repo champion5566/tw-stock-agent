@@ -291,7 +291,29 @@ def correction_handoffs(ref, day, paths):
     return {**links, "status": "VERIFIED", "retry": None}
 
 
-def audit(ref, as_of, observed=None, missing_probe_status=None):
+def settlement_summary(formal, replay_rows):
+    """Count unique official replay sessions separately from formal observations."""
+    formal_dates = sorted({row["date"] for row in formal["rows"]})
+    replay = {}
+    for row in sorted(replay_rows or (), key=lambda row: (
+        row["date"], row.get("record") != f'ledger/replay/{row["date"]}.json',
+        row.get("record", ""),
+    )):
+        evidence = row.get("actual_evidence", {})
+        if (row.get("scores") and row.get("actual_ref") and evidence.get("status") == "PASS"
+                and evidence.get("source_date") == row["date"]
+                and evidence.get("source", "").startswith("TWSE MI_5MINS_HIST")):
+            replay.setdefault(row["date"], {
+                "record": row.get("record"), "actual_ref": row["actual_ref"], "actual": row["actual"],
+                "scores": row["scores"],
+            })
+    return {
+        "formal": {"n": len(formal_dates), "dates": formal_dates},
+        "replay": {"n": len(replay) if replay_rows is not None else None, "dates": sorted(replay), "by_date": replay},
+    }
+
+
+def audit(ref, as_of, observed=None, missing_probe_status=None, replay_rows=None):
     observed = observed or datetime.now(TW)
 
     paths = sorted(path for path in git("ls-tree", "-r", "--name-only", ref, "--", "predictions").splitlines()
@@ -341,6 +363,7 @@ def audit(ref, as_of, observed=None, missing_probe_status=None):
     gate = stop_gate(queue, attempts)
     gate_before = gate
     formal = review(chain)
+    settlement = settlement_summary(formal, replay_rows)
     publication_check = evening_status(ref, as_of, observed)
     incident = evening_status(ref, "2026-11-16", observed)
     linked_days = sorted({as_of, *(path.split("/")[-1][:10] for path in git("ls-tree", "-r", "--name-only", ref, "--", "ledger/corrections").splitlines() if re.match(r"ledger/corrections/\d{4}-\d{2}-\d{2}-", path))})
@@ -392,6 +415,22 @@ def audit(ref, as_of, observed=None, missing_probe_status=None):
                 missing.append("same-session official paired settlement")
             evidence["remaining_acceptance"] = missing
             outcome = "ACCEPTANCE_MET" if not missing else "ACCEPTANCE_PENDING"
+        if issue == "opening-settlement":
+            evidence = settlement
+            baseline_replay = settlement["replay"]["by_date"].get("2026-11-24", {})
+            formal_case = next((row for row in formal["rows"] if row["date"] == "2026-11-25"), {})
+            missing = []
+            if not baseline_replay or set(baseline_replay["scores"]) != MODELS:
+                missing.append("11/24 same-session official replay scores")
+            if "2026-11-24" in settlement["formal"]["dates"]:
+                missing.append("11/24 replay excluded from formal metrics")
+            if set(formal_case.get("scores", {})) != MODELS:
+                missing.append("11/25 official formal scores")
+            dedup_verified = replay_rows is not None and settlement_summary(formal, [*replay_rows, *replay_rows]) == settlement
+            if not dedup_verified:
+                missing.append("duplicate replay input did not reproduce identical evidence")
+            outcome = "ACCEPTANCE_PENDING" if missing else "ACCEPTANCE_MET"
+            evidence = {**settlement, "dedup_verified": dedup_verified, "remaining_acceptance": missing}
         if issue == "evening-publication-gap":
             outcome = incident["status"]
         attempts.append({"id": issue, "action": pending["next"], "outcome": outcome,
@@ -405,6 +444,7 @@ def audit(ref, as_of, observed=None, missing_probe_status=None):
                  "subsequent_work": [attempt["id"] for attempt in attempts]}
     return {"data_revision": ref, "code_revision": code, "as_of_taipei": as_of,
             "chain": chain, "formal_opening": formal, "corrections": corrections,
+            "opening_settlement_counts": settlement,
             "paper_research": paper_review(ref, paths, as_of),
             "documentation": documents, "missing_document_probe": probe,
             "evening_publication": publication_check, "correction_handoffs": handoffs,
@@ -417,14 +457,16 @@ def main():
     parser.add_argument("--as-of", default=datetime.now(TW).date().isoformat())
     parser.add_argument("--output", required=True)
     parser.add_argument("--missing-probe-status", type=int)
+    parser.add_argument("--replay-evidence", type=Path)
     args = parser.parse_args()
     ref = git("rev-parse", "--verify", "--end-of-options", args.data_ref + "^{commit}")
-    result = audit(ref, args.as_of, missing_probe_status=args.missing_probe_status)
+    replay_rows = json.loads(args.replay_evidence.read_text())["replays"] if args.replay_evidence else None
+    result = audit(ref, args.as_of, missing_probe_status=args.missing_probe_status, replay_rows=replay_rows)
     path = Path(args.output)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
     print(json.dumps({key: result[key] for key in ("repair_gate_before", "attempts", "repair_gate",
-                                                   "missing_document_probe", "correction_handoffs")},
+                                                   "missing_document_probe", "correction_handoffs", "opening_settlement_counts")},
                      ensure_ascii=False))
 
 
