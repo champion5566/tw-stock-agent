@@ -1,488 +1,487 @@
 {
   "schema_version": "scenario-report-v2",
   "scenario": "evening",
-  "generated_at_taipei": "2026-11-25T07:41:40.676808+08:00",
+  "generated_at_taipei": "2026-11-25T22:52:49.132926+08:00",
   "execution_kind": "REPORT",
   "point_in_time_verified": false,
   "source_fetched_at": {
-    "market": "2026-11-25T07:39:47.799045+08:00",
+    "market": "2026-11-25T22:51:17.363007+08:00",
     "intraday": null,
-    "cross": "2026-11-25T07:40:51.316274+08:00"
+    "cross": "2026-11-25T22:51:57.835759+08:00"
   },
   "stocks": {
     "2313": {
       "daily_ohlcv": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "2313",
-          "Trading_Volume": 2165708,
-          "Trading_money": 367087413,
-          "open": 169.5,
-          "max": 169.5,
-          "min": 169.5,
-          "close": 169.5,
-          "spread": 15.0,
-          "Trading_turnover": 1890
+          "Trading_Volume": 21928096,
+          "Trading_money": 3469049496,
+          "open": 158.0,
+          "max": 169.0,
+          "min": 153.0,
+          "close": 153.0,
+          "spread": -16.5,
+          "Trading_turnover": 20199
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockPrice"
       },
       "institutional": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "2313",
-          "Foreign_Investor_buy": 52999,
-          "Foreign_Investor_sell": 892141,
+          "Foreign_Investor_buy": 8904509,
+          "Foreign_Investor_sell": 8981369,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 0,
-          "Investment_Trust_sell": 0,
+          "Investment_Trust_buy": 292644,
+          "Investment_Trust_sell": 639076,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 0,
-          "Dealer_self_sell": 0,
-          "Dealer_Hedging_buy": 52718,
-          "Dealer_Hedging_sell": 0
+          "Dealer_self_buy": 797000,
+          "Dealer_self_sell": 842000,
+          "Dealer_Hedging_buy": 181473,
+          "Dealer_Hedging_sell": 261537
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
       },
       "margin": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "2313",
-          "MarginPurchaseBuy": 69,
-          "MarginPurchaseCashRepayment": 57,
+          "MarginPurchaseBuy": 886,
+          "MarginPurchaseCashRepayment": 45,
           "MarginPurchaseLimit": 308455,
-          "MarginPurchaseSell": 295,
-          "MarginPurchaseTodayBalance": 26621,
-          "MarginPurchaseYesterdayBalance": 26904,
+          "MarginPurchaseSell": 976,
+          "MarginPurchaseTodayBalance": 26486,
+          "MarginPurchaseYesterdayBalance": 26621,
           "Note": " ",
           "OffsetLoanAndShort": 0,
-          "ShortSaleBuy": 10,
+          "ShortSaleBuy": 33,
           "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 308455,
-          "ShortSaleSell": 6,
-          "ShortSaleTodayBalance": 218,
-          "ShortSaleYesterdayBalance": 222
+          "ShortSaleSell": 0,
+          "ShortSaleTodayBalance": 185,
+          "ShortSaleYesterdayBalance": 218
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockMarginPurchaseShortSale"
       },
       "metrics": {
-        "source_date": null,
+        "source_date": "2026-11-25",
         "source": "FinMind TaiwanStockPrice",
-        "previous_close": null,
-        "volume_shares": null,
-        "turnover_twd": null,
-        "amplitude_pct": null,
-        "volume_ratio_5d": null,
-        "volume_ratio_20d": null,
+        "previous_close": 169.5,
+        "volume_shares": 21928096.0,
+        "turnover_twd": 3469049496.0,
+        "amplitude_pct": 9.43952802359882,
+        "volume_ratio_5d": 0.8048099708031576,
+        "volume_ratio_20d": 0.7382382510105451,
         "institutional": {
-          "source_date": null,
-          "foreign_net_shares": null,
-          "foreign_investor_net_shares": null,
-          "foreign_dealer_net_shares": null,
-          "trust_net_shares": null,
-          "dealer_net_shares": null,
-          "total_net_shares": null,
+          "source_date": "2026-11-25",
+          "foreign_net_shares": -76860.0,
+          "foreign_investor_net_shares": -76860.0,
+          "foreign_dealer_net_shares": 0.0,
+          "trust_net_shares": -346432.0,
+          "dealer_net_shares": -125064.0,
+          "total_net_shares": -548356.0,
           "dealer_components_conflict": false,
-          "net_5d_shares": null
+          "net_5d_shares": -6249260.0
         },
         "credit": {
-          "source_date": null,
+          "source_date": "2026-11-25",
           "units": "provider-native lots",
-          "margin_balance": null,
-          "margin_change": null,
-          "margin_change_5d": null,
-          "short_balance": null,
-          "short_change": null,
-          "short_change_5d": null
+          "margin_balance": 26486.0,
+          "margin_change": -135.0,
+          "margin_change_5d": -4247.0,
+          "short_balance": 185.0,
+          "short_change": -33.0,
+          "short_change_5d": -1213.0
         }
       },
       "role": "watch_only"
     },
     "2330": {
       "daily_ohlcv": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "2330",
-          "Trading_Volume": 13213039,
-          "Trading_money": 29465076970,
-          "open": 2230.0,
-          "max": 2230.0,
-          "min": 2230.0,
-          "close": 2230.0,
-          "spread": 200.0,
-          "Trading_turnover": 31491
+          "Trading_Volume": 84911914,
+          "Trading_money": 179487749840,
+          "open": 2150.0,
+          "max": 2170.0,
+          "min": 2020.0,
+          "close": 2150.0,
+          "spread": -80.0,
+          "Trading_turnover": 286506
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockPrice"
       },
       "institutional": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "2330",
-          "Foreign_Investor_buy": 4970501,
-          "Foreign_Investor_sell": 9068889,
+          "Foreign_Investor_buy": 25236046,
+          "Foreign_Investor_sell": 52207697,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 1039000,
-          "Investment_Trust_sell": 121168,
+          "Investment_Trust_buy": 4904392,
+          "Investment_Trust_sell": 112992,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 170000,
-          "Dealer_self_sell": 84000,
-          "Dealer_Hedging_buy": 313808,
-          "Dealer_Hedging_sell": 11340
+          "Dealer_self_buy": 938000,
+          "Dealer_self_sell": 1755396,
+          "Dealer_Hedging_buy": 1660018,
+          "Dealer_Hedging_sell": 1281518
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
       },
       "margin": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "2330",
-          "MarginPurchaseBuy": 914,
+          "MarginPurchaseBuy": 1224,
           "MarginPurchaseCashRepayment": 32,
           "MarginPurchaseLimit": 6483092,
-          "MarginPurchaseSell": 565,
-          "MarginPurchaseTodayBalance": 31287,
-          "MarginPurchaseYesterdayBalance": 30970,
+          "MarginPurchaseSell": 3174,
+          "MarginPurchaseTodayBalance": 29305,
+          "MarginPurchaseYesterdayBalance": 31287,
           "Note": " ",
           "OffsetLoanAndShort": 0,
-          "ShortSaleBuy": 2,
-          "ShortSaleCashRepayment": 1,
+          "ShortSaleBuy": 6,
+          "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 6483092,
-          "ShortSaleSell": 1,
-          "ShortSaleTodayBalance": 52,
-          "ShortSaleYesterdayBalance": 54
+          "ShortSaleSell": 0,
+          "ShortSaleTodayBalance": 46,
+          "ShortSaleYesterdayBalance": 52
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockMarginPurchaseShortSale"
       },
       "metrics": {
-        "source_date": null,
+        "source_date": "2026-11-25",
         "source": "FinMind TaiwanStockPrice",
-        "previous_close": null,
-        "volume_shares": null,
-        "turnover_twd": null,
-        "amplitude_pct": null,
-        "volume_ratio_5d": null,
-        "volume_ratio_20d": null,
+        "previous_close": 2230.0,
+        "volume_shares": 84911914.0,
+        "turnover_twd": 179487749840.0,
+        "amplitude_pct": 6.726457399103139,
+        "volume_ratio_5d": 1.5264619892728546,
+        "volume_ratio_20d": 1.7929893490101951,
         "institutional": {
-          "source_date": null,
-          "foreign_net_shares": null,
-          "foreign_investor_net_shares": null,
-          "foreign_dealer_net_shares": null,
-          "trust_net_shares": null,
-          "dealer_net_shares": null,
-          "total_net_shares": null,
+          "source_date": "2026-11-25",
+          "foreign_net_shares": -26971651.0,
+          "foreign_investor_net_shares": -26971651.0,
+          "foreign_dealer_net_shares": 0.0,
+          "trust_net_shares": 4791400.0,
+          "dealer_net_shares": -438896.0,
+          "total_net_shares": -22619147.0,
           "dealer_components_conflict": false,
-          "net_5d_shares": null
+          "net_5d_shares": -45895916.0
         },
         "credit": {
-          "source_date": null,
+          "source_date": "2026-11-25",
           "units": "provider-native lots",
-          "margin_balance": null,
-          "margin_change": null,
-          "margin_change_5d": null,
-          "short_balance": null,
-          "short_change": null,
-          "short_change_5d": null
+          "margin_balance": 29305.0,
+          "margin_change": -1982.0,
+          "margin_change_5d": -3923.0,
+          "short_balance": 46.0,
+          "short_change": -6.0,
+          "short_change_5d": 21.0
         }
       },
       "role": "report_required"
     },
     "0050": {
       "daily_ohlcv": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "0050",
-          "Trading_Volume": 55100953,
-          "Trading_money": 5273154396,
-          "open": 95.7,
-          "max": 95.7,
-          "min": 95.7,
-          "close": 95.7,
-          "spread": 8.7,
-          "Trading_turnover": 44349
+          "Trading_Volume": 464126099,
+          "Trading_money": 41445394719,
+          "open": 91.7,
+          "max": 91.85,
+          "min": 86.2,
+          "close": 90.3,
+          "spread": -5.4,
+          "Trading_turnover": 490847
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockPrice"
       },
       "institutional": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "0050",
-          "Foreign_Investor_buy": 3267625,
-          "Foreign_Investor_sell": 7403404,
+          "Foreign_Investor_buy": 70904875,
+          "Foreign_Investor_sell": 187810255,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 0,
+          "Investment_Trust_buy": 22520000,
           "Investment_Trust_sell": 0,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 1912000,
-          "Dealer_self_sell": 40000,
-          "Dealer_Hedging_buy": 863036,
-          "Dealer_Hedging_sell": 1171000
+          "Dealer_self_buy": 1826000,
+          "Dealer_self_sell": 23571411,
+          "Dealer_Hedging_buy": 51492300,
+          "Dealer_Hedging_sell": 73730922
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
       },
       "margin": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "0050",
-          "MarginPurchaseBuy": 4634,
-          "MarginPurchaseCashRepayment": 122,
-          "MarginPurchaseLimit": 6608250,
-          "MarginPurchaseSell": 2066,
-          "MarginPurchaseTodayBalance": 74100,
-          "MarginPurchaseYesterdayBalance": 71654,
+          "MarginPurchaseBuy": 5682,
+          "MarginPurchaseCashRepayment": 92,
+          "MarginPurchaseLimit": 6622125,
+          "MarginPurchaseSell": 15581,
+          "MarginPurchaseTodayBalance": 64109,
+          "MarginPurchaseYesterdayBalance": 74100,
           "Note": " ",
-          "OffsetLoanAndShort": 1,
-          "ShortSaleBuy": 15,
-          "ShortSaleCashRepayment": 0,
-          "ShortSaleLimit": 6608250,
-          "ShortSaleSell": 55,
-          "ShortSaleTodayBalance": 524,
-          "ShortSaleYesterdayBalance": 484
+          "OffsetLoanAndShort": 366,
+          "ShortSaleBuy": 191,
+          "ShortSaleCashRepayment": 1,
+          "ShortSaleLimit": 6622125,
+          "ShortSaleSell": 128,
+          "ShortSaleTodayBalance": 460,
+          "ShortSaleYesterdayBalance": 524
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockMarginPurchaseShortSale"
       },
       "metrics": {
-        "source_date": null,
+        "source_date": "2026-11-25",
         "source": "FinMind TaiwanStockPrice",
-        "previous_close": null,
-        "volume_shares": null,
-        "turnover_twd": null,
-        "amplitude_pct": null,
-        "volume_ratio_5d": null,
-        "volume_ratio_20d": null,
+        "previous_close": 95.7,
+        "volume_shares": 464126099.0,
+        "turnover_twd": 41445394719.0,
+        "amplitude_pct": 5.903866248693826,
+        "volume_ratio_5d": 1.0492478758775625,
+        "volume_ratio_20d": 1.414125862459991,
         "institutional": {
-          "source_date": null,
-          "foreign_net_shares": null,
-          "foreign_investor_net_shares": null,
-          "foreign_dealer_net_shares": null,
-          "trust_net_shares": null,
-          "dealer_net_shares": null,
-          "total_net_shares": null,
+          "source_date": "2026-11-25",
+          "foreign_net_shares": -116905380.0,
+          "foreign_investor_net_shares": -116905380.0,
+          "foreign_dealer_net_shares": 0.0,
+          "trust_net_shares": 22520000.0,
+          "dealer_net_shares": -43984033.0,
+          "total_net_shares": -138369413.0,
           "dealer_components_conflict": false,
-          "net_5d_shares": null
+          "net_5d_shares": -942931589.0
         },
         "credit": {
-          "source_date": null,
+          "source_date": "2026-11-25",
           "units": "provider-native lots",
-          "margin_balance": null,
-          "margin_change": null,
-          "margin_change_5d": null,
-          "short_balance": null,
-          "short_change": null,
-          "short_change_5d": null
+          "margin_balance": 64109.0,
+          "margin_change": -9991.0,
+          "margin_change_5d": 80.0,
+          "short_balance": 460.0,
+          "short_change": -64.0,
+          "short_change_5d": 90.0
         }
       },
       "role": "report_required"
     },
     "5483": {
       "daily_ohlcv": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "5483",
-          "Trading_Volume": 601538,
-          "Trading_money": 84816858,
-          "open": 141.0,
-          "max": 141.0,
-          "min": 141.0,
-          "close": 141.0,
-          "spread": 12.5,
-          "Trading_turnover": 689
+          "Trading_Volume": 9136049,
+          "Trading_money": 1222213903,
+          "open": 136.5,
+          "max": 139.5,
+          "min": 127.0,
+          "close": 133.5,
+          "spread": -7.5,
+          "Trading_turnover": 7888
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockPrice"
       },
       "institutional": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "5483",
-          "Foreign_Investor_buy": 152620,
-          "Foreign_Investor_sell": 31092,
+          "Foreign_Investor_buy": 4034101,
+          "Foreign_Investor_sell": 5066990,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 0,
-          "Investment_Trust_sell": 5005,
+          "Investment_Trust_buy": 830000,
+          "Investment_Trust_sell": 6247,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 0,
-          "Dealer_self_sell": 30000,
-          "Dealer_Hedging_buy": 73527,
-          "Dealer_Hedging_sell": 0
+          "Dealer_self_buy": 253000,
+          "Dealer_self_sell": 383934,
+          "Dealer_Hedging_buy": 40056,
+          "Dealer_Hedging_sell": 119494
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
       },
       "margin": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "5483",
-          "MarginPurchaseBuy": 76,
-          "MarginPurchaseCashRepayment": 17,
+          "MarginPurchaseBuy": 204,
+          "MarginPurchaseCashRepayment": 3,
           "MarginPurchaseLimit": 160305,
-          "MarginPurchaseSell": 56,
-          "MarginPurchaseTodayBalance": 10645,
-          "MarginPurchaseYesterdayBalance": 10642,
+          "MarginPurchaseSell": 315,
+          "MarginPurchaseTodayBalance": 10531,
+          "MarginPurchaseYesterdayBalance": 10645,
           "Note": "",
           "OffsetLoanAndShort": 0,
-          "ShortSaleBuy": 19,
+          "ShortSaleBuy": 25,
           "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 160305,
           "ShortSaleSell": 0,
-          "ShortSaleTodayBalance": 270,
-          "ShortSaleYesterdayBalance": 289
+          "ShortSaleTodayBalance": 245,
+          "ShortSaleYesterdayBalance": 270
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockMarginPurchaseShortSale"
       },
       "metrics": {
-        "source_date": null,
+        "source_date": "2026-11-25",
         "source": "FinMind TaiwanStockPrice",
-        "previous_close": null,
-        "volume_shares": null,
-        "turnover_twd": null,
-        "amplitude_pct": null,
-        "volume_ratio_5d": null,
-        "volume_ratio_20d": null,
+        "previous_close": 141.0,
+        "volume_shares": 9136049.0,
+        "turnover_twd": 1222213903.0,
+        "amplitude_pct": 8.865248226950355,
+        "volume_ratio_5d": 1.1237979848156714,
+        "volume_ratio_20d": 1.1145228551472808,
         "institutional": {
-          "source_date": null,
-          "foreign_net_shares": null,
-          "foreign_investor_net_shares": null,
-          "foreign_dealer_net_shares": null,
-          "trust_net_shares": null,
-          "dealer_net_shares": null,
-          "total_net_shares": null,
+          "source_date": "2026-11-25",
+          "foreign_net_shares": -1032889.0,
+          "foreign_investor_net_shares": -1032889.0,
+          "foreign_dealer_net_shares": 0.0,
+          "trust_net_shares": 823753.0,
+          "dealer_net_shares": -210372.0,
+          "total_net_shares": -419508.0,
           "dealer_components_conflict": false,
-          "net_5d_shares": null
+          "net_5d_shares": 488023.0
         },
         "credit": {
-          "source_date": null,
+          "source_date": "2026-11-25",
           "units": "provider-native lots",
-          "margin_balance": null,
-          "margin_change": null,
-          "margin_change_5d": null,
-          "short_balance": null,
-          "short_change": null,
-          "short_change_5d": null
+          "margin_balance": 10531.0,
+          "margin_change": -114.0,
+          "margin_change_5d": -2328.0,
+          "short_balance": 245.0,
+          "short_change": -25.0,
+          "short_change_5d": -18.0
         }
       },
       "role": "report_required"
     },
     "3707": {
       "daily_ohlcv": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "3707",
-          "Trading_Volume": 547428,
-          "Trading_money": 26057547,
-          "open": 47.6,
-          "max": 47.6,
-          "min": 47.6,
-          "close": 47.6,
-          "spread": 4.3,
-          "Trading_turnover": 367
+          "Trading_Volume": 3491747,
+          "Trading_money": 155469541,
+          "open": 45.9,
+          "max": 47.15,
+          "min": 42.85,
+          "close": 43.8,
+          "spread": -3.8,
+          "Trading_turnover": 2649
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockPrice"
       },
       "institutional": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "3707",
-          "Foreign_Investor_buy": 119000,
-          "Foreign_Investor_sell": 36100,
+          "Foreign_Investor_buy": 1559647,
+          "Foreign_Investor_sell": 1799000,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
           "Investment_Trust_buy": 0,
@@ -491,511 +490,512 @@
           "Dealer_sell": 0,
           "Dealer_self_buy": 0,
           "Dealer_self_sell": 0,
-          "Dealer_Hedging_buy": 22000,
-          "Dealer_Hedging_sell": 0
+          "Dealer_Hedging_buy": 10761,
+          "Dealer_Hedging_sell": 28706
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
       },
       "margin": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "3707",
-          "MarginPurchaseBuy": 16,
-          "MarginPurchaseCashRepayment": 9,
+          "MarginPurchaseBuy": 101,
+          "MarginPurchaseCashRepayment": 13,
           "MarginPurchaseLimit": 88218,
-          "MarginPurchaseSell": 24,
-          "MarginPurchaseTodayBalance": 8906,
-          "MarginPurchaseYesterdayBalance": 8923,
+          "MarginPurchaseSell": 208,
+          "MarginPurchaseTodayBalance": 8786,
+          "MarginPurchaseYesterdayBalance": 8906,
           "Note": "",
           "OffsetLoanAndShort": 0,
-          "ShortSaleBuy": 5,
-          "ShortSaleCashRepayment": 1,
+          "ShortSaleBuy": 6,
+          "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 88218,
           "ShortSaleSell": 0,
-          "ShortSaleTodayBalance": 86,
-          "ShortSaleYesterdayBalance": 92
+          "ShortSaleTodayBalance": 80,
+          "ShortSaleYesterdayBalance": 86
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockMarginPurchaseShortSale"
       },
       "metrics": {
-        "source_date": null,
+        "source_date": "2026-11-25",
         "source": "FinMind TaiwanStockPrice",
-        "previous_close": null,
-        "volume_shares": null,
-        "turnover_twd": null,
-        "amplitude_pct": null,
-        "volume_ratio_5d": null,
-        "volume_ratio_20d": null,
+        "previous_close": 47.6,
+        "volume_shares": 3491747.0,
+        "turnover_twd": 155469541.0,
+        "amplitude_pct": 9.033613445378146,
+        "volume_ratio_5d": 0.9640396009337836,
+        "volume_ratio_20d": 0.8573458513915067,
         "institutional": {
-          "source_date": null,
-          "foreign_net_shares": null,
-          "foreign_investor_net_shares": null,
-          "foreign_dealer_net_shares": null,
-          "trust_net_shares": null,
-          "dealer_net_shares": null,
-          "total_net_shares": null,
+          "source_date": "2026-11-25",
+          "foreign_net_shares": -239353.0,
+          "foreign_investor_net_shares": -239353.0,
+          "foreign_dealer_net_shares": 0.0,
+          "trust_net_shares": 0.0,
+          "dealer_net_shares": -17945.0,
+          "total_net_shares": -257298.0,
           "dealer_components_conflict": false,
-          "net_5d_shares": null
+          "net_5d_shares": -924243.0
         },
         "credit": {
-          "source_date": null,
+          "source_date": "2026-11-25",
           "units": "provider-native lots",
-          "margin_balance": null,
-          "margin_change": null,
-          "margin_change_5d": null,
-          "short_balance": null,
-          "short_change": null,
-          "short_change_5d": null
+          "margin_balance": 8786.0,
+          "margin_change": -120.0,
+          "margin_change_5d": -1879.0,
+          "short_balance": 80.0,
+          "short_change": -6.0,
+          "short_change_5d": -8.0
         }
       },
       "role": "report_required"
     },
     "2367": {
       "daily_ohlcv": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "2367",
-          "Trading_Volume": 7678771,
-          "Trading_money": 257612036,
-          "open": 33.7,
-          "max": 33.75,
-          "min": 33.1,
-          "close": 33.6,
-          "spread": 2.9,
-          "Trading_turnover": 4861
+          "Trading_Volume": 6554474,
+          "Trading_money": 206617298,
+          "open": 31.2,
+          "max": 33.6,
+          "min": 30.25,
+          "close": 30.9,
+          "spread": -2.7,
+          "Trading_turnover": 4554
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockPrice"
       },
       "institutional": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "2367",
-          "Foreign_Investor_buy": 1616035,
-          "Foreign_Investor_sell": 3987000,
+          "Foreign_Investor_buy": 3869107,
+          "Foreign_Investor_sell": 2413000,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
           "Investment_Trust_buy": 0,
           "Investment_Trust_sell": 0,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 154000,
-          "Dealer_self_sell": 197000,
-          "Dealer_Hedging_buy": 92000,
-          "Dealer_Hedging_sell": 64378
+          "Dealer_self_buy": 64000,
+          "Dealer_self_sell": 100191,
+          "Dealer_Hedging_buy": 27754,
+          "Dealer_Hedging_sell": 61564
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
       },
       "margin": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "2367",
-          "MarginPurchaseBuy": 576,
-          "MarginPurchaseCashRepayment": 7,
+          "MarginPurchaseBuy": 254,
+          "MarginPurchaseCashRepayment": 27,
           "MarginPurchaseLimit": 176563,
-          "MarginPurchaseSell": 290,
-          "MarginPurchaseTodayBalance": 20462,
-          "MarginPurchaseYesterdayBalance": 20183,
+          "MarginPurchaseSell": 614,
+          "MarginPurchaseTodayBalance": 20075,
+          "MarginPurchaseYesterdayBalance": 20462,
           "Note": " ",
-          "OffsetLoanAndShort": 2,
-          "ShortSaleBuy": 25,
+          "OffsetLoanAndShort": 0,
+          "ShortSaleBuy": 3,
           "ShortSaleCashRepayment": 0,
           "ShortSaleLimit": 176563,
-          "ShortSaleSell": 103,
-          "ShortSaleTodayBalance": 221,
-          "ShortSaleYesterdayBalance": 143
+          "ShortSaleSell": 0,
+          "ShortSaleTodayBalance": 218,
+          "ShortSaleYesterdayBalance": 221
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockMarginPurchaseShortSale"
       },
       "metrics": {
-        "source_date": null,
+        "source_date": "2026-11-25",
         "source": "FinMind TaiwanStockPrice",
-        "previous_close": null,
-        "volume_shares": null,
-        "turnover_twd": null,
-        "amplitude_pct": null,
-        "volume_ratio_5d": null,
-        "volume_ratio_20d": null,
+        "previous_close": 33.6,
+        "volume_shares": 6554474.0,
+        "turnover_twd": 206617298.0,
+        "amplitude_pct": 9.970238095238098,
+        "volume_ratio_5d": 0.8257753184762647,
+        "volume_ratio_20d": 0.960853877850924,
         "institutional": {
-          "source_date": null,
-          "foreign_net_shares": null,
-          "foreign_investor_net_shares": null,
-          "foreign_dealer_net_shares": null,
-          "trust_net_shares": null,
-          "dealer_net_shares": null,
-          "total_net_shares": null,
+          "source_date": "2026-11-25",
+          "foreign_net_shares": 1456107.0,
+          "foreign_investor_net_shares": 1456107.0,
+          "foreign_dealer_net_shares": 0.0,
+          "trust_net_shares": 0.0,
+          "dealer_net_shares": -70001.0,
+          "total_net_shares": 1386106.0,
           "dealer_components_conflict": false,
-          "net_5d_shares": null
+          "net_5d_shares": -2201995.0
         },
         "credit": {
-          "source_date": null,
+          "source_date": "2026-11-25",
           "units": "provider-native lots",
-          "margin_balance": null,
-          "margin_change": null,
-          "margin_change_5d": null,
-          "short_balance": null,
-          "short_change": null,
-          "short_change_5d": null
+          "margin_balance": 20075.0,
+          "margin_change": -387.0,
+          "margin_change_5d": -1812.0,
+          "short_balance": 218.0,
+          "short_change": -3.0,
+          "short_change_5d": -2.0
         }
       },
       "role": "watch_only"
     },
     "3491": {
       "daily_ohlcv": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "3491",
-          "Trading_Volume": 411013,
-          "Trading_money": 568637425,
-          "open": 1385.0,
-          "max": 1385.0,
-          "min": 1365.0,
-          "close": 1385.0,
-          "spread": 125.0,
-          "Trading_turnover": 1677
+          "Trading_Volume": 541220,
+          "Trading_money": 682419835,
+          "open": 1270.0,
+          "max": 1320.0,
+          "min": 1250.0,
+          "close": 1255.0,
+          "spread": -130.0,
+          "Trading_turnover": 3020
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockPrice"
       },
       "institutional": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "3491",
-          "Foreign_Investor_buy": 33095,
-          "Foreign_Investor_sell": 7501,
-          "Foreign_Dealer_Self_buy": 0,
-          "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 31000,
-          "Investment_Trust_sell": 0,
-          "Dealer_buy": 0,
-          "Dealer_sell": 0,
-          "Dealer_self_buy": 12000,
-          "Dealer_self_sell": 14,
-          "Dealer_Hedging_buy": 4399,
-          "Dealer_Hedging_sell": 0
-        },
-        "data_kind": "daily",
-        "is_live": false,
-        "provider_status": "PRIOR_SESSION",
-        "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
-      },
-      "margin": {
-        "status": "SESSION_NOT_CLOSED",
-        "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
-          "stock_id": "3491",
-          "MarginPurchaseBuy": 136,
-          "MarginPurchaseCashRepayment": 0,
-          "MarginPurchaseLimit": 17218,
-          "MarginPurchaseSell": 56,
-          "MarginPurchaseTodayBalance": 2498,
-          "MarginPurchaseYesterdayBalance": 2418,
-          "Note": "",
-          "OffsetLoanAndShort": 6,
-          "ShortSaleBuy": 1,
-          "ShortSaleCashRepayment": 0,
-          "ShortSaleLimit": 17218,
-          "ShortSaleSell": 5,
-          "ShortSaleTodayBalance": 53,
-          "ShortSaleYesterdayBalance": 49
-        },
-        "data_kind": "daily",
-        "is_live": false,
-        "provider_status": "PRIOR_SESSION",
-        "source": "TaiwanStockMarginPurchaseShortSale"
-      },
-      "metrics": {
-        "source_date": null,
-        "source": "FinMind TaiwanStockPrice",
-        "previous_close": null,
-        "volume_shares": null,
-        "turnover_twd": null,
-        "amplitude_pct": null,
-        "volume_ratio_5d": null,
-        "volume_ratio_20d": null,
-        "institutional": {
-          "source_date": null,
-          "foreign_net_shares": null,
-          "foreign_investor_net_shares": null,
-          "foreign_dealer_net_shares": null,
-          "trust_net_shares": null,
-          "dealer_net_shares": null,
-          "total_net_shares": null,
-          "dealer_components_conflict": false,
-          "net_5d_shares": null
-        },
-        "credit": {
-          "source_date": null,
-          "units": "provider-native lots",
-          "margin_balance": null,
-          "margin_change": null,
-          "margin_change_5d": null,
-          "short_balance": null,
-          "short_change": null,
-          "short_change_5d": null
-        }
-      },
-      "role": "watch_only"
-    },
-    "006208": {
-      "daily_ohlcv": {
-        "status": "SESSION_NOT_CLOSED",
-        "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
-          "stock_id": "006208",
-          "Trading_Volume": 8388110,
-          "Trading_money": 1804206730,
-          "open": 215.1,
-          "max": 215.1,
-          "min": 213.5,
-          "close": 215.1,
-          "spread": 19.55,
-          "Trading_turnover": 5813
-        },
-        "data_kind": "daily",
-        "is_live": false,
-        "provider_status": "PRIOR_SESSION",
-        "source": "TaiwanStockPrice"
-      },
-      "institutional": {
-        "status": "SESSION_NOT_CLOSED",
-        "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
-          "stock_id": "006208",
-          "Foreign_Investor_buy": 497813,
-          "Foreign_Investor_sell": 193000,
+          "Foreign_Investor_buy": 34881,
+          "Foreign_Investor_sell": 47865,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
           "Investment_Trust_buy": 0,
           "Investment_Trust_sell": 0,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 999018,
-          "Dealer_self_sell": 0,
-          "Dealer_Hedging_buy": 140000,
-          "Dealer_Hedging_sell": 7350000
+          "Dealer_self_buy": 20000,
+          "Dealer_self_sell": 6000,
+          "Dealer_Hedging_buy": 1643,
+          "Dealer_Hedging_sell": 8460
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
       },
       "margin": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
-          "stock_id": "006208",
-          "MarginPurchaseBuy": 87,
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
+          "stock_id": "3491",
+          "MarginPurchaseBuy": 107,
           "MarginPurchaseCashRepayment": 1,
-          "MarginPurchaseLimit": 490010,
-          "MarginPurchaseSell": 7,
-          "MarginPurchaseTodayBalance": 788,
-          "MarginPurchaseYesterdayBalance": 709,
-          "Note": " ",
+          "MarginPurchaseLimit": 17218,
+          "MarginPurchaseSell": 241,
+          "MarginPurchaseTodayBalance": 2363,
+          "MarginPurchaseYesterdayBalance": 2498,
+          "Note": "",
           "OffsetLoanAndShort": 0,
+          "ShortSaleBuy": 5,
+          "ShortSaleCashRepayment": 0,
+          "ShortSaleLimit": 17218,
+          "ShortSaleSell": 0,
+          "ShortSaleTodayBalance": 48,
+          "ShortSaleYesterdayBalance": 53
+        },
+        "prior_reference": null,
+        "data_kind": "daily",
+        "is_live": false,
+        "provider_status": "PASS",
+        "source": "TaiwanStockMarginPurchaseShortSale"
+      },
+      "metrics": {
+        "source_date": "2026-11-25",
+        "source": "FinMind TaiwanStockPrice",
+        "previous_close": 1385.0,
+        "volume_shares": 541220.0,
+        "turnover_twd": 682419835.0,
+        "amplitude_pct": 5.054151624548736,
+        "volume_ratio_5d": 0.3122025619046191,
+        "volume_ratio_20d": 0.2761152408960333,
+        "institutional": {
+          "source_date": "2026-11-25",
+          "foreign_net_shares": -12984.0,
+          "foreign_investor_net_shares": -12984.0,
+          "foreign_dealer_net_shares": 0.0,
+          "trust_net_shares": 0.0,
+          "dealer_net_shares": 7183.0,
+          "total_net_shares": -5801.0,
+          "dealer_components_conflict": false,
+          "net_5d_shares": -65708.0
+        },
+        "credit": {
+          "source_date": "2026-11-25",
+          "units": "provider-native lots",
+          "margin_balance": 2363.0,
+          "margin_change": -135.0,
+          "margin_change_5d": -589.0,
+          "short_balance": 48.0,
+          "short_change": -5.0,
+          "short_change_5d": -177.0
+        }
+      },
+      "role": "watch_only"
+    },
+    "006208": {
+      "daily_ohlcv": {
+        "status": "PASS",
+        "target_session": "2026-11-25",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
+          "stock_id": "006208",
+          "Trading_Volume": 8804963,
+          "Trading_money": 1769839902,
+          "open": 205.05,
+          "max": 206.35,
+          "min": 194.1,
+          "close": 203.15,
+          "spread": -11.95,
+          "Trading_turnover": 27381
+        },
+        "prior_reference": null,
+        "data_kind": "daily",
+        "is_live": false,
+        "provider_status": "PASS",
+        "source": "TaiwanStockPrice"
+      },
+      "institutional": {
+        "status": "PASS",
+        "target_session": "2026-11-25",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
+          "stock_id": "006208",
+          "Foreign_Investor_buy": 2690342,
+          "Foreign_Investor_sell": 3087330,
+          "Foreign_Dealer_Self_buy": 0,
+          "Foreign_Dealer_Self_sell": 0,
+          "Investment_Trust_buy": 0,
+          "Investment_Trust_sell": 0,
+          "Dealer_buy": 0,
+          "Dealer_sell": 0,
+          "Dealer_self_buy": 2000,
+          "Dealer_self_sell": 18254,
+          "Dealer_Hedging_buy": 1633783,
+          "Dealer_Hedging_sell": 3344792
+        },
+        "prior_reference": null,
+        "data_kind": "daily",
+        "is_live": false,
+        "provider_status": "PASS",
+        "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
+      },
+      "margin": {
+        "status": "PASS",
+        "target_session": "2026-11-25",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
+          "stock_id": "006208",
+          "MarginPurchaseBuy": 23,
+          "MarginPurchaseCashRepayment": 1,
+          "MarginPurchaseLimit": 491010,
+          "MarginPurchaseSell": 36,
+          "MarginPurchaseTodayBalance": 774,
+          "MarginPurchaseYesterdayBalance": 788,
+          "Note": " ",
+          "OffsetLoanAndShort": 1,
           "ShortSaleBuy": 0,
           "ShortSaleCashRepayment": 0,
-          "ShortSaleLimit": 490010,
+          "ShortSaleLimit": 491010,
           "ShortSaleSell": 0,
           "ShortSaleTodayBalance": 0,
           "ShortSaleYesterdayBalance": 0
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockMarginPurchaseShortSale"
       },
       "metrics": {
-        "source_date": null,
+        "source_date": "2026-11-25",
         "source": "FinMind TaiwanStockPrice",
-        "previous_close": null,
-        "volume_shares": null,
-        "turnover_twd": null,
-        "amplitude_pct": null,
-        "volume_ratio_5d": null,
-        "volume_ratio_20d": null,
+        "previous_close": 215.1,
+        "volume_shares": 8804963.0,
+        "turnover_twd": 1769839902.0,
+        "amplitude_pct": 5.695025569502557,
+        "volume_ratio_5d": 0.8665341642937178,
+        "volume_ratio_20d": 1.005960170539128,
         "institutional": {
-          "source_date": null,
-          "foreign_net_shares": null,
-          "foreign_investor_net_shares": null,
-          "foreign_dealer_net_shares": null,
-          "trust_net_shares": null,
-          "dealer_net_shares": null,
-          "total_net_shares": null,
+          "source_date": "2026-11-25",
+          "foreign_net_shares": -396988.0,
+          "foreign_investor_net_shares": -396988.0,
+          "foreign_dealer_net_shares": 0.0,
+          "trust_net_shares": 0.0,
+          "dealer_net_shares": -1727263.0,
+          "total_net_shares": -2124251.0,
           "dealer_components_conflict": false,
-          "net_5d_shares": null
+          "net_5d_shares": -17098505.0
         },
         "credit": {
-          "source_date": null,
+          "source_date": "2026-11-25",
           "units": "provider-native lots",
-          "margin_balance": null,
-          "margin_change": null,
-          "margin_change_5d": null,
-          "short_balance": null,
-          "short_change": null,
-          "short_change_5d": null
+          "margin_balance": 774.0,
+          "margin_change": -14.0,
+          "margin_change_5d": 126.0,
+          "short_balance": 0.0,
+          "short_change": 0.0,
+          "short_change_5d": -1.0
         }
       },
       "role": "report_required"
     },
     "00631L": {
       "daily_ohlcv": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "00631L",
-          "Trading_Volume": 109645853,
-          "Trading_money": 2960438031,
-          "open": 27.0,
-          "max": 27.0,
-          "min": 27.0,
-          "close": 27.0,
-          "spread": 4.5,
-          "Trading_turnover": 21978
+          "Trading_Volume": 1315560426,
+          "Trading_money": 31074221017,
+          "open": 24.34,
+          "max": 24.87,
+          "min": 21.9,
+          "close": 23.78,
+          "spread": -3.22,
+          "Trading_turnover": 251264
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockPrice"
       },
       "institutional": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "00631L",
-          "Foreign_Investor_buy": 5332400,
-          "Foreign_Investor_sell": 251000,
+          "Foreign_Investor_buy": 227887298,
+          "Foreign_Investor_sell": 250573599,
           "Foreign_Dealer_Self_buy": 0,
           "Foreign_Dealer_Self_sell": 0,
-          "Investment_Trust_buy": 2526000,
+          "Investment_Trust_buy": 0,
           "Investment_Trust_sell": 0,
           "Dealer_buy": 0,
           "Dealer_sell": 0,
-          "Dealer_self_buy": 0,
-          "Dealer_self_sell": 1499000,
-          "Dealer_Hedging_buy": 469788,
-          "Dealer_Hedging_sell": 15759000
+          "Dealer_self_buy": 8361000,
+          "Dealer_self_sell": 19668000,
+          "Dealer_Hedging_buy": 210261708,
+          "Dealer_Hedging_sell": 228239774
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
       },
       "margin": {
-        "status": "SESSION_NOT_CLOSED",
+        "status": "PASS",
         "target_session": "2026-11-25",
-        "source_date": "2026-11-24",
-        "data": null,
-        "prior_reference": {
-          "date": "2026-11-24",
+        "source_date": "2026-11-25",
+        "data": {
+          "date": "2026-11-25",
           "stock_id": "00631L",
-          "MarginPurchaseBuy": 19842,
-          "MarginPurchaseCashRepayment": 717,
-          "MarginPurchaseLimit": 2791712,
-          "MarginPurchaseSell": 12913,
-          "MarginPurchaseTodayBalance": 505700,
-          "MarginPurchaseYesterdayBalance": 499488,
+          "MarginPurchaseBuy": 57758,
+          "MarginPurchaseCashRepayment": 527,
+          "MarginPurchaseLimit": 2821087,
+          "MarginPurchaseSell": 124472,
+          "MarginPurchaseTodayBalance": 438459,
+          "MarginPurchaseYesterdayBalance": 505700,
           "Note": " ",
-          "OffsetLoanAndShort": 4,
-          "ShortSaleBuy": 869,
-          "ShortSaleCashRepayment": 5,
-          "ShortSaleLimit": 2791712,
-          "ShortSaleSell": 1853,
-          "ShortSaleTodayBalance": 20258,
-          "ShortSaleYesterdayBalance": 19279
+          "OffsetLoanAndShort": 5375,
+          "ShortSaleBuy": 5206,
+          "ShortSaleCashRepayment": 10,
+          "ShortSaleLimit": 2821087,
+          "ShortSaleSell": 1731,
+          "ShortSaleTodayBalance": 16773,
+          "ShortSaleYesterdayBalance": 20258
         },
+        "prior_reference": null,
         "data_kind": "daily",
         "is_live": false,
-        "provider_status": "PRIOR_SESSION",
+        "provider_status": "PASS",
         "source": "TaiwanStockMarginPurchaseShortSale"
       },
       "metrics": {
-        "source_date": null,
+        "source_date": "2026-11-25",
         "source": "FinMind TaiwanStockPrice",
-        "previous_close": null,
-        "volume_shares": null,
-        "turnover_twd": null,
-        "amplitude_pct": null,
-        "volume_ratio_5d": null,
-        "volume_ratio_20d": null,
+        "previous_close": 27.0,
+        "volume_shares": 1315560426.0,
+        "turnover_twd": 31074221017.0,
+        "amplitude_pct": 11.000000000000009,
+        "volume_ratio_5d": 1.6055016120713255,
+        "volume_ratio_20d": 2.302613253253452,
         "institutional": {
-          "source_date": null,
-          "foreign_net_shares": null,
-          "foreign_investor_net_shares": null,
-          "foreign_dealer_net_shares": null,
-          "trust_net_shares": null,
-          "dealer_net_shares": null,
-          "total_net_shares": null,
+          "source_date": "2026-11-25",
+          "foreign_net_shares": -22686301.0,
+          "foreign_investor_net_shares": -22686301.0,
+          "foreign_dealer_net_shares": 0.0,
+          "trust_net_shares": 0.0,
+          "dealer_net_shares": -29285066.0,
+          "total_net_shares": -51971367.0,
           "dealer_components_conflict": false,
-          "net_5d_shares": null
+          "net_5d_shares": -933485012.0
         },
         "credit": {
-          "source_date": null,
+          "source_date": "2026-11-25",
           "units": "provider-native lots",
-          "margin_balance": null,
-          "margin_change": null,
-          "margin_change_5d": null,
-          "short_balance": null,
-          "short_change": null,
-          "short_change_5d": null
+          "margin_balance": 438459.0,
+          "margin_change": -67241.0,
+          "margin_change_5d": 22908.0,
+          "short_balance": 16773.0,
+          "short_change": -3485.0,
+          "short_change_5d": -1656.0
         }
       },
       "role": "report_required"
@@ -1004,10 +1004,10 @@
   "cross_market": {
     "us": {
       "SP500": {
-        "price": 7201.08984375,
-        "status": "HISTORICAL_BAR",
+        "price": 6991.509765625,
+        "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T05:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:52:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1021,10 +1021,10 @@
         "is_formal_close": false
       },
       "NASDAQ": {
-        "price": 23733.53515625,
-        "status": "HISTORICAL_BAR",
+        "price": 22740.591796875,
+        "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T05:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:52:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1038,10 +1038,10 @@
         "is_formal_close": false
       },
       "SOX": {
-        "price": 8832.5009765625,
-        "status": "HISTORICAL_BAR",
+        "price": 8221.50390625,
+        "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T05:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1055,10 +1055,10 @@
         "is_formal_close": false
       },
       "VIX": {
-        "price": 26.360000610351562,
-        "status": "HISTORICAL_BAR",
+        "price": 33.34000015258789,
+        "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T05:15:00+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:35:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1072,10 +1072,10 @@
         "is_formal_close": false
       },
       "NVDA": {
-        "price": 152.88,
+        "price": 142.38999938964844,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:40:53+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:52:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1089,10 +1089,10 @@
         "is_formal_close": false
       },
       "AMD": {
-        "price": 412.5502,
+        "price": 379.0779113769531,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:40:54+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1106,10 +1106,10 @@
         "is_formal_close": false
       },
       "AVGO": {
-        "price": 304.18,
+        "price": 283.0,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:35:00+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1123,10 +1123,10 @@
         "is_formal_close": false
       },
       "MU": {
-        "price": 627.5001,
+        "price": 562.4949951171875,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:40:54+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1140,10 +1140,10 @@
         "is_formal_close": false
       },
       "TSM_ADR": {
-        "price": 350.0,
+        "price": 325.3550109863281,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:40:16+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1157,10 +1157,10 @@
         "is_formal_close": false
       },
       "AMZN": {
-        "price": 251.9,
+        "price": 238.50999450683594,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:40:34+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1174,10 +1174,10 @@
         "is_formal_close": false
       },
       "BRK.B": {
-        "price": 577.54,
+        "price": 574.3800048828125,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:20:00+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1191,10 +1191,10 @@
         "is_formal_close": false
       },
       "GOOG": {
-        "price": 277.8,
+        "price": 263.0199890136719,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:40:47+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1208,10 +1208,10 @@
         "is_formal_close": false
       },
       "META": {
-        "price": 589.31,
+        "price": 572.7100219726562,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:35:07+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1225,10 +1225,10 @@
         "is_formal_close": false
       },
       "QCOM": {
-        "price": 165.65,
+        "price": 155.9550018310547,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:00:00+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:52:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1242,10 +1242,10 @@
         "is_formal_close": false
       },
       "SPCX": {
-        "price": 126.3019,
+        "price": 115.55269622802734,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:40:55+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1259,10 +1259,10 @@
         "is_formal_close": false
       },
       "TLT": {
-        "price": 81.375,
+        "price": 82.44999694824219,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:20:00+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1276,10 +1276,10 @@
         "is_formal_close": false
       },
       "TSLA": {
-        "price": 384.53,
+        "price": 359.3299865722656,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:40:47+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1293,10 +1293,10 @@
         "is_formal_close": false
       },
       "QQQ": {
-        "price": 636.7,
+        "price": 610.7999877929688,
         "status": "PASS",
         "source": "yfinance/Yahoo Finance; research only, may be delayed",
-        "latest_bar_at_taipei": "2026-11-25T07:40:07+08:00",
+        "latest_bar_at_taipei": "2026-11-25T22:50:00+08:00",
         "trade_time": null,
         "source_date": null,
         "source_url": null,
@@ -1312,101 +1312,101 @@
     },
     "jp": {
       "NIKKEI225": {
-        "price": 58644.63,
-        "status": "PASS",
+        "price": 57011.62,
+        "status": "STALE",
         "source": "Naver world index quote",
-        "latest_bar_at_taipei": "2026-11-25T07:25:54+08:00",
-        "trade_time": "2026-11-25T08:25:54+09:00",
+        "latest_bar_at_taipei": "2026-11-25T14:45:03+08:00",
+        "trade_time": "2026-11-25T15:45:03+09:00",
         "source_date": null,
         "source_url": "https://api.stock.naver.com/index/.N225/basic",
-        "change_pct": 0.0,
-        "provider_time_text": "2026-11-25T08:25:54+09:00",
+        "change_pct": -2.78,
+        "provider_time_text": "2026-11-25T15:45:03+09:00",
         "provider_delay_minutes": 15,
         "timestamp_basis": "provider localTradedAt with explicit offset",
         "source_date_inferred": null,
         "regional_selection": {
           "primary_source": "Naver world index quote",
-          "primary_status": "PASS",
-          "fallback_source": "Yahoo/global fallback",
-          "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
+          "primary_status": "STALE",
+          "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
+          "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver world index quote",
-          "qualification_at_taipei": "2026-11-25T07:40:51.316274+08:00",
-          "selected_qualified_through_delivery": true
+          "qualification_at_taipei": "2026-11-25T22:51:57.835759+08:00",
+          "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
         "is_formal_close": false
       },
       "TOPIX": {
-        "price": 3764.88,
-        "status": "PASS",
+        "price": 3746.2,
+        "status": "STALE",
         "source": "Naver world index quote",
-        "latest_bar_at_taipei": "2026-11-25T07:25:54+08:00",
-        "trade_time": "2026-11-25T08:25:54+09:00",
+        "latest_bar_at_taipei": "2026-11-25T14:30:04+08:00",
+        "trade_time": "2026-11-25T15:30:04+09:00",
         "source_date": null,
         "source_url": "https://api.stock.naver.com/index/.TOPX/basic",
-        "change_pct": 0.0,
-        "provider_time_text": "2026-11-25T08:25:54+09:00",
+        "change_pct": -0.5,
+        "provider_time_text": "2026-11-25T15:30:04+09:00",
         "provider_delay_minutes": 15,
         "timestamp_basis": "provider localTradedAt with explicit offset",
         "source_date_inferred": null,
         "regional_selection": {
           "primary_source": "Naver world index quote",
-          "primary_status": "PASS",
-          "fallback_source": "Yahoo/global fallback",
-          "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
+          "primary_status": "STALE",
+          "fallback_source": null,
+          "fallback_status": "FAIL",
           "selected_source": "Naver world index quote",
-          "qualification_at_taipei": "2026-11-25T07:40:51.316274+08:00",
-          "selected_qualified_through_delivery": true
+          "qualification_at_taipei": "2026-11-25T22:51:57.835759+08:00",
+          "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
         "is_formal_close": false
       },
       "ADVANTEST": {
-        "price": 27275.0,
-        "status": "PASS",
+        "price": 23745.0,
+        "status": "STALE",
         "source": "Naver world stock quote",
-        "latest_bar_at_taipei": "2026-11-25T07:25:54+08:00",
-        "trade_time": "2026-11-25T08:25:54+09:00",
+        "latest_bar_at_taipei": "2026-11-25T14:30:00+08:00",
+        "trade_time": "2026-11-25T15:30:00+09:00",
         "source_date": null,
         "source_url": "https://api.stock.naver.com/stock/6857.T/basic",
-        "change_pct": 0.0,
-        "provider_time_text": "2026-11-25T08:25:54+09:00",
+        "change_pct": -12.94,
+        "provider_time_text": "2026-11-25T15:30:00+09:00",
         "provider_delay_minutes": 15,
         "timestamp_basis": "provider localTradedAt with explicit offset",
         "source_date_inferred": null,
         "regional_selection": {
           "primary_source": "Naver world stock quote",
-          "primary_status": "PASS",
-          "fallback_source": "Yahoo/global fallback",
-          "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
+          "primary_status": "STALE",
+          "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
+          "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver world stock quote",
-          "qualification_at_taipei": "2026-11-25T07:40:51.316274+08:00",
-          "selected_qualified_through_delivery": true
+          "qualification_at_taipei": "2026-11-25T22:51:57.835759+08:00",
+          "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
         "is_formal_close": false
       },
       "TOKYO_ELECTRON": {
-        "price": 8946.0,
-        "status": "PASS",
+        "price": 7825.0,
+        "status": "STALE",
         "source": "Naver world stock quote",
-        "latest_bar_at_taipei": "2026-11-25T07:25:54+08:00",
-        "trade_time": "2026-11-25T08:25:54+09:00",
+        "latest_bar_at_taipei": "2026-11-25T14:30:00+08:00",
+        "trade_time": "2026-11-25T15:30:00+09:00",
         "source_date": null,
         "source_url": "https://api.stock.naver.com/stock/8035.T/basic",
-        "change_pct": 0.0,
-        "provider_time_text": "2026-11-25T08:25:54+09:00",
+        "change_pct": -12.53,
+        "provider_time_text": "2026-11-25T15:30:00+09:00",
         "provider_delay_minutes": 15,
         "timestamp_basis": "provider localTradedAt with explicit offset",
         "source_date_inferred": null,
         "regional_selection": {
           "primary_source": "Naver world stock quote",
-          "primary_status": "PASS",
-          "fallback_source": "Yahoo/global fallback",
-          "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
+          "primary_status": "STALE",
+          "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
+          "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver world stock quote",
-          "qualification_at_taipei": "2026-11-25T07:40:51.316274+08:00",
-          "selected_qualified_through_delivery": true
+          "qualification_at_taipei": "2026-11-25T22:51:57.835759+08:00",
+          "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
         "is_formal_close": false
@@ -1414,115 +1414,115 @@
     },
     "kr": {
       "KOSPI": {
-        "price": 5006.03,
-        "status": "PASS",
+        "price": 4697.51,
+        "status": "STALE",
         "source": "Naver public regional quote",
-        "latest_bar_at_taipei": "2026-11-25T07:40:51+08:00",
-        "trade_time": "2026-11-25T08:40:51+09:00",
+        "latest_bar_at_taipei": "2026-11-25T19:15:00+08:00",
+        "trade_time": "2026-11-25T20:15:00+09:00",
         "source_date": null,
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ,KPI200",
-        "change_pct": 0.0,
-        "provider_time_text": "2026-11-25T08:40:51+09:00",
+        "change_pct": -6.16,
+        "provider_time_text": "2026-11-25T20:15:00+09:00",
         "provider_delay_minutes": 0,
         "timestamp_basis": "provider localTradedAt with explicit offset",
         "source_date_inferred": null,
         "regional_selection": {
           "primary_source": "Naver public regional quote",
-          "primary_status": "PASS",
-          "fallback_source": "Yahoo/global fallback",
-          "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
+          "primary_status": "STALE",
+          "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
+          "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-25T07:40:51.316274+08:00",
-          "selected_qualified_through_delivery": true
+          "qualification_at_taipei": "2026-11-25T22:51:57.835759+08:00",
+          "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
         "is_formal_close": false
       },
       "KOSDAQ": {
-        "price": 665.88,
-        "status": "PASS",
+        "price": 650.64,
+        "status": "STALE",
         "source": "Naver public regional quote",
-        "latest_bar_at_taipei": "2026-11-25T07:40:51+08:00",
-        "trade_time": "2026-11-25T08:40:51+09:00",
+        "latest_bar_at_taipei": "2026-11-25T19:15:00+08:00",
+        "trade_time": "2026-11-25T20:15:00+09:00",
         "source_date": null,
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ,KPI200",
-        "change_pct": 0.0,
-        "provider_time_text": "2026-11-25T08:40:51+09:00",
+        "change_pct": -2.29,
+        "provider_time_text": "2026-11-25T20:15:00+09:00",
         "provider_delay_minutes": 0,
         "timestamp_basis": "provider localTradedAt with explicit offset",
         "source_date_inferred": null,
         "regional_selection": {
           "primary_source": "Naver public regional quote",
-          "primary_status": "PASS",
-          "fallback_source": "Yahoo/global fallback",
-          "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
+          "primary_status": "STALE",
+          "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
+          "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-25T07:40:51.316274+08:00",
-          "selected_qualified_through_delivery": true
+          "qualification_at_taipei": "2026-11-25T22:51:57.835759+08:00",
+          "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
         "is_formal_close": false
       },
       "SAMSUNG": {
-        "price": 189400.0,
-        "status": "PASS",
+        "price": 166900.0,
+        "status": "STALE",
         "source": "Naver public regional quote",
-        "latest_bar_at_taipei": "2026-11-25T07:40:52.340617+08:00",
-        "trade_time": "2026-11-25T08:40:52.340617+09:00",
+        "latest_bar_at_taipei": "2026-11-25T19:00:00+08:00",
+        "trade_time": "2026-11-25T20:00:00+09:00",
         "source_date": null,
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660",
-        "change_pct": 0.0,
-        "provider_time_text": "2026-11-25T08:40:52.340617+09:00",
+        "change_pct": -11.88,
+        "provider_time_text": "2026-11-25T20:00:00+09:00",
         "provider_delay_minutes": 0,
         "timestamp_basis": "provider localTradedAt with explicit offset",
         "source_date_inferred": null,
         "regional_selection": {
           "primary_source": "Naver public regional quote",
-          "primary_status": "PASS",
-          "fallback_source": "Yahoo/global fallback",
-          "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
+          "primary_status": "STALE",
+          "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
+          "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-25T07:40:51.316274+08:00",
-          "selected_qualified_through_delivery": true
+          "qualification_at_taipei": "2026-11-25T22:51:57.835759+08:00",
+          "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
         "is_formal_close": false
       },
       "SK_HYNIX": {
-        "price": 1158000.0,
-        "status": "PASS",
+        "price": 1014000.0,
+        "status": "STALE",
         "source": "Naver public regional quote",
-        "latest_bar_at_taipei": "2026-11-25T07:40:52.340625+08:00",
-        "trade_time": "2026-11-25T08:40:52.340625+09:00",
+        "latest_bar_at_taipei": "2026-11-25T19:00:00+08:00",
+        "trade_time": "2026-11-25T20:00:00+09:00",
         "source_date": null,
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660",
-        "change_pct": 0.0,
-        "provider_time_text": "2026-11-25T08:40:52.340625+09:00",
+        "change_pct": -12.44,
+        "provider_time_text": "2026-11-25T20:00:00+09:00",
         "provider_delay_minutes": 0,
         "timestamp_basis": "provider localTradedAt with explicit offset",
         "source_date_inferred": null,
         "regional_selection": {
           "primary_source": "Naver public regional quote",
-          "primary_status": "PASS",
-          "fallback_source": "Yahoo/global fallback",
-          "fallback_status": "NOT_REQUESTED_PRIMARY_FRESH",
+          "primary_status": "STALE",
+          "fallback_source": "yfinance/Yahoo Finance; research only, may be delayed",
+          "fallback_status": "HISTORICAL_BAR",
           "selected_source": "Naver public regional quote",
-          "qualification_at_taipei": "2026-11-25T07:40:51.316274+08:00",
-          "selected_qualified_through_delivery": true
+          "qualification_at_taipei": "2026-11-25T22:51:57.835759+08:00",
+          "selected_qualified_through_delivery": false
         },
         "data_kind": "provider_quote",
         "is_formal_close": false
       },
       "KOSPI200": {
-        "price": 778.68,
-        "status": "PASS",
+        "price": 723.81,
+        "status": "STALE",
         "source": "Naver public regional quote",
-        "latest_bar_at_taipei": "2026-11-25T07:40:51+08:00",
-        "trade_time": "2026-11-25T08:40:51+09:00",
+        "latest_bar_at_taipei": "2026-11-25T19:15:00+08:00",
+        "trade_time": "2026-11-25T20:15:00+09:00",
         "source_date": null,
         "source_url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ,KPI200",
-        "change_pct": 0.0,
-        "provider_time_text": "2026-11-25T08:40:51+09:00",
+        "change_pct": -7.05,
+        "provider_time_text": "2026-11-25T20:15:00+09:00",
         "provider_delay_minutes": 0,
         "timestamp_basis": "provider localTradedAt with explicit offset",
         "source_date_inferred": null,
@@ -1534,14 +1534,13 @@
   },
   "futures": {
     "TXFR1": {
-      "price": null,
-      "trade_time": null,
+      "price": 36145.0,
+      "trade_time": "2026-11-25T22:52:46.195000+08:00",
       "source": "Shioaji",
       "contract_code": "TXFR1",
-      "data_kind": null,
-      "status": "NO_LAST_TRADE",
-      "is_live": false,
-      "last_observation_price": null
+      "data_kind": "tick",
+      "status": "PASS",
+      "is_live": true
     }
   },
   "warnings": [
@@ -1555,109 +1554,412 @@
   },
   "target_session_date": "2026-11-25",
   "market_context": {
+    "TAIEX": {
+      "status": "PASS",
+      "source_date": "2026-11-25",
+      "source": "FinMind TaiwanStockPrice TAIEX",
+      "open": 39983.91,
+      "high": 39983.91,
+      "low": 36681.9,
+      "close": 38195.43,
+      "volume": 17132020810.0,
+      "turnover": 1229761968894.0
+    },
+    "TPEX": {
+      "status": "PASS",
+      "source_date": "2026-11-25",
+      "source": "TPEx tpex_index + tpex_daily_trading_index",
+      "open": 290.72,
+      "high": 292.22,
+      "low": 270.93,
+      "close": 275.97,
+      "volume": 787490819.0,
+      "turnover": 152961245437.0
+    },
     "breadth": {
-      "status": "MISSING_OR_WRONG_SESSION",
-      "source_date": null,
+      "status": "PASS",
+      "source_date": "2026-11-25",
       "source": "TWSE MI_INDEX stock-only breadth",
-      "advances": null,
-      "declines": null,
+      "advances": 39.0,
+      "declines": 1033.0,
       "scope": "TWSE stocks; excludes warrant-heavy all-security counts"
     },
     "institutional_totals": {
-      "status": "PARTIAL_MARKET_COVERAGE",
-      "source_date": null,
-      "source": "TWSE BFI82U TWD; foreign dealer not double counted",
-      "foreign_net_twd": null,
-      "trust_net_twd": null,
-      "dealer_net_twd": null,
-      "total_net_twd": null,
-      "scope": "TWSE only; TPEx component missing or inconsistent"
+      "status": "PASS",
+      "source_date": "2026-11-25",
+      "source": "TWSE BFI82U + TPEx official summary; TWD",
+      "foreign_net_twd": -130587455153.0,
+      "trust_net_twd": 60013983574.0,
+      "dealer_net_twd": -14970170225.0,
+      "total_net_twd": -85543641804.0,
+      "scope": "TWSE + TPEx; foreign dealers not double counted"
     },
     "institutional_by_market": {
       "TWSE": {
-        "status": "MISSING_OR_WRONG_SESSION",
-        "source_date": null,
+        "status": "PASS",
+        "source_date": "2026-11-25",
         "source": "TWSE BFI82U TWD; foreign dealer not double counted",
-        "foreign_net_twd": null,
-        "trust_net_twd": null,
-        "dealer_net_twd": null,
-        "total_net_twd": null,
+        "foreign_net_twd": -123654798153.0,
+        "trust_net_twd": 55034724295.0,
+        "dealer_net_twd": -12833216530.0,
+        "total_net_twd": -81453290388.0,
         "scope": "TWSE; foreign-dealer amounts are already included in dealer/official total"
       },
       "TPEx": {
-        "status": "MISSING_OR_WRONG_SESSION",
-        "source_date": null,
+        "status": "PASS",
+        "source_date": "2026-11-25",
         "source": "TPEx tpex_3insti_summary TWD",
-        "foreign_net_twd": null,
-        "trust_net_twd": null,
-        "dealer_net_twd": null,
-        "total_net_twd": null
+        "foreign_net_twd": -6932657000.0,
+        "trust_net_twd": 4979259279.0,
+        "dealer_net_twd": -2136953695.0,
+        "total_net_twd": -4090351416.0
       }
     },
     "margin_totals": {
-      "status": "MISSING_OR_WRONG_SESSION",
-      "source_date": null,
+      "status": "PASS",
+      "source_date": "2026-11-25",
       "source": "TWSE MI_MARGN credit statistics",
-      "margin_balance": null,
-      "margin_change": null,
-      "short_balance": null,
-      "short_change": null,
+      "margin_balance": 9383491.0,
+      "margin_change": -681476.0,
+      "short_balance": 169365.0,
+      "short_change": -17248.0,
       "units": "provider trading units (lots); no second division by 1000",
       "scope": "TWSE"
     },
     "breadth_by_market": {
       "TWSE": {
-        "status": "MISSING_OR_WRONG_SESSION",
-        "source_date": null,
+        "status": "PASS",
+        "source_date": "2026-11-25",
         "source": "TWSE MI_INDEX stock-only breadth",
-        "advances": null,
-        "declines": null,
+        "advances": 39.0,
+        "declines": 1033.0,
         "scope": "TWSE stocks; excludes warrant-heavy all-security counts"
       },
       "TPEx": {
-        "status": "MISSING_OR_WRONG_SESSION",
-        "source_date": null,
+        "status": "PASS",
+        "source_date": "2026-11-25",
         "source": "TPEx daily close; derived four-digit stock breadth",
-        "advances": null,
-        "declines": null,
+        "advances": 66,
+        "declines": 774,
         "scope": "TPEx four-digit stocks; ETFs/warrants excluded",
-        "not_comparable": 0,
-        "pool_size": 0
+        "not_comparable": 29,
+        "pool_size": 895
       }
     },
     "margin_by_market": {
       "TWSE": {
-        "status": "MISSING_OR_WRONG_SESSION",
-        "source_date": null,
+        "status": "PASS",
+        "source_date": "2026-11-25",
         "source": "TWSE MI_MARGN credit statistics",
-        "margin_balance": null,
-        "margin_change": null,
-        "short_balance": null,
-        "short_change": null,
+        "margin_balance": 9383491.0,
+        "margin_change": -681476.0,
+        "short_balance": 169365.0,
+        "short_change": -17248.0,
         "units": "provider trading units (lots); no second division by 1000",
         "scope": "TWSE"
       },
       "TPEx": {
-        "status": "MISSING_OR_WRONG_SESSION",
-        "source_date": null,
+        "status": "PASS",
+        "source_date": "2026-11-25",
         "source": "TPEx margin balances, unique instrument rows summed",
-        "margin_balance": null,
-        "margin_change": null,
-        "short_balance": null,
-        "short_change": null,
+        "margin_balance": 1857229.0,
+        "margin_change": -15841.0,
+        "short_balance": 19688.0,
+        "short_change": -2361.0,
         "units": "TPEx provider-native balance units; reported separately, not combined with differently scoped totals"
       }
     },
     "futures_positioning": {
-      "status": "MISSING_OR_WRONG_SESSION",
-      "source_date": null,
+      "status": "PASS",
+      "source_date": "2026-11-25",
       "source": "TAIFEX TX foreign net open interest, dated official API/CSV",
-      "foreign_net_contracts": null
+      "foreign_net_contracts": -105709.0
     },
     "sector_performance": {
-      "source_date": null,
+      "source_date": "2026-11-25",
       "source": "TWSE official price-index board; price performance is not capital flow",
-      "items": []
+      "items": [
+        {
+          "name": "寶島股價指數",
+          "close": 41872.55,
+          "change_pct": -4.87
+        },
+        {
+          "name": "發行量加權股價指數",
+          "close": 38195.43,
+          "change_pct": -4.8
+        },
+        {
+          "name": "臺灣公司治理100指數",
+          "close": 24511.82,
+          "change_pct": -4.89
+        },
+        {
+          "name": "臺灣50指數",
+          "close": 36096.66,
+          "change_pct": -4.67
+        },
+        {
+          "name": "臺灣50權重上限30%指數",
+          "close": 29360.09,
+          "change_pct": -5.4
+        },
+        {
+          "name": "臺灣中型100指數",
+          "close": 28073.66,
+          "change_pct": -5.58
+        },
+        {
+          "name": "臺灣資訊科技指數",
+          "close": 74791.2,
+          "change_pct": -4.73
+        },
+        {
+          "name": "臺灣發達指數",
+          "close": 14203.48,
+          "change_pct": -3.55
+        },
+        {
+          "name": "臺灣高股息指數",
+          "close": 13396.82,
+          "change_pct": -6.37
+        },
+        {
+          "name": "臺灣就業99指數",
+          "close": 24301.59,
+          "change_pct": -6.06
+        },
+        {
+          "name": "臺灣高薪100指數",
+          "close": 20432.63,
+          "change_pct": -5.58
+        },
+        {
+          "name": "未含金融指數",
+          "close": 33708.22,
+          "change_pct": -4.64
+        },
+        {
+          "name": "未含電子指數",
+          "close": 22957.95,
+          "change_pct": -5.16
+        },
+        {
+          "name": "未含金融電子指數",
+          "close": 14673.38,
+          "change_pct": -4.21
+        },
+        {
+          "name": "小型股300指數",
+          "close": 10984.18,
+          "change_pct": -5.05
+        },
+        {
+          "name": "水泥窯製類指數",
+          "close": 609.91,
+          "change_pct": -3.99
+        },
+        {
+          "name": "塑膠化工類指數",
+          "close": 1011.92,
+          "change_pct": -7.21
+        },
+        {
+          "name": "機電類指數",
+          "close": 12980.55,
+          "change_pct": -4.73
+        },
+        {
+          "name": "水泥類指數",
+          "close": 118.04,
+          "change_pct": -2.7
+        },
+        {
+          "name": "食品類指數",
+          "close": 1896.21,
+          "change_pct": 0.07
+        },
+        {
+          "name": "塑膠類指數",
+          "close": 360.59,
+          "change_pct": -8.38
+        },
+        {
+          "name": "紡織纖維類指數",
+          "close": 456.71,
+          "change_pct": -3.03
+        },
+        {
+          "name": "電機機械類指數",
+          "close": 388.29,
+          "change_pct": -5.96
+        },
+        {
+          "name": "電器電纜類指數",
+          "close": 82.03,
+          "change_pct": -7.69
+        },
+        {
+          "name": "化學生技醫療類指數",
+          "close": 132.73,
+          "change_pct": -5.54
+        },
+        {
+          "name": "化學類指數",
+          "close": 148.25,
+          "change_pct": -6.1
+        },
+        {
+          "name": "生技醫療類指數",
+          "close": 76.42,
+          "change_pct": -5.32
+        },
+        {
+          "name": "玻璃陶瓷類指數",
+          "close": 138.41,
+          "change_pct": -6.25
+        },
+        {
+          "name": "造紙類指數",
+          "close": 230.53,
+          "change_pct": -2.98
+        },
+        {
+          "name": "鋼鐵類指數",
+          "close": 109.33,
+          "change_pct": -3.86
+        },
+        {
+          "name": "橡膠類指數",
+          "close": 167.54,
+          "change_pct": -2.86
+        },
+        {
+          "name": "汽車類指數",
+          "close": 262.76,
+          "change_pct": -3.21
+        },
+        {
+          "name": "電子工業類指數",
+          "close": 2363.34,
+          "change_pct": -4.71
+        },
+        {
+          "name": "半導體類指數",
+          "close": 1320.63,
+          "change_pct": -4.71
+        },
+        {
+          "name": "電腦及週邊設備類指數",
+          "close": 345.6,
+          "change_pct": -5.82
+        },
+        {
+          "name": "光電類指數",
+          "close": 52.13,
+          "change_pct": -4.73
+        },
+        {
+          "name": "通信網路類指數",
+          "close": 215.47,
+          "change_pct": -2.05
+        },
+        {
+          "name": "電子零組件類指數",
+          "close": 571.94,
+          "change_pct": -3.65
+        },
+        {
+          "name": "電子通路類指數",
+          "close": 277.91,
+          "change_pct": -6.65
+        },
+        {
+          "name": "資訊服務類指數",
+          "close": 226.76,
+          "change_pct": -2.61
+        },
+        {
+          "name": "其他電子類指數",
+          "close": 207.24,
+          "change_pct": -6.91
+        },
+        {
+          "name": "建材營造類指數",
+          "close": 410.64,
+          "change_pct": -3.24
+        },
+        {
+          "name": "航運類指數",
+          "close": 204.0,
+          "change_pct": -1.95
+        },
+        {
+          "name": "觀光餐旅類指數",
+          "close": 92.43,
+          "change_pct": -2.42
+        },
+        {
+          "name": "金融保險類指數",
+          "close": 3189.2,
+          "change_pct": -6.31
+        },
+        {
+          "name": "貿易百貨類指數",
+          "close": 218.78,
+          "change_pct": -1.18
+        },
+        {
+          "name": "油電燃氣類指數",
+          "close": 106.97,
+          "change_pct": 0.2
+        },
+        {
+          "name": "綠能環保類指數",
+          "close": 87.1,
+          "change_pct": -5.68
+        },
+        {
+          "name": "數位雲端類指數",
+          "close": 34.79,
+          "change_pct": -2.85
+        },
+        {
+          "name": "運動休閒類指數",
+          "close": 49.78,
+          "change_pct": -3.19
+        },
+        {
+          "name": "居家生活類指數",
+          "close": 92.49,
+          "change_pct": -2.39
+        },
+        {
+          "name": "其他類指數",
+          "close": 250.97,
+          "change_pct": -2.67
+        },
+        {
+          "name": "臺指日報酬兩倍指數",
+          "close": 147205.21,
+          "change_pct": -9.61
+        },
+        {
+          "name": "臺指反向一倍指數",
+          "close": 1444.91,
+          "change_pct": 4.8
+        },
+        {
+          "name": "電子類兩倍槓桿指數",
+          "close": 228382.18,
+          "change_pct": -9.41
+        },
+        {
+          "name": "電子類反向指數",
+          "close": 903.92,
+          "change_pct": 4.71
+        }
+      ]
     },
     "_diagnostics": [
       {
@@ -1722,15 +2024,11 @@
       },
       {
         "name": "futures_dated_csv",
-        "error": "Upstream returned HTML, not market data"
-      },
-      {
-        "name": "futures_finmind",
         "status": "FETCHED",
         "target": "2026-11-25"
       }
     ],
-    "_collected_at_taipei": "2026-11-25T07:40:20.695464+08:00"
+    "_collected_at_taipei": "2026-11-25T22:51:43.788292+08:00"
   },
   "security_identity": {
     "status": "UNVERIFIABLE",
@@ -1741,11 +2039,11 @@
   "completed_night_input": null,
   "coverage": {
     "stocks_total": 9,
-    "daily_ohlcv_target_session": 0,
-    "institutional_target_session": 0,
-    "margin_target_session": 0
+    "daily_ohlcv_target_session": 9,
+    "institutional_target_session": 9,
+    "margin_target_session": 9
   },
-  "stock_data_status": "PARTIAL",
+  "stock_data_status": "COMPLETE",
   "readiness": {
     "version": "report-contract-v2",
     "data_readiness": "DATA_PARTIAL",
@@ -1759,419 +2057,46 @@
     ],
     "sections": {
       "required_stock_data": {
-        "status": "PARTIAL",
+        "status": "PASS",
         "items": {
-          "0050": "MISSING_OR_INVALID_FIELDS",
-          "006208": "MISSING_OR_INVALID_FIELDS",
-          "00631L": "MISSING_OR_INVALID_FIELDS",
-          "2330": "MISSING_OR_INVALID_FIELDS",
-          "3707": "MISSING_OR_INVALID_FIELDS",
-          "5483": "MISSING_OR_INVALID_FIELDS"
+          "0050": "PASS",
+          "006208": "PASS",
+          "00631L": "PASS",
+          "2330": "PASS",
+          "3707": "PASS",
+          "5483": "PASS"
         },
-        "diagnostics": {
-          "0050": {
-            "missing_or_non_numeric": {
-              "daily_ohlcv": [
-                "open",
-                "max",
-                "min",
-                "close",
-                "Trading_Volume",
-                "Trading_money"
-              ],
-              "metrics": [
-                "previous_close",
-                "amplitude_pct",
-                "volume_ratio_5d",
-                "volume_ratio_20d"
-              ],
-              "institutional": [
-                "foreign_net_shares",
-                "trust_net_shares",
-                "dealer_net_shares",
-                "total_net_shares",
-                "net_5d_shares"
-              ],
-              "margin": [
-                "margin_balance",
-                "margin_change",
-                "margin_change_5d",
-                "short_balance",
-                "short_change",
-                "short_change_5d"
-              ]
-            },
-            "sources": {
-              "daily_ohlcv": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockPrice"
-              },
-              "institutional": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
-              },
-              "margin": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockMarginPurchaseShortSale"
-              }
-            },
-            "invalid_prices": [
-              "open",
-              "max",
-              "min",
-              "close"
-            ],
-            "ohlc_out_of_order": false,
-            "negative_activity": [],
-            "dealer_components_conflict": false
-          },
-          "006208": {
-            "missing_or_non_numeric": {
-              "daily_ohlcv": [
-                "open",
-                "max",
-                "min",
-                "close",
-                "Trading_Volume",
-                "Trading_money"
-              ],
-              "metrics": [
-                "previous_close",
-                "amplitude_pct",
-                "volume_ratio_5d",
-                "volume_ratio_20d"
-              ],
-              "institutional": [
-                "foreign_net_shares",
-                "trust_net_shares",
-                "dealer_net_shares",
-                "total_net_shares",
-                "net_5d_shares"
-              ],
-              "margin": [
-                "margin_balance",
-                "margin_change",
-                "margin_change_5d",
-                "short_balance",
-                "short_change",
-                "short_change_5d"
-              ]
-            },
-            "sources": {
-              "daily_ohlcv": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockPrice"
-              },
-              "institutional": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
-              },
-              "margin": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockMarginPurchaseShortSale"
-              }
-            },
-            "invalid_prices": [
-              "open",
-              "max",
-              "min",
-              "close"
-            ],
-            "ohlc_out_of_order": false,
-            "negative_activity": [],
-            "dealer_components_conflict": false
-          },
-          "00631L": {
-            "missing_or_non_numeric": {
-              "daily_ohlcv": [
-                "open",
-                "max",
-                "min",
-                "close",
-                "Trading_Volume",
-                "Trading_money"
-              ],
-              "metrics": [
-                "previous_close",
-                "amplitude_pct",
-                "volume_ratio_5d",
-                "volume_ratio_20d"
-              ],
-              "institutional": [
-                "foreign_net_shares",
-                "trust_net_shares",
-                "dealer_net_shares",
-                "total_net_shares",
-                "net_5d_shares"
-              ],
-              "margin": [
-                "margin_balance",
-                "margin_change",
-                "margin_change_5d",
-                "short_balance",
-                "short_change",
-                "short_change_5d"
-              ]
-            },
-            "sources": {
-              "daily_ohlcv": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockPrice"
-              },
-              "institutional": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
-              },
-              "margin": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockMarginPurchaseShortSale"
-              }
-            },
-            "invalid_prices": [
-              "open",
-              "max",
-              "min",
-              "close"
-            ],
-            "ohlc_out_of_order": false,
-            "negative_activity": [],
-            "dealer_components_conflict": false
-          },
-          "2330": {
-            "missing_or_non_numeric": {
-              "daily_ohlcv": [
-                "open",
-                "max",
-                "min",
-                "close",
-                "Trading_Volume",
-                "Trading_money"
-              ],
-              "metrics": [
-                "previous_close",
-                "amplitude_pct",
-                "volume_ratio_5d",
-                "volume_ratio_20d"
-              ],
-              "institutional": [
-                "foreign_net_shares",
-                "trust_net_shares",
-                "dealer_net_shares",
-                "total_net_shares",
-                "net_5d_shares"
-              ],
-              "margin": [
-                "margin_balance",
-                "margin_change",
-                "margin_change_5d",
-                "short_balance",
-                "short_change",
-                "short_change_5d"
-              ]
-            },
-            "sources": {
-              "daily_ohlcv": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockPrice"
-              },
-              "institutional": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
-              },
-              "margin": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockMarginPurchaseShortSale"
-              }
-            },
-            "invalid_prices": [
-              "open",
-              "max",
-              "min",
-              "close"
-            ],
-            "ohlc_out_of_order": false,
-            "negative_activity": [],
-            "dealer_components_conflict": false
-          },
-          "3707": {
-            "missing_or_non_numeric": {
-              "daily_ohlcv": [
-                "open",
-                "max",
-                "min",
-                "close",
-                "Trading_Volume",
-                "Trading_money"
-              ],
-              "metrics": [
-                "previous_close",
-                "amplitude_pct",
-                "volume_ratio_5d",
-                "volume_ratio_20d"
-              ],
-              "institutional": [
-                "foreign_net_shares",
-                "trust_net_shares",
-                "dealer_net_shares",
-                "total_net_shares",
-                "net_5d_shares"
-              ],
-              "margin": [
-                "margin_balance",
-                "margin_change",
-                "margin_change_5d",
-                "short_balance",
-                "short_change",
-                "short_change_5d"
-              ]
-            },
-            "sources": {
-              "daily_ohlcv": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockPrice"
-              },
-              "institutional": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
-              },
-              "margin": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockMarginPurchaseShortSale"
-              }
-            },
-            "invalid_prices": [
-              "open",
-              "max",
-              "min",
-              "close"
-            ],
-            "ohlc_out_of_order": false,
-            "negative_activity": [],
-            "dealer_components_conflict": false
-          },
-          "5483": {
-            "missing_or_non_numeric": {
-              "daily_ohlcv": [
-                "open",
-                "max",
-                "min",
-                "close",
-                "Trading_Volume",
-                "Trading_money"
-              ],
-              "metrics": [
-                "previous_close",
-                "amplitude_pct",
-                "volume_ratio_5d",
-                "volume_ratio_20d"
-              ],
-              "institutional": [
-                "foreign_net_shares",
-                "trust_net_shares",
-                "dealer_net_shares",
-                "total_net_shares",
-                "net_5d_shares"
-              ],
-              "margin": [
-                "margin_balance",
-                "margin_change",
-                "margin_change_5d",
-                "short_balance",
-                "short_change",
-                "short_change_5d"
-              ]
-            },
-            "sources": {
-              "daily_ohlcv": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockPrice"
-              },
-              "institutional": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockInstitutionalInvestorsBuySellWide"
-              },
-              "margin": {
-                "status": "SESSION_NOT_CLOSED",
-                "target_session": "2026-11-25",
-                "source_date": "2026-11-24",
-                "source": "TaiwanStockMarginPurchaseShortSale"
-              }
-            },
-            "invalid_prices": [
-              "open",
-              "max",
-              "min",
-              "close"
-            ],
-            "ohlc_out_of_order": false,
-            "negative_activity": [],
-            "dealer_components_conflict": false
-          }
-        }
+        "diagnostics": {}
       },
       "market_context": {
-        "status": "PARTIAL",
+        "status": "PASS",
         "items": {
-          "TAIEX": "NOT_COLLECTED_OR_WRONG_SESSION",
-          "TPEX": "NOT_COLLECTED_OR_WRONG_SESSION",
-          "breadth": "NOT_COLLECTED_OR_WRONG_SESSION",
-          "institutional_totals": "NOT_COLLECTED_OR_WRONG_SESSION",
-          "margin_totals": "NOT_COLLECTED_OR_WRONG_SESSION",
-          "futures_positioning": "NOT_COLLECTED_OR_WRONG_SESSION"
+          "TAIEX": "PASS",
+          "TPEX": "PASS",
+          "breadth": "PASS",
+          "institutional_totals": "PASS",
+          "margin_totals": "PASS",
+          "futures_positioning": "PASS"
         }
       },
       "us_intraday": {
         "status": "PARTIAL",
         "items": {
-          "SP500": "STALE",
-          "NASDAQ": "STALE",
-          "SOX": "STALE",
-          "VIX": "STALE",
-          "TSM_ADR": "STALE",
-          "NVDA": "STALE",
-          "AMD": "STALE",
-          "AVGO": "STALE",
-          "MU": "STALE"
+          "SP500": "PASS",
+          "NASDAQ": "PASS",
+          "SOX": "PASS",
+          "VIX": "DELAYED",
+          "TSM_ADR": "PASS",
+          "NVDA": "PASS",
+          "AMD": "PASS",
+          "AVGO": "PASS",
+          "MU": "PASS"
         }
       },
       "tx_live": {
-        "status": "PARTIAL",
+        "status": "PASS",
         "items": {
-          "TXFR1": "MISSING_TICK"
+          "TXFR1": "PASS"
         }
       },
       "cutoff": {
@@ -2179,6 +2104,7 @@
         "items": {
           "market": "PASS",
           "cross": "PASS",
+          "collection_window": "PASS",
           "generation": "PASS"
         }
       }
@@ -2209,23 +2135,23 @@
     "2367",
     "3491"
   ],
-  "stock_close_table_markdown": "| 代號 | 收盤 |\n|---|---:|\n| 0050 | N/A |\n| 006208 | N/A |\n| 00631L | N/A |\n| 2330 | N/A |\n| 3707 | N/A |\n| 5483 | N/A |",
+  "stock_close_table_markdown": "| 代號 | 收盤 |\n|---|---:|\n| 0050 | 90.30 |\n| 006208 | 203.15 |\n| 00631L | 23.78 |\n| 2330 | 2150.00 |\n| 3707 | 43.80 |\n| 5483 | 133.50 |",
   "input_fingerprints": {
     "market/evening": {
       "snapshot": "2026-11-25/evening.json",
-      "sha256": "111e4a36e2f2e4afc1f2a1f8b38eae2b13e6ef8d39a4835e1a940201b2e939e5"
+      "sha256": "376f0ce4c9c5bc2c8cacf9c9fa3998453dc7371e36f54c21fb3ec1a6e25bfe3d"
     },
     "current/cross-evening": {
       "snapshot": "2026-11-25/cross-evening.json",
-      "sha256": "169b2ece8acd20ecc53946ecb9f9f1d8ce1003018cafcc68fee03d2622c3fa20"
+      "sha256": "3ed622d58b1881d6d6f67677aab27ecf397ed9b545225ecaabacb5976885e31b"
     }
   },
   "execution_evidence": {
-    "run_id": "45511813215",
+    "run_id": "45638542533",
     "run_attempt": "1",
-    "commit": "d2b6553f86a5057a6c4e58420f497fabe93fedd4",
-    "event": "schedule",
-    "started_at_taipei": "2026-11-25T07:39:47.737801+08:00"
+    "commit": "d456c8b31db0bc4f15ba385eec05423110567bf1",
+    "event": "push",
+    "started_at_taipei": "2026-11-25T22:51:03.284871+08:00"
   },
-  "data_report_id": "DATA-2026-11-25-evening-45511813215"
+  "data_report_id": "DATA-2026-11-25-evening-45638542533"
 }
