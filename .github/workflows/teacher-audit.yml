@@ -67,7 +67,9 @@ jobs:
           if [ -n "${TEACHER_DOCUMENT_HTTP:-}" ]; then
             args+=(--missing-probe-status "$TEACHER_DOCUMENT_HTTP")
           fi
-          python report_handoff.py --data-ref FETCH_HEAD --output report-handoff.json "${args[@]}"
+          revision=$(git -C snapshots rev-parse HEAD)
+          python report_handoff.py --data-ref "$revision" --output report-handoff.json \
+            --replay-evidence teacher-evidence.json "${args[@]}"
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
